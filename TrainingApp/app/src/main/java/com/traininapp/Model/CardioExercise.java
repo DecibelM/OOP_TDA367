@@ -1,4 +1,4 @@
 package com.traininapp.Model;
 
-public class CardioExercise {
+public class CardioExercise extends Exercise{
 }
