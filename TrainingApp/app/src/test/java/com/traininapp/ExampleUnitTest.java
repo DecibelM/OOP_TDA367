@@ -1,5 +1,7 @@
 package com.traininapp;
 
+import com.traininapp.Model.Calendar;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,8 +12,12 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void addSessionTest(){
+        Calendar c = new Calendar();
+        c.addSession("Magpass");
+
+        assertEquals(1,c.getSessionList().size());
     }
 }
