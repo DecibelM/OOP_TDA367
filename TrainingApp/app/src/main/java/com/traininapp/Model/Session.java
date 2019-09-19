@@ -1,5 +1,6 @@
 package com.traininapp.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Session {
@@ -8,8 +9,8 @@ public class Session {
     //date???
     //time????
 
-    public Session(String name, List<Exercise> exercises) {
+    public Session(String name) {
         this.name = name;
-        this.exercises = exercises;
+        this.exercises = new ArrayList<>();
     }
 }
