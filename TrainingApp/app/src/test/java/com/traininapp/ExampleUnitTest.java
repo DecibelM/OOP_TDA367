@@ -1,8 +1,13 @@
 package com.traininapp;
 
 import com.traininapp.Model.Calendar;
+import com.traininapp.Model.Exercise;
+import com.traininapp.Model.Session;
 
 import org.junit.Test;
+
+import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -16,8 +21,19 @@ public class ExampleUnitTest {
     @Test
     public void addSessionTest(){
         Calendar c = new Calendar();
-        c.addSession("Magpass");
-
+        LocalDate date = LocalDate.now();
+        c.addSession("Magpass", date);
         assertEquals(1,c.getSessionList().size());
+    }
+
+    @Test
+    public void addCardioExercise(){
+        Calendar c = new Calendar();
+        LocalDate date = LocalDate.now();
+        Session session = new Session("MagPass", date);
+        session.addCardioExercise("Uppvarmning", 20, 2);
+        List<Exercise> list = session.getExerciseList();
+
+        assertEquals("Uppvarmning", list.get(0).getName());
     }
 }
