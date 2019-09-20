@@ -1,5 +1,8 @@
 package com.traininapp.Model;
 
+/**
+ * StrengthExercise is a class for exercises involving strength.
+ */
 public class StrengthExercise extends Exercise {
     private int sets;
     private int reps;
