@@ -10,12 +10,39 @@ import java.util.List;
 public class Session {
     private String name;
     private List<Exercise> exerciseList;
+    private List<ISessionObserver> sessionObservers;
     LocalDate date;
 
     public Session(String name, LocalDate date) {
         this.name = name;
         this.exerciseList = new ArrayList<>();
         this.date = date;
+        sessionObservers = new ArrayList<>();
+    }
+
+    /**
+     * Adds an observer to the session
+     *
+     * @param observer
+     */
+    public void addObserver(ISessionObserver observer){
+        sessionObservers.add(observer);
+    }
+
+    /**
+     * Removes an observer from the session
+     *
+     * @param observer
+     */
+    public void removeObservers(ISessionObserver observer){
+        sessionObservers.remove(observer);
+    }
+
+    /**
+     *
+     */
+    private void updateSessionObserver(){
+                            //TODO fix
     }
 
     /**
