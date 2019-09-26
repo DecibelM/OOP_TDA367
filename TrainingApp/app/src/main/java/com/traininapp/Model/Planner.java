@@ -6,19 +6,19 @@ import java.util.List;
 
 
 /**
- * Class Calendar which holds a list of sessions and
+ * Class Planner which holds a list of sessions and
  * can add new sessions.
  */
-public class Calendar {
+public class Planner {
 
     private List<Session> sessionList;
 
-    public Calendar() {
+    public Planner() {
         this.sessionList = new ArrayList<>();
     }
 
     /**
-     * Adds a new session to the Calendar list.
+     * Adds a new session to the Planner list.
      * @param sessionName name if the session
      * @param date date of the session
      */

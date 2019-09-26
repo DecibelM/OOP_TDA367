@@ -12,6 +12,8 @@ public class Session {
     private List<Exercise> exerciseList;
     LocalDate date;
 
+
+
     public Session(String name, LocalDate date) {
         this.name = name;
         this.exerciseList = new ArrayList<>();
