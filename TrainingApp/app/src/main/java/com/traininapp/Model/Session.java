@@ -42,7 +42,7 @@ public class Session {
      *
      */
     private void updateSessionObserver(){
-                            //TODO fix
+                            //TODO fix method call and send list of exercises to observers, if any.
     }
 
     /**
