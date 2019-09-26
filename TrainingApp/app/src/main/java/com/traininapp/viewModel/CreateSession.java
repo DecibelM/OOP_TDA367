@@ -1,4 +1,4 @@
-package com.traininapp.View;
+package com.traininapp.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
