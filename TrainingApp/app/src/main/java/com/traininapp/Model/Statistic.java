@@ -9,14 +9,14 @@ import java.util.List;
  */
 public class Statistic implements ISessionObserver {
 
-    int totTrainingTime;
-    int totDistance;
-    int totReps;
-    int totSets;
-    int totWeightLifted;
-    int maxWeight;
+    private int totTrainingTime;
+    private int totDistance;
+    private int totReps;
+    private int totSets;
+    private int totWeightLifted;
+    private int maxWeight;
 
-    public void Statistic(){
+    public Statistic(){
         totTrainingTime = 0;
         totDistance =0;
         totReps = 0;
@@ -29,7 +29,7 @@ public class Statistic implements ISessionObserver {
     public void updateSessionStats(List<Exercise> exerciseList) {
 
         for (Exercise exercise: exerciseList){
-            if (exercise instanceof CardioExercise){            //instanceof checks if the exercise is of the class in question
+            if (exercise instanceof CardioExercise){            //'instanceof' checks if the 'exercise' is of the class 'CardioExercise'
                 updateCardioExercise((CardioExercise) exercise);
             } else if (exercise instanceof StrengthExercise){
                 updateStrengthExercise((StrengthExercise) exercise);
