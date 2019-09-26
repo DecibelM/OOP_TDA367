@@ -39,10 +39,13 @@ public class Session {
     }
 
     /**
-     *
+     *Sends the list of exercises over to the observer
+     * Call for this only once! otherwise there will be duplicate data in statistics.
      */
     private void updateSessionObserver(){
-                            //TODO fix method call and send list of exercises to observers, if any.
+        for (ISessionObserver observer: sessionObservers){
+            observer.updateSessionStats(exerciseList);
+        }
     }
 
     /**
