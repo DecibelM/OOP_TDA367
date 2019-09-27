@@ -42,29 +42,7 @@ public class CalendarFragment extends Fragment {
         return view;
 
     }
-    /*
 
-    Button button1;
-    TextView textView1;
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_goals, null);
-        textView1 = (TextView) view.findViewById(R.id.textView1);
-        button1 = (Button)view.findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                buttonOnClick();
-            }
-        });
-        return view;
-    }
-
-
-    public void buttonOnClick(){
-        counter++;
-        textView1.setText(Integer.toString(counter));
-    }*/
 
 
 
