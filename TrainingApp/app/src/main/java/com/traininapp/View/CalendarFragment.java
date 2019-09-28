@@ -16,6 +16,11 @@ import android.widget.TextView;
 
 import com.traininapp.R;
 
+
+/**
+ * Keeps tabs on the calendar and the date which the user has selected.
+ *
+ */
 public class CalendarFragment extends Fragment {
 
     private TextView myDate;
