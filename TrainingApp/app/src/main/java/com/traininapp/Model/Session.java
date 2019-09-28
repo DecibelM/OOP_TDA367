@@ -54,7 +54,7 @@ public class Session {
      * @param runningTime time running (min)
      * @param distance distance run (m)
      */
-    public void addCardioExercise(String name, int runningTime, int distance ){
+    public void addCardioExercise(String name, double runningTime, double distance ){
         exerciseList.add(new CardioExercise(name, runningTime, distance));
     }
 
@@ -65,7 +65,7 @@ public class Session {
      * @param reps number of reps
      * @param weight weight used in the exercise
      */
-    public void addStrengthExercise(String name, int sets, int reps, int weight ){
+    public void addStrengthExercise(String name, int sets, int reps, double weight ){
         exerciseList.add(new StrengthExercise(name, sets, reps, weight));
     }
 

@@ -9,12 +9,12 @@ import java.util.List;
  */
 public class Statistic implements ISessionObserver {
 
-    private int totTrainingTime;
-    private int totDistance;
+    private double totTrainingTime;
+    private double totDistance;
     private int totReps;
     private int totSets;
-    private int totWeightLifted;
-    private int maxWeight;
+    private double totWeightLifted;
+    private double maxWeight;
 
     public Statistic(){
         totTrainingTime = 0;
@@ -47,7 +47,7 @@ public class Statistic implements ISessionObserver {
      */
     private void updateStrengthExercise(StrengthExercise exercise) {    //TODO this should also update the statistics of a specific exercise
 
-        int tempWeight = exercise.getWeight();
+        double tempWeight = exercise.getWeight();
         if (this.maxWeight < tempWeight) {
             maxWeight = tempWeight;
         }
@@ -75,7 +75,7 @@ public class Statistic implements ISessionObserver {
      *
      * @return the total traing time
      */
-    public int getTotTrainingTime() {
+    public double getTotTrainingTime() {
         return totTrainingTime;
     }
 
@@ -83,7 +83,7 @@ public class Statistic implements ISessionObserver {
      *
      * @return Total running distance
      */
-    public int getTotDistance() {
+    public double getTotDistance() {
         return totDistance;
     }
 
@@ -108,7 +108,7 @@ public class Statistic implements ISessionObserver {
      *
      * @return total weight lifted (int)
      */
-    public int getTotWeightLifted() {
+    public double getTotWeightLifted() {
         return totWeightLifted;
     }
 
@@ -116,7 +116,7 @@ public class Statistic implements ISessionObserver {
      *
      * @return Highest value of weight lifted
      */
-    public int getMaxWeight() {
+    public double getMaxWeight() {
         return maxWeight;
     }
 }

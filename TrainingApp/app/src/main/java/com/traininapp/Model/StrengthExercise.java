@@ -6,9 +6,9 @@ package com.traininapp.Model;
 public class StrengthExercise extends Exercise {
     private int sets;
     private int reps;
-    private int weight;
+    private double weight;
 
-    public StrengthExercise(String name, int sets, int reps, int weight) {
+    public StrengthExercise(String name, int sets, int reps, double weight) {
         super(name);
         this.sets = sets;
         this.reps = reps;
@@ -16,7 +16,7 @@ public class StrengthExercise extends Exercise {
     }
 
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
