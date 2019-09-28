@@ -31,7 +31,7 @@ public class StatisticsTest {
         exerciseList.add(strengthExercise);
         statistic.updateSessionStats(exerciseList);
 
-        assertEquals(20, statistic.getTotWeightLifted());
+        assertEquals(20, statistic.getTotWeightLifted(),0);
     }
 
     @Test
@@ -51,13 +51,13 @@ public class StatisticsTest {
         statistic.updateSessionStats(exerciseList);
 
         assertEquals(1,exerciseList.size());
-        assertEquals(5,statistic.getTotDistance());
+        assertEquals(5,statistic.getTotDistance(),0);
     }
 
     @Test
     public void testStrengthExercise(){
 
-        assertEquals(10, strengthExercise.getWeight());
+        assertEquals(10, strengthExercise.getWeight(),0);
     }
 
 
