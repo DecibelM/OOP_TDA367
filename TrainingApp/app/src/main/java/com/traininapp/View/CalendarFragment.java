@@ -16,6 +16,11 @@ import android.widget.TextView;
 
 import com.traininapp.R;
 
+
+/**
+ * Keeps tabs on the calendar and the date which the user has selected.
+ *
+ */
 public class CalendarFragment extends Fragment {
 
     private TextView myDate;
@@ -24,8 +29,9 @@ public class CalendarFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //setCalendarView();
-        //setMyDate();
+        View view = inflater.inflate(R.layout.fragment_calendar, null);
+        myDate = (TextView) view.findViewById(R.id.myDate);
+        calendarView = (CalendarView) view.findViewById(R.id.calendarView);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -38,17 +44,10 @@ public class CalendarFragment extends Fragment {
 
 
 
-        return inflater.inflate(R.layout.fragment_calendar, null);
+        return view;
 
     }
-    /*
-    public void setCalendarView(){
-        calendarView = (CalendarView) findViewById(R.id.calendarView);
-    }
 
-    public void setMyDate(){
-        myDate = (TextView) findViewById(R.id.myDate);
-    }*/
 
 
 
