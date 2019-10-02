@@ -51,8 +51,8 @@ public class CreateSession extends AppCompatActivity {
         parentLinearLayout = findViewById(R.id.tblLayStrID);
 
         ToggleButton togCardioOrStrength = findViewById(R.id.togCardioOrStrengthID);
-      //  final  LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
-      //  final LinearLayout rowCarExerciseInfoID = findViewById(R.id.RowCarExerciseInfoID);
+        final  LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
+        final LinearLayout rowCarExerciseInfoID = findViewById(R.id.RowCarExerciseInfoID);
         Button btnAddnewExersice = findViewById(R.id.btnAddExerciseID);
         Button btnDone = findViewById(R.id.btnDoneID);
 
@@ -78,20 +78,20 @@ public class CreateSession extends AppCompatActivity {
         ArrayAdapter<String> carActivListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, carActivityList);
       //  spnPickCarEx.setAdapter(carActivListAdapter);
 
-        //rowCarExerciseInfoID.setVisibility(View.GONE);
+        rowCarExerciseInfoID.setVisibility(View.GONE);
 
 
         togCardioOrStrength.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // The toggle is enabled
-             //       rowStrExerciseInfoID.setVisibility(View.GONE);
-             //       rowCarExerciseInfoID.setVisibility(View.VISIBLE);
+                    rowStrExerciseInfoID.setVisibility(View.GONE);
+                    rowCarExerciseInfoID.setVisibility(View.VISIBLE);
                     isStrength = false;
                 } else {
-                     //The toggle is disabled
-                   // rowStrExerciseInfoID.setVisibility(View.VISIBLE);
-                   // rowCarExerciseInfoID.setVisibility(View.GONE);
+                    // The toggle is disabled
+                    rowStrExerciseInfoID.setVisibility(View.VISIBLE);
+                    rowCarExerciseInfoID.setVisibility(View.GONE);
                     isStrength = true;
                 }
             }
