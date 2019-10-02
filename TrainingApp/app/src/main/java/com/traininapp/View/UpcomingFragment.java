@@ -24,6 +24,7 @@ public class UpcomingFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_upcoming, container, false);
 
         ImageButton imgbtn = v.findViewById(R.id.ibtnID);
+
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
