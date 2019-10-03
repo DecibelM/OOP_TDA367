@@ -55,9 +55,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="30dp"
-            android:background="@android:drawable/ic_delete"
-
-            />
+            android:background="@android:drawable/ic_delete" />
 
 
     </LinearLayout>

@@ -61,7 +61,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/RowCarExerciseInfoID"
+                android:id="@+id/rowCarExerciseInfoID"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -164,124 +164,10 @@
 
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/myFrame"
+            <LinearLayout android:id="@+id/displayRowsID"
                 android:orientation="vertical"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"/>
-
-            <!--- <LinearLayout
-                android:id="@+id/rowStrengthExerciseID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
-                    android:id="@+id/spnPickStrExID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="0"
-                    android:hint="Enter exercise"
-                    android:inputType="text"
-                    android:maxWidth="120dp" />
-
-
-                <EditText
-                    android:id="@+id/txtEnterWeightID"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="0"
-                    android:hint="weight"
-                    android:inputType="number"
-                    android:maxLength="4" />
-
-                <EditText
-                    android:id="@+id/txtEntersRepsID"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="0"
-                    android:hint="Rep"
-                    android:inputType="number"
-                    android:maxLength="2" />
-
-                <EditText
-                    android:id="@+id/txtEnterSetsID"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="0"
-                    android:hint="Set"
-                    android:inputType="number"
-                    android:maxLength="2" />
-
-
-                <Button
-                    android:id="@+id/delete_button"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/ic_delete"
-                    />
-
-
-
-            </LinearLayout> -->
-
-            <!--  <LinearLayout
-                android:id="@+id/rowCardioExerciseID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
-                    android:id="@+id/spnPickCarExID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="0"
-                    android:hint="Enter exercise"
-                    android:inputType="text"
-                    android:maxWidth="120dp" />
-
-
-                <EditText
-                    android:id="@+id/txtEnterTimeID"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Time"
-                    android:ems="0"
-                    android:inputType="number"
-                    android:maxLength="2" />
-
-                <EditText
-                    android:id="@+id/txtEnterDistanceID"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="0"
-                    android:hint="Dist."
-                    android:inputType="number"
-                    android:maxLength="4" />
-
-                <TextView
-                    android:id="@+id/txtEvenOut2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="0"
-                    android:inputType="number"
-                    android:maxLength="4" />
-
-                <Button
-                    android:id="@+id/delete_button2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/ic_delete"
-                   />
-
-
-            </LinearLayout> -->
-
         </LinearLayout>
 
 
@@ -310,6 +196,5 @@
         android:textOn=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEnterExNameID" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

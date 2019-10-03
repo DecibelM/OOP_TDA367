@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.traininapp.R;
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class FragCarRow extends Fragment {
                              Bundle savedInstanceState)    {
         View v = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
 
-        AutoCompleteTextView auto = v.findViewById(R.id.autPickCarExID);
+        AutoCompleteTextView autPickCarEx = v.findViewById(R.id.autPickCarExID);
         Button btnDeleteCar = v.findViewById(R.id.btnDeleteCarID);
 
         //add all cardio exercises
@@ -42,7 +40,7 @@ public class FragCarRow extends Fragment {
 
         //set up adapter and AutoCompleteTextview
         ArrayAdapter<String> carExerciseListAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, carExerciseList);
-        auto.setAdapter(carExerciseListAdapter);
+        autPickCarEx.setAdapter(carExerciseListAdapter);
 
         btnDeleteCar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,9 +55,5 @@ public class FragCarRow extends Fragment {
     //remove selected fragment
     public void destroyFragment(){
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
-
     }
-
-
-
 }

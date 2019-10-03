@@ -23,13 +23,10 @@ import java.util.List;
 
 public class CreateSession extends AppCompatActivity {
 
-
     FragmentTransaction fragmentTransaction;
 
     //boolean to see which type of exercise is currently selected
     private boolean isStrength = true;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +37,10 @@ public class CreateSession extends AppCompatActivity {
         Button btnAddnewExersice = findViewById(R.id.btnAddExerciseID);
         Button btnDone = findViewById(R.id.btnDoneID);
         final  LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
-        final LinearLayout rowCarExerciseInfoID = findViewById(R.id.RowCarExerciseInfoID);
+        final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
 
         //hide the titles for cardio exercises when activity starts
         rowCarExerciseInfoID.setVisibility(View.GONE);
-
 
         //depending on if toggle is enabled, hide or show relevant titles
         //also change boolean isStrength
@@ -98,10 +94,9 @@ public class CreateSession extends AppCompatActivity {
         fragment = new FragCarRow();
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.myFrame, fragment);
+        fragmentTransaction.add(R.id.displayRowsID, fragment);
         fragmentTransaction.commit();
     }
-
 
     //create a new strength fragment in the row
     public void createStrRow(){
@@ -109,10 +104,8 @@ public class CreateSession extends AppCompatActivity {
         fragment = new FragStrRow();
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.myFrame, fragment);
+        fragmentTransaction.add(R.id.displayRowsID, fragment);
         fragmentTransaction.commit();
-
-
     }
 
     //hide or show row
@@ -120,5 +113,4 @@ public class CreateSession extends AppCompatActivity {
         visRow.setVisibility(View.GONE);
         gonRow.setVisibility(View.VISIBLE);
     }
-
 }
