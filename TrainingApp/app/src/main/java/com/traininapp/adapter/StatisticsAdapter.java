@@ -8,55 +8,89 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.traininapp.Model.Goal;
 import com.traininapp.R;
+import com.traininapp.viewModel.GoalStatCard;
 import com.traininapp.viewModel.IStatistic;
+import com.traininapp.viewModel.StatisticCard;
 
 import java.util.ArrayList;
 
-public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.StatisticsViewHolder> {
+public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    //private ArrayList<IStatistic> dataList;
-    private ArrayList<String> dataList;
+    private ArrayList<IStatistic> dataList;
+    //private ArrayList<String> dataList;
 
-    /*
+
     public StatisticsAdapter(ArrayList<IStatistic> dataList) {
         this.dataList = dataList;
     }
 
-     */
-
-
+/*
     public StatisticsAdapter(ArrayList<String> dataList) {
         this.dataList = dataList;
     }
-
+*/
 
     @Override
-    public StatisticsViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.fragment_statistics_card, parent, false);
-        return new StatisticsViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView;
+        switch(viewType){
+            case IStatistic.TYPE_GOALSTAT:
+                itemView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.fragment_goal_card, parent, false);
+                return new GoalViewHolder(itemView);
+            default:
+                itemView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.fragment_statistics_card, parent, false);
+                return new StatisticsViewHolder(itemView);
+        }
+
     }
 
     @Override
-    public void onBindViewHolder( StatisticsViewHolder holder, int position) {
+    public int getItemViewType(int position) {
+        return dataList.get(position).getType();
+    }
 
-        holder.txtHeadLine.setText(dataList.get(position));
 
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        switch (getItemViewType(position)) {
+            case IStatistic.TYPE_GOALSTAT:
+                ((GoalViewHolder) holder).bindView(position);
+                break;
+            default:
+                ((StatisticsViewHolder) holder).bindView(position);
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        if (dataList == null) {
+            return 0;
+        } else {
+            return dataList.size();
+        }
     }
 
-    class StatisticsViewHolder extends RecyclerView.ViewHolder{
+    class StatisticsViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtHeadLine;
 
         StatisticsViewHolder(View itemView) {
             super(itemView);
             txtHeadLine = (TextView) itemView.findViewById(R.id.headLineID);
+        }
+
+        void bindView(int position) {
+            StatisticCard sCard = (StatisticCard) dataList.get(position);
+            txtHeadLine.setText("Statistichard");
+            // bind data to the views
+            // textView.setText()...
+
         }
     }
 
@@ -69,6 +103,15 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
             super(itemView);
             txtgoal = (TextView) itemView.findViewById(R.id.goalID);
             txtprogress = (TextView) itemView.findViewById(R.id.progressID);
+        }
+
+        void bindView(int position) {
+            GoalStatCard sCard = (GoalStatCard) dataList.get(position);
+            txtgoal.setText("Goalhard");
+            txtprogress.setText("Progresshard");
+            // bind data to the views
+            // textView.setText()...
+
         }
     }
 }

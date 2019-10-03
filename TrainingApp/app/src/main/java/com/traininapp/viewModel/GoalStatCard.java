@@ -4,10 +4,12 @@ import com.traininapp.Model.Goal;
 
 public class GoalStatCard implements IStatistic {
 
-        Goal goal;
+        String goal;
+        String progress;
 
-    public GoalStatCard(Goal goal) {
+    public GoalStatCard(String goal, String progress) {
         this.goal = goal;
+        this.progress = progress;
     }
 
     @Override
@@ -15,7 +17,11 @@ public class GoalStatCard implements IStatistic {
             return IStatistic.TYPE_GOALSTAT;
         }
 
-    public Goal getGoal() {
+    public String getGoal() {
         return goal;
+    }
+
+    public String getProgress() {
+        return progress;
     }
 }
