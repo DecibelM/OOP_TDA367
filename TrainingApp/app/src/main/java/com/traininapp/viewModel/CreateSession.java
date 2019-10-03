@@ -50,7 +50,6 @@ public class CreateSession extends AppCompatActivity {
                 if (isChecked) {
                     selectType(rowCarExerciseInfoID, rowStrExerciseInfoID);
                     isStrength = false;
-
                 }
                 //for strength
                 else {
@@ -65,9 +64,8 @@ public class CreateSession extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(isStrength == true){
+                if(isStrength){
                     createStrRow();
-
                 } else{
                     createCarRow();
                 }
@@ -110,7 +108,7 @@ public class CreateSession extends AppCompatActivity {
 
     //hide or show row
     public void selectType(LinearLayout visRow, LinearLayout gonRow){
-        visRow.setVisibility(View.GONE);
-        gonRow.setVisibility(View.VISIBLE);
+        visRow.setVisibility(View.VISIBLE);
+        gonRow.setVisibility(View.GONE);
     }
 }
