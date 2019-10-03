@@ -29,7 +29,7 @@ public class GoalsFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<String> listExample;
+    private List<String> listExample;
 
     @Nullable
     @Override
