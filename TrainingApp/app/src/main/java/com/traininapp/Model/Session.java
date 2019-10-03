@@ -12,6 +12,7 @@ public class Session {
     private List<Exercise> exerciseList;
     private List<ISessionObserver> sessionObservers;
     LocalDate date;
+    private int sessionImage;
 
     public Session(String name, LocalDate date) {
         this.name = name;
@@ -48,6 +49,13 @@ public class Session {
         }
     }
 
+    public Session(String name, LocalDate date, int sessionImage) {
+        this.name = name;
+        this.exerciseList = new ArrayList<>();
+        this.date = date;
+        this.sessionImage = sessionImage;
+    }
+
     /**
      * Method adds a Cardio Exercise into a Session.
      * @param name name of added exercise
@@ -71,5 +79,17 @@ public class Session {
 
     public List<Exercise> getExerciseList() {
         return exerciseList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public int getSessionImage() {
+        return sessionImage;
     }
 }
