@@ -53,6 +53,7 @@ public class UpcomingFragment extends Fragment {
         return view;
     }
 
+    // TODO Sort the sessions after dates
     public void createSessionList(){
         sessionList.add(new Session("Stronglifts", LocalDate.now(), R.drawable.workout_1));
         sessionList.add(new Session("Yoga", LocalDate.of(2019,3,3), R.drawable.workout_2));
