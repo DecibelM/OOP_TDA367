@@ -17,6 +17,9 @@ import android.widget.TextView;
 
 import com.traininapp.R;
 import com.traininapp.adapter.StatisticsAdapter;
+import com.traininapp.viewModel.GoalStatCard;
+import com.traininapp.viewModel.IStatistic;
+import com.traininapp.viewModel.StatisticCard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +39,14 @@ public class GoalsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_goals, null);
-        View view = inflater.inflate(R.layout.fragment_goals, null);
+
+        ArrayList<IStatistic> list = new ArrayList<IStatistic>();
+        list.add(new GoalStatCard("Goal", "Progress"));
+        list.add(new StatisticCard(100));
         recyclerView = (RecyclerView) view.findViewById(R.id.myPagesRecyclerViewID);
         //recyclerView.setHasFixedSize(true);
 
-        recyclerViewAdapter = new StatisticsAdapter(listExample);
+        recyclerViewAdapter = new StatisticsAdapter(list);
 
         RecyclerView.LayoutManager layoutManager= new LinearLayoutManager(GoalsFragment.super.getContext());
 
