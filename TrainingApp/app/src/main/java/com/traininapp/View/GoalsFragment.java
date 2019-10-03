@@ -29,7 +29,7 @@ public class GoalsFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private List<String> listExample;
+    private ArrayList<String> listExample;
 
     @Nullable
     @Override
@@ -38,7 +38,7 @@ public class GoalsFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.myPagesRecyclerViewID);
         recyclerView.setHasFixedSize(true);
 
-        recyclerViewAdapter = new StatisticsAdapter();
+        recyclerViewAdapter = new StatisticsAdapter(listExample);
 
         layoutManager= new LinearLayoutManager(GoalsFragment.super.getContext());
 
