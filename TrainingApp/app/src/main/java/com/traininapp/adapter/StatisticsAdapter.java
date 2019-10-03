@@ -1,11 +1,14 @@
 package com.traininapp.adapter;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.traininapp.Model.Goal;
@@ -79,10 +82,12 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     class StatisticsViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtHeadLine;
+        ImageView imgImageView;
 
         StatisticsViewHolder(View itemView) {
             super(itemView);
             txtHeadLine = (TextView) itemView.findViewById(R.id.headLineID);
+            imgImageView = (ImageView) itemView.findViewById(R.id.imageViewID);
         }
 
         void bindView(int position) {
