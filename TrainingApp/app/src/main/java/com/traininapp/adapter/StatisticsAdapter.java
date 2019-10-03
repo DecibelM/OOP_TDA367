@@ -20,16 +20,16 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
         this.dataList = dataList;
     }
 
-    @NonNull
+
     @Override
-    public StatisticsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public StatisticsViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.fragment_statistics_card, parent, false);
         return new StatisticsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StatisticsViewHolder holder, int position) {
+    public void onBindViewHolder( StatisticsViewHolder holder, int position) {
 
         holder.txtHeadLine.setText(dataList.get(position));
 
@@ -44,7 +44,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
 
         TextView txtHeadLine;
 
-        StatisticsViewHolder(@NonNull View itemView) {
+        StatisticsViewHolder(View itemView) {
             super(itemView);
             txtHeadLine = (TextView) itemView.findViewById(R.id.headLineID);
         }

@@ -3,6 +3,7 @@
     android:id="@+id/upcoming"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    tools:context="View.GoalsFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView

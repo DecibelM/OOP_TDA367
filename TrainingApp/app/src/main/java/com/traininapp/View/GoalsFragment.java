@@ -27,14 +27,15 @@ import java.util.List;
 public class GoalsFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter recyclerViewAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private StatisticsAdapter recyclerViewAdapter;
+    //private RecyclerView.LayoutManager layoutManager;
     private ArrayList<String> listExample;
+    private View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_goals, null);
+        view = inflater.inflate(R.layout.fragment_goals, null);
         listExample = new ArrayList<>();
         listExample.add("hello World!");
         listExample.add("This is a test!");
@@ -43,11 +44,11 @@ public class GoalsFragment extends Fragment {
         listExample.add("It works!!! :)");
 
         recyclerView = (RecyclerView) view.findViewById(R.id.myPagesRecyclerViewID);
-        recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(true);
 
         recyclerViewAdapter = new StatisticsAdapter(listExample);
 
-        layoutManager= new LinearLayoutManager(GoalsFragment.super.getContext());
+        RecyclerView.LayoutManager layoutManager= new LinearLayoutManager(GoalsFragment.super.getContext());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);
