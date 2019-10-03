@@ -23,6 +23,7 @@ import com.traininapp.viewModel.IStatistic;
 import com.traininapp.viewModel.StatisticCard;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,7 +50,13 @@ public class GoalsFragment extends Fragment {
 
         ArrayList<IStatistic> list = new ArrayList<IStatistic>();
         list.add(new GoalStatCard("Goal", "Progress"));
-        list.add(new StatisticCard(100));
+                                                                                     
+        ArrayList<Integer> exampleStatList= new ArrayList<>();                                             //dummy variables to test the functionality
+        ArrayList<Long> exampleDateList = new ArrayList<>();                                               //dummy variables to test the functionality
+        exampleStatList.add(13); exampleStatList.add(20);                                                  //dummy variables to test the functionality
+        exampleDateList.add(new Date(2012, 3, 5).getTime());                             //dummy variables to test the functionality
+        exampleDateList.add(new Date(2019,4,5).getTime());                               //dummy variables to test the functionality
+        list.add(new StatisticCard("Strength", exampleStatList, exampleDateList));
 
         recyclerView = (RecyclerView) view.findViewById(R.id.myPagesRecyclerViewID);
         recyclerView.setHasFixedSize(true);
