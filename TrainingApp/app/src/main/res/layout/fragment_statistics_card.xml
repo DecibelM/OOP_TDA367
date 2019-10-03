@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"/> -->
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -27,5 +27,5 @@
         android:layout_height="wrap_content"
         />
 
-    </LinearLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
