@@ -1,6 +1,7 @@
 package com.traininapp.View;
 
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,7 @@ public class GoalsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private StatisticsAdapter recyclerViewAdapter;
-    //private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<String> listExample;
     private View view;
 
@@ -51,11 +52,11 @@ public class GoalsFragment extends Fragment {
         list.add(new StatisticCard(100));
 
         recyclerView = (RecyclerView) view.findViewById(R.id.myPagesRecyclerViewID);
-        //recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
 
         recyclerViewAdapter = new StatisticsAdapter(list);
 
-        RecyclerView.LayoutManager layoutManager= new LinearLayoutManager(GoalsFragment.super.getContext());
+        layoutManager= new LinearLayoutManager(GoalsFragment.super.getContext());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);

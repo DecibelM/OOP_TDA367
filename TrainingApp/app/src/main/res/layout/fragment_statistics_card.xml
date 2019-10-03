@@ -7,17 +7,18 @@
     card_view:cardElevation="3dp"
     card_view:cardUseCompatPadding="true">
 
-   <!-- <ImageView
+    <ImageView
         android:id="@+id/imageViewID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"/> -->
+        android:layout_alignParentTop="true"/>
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:layout_below="@+id/imageViewID"
         android:orientation="vertical"
         android:padding="5dp">
 
