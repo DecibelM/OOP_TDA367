@@ -16,6 +16,10 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
 
     private ArrayList<String> dataList;
 
+    public StatisticsAdapter(ArrayList<String> dataList) {
+        this.dataList = dataList;
+    }
+
     @NonNull
     @Override
     public StatisticsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
