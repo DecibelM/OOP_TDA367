@@ -29,12 +29,13 @@ public class GoalsFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<String> listExample;
+    private List<String> listExample;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_goals, null);
+        listExample = new ArrayList<>();
         listExample.add("hello World!");
         listExample.add("This is a test!");
         listExample.add("to see if all the texts will appear.");
