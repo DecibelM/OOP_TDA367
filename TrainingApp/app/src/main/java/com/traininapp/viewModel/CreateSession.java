@@ -1,33 +1,22 @@
 package com.traininapp.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.traininapp.MainActivity;
 import com.traininapp.R;
-import com.traininapp.View.UpcomingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,63 +24,42 @@ import java.util.List;
 public class CreateSession extends AppCompatActivity {
 
 
-    List<String> strActivityList = new ArrayList<>();
-    List<String> carActivityList = new ArrayList<>();
+    FragmentTransaction fragmentTransaction;
 
-
+    //boolean to see which type of exercise is currently selected
     private boolean isStrength = true;
-    private LinearLayout parentLinearLayout;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_session);
 
-
-        parentLinearLayout = findViewById(R.id.tblLayStrID);
-
         ToggleButton togCardioOrStrength = findViewById(R.id.togCardioOrStrengthID);
-        final  LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
-        final LinearLayout rowCarExerciseInfoID = findViewById(R.id.RowCarExerciseInfoID);
         Button btnAddnewExersice = findViewById(R.id.btnAddExerciseID);
         Button btnDone = findViewById(R.id.btnDoneID);
+        final  LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
+        final LinearLayout rowCarExerciseInfoID = findViewById(R.id.RowCarExerciseInfoID);
 
-        AutoCompleteTextView spnPickStrEx = findViewById(R.id.spnPickStrExID);
-        AutoCompleteTextView spnPickCarEx = findViewById(R.id.spnPickCarExID);
-
-
-        //add all strength activites
-        strActivityList.add("Bicep Curl");
-        strActivityList.add("Dumbbell Curl");
-        strActivityList.add("Dumbbell Shoulder Fly");
-
-        ArrayAdapter<String> strActivListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strActivityList);
-       // spnPickStrEx.setAdapter(strActivListAdapter);
-
-        //add all cardio activites
-        carActivityList.add("Running");
-        carActivityList.add("Swimming");
-        carActivityList.add("Walking");
-
-
-
-        ArrayAdapter<String> carActivListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, carActivityList);
-      //  spnPickCarEx.setAdapter(carActivListAdapter);
-
+        //hide the titles for cardio exercises when activity starts
         rowCarExerciseInfoID.setVisibility(View.GONE);
 
 
+        //depending on if toggle is enabled, hide or show relevant titles
+        //also change boolean isStrength
         togCardioOrStrength.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //for cardio
                 if (isChecked) {
-                    // The toggle is enabled
-                    rowStrExerciseInfoID.setVisibility(View.GONE);
-                    rowCarExerciseInfoID.setVisibility(View.VISIBLE);
+                    selectType(rowCarExerciseInfoID, rowStrExerciseInfoID);
                     isStrength = false;
-                } else {
+
+                }
+                //for strength
+                else {
                     // The toggle is disabled
-                    rowStrExerciseInfoID.setVisibility(View.VISIBLE);
-                    rowCarExerciseInfoID.setVisibility(View.GONE);
+                    selectType(rowStrExerciseInfoID, rowCarExerciseInfoID);
                     isStrength = true;
                 }
             }
@@ -102,13 +70,13 @@ public class CreateSession extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(isStrength == true){
-                    createRow(R.layout.new_strexercise_row);
-               } else{
-                    createRow(R.layout.new_carexercise_row);
-               }
+                    createStrRow();
+
+                } else{
+                    createCarRow();
+                }
             }
         });
-
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,24 +84,41 @@ public class CreateSession extends AppCompatActivity {
                 openActivity();
             }
         });
-
-
     }
 
+    //open new activity
     public void openActivity(){
         Intent intent = new Intent (this, MainActivity.class);
         startActivity(intent);
     }
 
+    //create a new cardio fragment in the row
+    public void createCarRow(){
+        Fragment fragment;
+        fragment = new FragCarRow();
 
-    public void onDelete(View v) {
-        parentLinearLayout.removeView((View) v.getParent());
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.myFrame, fragment);
+        fragmentTransaction.commit();
     }
 
-    public void createRow(int getlayout){
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        parentLinearLayout.addView(inflater.inflate(getlayout, null));
 
+    //create a new strength fragment in the row
+    public void createStrRow(){
+        Fragment fragment;
+        fragment = new FragStrRow();
+
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.myFrame, fragment);
+        fragmentTransaction.commit();
+
+
+    }
+
+    //hide or show row
+    public void selectType(LinearLayout visRow, LinearLayout gonRow){
+        visRow.setVisibility(View.GONE);
+        gonRow.setVisibility(View.VISIBLE);
     }
 
 }
