@@ -7,18 +7,17 @@
     card_view:cardElevation="3dp"
     card_view:cardUseCompatPadding="true">
 
-    <ImageView
-        android:id="@+id/imageViewID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"/>
+    <com.jjoe64.graphview.GraphView
+        android:layout_width = "match_parent"
+        android:layout_height = "200dip"
+        android:id = "@+id/graphViewID" />
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:layout_below="@+id/imageViewID"
+        android:layout_below="@+id/graphViewID"
         android:orientation="vertical"
         android:padding="5dp">
 

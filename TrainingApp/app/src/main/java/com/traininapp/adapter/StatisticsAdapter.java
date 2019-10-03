@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jjoe64.graphview.GraphView;
 import com.traininapp.Model.Goal;
+import com.traininapp.Model.Statistic;
 import com.traininapp.R;
 import com.traininapp.viewModel.GoalStatCard;
 import com.traininapp.viewModel.IStatistic;
@@ -82,20 +84,26 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     class StatisticsViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtHeadLine;
-        ImageView imgImageView;
+        GraphView graphView;
 
         StatisticsViewHolder(View itemView) {
             super(itemView);
             txtHeadLine = (TextView) itemView.findViewById(R.id.headLineID);
-            imgImageView = (ImageView) itemView.findViewById(R.id.imageViewID);
+            graphView = (GraphView) itemView.findViewById(R.id.graphViewID);
+            graphView.setVisibility(View.VISIBLE);
         }
 
         void bindView(int position) {
             StatisticCard sCard = (StatisticCard) dataList.get(position);
             txtHeadLine.setText("Statistichard");
+            drawGraph(sCard);
             // bind data to the views
             // textView.setText()...
 
+        }
+
+        void drawGraph(StatisticCard statisticCard){
+                                                                                      //TODO draw a good looking graph
         }
     }
 
