@@ -23,29 +23,40 @@ public class UpcomingFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private SessionAdapter adapter;
-    private List<Session> employeeArrayList;
+    private List<Session> sessionList;
     private View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        // Connecting to fragment_upcoming.xml
         view = inflater.inflate(R.layout.fragment_upcoming, null);
 
-        employeeArrayList = new ArrayList<>();
+        // Initializing the list of sessions and add sessions
+        sessionList = new ArrayList<>();
         createSessionList();
 
+        // Changes in content does not change layout size, set
+        // to true for improved performance
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        adapter = new SessionAdapter(employeeArrayList);
+        recyclerView.setHasFixedSize(true);
+
+        // Specifying the adapter
+        adapter = new SessionAdapter(sessionList);
+        recyclerView.setAdapter(adapter);
+
+        // Using a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(UpcomingFragment.super.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+
         return view;
     }
 
     public void createSessionList(){
-        employeeArrayList.add(new Session("Stronglifts", LocalDate.now(), R.drawable.workout_1));
-        employeeArrayList.add(new Session("Yoga", LocalDate.of(2019,3,3), R.drawable.workout_2));
-        employeeArrayList.add(new Session("Biceps", LocalDate.of(2018,2,5),R.drawable.workout_3));
+        sessionList.add(new Session("Stronglifts", LocalDate.now(), R.drawable.workout_1));
+        sessionList.add(new Session("Yoga", LocalDate.of(2019,3,3), R.drawable.workout_2));
+        sessionList.add(new Session("Bicepspass", LocalDate.of(2018,2,5),R.drawable.workout_3));
     }
 
 }
