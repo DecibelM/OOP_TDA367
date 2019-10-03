@@ -1,4 +1,4 @@
-package com.traininapp.ViewModel;
+//package com.traininapp.ViewModel;
 
 import android.os.Bundle;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class UpcomingSessionsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private EmployeeAdapter adapter;
+    //private EmployeeAdapter adapter;
     private ArrayList<Employee> employeeArrayList;
 
     @Override
@@ -30,12 +30,12 @@ public class UpcomingSessionsActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        adapter = new EmployeeAdapter(employeeArrayList);
+        //adapter = new EmployeeAdapter(employeeArrayList);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(UpcomingSessionsActivity.this);
 
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setAdapter(adapter);
+        //recyclerView.setAdapter(adapter);
     }
 }

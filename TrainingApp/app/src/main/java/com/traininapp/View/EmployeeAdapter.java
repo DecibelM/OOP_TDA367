@@ -1,4 +1,4 @@
-package com.traininapp.ViewModel;
+package com.traininapp.View;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
+//import androidx.recyclerview.widget.CardView;
 
 import com.traininapp.Model.Employee;
 import com.traininapp.R;
