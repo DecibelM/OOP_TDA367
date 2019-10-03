@@ -9,12 +9,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.traininapp.R;
+import com.traininapp.viewModel.IStatistic;
 
 import java.util.ArrayList;
 
 public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.StatisticsViewHolder> {
 
+    //private ArrayList<IStatistic> dataList;
     private ArrayList<String> dataList;
+
+    /*
+    public StatisticsAdapter(ArrayList<IStatistic> dataList) {
+        this.dataList = dataList;
+    }
+
+     */
+
 
     public StatisticsAdapter(ArrayList<String> dataList) {
         this.dataList = dataList;
@@ -47,6 +57,18 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
         StatisticsViewHolder(View itemView) {
             super(itemView);
             txtHeadLine = (TextView) itemView.findViewById(R.id.headLineID);
+        }
+    }
+
+    class GoalViewHolder extends RecyclerView.ViewHolder{
+
+        TextView txtgoal;
+        TextView txtprogress;
+
+        GoalViewHolder(View itemView) {
+            super(itemView);
+            txtgoal = (TextView) itemView.findViewById(R.id.goalID);
+            txtprogress = (TextView) itemView.findViewById(R.id.progressID);
         }
     }
 }
