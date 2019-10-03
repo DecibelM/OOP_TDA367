@@ -42,4 +42,12 @@ public class Session {
     public List<Exercise> getExerciseList() {
         return exerciseList;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }

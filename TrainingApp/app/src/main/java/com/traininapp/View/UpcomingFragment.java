@@ -1,7 +1,5 @@
 package com.traininapp.View;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,16 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.traininapp.Model.Employee;
+import com.traininapp.Model.Session;
 import com.traininapp.R;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UpcomingFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private EmployeeAdapter adapter;
-    private ArrayList<Employee> employeeArrayList;
+    private SessionAdapter adapter;
+    private List<Session> employeeArrayList;
     private View view;
 
     @Nullable
@@ -32,16 +32,20 @@ public class UpcomingFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_upcoming, null);
 
         employeeArrayList = new ArrayList<>();
-        employeeArrayList.add(new Employee("Löpning", "3km", "1h"));
-        employeeArrayList.add(new Employee("Mage", "4 sets", "5 reps"));
-        employeeArrayList.add(new Employee("Biceps", "1 set", "2 reps"));
-        employeeArrayList.add(new Employee("Lilltå", "100 sets", "3000 reps"));
+        createSessionList();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        adapter = new EmployeeAdapter(employeeArrayList);
+        adapter = new SessionAdapter(employeeArrayList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(UpcomingFragment.super.getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         return view;
     }
+
+    public void createSessionList(){
+        employeeArrayList.add(new Session("Löpning", LocalDate.now()));
+        employeeArrayList.add(new Session("Mage", LocalDate.of(2019,3,3)));
+        employeeArrayList.add(new Session("Biceps", LocalDate.of(2018,2,5)));
+    }
+
 }
