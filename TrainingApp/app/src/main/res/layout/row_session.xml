@@ -5,30 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     card_view:cardCornerRadius="6dp"
-    card_view:cardElevation="3dp"
+    card_view:cardMaxElevation="1dp"
+    card_view:cardElevation="1dp"
     card_view:cardUseCompatPadding="true"
-    android:layout_marginBottom="4dp">
+    android:layout_marginBottom="1dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="16dp">
 
-        <!-- TextView Session name -->
+        <!-- Session image -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgSessionImage"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="16dp" />
+
+        <!-- Session name -->
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/txtSessionName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_toRightOf="@+id/imgSessionImage"
+            android:layout_alignParentTop="true"
+            android:textSize="30sp" />
 
-        <!-- TextView Session date -->
+        <!-- Session date -->
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/txtSessionDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
+            android:layout_toRightOf="@+id/imgSessionImage"
+            android:layout_below="@+id/txtSessionName"
+            />
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
     <!-- END*** Root Container *** -->

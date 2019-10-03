@@ -11,11 +11,19 @@ public class Session {
     private String name;
     private List<Exercise> exerciseList;
     LocalDate date;
+    private int sessionImage;
 
     public Session(String name, LocalDate date) {
         this.name = name;
         this.exerciseList = new ArrayList<>();
         this.date = date;
+    }
+
+    public Session(String name, LocalDate date, int sessionImage) {
+        this.name = name;
+        this.exerciseList = new ArrayList<>();
+        this.date = date;
+        this.sessionImage = sessionImage;
     }
 
     /**
@@ -49,5 +57,9 @@ public class Session {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public int getSessionImage() {
+        return sessionImage;
     }
 }

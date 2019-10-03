@@ -43,9 +43,9 @@ public class UpcomingFragment extends Fragment {
     }
 
     public void createSessionList(){
-        employeeArrayList.add(new Session("Löpning", LocalDate.now()));
-        employeeArrayList.add(new Session("Mage", LocalDate.of(2019,3,3)));
-        employeeArrayList.add(new Session("Biceps", LocalDate.of(2018,2,5)));
+        employeeArrayList.add(new Session("Stronglifts", LocalDate.now(), R.drawable.workout_1));
+        employeeArrayList.add(new Session("Yoga", LocalDate.of(2019,3,3), R.drawable.workout_2));
+        employeeArrayList.add(new Session("Biceps", LocalDate.of(2018,2,5),R.drawable.workout_3));
     }
 
 }
