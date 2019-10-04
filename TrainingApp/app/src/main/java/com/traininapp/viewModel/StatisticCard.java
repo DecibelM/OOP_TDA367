@@ -48,12 +48,16 @@ public class StatisticCard implements IStatistic {
         return new ArrayList<>(statistics);
     }
 
-    public ArrayList<Long> getDate() {
+    public ArrayList<Long> getDates() {
         return new ArrayList<>(dates);
     }
 
-    public String getStat() {
+    public String getName() {
         return statisticName;
+    }
+
+    public int getStatisticsCount() {
+        return statistics.size();
     }
 
     @Override

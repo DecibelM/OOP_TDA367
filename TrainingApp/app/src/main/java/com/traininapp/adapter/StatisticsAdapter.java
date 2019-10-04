@@ -6,20 +6,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+import com.traininapp.MainActivity;
 import com.traininapp.Model.Goal;
 import com.traininapp.Model.Statistic;
 import com.traininapp.R;
+import com.traininapp.View.GoalsFragment;
 import com.traininapp.viewModel.GoalStatCard;
 import com.traininapp.viewModel.IStatistic;
 import com.traininapp.viewModel.StatisticCard;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -95,15 +103,26 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         void bindView(int position) {
             StatisticCard sCard = (StatisticCard) dataList.get(position);
-            txtHeadLine.setText("Statistichard");
+            txtHeadLine.setText(sCard.getName());
             drawGraph(sCard);
             // bind data to the views
             // textView.setText()...
 
         }
 
-        void drawGraph(StatisticCard statisticCard){
-                                                                                      //TODO draw a good looking graph
+        void drawGraph(StatisticCard statisticCard){        
+            List<Integer> statistics = statisticCard.getStatistics();
+            List<Integer> dates = new ArrayList<>();
+
+            DataPoint[] dataPoints = new DataPoint[statistics.size()];
+
+            for (int i = 0; i < statistics.size(); i++) {
+                dataPoints[i] = new DataPoint(i, statistics.get(i));
+            }
+
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
+
+            graphView.addSeries(series);
         }
     }
 
