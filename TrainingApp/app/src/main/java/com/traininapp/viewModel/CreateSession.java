@@ -82,7 +82,7 @@ public class CreateSession extends AppCompatActivity {
 
     //open new activity
     public void openActivity(){
-        Intent intent = new Intent (this, MainActivity.class);
+        Intent intent = new Intent (this, PickDate.class);
         startActivity(intent);
     }
 

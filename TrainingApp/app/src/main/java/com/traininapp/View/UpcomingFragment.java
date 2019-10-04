@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 
 import com.traininapp.R;
 import com.traininapp.viewModel.CreateSession;
+import com.traininapp.viewModel.PickDate;
 
 public class UpcomingFragment extends Fragment {
 
@@ -35,11 +36,10 @@ public class UpcomingFragment extends Fragment {
 
         return v;
 
-
     }
 
     public void openActivity(){
-        Intent intent = new Intent(getActivity(), CreateSession.class);
+        Intent intent = new Intent(getActivity(), PickDate.class);
 
         startActivity(intent);
     }
