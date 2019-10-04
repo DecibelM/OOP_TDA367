@@ -29,13 +29,22 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Save"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnDoneID"
+        app:layout_constraintStart_toEndOf="@+id/btnDoneID" />
+
     <EditText
         android:id="@+id/txtEnterExNameID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
         android:layout_marginTop="64dp"
-        android:hint="Enter session name"
+        android:hint="Enter routine name"
         android:inputType="text"
         android:maxWidth="170dp"
         app:layout_constraintStart_toStartOf="parent"
