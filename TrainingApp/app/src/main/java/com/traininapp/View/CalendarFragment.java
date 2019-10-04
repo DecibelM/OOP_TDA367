@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ListAdapter;
 
 import android.view.LayoutInflater;
@@ -19,7 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.traininapp.R;
+import com.traininapp.viewModel.CalendarViewModel;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -31,13 +36,15 @@ public class CalendarFragment extends Fragment {
 
     private TextView myDate;
     private CalendarView calendarView;
+    private CalendarViewModel viewModel;
     private ListView listView;
-    private String[] list;
+    private ArrayList<String> list;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, null);
+        viewModel = ViewModelProviders.of(this).get(CalendarViewModel.class);
         myDate = (TextView) view.findViewById(R.id.myDate);
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         listView = (ListView) view.findViewById(R.id.listViewCalendar);
@@ -49,14 +56,23 @@ public class CalendarFragment extends Fragment {
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 String date = (day) + "/" + month + "/" + year;
                 myDate.setText(date);
-                list[0] = "Löpning";
-                list[1] = "Yoga";
+                //list.set(0,"Löpning");
+                //list.set(1,"Yoga");
+                ArrayList<String> newList = viewModel.getSessionsByDate(LocalDate.of(year, month, day));
+                list.clear();
+                if(newList != null) {
+                    for (String s : newList) {
+                        list.add(s);
+                    }
+                }
                 ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
 
             }
         });
 
-        list = new String[]{"hej", "hjhej"} ;
+        list = new ArrayList<>() ;
+        list.add("Hej");
+        list.add("Då!");
 
         listView = (ListView) view.findViewById(R.id.listViewCalendar);
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, list);
