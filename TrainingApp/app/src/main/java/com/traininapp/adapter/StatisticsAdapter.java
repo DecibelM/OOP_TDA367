@@ -141,7 +141,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             }
 
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
-
+            graphView.setMinimumWidth(statistics.size());
             graphView.addSeries(series);
         }
     }
