@@ -1,19 +1,24 @@
 package com.traininapp.View;
 
+import androidx.fragment.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.Model.Session;
 import com.traininapp.R;
+import com.traininapp.viewModel.CreateSession;
+import com.traininapp.viewModel.PickDate;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +27,7 @@ import java.util.List;
 public class UpcomingFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    private FloatingActionButton btnOpen;
     private SessionAdapter adapter;
     private List<Session> sessionList;
     private View view;
@@ -30,8 +36,20 @@ public class UpcomingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+
         // Connecting to fragment_upcoming.xml
         view = inflater.inflate(R.layout.fragment_upcoming, null);
+
+        btnOpen = view.findViewById(R.id.btnOpenID);
+
+
+        btnOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSession();
+            }
+        });
+
 
         // Initializing the list of sessions and add sessions
         sessionList = new ArrayList<>();
@@ -58,6 +76,11 @@ public class UpcomingFragment extends Fragment {
         sessionList.add(new Session("Stronglifts", LocalDate.now(), R.drawable.workout_1));
         sessionList.add(new Session("Yoga", LocalDate.of(2019,3,3), R.drawable.workout_2));
         sessionList.add(new Session("Bicepspass", LocalDate.of(2018,2,5),R.drawable.workout_3));
+    }
+
+    public void openSession(){
+        Intent intent = new Intent(getActivity(), PickDate.class);
+        startActivity(intent);
     }
 
 }

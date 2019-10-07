@@ -14,6 +14,8 @@ public class Session {
     LocalDate date;
     private int sessionImage;
 
+
+
     public Session(String name, LocalDate date) {
         this.name = name;
         this.exerciseList = new ArrayList<>();
