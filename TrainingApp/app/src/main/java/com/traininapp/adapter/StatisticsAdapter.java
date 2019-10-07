@@ -146,17 +146,31 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
+    /**
+     * This is an alternative template to display data in each card.
+     *
+     * This specific one handles goals.
+     */
     class GoalViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtgoal;
         TextView txtprogress;
 
+        /**
+         * The constructor for GoalViewHolder
+         *
+         * @param itemView The view connected to this instance
+         */
         GoalViewHolder(View itemView) {
             super(itemView);
             txtgoal = (TextView) itemView.findViewById(R.id.goalID);
             txtprogress = (TextView) itemView.findViewById(R.id.progressID);
         }
 
+        /**
+         * Binds the view to this data.
+         * @param position The position of the data in the specific list
+         */
         void bindView(int position) {
             GoalStatCard sCard = (GoalStatCard) dataList.get(position);
             txtgoal.setText("Goalhard");
