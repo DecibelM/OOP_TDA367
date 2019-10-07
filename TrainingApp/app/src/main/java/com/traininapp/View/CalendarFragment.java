@@ -65,6 +65,7 @@ public class CalendarFragment extends Fragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
+                month++;
                 String date = (day) + "-" + month + "-" + year;
                 myDate.setText(date);
                 ArrayList<String> newList = viewModel.getSessionsByDate(LocalDate.of(year, month, day));
