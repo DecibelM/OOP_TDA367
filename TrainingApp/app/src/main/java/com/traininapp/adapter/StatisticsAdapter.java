@@ -29,21 +29,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This is the adapter for the Recycler view within my pages.
+ * It handles a lot of the different templates and can draw graphs or display texts depending on the data within the statistics model.
+ */
 public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<IStatistic> dataList;
-    //private ArrayList<String> dataList;
 
-
+    /**
+     * This is the constructor for the class StatisticsAdapter
+     * @param dataList A list of statistics
+     */
     public StatisticsAdapter(ArrayList<IStatistic> dataList) {
         this.dataList = dataList;
     }
 
-/*
-    public StatisticsAdapter(ArrayList<String> dataList) {
-        this.dataList = dataList;
-    }
-*/
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -89,11 +90,20 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
+    /**
+     * This is an alternative template to display data in each card.
+     *
+     * This specific one is suposed to handle statistics and draw a graph if possible.
+     */
     class StatisticsViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtHeadLine;
         GraphView graphView;
 
+        /**
+         * The constructor for StatisticsViewHolder
+         * @param itemView the view where this belongs
+         */
         StatisticsViewHolder(View itemView) {
             super(itemView);
             txtHeadLine = (TextView) itemView.findViewById(R.id.headLineID);
@@ -101,6 +111,10 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             graphView.setVisibility(View.VISIBLE);
         }
 
+        /**
+         * Binds the view to this data.
+         * @param position The position of the data in the specific list
+         */
         void bindView(int position) {
             StatisticCard sCard = (StatisticCard) dataList.get(position);
             txtHeadLine.setText(sCard.getName());
@@ -110,7 +124,13 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         }
 
-        void drawGraph(StatisticCard statisticCard){        
+        /**
+         * Draws a graph on this card, might have to be tweaked for futher graphafe,
+         * at the moment it does not display the date and the statistic looks a liitle off.
+         *
+         * @param statisticCard an instance of the Statistics
+         */
+        void drawGraph(StatisticCard statisticCard){
             List<Integer> statistics = statisticCard.getStatistics();
             List<Integer> dates = new ArrayList<>();
 

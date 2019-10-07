@@ -42,20 +42,15 @@ public class GoalsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_goals, null);
         listExample = new ArrayList<>();
-        listExample.add("hello World!");
-        listExample.add("This is a test!");
-        listExample.add("to see if all the texts will appear.");
-        listExample.add("And as you may see:");
-        listExample.add("It works!!! :)");
 
         ArrayList<IStatistic> list = new ArrayList<IStatistic>();
         list.add(new GoalStatCard("Goal", "Progress"));
                                                                                      
-        ArrayList<Integer> exampleStatList= new ArrayList<>();                                             //dummy variables to test the functionality
-        ArrayList<Long> exampleDateList = new ArrayList<>();                                               //dummy variables to test the functionality
-        exampleStatList.add(13); exampleStatList.add(20);                                                  //dummy variables to test the functionality
-        exampleDateList.add(new Date(2012, 3, 5).getTime());                             //dummy variables to test the functionality
-        exampleDateList.add(new Date(2019,4,5).getTime());                               //dummy variables to test the functionality
+        ArrayList<Integer> exampleStatList= new ArrayList<>();                                   //dummy variables to test the functionality
+        ArrayList<Long> exampleDateList = new ArrayList<>();                                     //dummy variables to test the functionality
+        exampleStatList.add(13); exampleStatList.add(20);                                        //dummy variables to test the functionality
+        exampleDateList.add(new Date(2012, 3, 5).getTime());                  //dummy variables to test the functionality
+        exampleDateList.add(new Date(2019,4,5).getTime());                    //dummy variables to test the functionality
         list.add(new StatisticCard("Strength", exampleStatList, exampleDateList));
 
         recyclerView = (RecyclerView) view.findViewById(R.id.myPagesRecyclerViewID);
