@@ -12,12 +12,13 @@ import com.traininapp.Model.Goal;
 public class GoalStatCard implements IStatistic {
 
         String goal;
-
+        String progression;
     /**
      * @param goal the goal
      */
-    public GoalStatCard(String goal) {
+    public GoalStatCard(String goal, String progression) {
         this.goal = goal;
+        this.progression = progression;
     }
 
     @Override
