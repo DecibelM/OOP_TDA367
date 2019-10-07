@@ -2,14 +2,22 @@ package com.traininapp.viewModel;
 
 import com.traininapp.Model.Goal;
 
+
+/**
+* This class keeps hold of the goals and the progression toeards them
+*
+*
+*/
+
 public class GoalStatCard implements IStatistic {
 
         String goal;
-        String progress;
 
-    public GoalStatCard(String goal, String progress) {
+    /**
+     * @param goal the goal
+     */
+    public GoalStatCard(String goal) {
         this.goal = goal;
-        this.progress = progress;
     }
 
     @Override
@@ -21,7 +29,4 @@ public class GoalStatCard implements IStatistic {
         return goal;
     }
 
-    public String getProgress() {
-        return progress;
-    }
 }
