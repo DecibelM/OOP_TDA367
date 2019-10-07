@@ -26,6 +26,16 @@ public class Planner {
         sessionList.add(new Session(sessionName, date));
     }
 
+    /**
+     * Adds a new session to the Planner list, with image.
+     * @param sessionName Name of session
+     * @param date Date of session
+     * @param sessionImage Image of session
+     */
+    public void addSession(String sessionName, LocalDate date, int sessionImage){
+        sessionList.add(new Session(sessionName, date, sessionImage));
+    }
+
     public List<Session> getSessionList() {
         return sessionList;
     }
