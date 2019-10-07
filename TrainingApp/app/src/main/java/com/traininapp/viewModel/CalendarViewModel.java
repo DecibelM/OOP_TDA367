@@ -15,29 +15,31 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class CalendarViewModel is a class representing the viewmodel for the calendar.
+ */
 public class CalendarViewModel extends ViewModel {
-    //List<Session> sessionList;
     Model model;
 
     public CalendarViewModel(Model model) {
-        //this.sessionList = new ArrayList<>();
-        //sessionList.add(new Session("Löpning", LocalDate.of(2019,10,04)));
-        //sessionList.add(new Session("Yoga", LocalDate.of(2019,10,05)));
-        //sessionList.add(new Session("Mage", LocalDate.of(2019,10,06)));
         this.model = model;
     }
 
+    /**
+     * Method calls the model and returns a list of the sessions on the date
+     * it recieved as input.
+     * @param date The date of interest.
+     * @return a list of sessions connected to that date.
+     */
     public ArrayList<String> getSessionsByDate(LocalDate date){
         ArrayList<String> list = new ArrayList<>();
         ArrayList<Session> sessionList = (ArrayList<Session>) model.getUser().getPlanner().getSessionList();
 
         for(Session s: sessionList){
-            LocalDate sessionDate = s.getDate();
             if (s.getDate().equals( date)){
                 list.add(s.getName());
             }
         }
-
         return list;
     }
 }

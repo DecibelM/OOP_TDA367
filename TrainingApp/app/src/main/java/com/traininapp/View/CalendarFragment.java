@@ -45,11 +45,14 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, null);
-        //viewModel = ViewModelProviders.of(this).get(CalendarViewModel.class);
         viewModel = ((MainActivity)getActivity()).getCvm();
         myDate = (TextView) view.findViewById(R.id.myDate);
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         listView = (ListView) view.findViewById(R.id.listViewCalendar);
+
+        list = new ArrayList<>() ;
+        ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(adapter);
 
         final Context context = this.getContext();
 
@@ -58,8 +61,6 @@ public class CalendarFragment extends Fragment {
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 String date = (day) + "/" + month + "/" + year;
                 myDate.setText(date);
-                //list.set(0,"Löpning");
-                //list.set(1,"Yoga");
                 ArrayList<String> newList = viewModel.getSessionsByDate(LocalDate.of(year, month, day));
                 list.clear();
                 if(newList != null) {
@@ -71,25 +72,6 @@ public class CalendarFragment extends Fragment {
 
             }
         });
-
-        list = new ArrayList<>() ;
-        list.add("Hej");
-        list.add("Då!");
-
-        listView = (ListView) view.findViewById(R.id.listViewCalendar);
-        ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, list);
-        listView.setAdapter(adapter);
-
         return view;
-
     }
-
-
-
-
-
-
-
-
-
 }
