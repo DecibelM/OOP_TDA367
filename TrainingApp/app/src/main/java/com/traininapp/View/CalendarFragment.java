@@ -25,8 +25,10 @@ import com.traininapp.R;
 import com.traininapp.viewModel.CalendarViewModel;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -54,12 +56,16 @@ public class CalendarFragment extends Fragment {
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
 
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        myDate.setText(dateFormat.format(date));
+
         final Context context = this.getContext();
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                String date = (day) + "/" + month + "/" + year;
+                String date = (day) + "-" + month + "-" + year;
                 myDate.setText(date);
                 ArrayList<String> newList = viewModel.getSessionsByDate(LocalDate.of(year, month, day));
                 list.clear();
