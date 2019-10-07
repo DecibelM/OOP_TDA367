@@ -5,6 +5,10 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.traininapp.Model.*;
+import com.traininapp.Model.Session;
+import com.traininapp.viewModel.CalendarViewModel;
+import com.traininapp.viewModel.TrainingAppViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +17,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    Model model;
+    CalendarViewModel cvm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +42,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        model = new Model();
+        cvm = new CalendarViewModel(model);
 
-
-
+        Planner planner = model.getUser().getPlanner();
+        planner.addSession("Löpning", LocalDate.of(2019,10,7));
+        planner.addSession("Yoga", LocalDate.of(2019,10,8));
+        planner.addSession("Armträning", LocalDate.of(2019,10,9));
 
     }
 
-
+    public CalendarViewModel getCvm() {
+        return cvm;
+    }
 }
