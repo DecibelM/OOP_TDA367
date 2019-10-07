@@ -65,7 +65,7 @@ public class CalendarFragment extends Fragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                String date = (day) + "-" + month + "-" + year;
+                String date = (day) + "-" + (month +1) + "-" + year;
                 myDate.setText(date);
                 ArrayList<String> newList = viewModel.getSessionsByDate(LocalDate.of(year, month, day));
                 list.clear();
@@ -79,5 +79,15 @@ public class CalendarFragment extends Fragment {
             }
         });
         return view;
+
     }
+
+
+
+
+
+
+
+
+
 }
