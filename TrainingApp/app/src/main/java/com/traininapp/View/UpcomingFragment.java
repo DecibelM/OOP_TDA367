@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.Model.Session;
 import com.traininapp.R;
 import com.traininapp.viewModel.CreateSession;
@@ -26,6 +27,7 @@ import java.util.List;
 public class UpcomingFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    private FloatingActionButton btnOpen;
     private SessionAdapter adapter;
     private List<Session> sessionList;
     private View view;
@@ -34,18 +36,20 @@ public class UpcomingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        //Button btnOpen = view.findViewById(R.id.btnoOpenID);
+
+        // Connecting to fragment_upcoming.xml
+        view = inflater.inflate(R.layout.fragment_upcoming, null);
+
+        btnOpen = view.findViewById(R.id.btnOpenID);
 
 
-       /* btnOpen.setOnClickListener(new View.OnClickListener() {
+        btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openSession();
             }
-        });*/
+        });
 
-        // Connecting to fragment_upcoming.xml
-        view = inflater.inflate(R.layout.fragment_upcoming, null);
 
         // Initializing the list of sessions and add sessions
         sessionList = new ArrayList<>();
@@ -76,7 +80,6 @@ public class UpcomingFragment extends Fragment {
 
     public void openSession(){
         Intent intent = new Intent(getActivity(), PickDate.class);
-
         startActivity(intent);
     }
 

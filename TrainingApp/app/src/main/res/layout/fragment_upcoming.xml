@@ -8,7 +8,6 @@
     tools:context="View.UpcomingFragment">
 
     <!-- Recycler view for displaying the rows of sessions -->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
@@ -19,7 +18,7 @@
 
     <!-- Floating action button, directs the user to add session page when pressed -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnoOpenID"
+        android:id="@+id/btnOpenID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
