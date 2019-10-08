@@ -21,7 +21,7 @@ import com.traininapp.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateSession extends AppCompatActivity {
+public class CreateRoutine extends AppCompatActivity {
 
     FragmentTransaction fragmentTransaction;
 

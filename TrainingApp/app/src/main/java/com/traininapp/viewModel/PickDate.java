@@ -17,16 +17,22 @@ import android.widget.Toast;
 
 import com.traininapp.MainActivity;
 import com.traininapp.Model.DatePickerFragment;
+import com.traininapp.Model.Planner;
 import com.traininapp.R;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
-    List<String> sessionList = new ArrayList<>();
+
+    Planner planner;
+
+    // Dummy list of routines
+    List<String> routineList = new ArrayList<>();
 
 
     @Override
@@ -34,21 +40,20 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_date);
 
-        Button button = findViewById(R.id.button);
-        Button btnOk = findViewById(R.id.btnOkID);
+        Button button = findViewById(R.id.btnPickDate);
+        Button btnSaveSession = findViewById(R.id.btnSaveSession);
         Button btnOpenCreateSession = findViewById(R.id.btnOpenCreateRoutineID);
-        Spinner spnRoutine = findViewById(R.id.spnRoutineID);
+        Spinner spnrRoutineList = findViewById(R.id.spnrRoutineList);
 
-        //add all cardio exercises
-        sessionList.add("Running");
-        sessionList.add("Swimming");
-        sessionList.add("Walking");
-
+        //Add dummy text to list of Routines
+        routineList.add("Running");
+        routineList.add("Swimming");
+        routineList.add("Walking");
 
         ArrayAdapter<CharSequence> spnRoutineAdapter = ArrayAdapter.createFromResource(this, R.array.sessions, android.R.layout.simple_spinner_item);
         spnRoutineAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnRoutine.setAdapter(spnRoutineAdapter);
-        spnRoutine.setOnItemSelectedListener(this);
+        spnrRoutineList.setAdapter(spnRoutineAdapter);
+        spnrRoutineList.setOnItemSelectedListener(this);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,17 +63,20 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
             }
         });
 
+        // Clicking the "Create routine" button
         btnOpenCreateSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openSession();
+                clickCreateSession();
             }
         });
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
+        // Clicking the "Done" button, after choosing Routine and Date for the Session
+        // TODO Change
+        btnSaveSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDone();
+                clickSaveSession();
             }
         });
 
@@ -82,21 +90,37 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance().format(c.getTime());
 
-        TextView textView = findViewById(R.id.textView2);
+        TextView textView = findViewById(R.id.txtPickedDate);
         textView.setText(currentDateString);
 
     }
 
-    public void openSession(){
-        Intent intent = new Intent(this, CreateSession.class);
+    /**
+     * Method of what happens after clicking the "Create session" button. Directs the user
+     * to create a session.
+     */
+    public void clickCreateSession(){
+        Intent intent = new Intent(this, CreateRoutine.class);
 
         startActivity(intent);
     }
 
-    public void openDone(){
+    /**
+     * Method of what happens after clicking the "Done" button. Directs the user to the
+     * Upcoming sessions view
+     * TODO Change text of button
+     */
+    public void clickSaveSession(){
+
+
+
         Intent intent = new Intent(this, MainActivity.class);
 
         startActivity(intent);
+    }
+
+    public void addSessionToList(String name, LocalDate date){
+        planner.addSession(name, date);
     }
 
     @Override
