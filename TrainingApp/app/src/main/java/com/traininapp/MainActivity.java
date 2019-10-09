@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         Planner planner = model.getUser().getPlanner();
         planner.addSession("Löpning", LocalDate.of(2019,10,7));
+        planner.addSession("Styrketräning", LocalDate.of(2019,10,7));
         planner.addSession("Yoga", LocalDate.of(2019,10,8));
         planner.addSession("Armträning", LocalDate.of(2019,10,9));
 

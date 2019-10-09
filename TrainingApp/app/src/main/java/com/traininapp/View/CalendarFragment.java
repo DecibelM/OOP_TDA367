@@ -57,28 +57,45 @@ public class CalendarFragment extends Fragment {
         listView.setAdapter(adapter);
 
         Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d - MM - yyyy");
         myDate.setText(dateFormat.format(date));
 
+
+
+        updateSessionList(LocalDate.now());
         final Context context = this.getContext();
 
+        // Listener for when the user selects a date
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 month++;
-                String date = (day) + "-" + (month) + "-" + year;
-                myDate.setText(date);
-                ArrayList<String> newList = viewModel.getSessionsByDate(LocalDate.of(year, month, day));
-                list.clear();
-                if(newList != null) {
-                    for (String s : newList) {
-                        list.add(s);
-                    }
-                }
-                ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
+                LocalDate localDate = LocalDate.of(year,month,day);
+                String dateString = (day) + " - " + (month) + " - " + year;
+                myDate.setText(dateString);
+
+                updateSessionList(localDate);
 
             }
         });
+
         return view;
     }
+
+    // Method for updating sessions on the selected day
+    public void updateSessionList(LocalDate localDate){
+
+        ArrayList<String> newList = viewModel.getSessionsByDate(localDate);
+        list.clear();
+        if(newList != null) {
+            for (String s : newList) {
+                list.add(s);
+            }
+        }
+        ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
+
+        }
+
+
+
 }
