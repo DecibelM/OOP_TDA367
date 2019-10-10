@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO Should a Session not hold a list of Routines instead, which in turn hold a list of exercises? /Mathias
+
 /**
  * Class Session which holds a list of exercises and a date.s
  */
@@ -14,13 +16,29 @@ public class Session {
     LocalDate date;
     private int sessionImage;
 
-
-
+    /**
+     * Constructor for Session which takes name of exercise and date as parameters
+     * @param name Name of session
+     * @param date Date of session
+     */
     public Session(String name, LocalDate date) {
         this.name = name;
         this.exerciseList = new ArrayList<>();
         this.date = date;
         sessionObservers = new ArrayList<>();
+    }
+
+    /**
+     * Constructor for Session which takes name, date and image as parameters
+     * @param name Name of session
+     * @param date Date of session
+     * @param sessionImage Image of session
+     */
+    public Session(String name, LocalDate date, int sessionImage) {
+        this.name = name;
+        this.exerciseList = new ArrayList<>();
+        this.date = date;
+        this.sessionImage = sessionImage;
     }
 
     /**
@@ -49,13 +67,6 @@ public class Session {
         for (ISessionObserver observer: sessionObservers){
             observer.updateSessionStats(exerciseList);
         }
-    }
-
-    public Session(String name, LocalDate date, int sessionImage) {
-        this.name = name;
-        this.exerciseList = new ArrayList<>();
-        this.date = date;
-        this.sessionImage = sessionImage;
     }
 
     /**

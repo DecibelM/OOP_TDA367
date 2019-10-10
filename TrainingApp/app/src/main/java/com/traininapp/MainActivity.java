@@ -10,6 +10,7 @@ import com.traininapp.Model.*;
 import com.traininapp.Model.Session;
 import com.traininapp.viewModel.CalendarViewModel;
 import com.traininapp.viewModel.TrainingAppViewModel;
+import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     Model model;
     CalendarViewModel cvm;
+    UpcomingSessionsViewModel upcomingSessionsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,13 @@ public class MainActivity extends AppCompatActivity {
 
         model = new Model();
         cvm = new CalendarViewModel(model);
+        upcomingSessionsViewModel = new UpcomingSessionsViewModel(model);
 
         Planner planner = model.getUser().getPlanner();
+        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_1);
+        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_1);
+        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_1);
+        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
         planner.addSession("Löpning", LocalDate.of(2019,10,7));
         planner.addSession("Styrketräning", LocalDate.of(2019,10,7));
         planner.addSession("Yoga", LocalDate.of(2019,10,8));
@@ -59,5 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
     public CalendarViewModel getCvm() {
         return cvm;
+    }
+
+    public UpcomingSessionsViewModel getUpcomingSessionsViewModel(){
+        return upcomingSessionsViewModel;
     }
 }

@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".viewModel.PickDate">
+    tools:context=".viewModel.AddSession">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnPickDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="Date"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtPickedDate"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -23,10 +23,10 @@
         android:layout_marginTop="51dp"
         android:text="Create routine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnRoutineID" />
+        app:layout_constraintTop_toBottomOf="@+id/spnrRoutineList" />
 
     <Spinner
-        android:id="@+id/spnRoutineID"
+        android:id="@+id/spnrRoutineList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -35,22 +35,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtPickedDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="53dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/btnPickDate"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnOkID"
+        android:id="@+id/btnSaveSession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="76dp"
-        android:text="Done"
+        android:text="Add session"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

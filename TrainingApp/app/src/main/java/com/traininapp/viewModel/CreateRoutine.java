@@ -2,26 +2,19 @@ package com.traininapp.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
-import com.traininapp.MainActivity;
 import com.traininapp.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class CreateSession extends AppCompatActivity {
+public class CreateRoutine extends AppCompatActivity {
 
     FragmentTransaction fragmentTransaction;
 
@@ -82,7 +75,7 @@ public class CreateSession extends AppCompatActivity {
 
     //open new activity
     public void openActivity(){
-        Intent intent = new Intent (this, PickDate.class);
+        Intent intent = new Intent (this, AddSession.class);
         startActivity(intent);
     }
 
