@@ -1,6 +1,7 @@
 package com.traininapp.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ListAdapter;
 
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +22,11 @@ import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
 import com.traininapp.R;
 import com.traininapp.viewModel.CalendarViewModel;
+import com.traininapp.viewModel.PickDate;
 
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
@@ -42,6 +46,8 @@ public class CalendarFragment extends Fragment {
     private CalendarViewModel viewModel;
     private ListView listView;
     private ArrayList<String> list;
+    private ListView emptyView;
+    private FloatingActionButton btnOpen;
 
     @Nullable
     @Override
@@ -51,6 +57,8 @@ public class CalendarFragment extends Fragment {
         myDate = (TextView) view.findViewById(R.id.myDate);
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         listView = (ListView) view.findViewById(R.id.listViewCalendar);
+        emptyView = (ListView) view.findViewById(R.id.emptyViewCalendar);
+        btnOpen = view.findViewById(R.id.btnOpenID);
 
         list = new ArrayList<>() ;
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, list);
@@ -61,6 +69,12 @@ public class CalendarFragment extends Fragment {
         myDate.setText(dateFormat.format(date));
 
 
+        btnOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSession();
+            }
+        });
 
         updateSessionList(LocalDate.now());
         final Context context = this.getContext();
@@ -86,16 +100,28 @@ public class CalendarFragment extends Fragment {
     public void updateSessionList(LocalDate localDate){
 
         ArrayList<String> newList = viewModel.getSessionsByDate(localDate);
+
+
+
         list.clear();
         if(newList != null) {
             for (String s : newList) {
                 list.add(s);
             }
         }
-        ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
-
+        if (newList.isEmpty()) {
+        listView.setEmptyView(emptyView);
         }
+            ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
 
 
+
+    }
+
+    public void openSession(){
+        Intent intent = new Intent(getActivity(), PickDate.class);
+        intent.putExtra("Date", myDate.getText());
+        startActivity(intent);
+    }
 
 }
