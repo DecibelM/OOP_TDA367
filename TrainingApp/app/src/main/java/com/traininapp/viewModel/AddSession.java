@@ -25,6 +25,7 @@ import com.traininapp.View.UpcomingFragment;
 
 import java.text.DateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -48,6 +49,10 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_date);
+
+        // Checks if the date is already chosen and then sets the date to the already selected one. If you already chose it in calendar for example
+        isDateSelectedAlready();
+
 
         Button btnPickDate = findViewById(R.id.btnPickDate);
         Button btnSaveSession = findViewById(R.id.btnSaveSession);
@@ -106,12 +111,23 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance().format(c.getTime());
 
+
+
+        // Updating selectedDate to the date selected by user
+        selectedDate = LocalDate.of(year, month, dayOfMonth);
+        setDate(currentDateString,selectedDate);
+
+    }
+
+
+    public void setDate(String currentDateString, LocalDate date){
+
+        // Updating selectedDate to the date selected by user
+        selectedDate = date;
         // Updating the string shown to the date the user selected
         TextView textView = findViewById(R.id.txtPickedDate);
         textView.setText(currentDateString);
 
-        // Updating selectedDate to the date selected by user
-        selectedDate = LocalDate.of(year, month, dayOfMonth);
     }
 
     /**
@@ -170,5 +186,19 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public void isDateSelectedAlready() {
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            if (intent.getStringExtra("FROMCALENDAR").matches("YES")) {
+
+
+                String pastDate = intent.getStringExtra("DATE");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d - MM - yyyy");
+                LocalDate localDate = LocalDate.parse(pastDate, formatter);
+                setDate(pastDate, localDate);
+            }
+        }
     }
 }
