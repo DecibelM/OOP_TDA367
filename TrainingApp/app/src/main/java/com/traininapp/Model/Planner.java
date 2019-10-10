@@ -19,7 +19,7 @@ public class Planner {
 
     /**
      * Adds a new session to the Planner list.
-     * @param sessionName name if the session
+     * @param sessionName name of the session
      * @param date date of the session
      */
     public void addSession(String sessionName, LocalDate date){

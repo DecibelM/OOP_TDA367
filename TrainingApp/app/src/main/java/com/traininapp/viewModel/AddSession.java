@@ -17,8 +17,11 @@ import android.widget.Toast;
 
 import com.traininapp.MainActivity;
 import com.traininapp.Model.DatePickerFragment;
+import com.traininapp.Model.Model;
 import com.traininapp.Model.Planner;
+import com.traininapp.Model.Session;
 import com.traininapp.R;
+import com.traininapp.View.UpcomingFragment;
 
 import java.text.DateFormat;
 import java.time.LocalDate;
@@ -26,10 +29,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
+public class AddSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
+    // TODO Delete these?
+    private Planner planner;
+    private Model model;
 
-    Planner planner;
+    private UpcomingSessionsViewModel viewModel;
+
+    private String selectedRoutine;
+    private LocalDate selectedDate;
 
     // Dummy list of routines
     List<String> routineList = new ArrayList<>();
@@ -40,7 +49,7 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_date);
 
-        Button button = findViewById(R.id.btnPickDate);
+        Button btnPickDate = findViewById(R.id.btnPickDate);
         Button btnSaveSession = findViewById(R.id.btnSaveSession);
         Button btnOpenCreateSession = findViewById(R.id.btnOpenCreateRoutineID);
         Spinner spnrRoutineList = findViewById(R.id.spnrRoutineList);
@@ -55,7 +64,8 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
         spnrRoutineList.setAdapter(spnRoutineAdapter);
         spnrRoutineList.setOnItemSelectedListener(this);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        // Clicking the "Date" button to decide date of Routine
+        btnPickDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment datePicker = new DatePickerFragment();
@@ -71,8 +81,7 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
             }
         });
 
-        // Clicking the "Done" button, after choosing Routine and Date for the Session
-        // TODO Change
+        // Clicking the "Add session" button, after choosing Routine and Date for the Session
         btnSaveSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,6 +91,13 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
 
     }
 
+    /**
+     * A method to update a string to match the selected date
+     * @param datePicker ???
+     * @param year Year
+     * @param month Month
+     * @param dayOfMonth Day of month
+     */
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();
@@ -90,9 +106,12 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance().format(c.getTime());
 
+        // Updating the string shown to the date the user selected
         TextView textView = findViewById(R.id.txtPickedDate);
         textView.setText(currentDateString);
 
+        // Updating selectedDate to the date selected by user
+        selectedDate = LocalDate.of(year, month, dayOfMonth);
     }
 
     /**
@@ -108,25 +127,44 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
     /**
      * Method of what happens after clicking the "Done" button. Directs the user to the
      * Upcoming sessions view
-     * TODO Change text of button
      */
     public void clickSaveSession(){
 
+        // TODO Make this work
+        // Adding the selected Session to the User's Planner's list of Sessions
+        addSessionToList(selectedRoutine,selectedDate);
 
-
+        // Directing the user to UpcomingSession page again
         Intent intent = new Intent(this, MainActivity.class);
-
         startActivity(intent);
     }
 
+    /**
+     * A method to add the created session to the Planners list of Sessions
+     * @param name
+     * @param date
+     */
     public void addSessionToList(String name, LocalDate date){
-        planner.addSession(name, date);
+
+        Session session = new Session(name, date);
+
+        viewModel.getListOfSessions().add(session);
+
+        // Printing out the sessions in the list to make sure it has been added
+        for (Session s : model.getUser().getPlanner().getSessionList()){
+            System.out.println(s);
+        }
+
     }
 
+    // TODO Currently updating selectedRoutin or not? Might have to return a new object
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
+
+        // Update the name of the selected Routine when clicking on Routine from list
+        selectedRoutine = adapterView.getItemAtPosition(i).toString();;
+
+        //Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
