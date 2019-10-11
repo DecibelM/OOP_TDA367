@@ -12,13 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.Model.Session;
 import com.traininapp.R;
-import com.traininapp.viewModel.CreateSession;
-import com.traininapp.viewModel.PickDate;
+import com.traininapp.viewModel.AddSession;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -79,7 +77,7 @@ public class UpcomingFragment extends Fragment {
     }
 
     public void openSession(){
-        Intent intent = new Intent(getActivity(), PickDate.class);
+        Intent intent = new Intent(getActivity(), AddSession.class);
         startActivity(intent);
     }
 

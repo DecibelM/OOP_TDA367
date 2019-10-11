@@ -1,17 +1,11 @@
 package com.traininapp.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -19,11 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.traininapp.MainActivity;
 import com.traininapp.Model.Exercise;
-import com.traininapp.Model.Planner;
-import com.traininapp.Model.Routine;
-import com.traininapp.Model.StrengthExercise;
 import com.traininapp.R;
 
 //import com.traininapp.Model.Model; UNCOMMENT ME WHEN MODEL ADDED!
@@ -58,7 +48,7 @@ public class CreateSession extends AppCompatActivity implements Serializable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_session);
+        setContentView(R.layout.activity_create_routine);
 
         ToggleButton togCardioOrStrength = findViewById(R.id.togCardioOrStrengthID);
         Button btnAddnewExersice = findViewById(R.id.btnAddExerciseID);
@@ -173,7 +163,7 @@ public class CreateSession extends AppCompatActivity implements Serializable {
 
     //open new activity
     public void openActivity(){
-        Intent intent = new Intent (this, PickDate.class);
+        Intent intent = new Intent (this, AddSession.class);
         startActivity(intent);
     }
 

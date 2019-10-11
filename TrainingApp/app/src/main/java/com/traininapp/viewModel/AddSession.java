@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.traininapp.Model.DatePickerFragment;
 import com.traininapp.Model.Exercise;
 //import com.traininapp.Model.Model  UNCOMMENT ME WHEN MODEL ADDED!
 import com.traininapp.Model.Routine;
+import com.traininapp.Model.Session;
 import com.traininapp.Model.StrengthExercise;
 import com.traininapp.R;
 
@@ -28,9 +30,10 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     //Placeholder list of exercises
     List<Exercise> listTest1 = new ArrayList<>();
     List<Exercise> listTest2 = new ArrayList<>();
@@ -46,7 +49,9 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
     private Button btnOpenCreateRoutine;
     private Button btnAddRoutine;
     private Button btnUndo;
+    private Button btnSave;
     private TextView txtDisplayRoutines;
+    private EditText txtEnterSessionName;
     //Model model = new Model(); UNCOMMENT ME WHEN MODEL ADDED!
 
 
@@ -60,10 +65,12 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
         btnPickDate = findViewById(R.id.btnPickDateID);
         btnOk = findViewById(R.id.btnOkID);
         btnUndo = findViewById(R.id.btnUndoID);
+        btnSave = findViewById(R.id.btnSaveID);
         btnAddRoutine = findViewById(R.id.btnAddRoutineID);
         btnOpenCreateRoutine = findViewById(R.id.btnOpenCreateRoutineID);
         spnPickRoutine = findViewById(R.id.spnPickRoutineID);
         txtDisplayRoutines = findViewById(R.id.txtDisplayRoutinesID);
+        txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
 
 
         //Placeholder exercises
@@ -149,6 +156,14 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
             }
         });
 
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              //  Session session = new Session(txtEnterSessionName.getText().toString(), listOfAddedRoutines, )
+            }
+        });
+
+
 
     }
 
@@ -186,6 +201,7 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
         //Get the selected routine
         Routine addedRoutine = (Routine) spnPickRoutine.getSelectedItem();
 
+        //At the routine
         listOfAddedRoutines.add(addedRoutine);
 
         //Get the name of the selected routine
@@ -243,7 +259,7 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
                             " | Dist: " + removeZeroes.format(((CardioExercise) exercise).getDistance()) +
                             " | Time: " + removeZeroes.format(((CardioExercise) exercise).getRunningTime()) +
                             "\n");
-                    //if the exercise neither, just show the name
+                //if the exercise neither, just show the name
                 } else {
                     txtDisplayRoutines.append("Ex: "+ exercise.getName() + "\n");
                 }
