@@ -1,18 +1,13 @@
 package com.traininapp;
 
 import android.os.Bundle;
-import android.widget.CalendarView;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import android.app.Fragment;
 import com.traininapp.Model.*;
-import com.traininapp.Model.Session;
+import com.traininapp.Model.Planning.Planner;
 import com.traininapp.viewModel.CalendarViewModel;
-import com.traininapp.viewModel.TrainingAppViewModel;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,7 +15,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
