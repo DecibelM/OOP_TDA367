@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
         upcomingSessionsViewModel = new UpcomingSessionsViewModel(model);
 
         Planner planner = model.getUser().getPlanner();
-        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_1);
-        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_1);
-        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_1);
+        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
+        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
+        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
         planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
 
     }

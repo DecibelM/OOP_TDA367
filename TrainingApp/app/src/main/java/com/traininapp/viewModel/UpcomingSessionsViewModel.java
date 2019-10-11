@@ -22,4 +22,8 @@ public class UpcomingSessionsViewModel extends ViewModel {
         return model.getUser().getPlanner().getSessionList();
     }
 
+    public void addSessionToList(String name, LocalDate date){
+        model.getUser().getPlanner().addSession(name, date);
+    }
+
 }

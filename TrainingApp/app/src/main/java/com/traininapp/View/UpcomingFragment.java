@@ -56,6 +56,19 @@ public class UpcomingFragment extends Fragment {
 
         // Initializing the list of sessions and add sessions
         sessionList = new ArrayList<>();
+
+        Intent intent = getActivity().getIntent();
+
+        String name = intent.getStringExtra("SELECTED_ROUTINE");
+        /*String dateString = intent.getStringExtra("SELECTED_DATE");
+
+        LocalDate date = LocalDate.parse(dateString);*/
+
+        if (name != null){
+            upcomingSessionsViewModel.addSessionToList(name, LocalDate.now());
+            intent.removeExtra("SELECTED_ROUTINE");
+        }
+
         updateSessionList();
 
         // Changes in content does not change layout size, set
@@ -79,19 +92,6 @@ public class UpcomingFragment extends Fragment {
     public void updateSessionList(){
 
         sessionList.clear();
-
-        Intent intent = getActivity().getIntent();
-
-        if (intent != null){
-            String name = intent.getStringExtra("SELECTED_ROUTINE");
-            /*String dateString = intent.getStringExtra("SELECTED_DATE");
-
-            LocalDate date = LocalDate.parse(dateString);*/
-
-            Session session = new Session(name, LocalDate.now());
-
-            upcomingSessionsViewModel.getListOfSessions().add(session);
-        }
 
         for (Session s : upcomingSessionsViewModel.getListOfSessions()){
             sessionList.add(s);
