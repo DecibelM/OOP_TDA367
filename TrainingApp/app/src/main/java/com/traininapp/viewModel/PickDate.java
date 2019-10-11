@@ -25,6 +25,7 @@ import com.traininapp.Model.StrengthExercise;
 import com.traininapp.R;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -63,11 +64,11 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
 
 
         //Placeholder exercises
-        StrengthExercise strEx1 = new StrengthExercise("bicep" ,1,2,3);
+        StrengthExercise strEx1 = new StrengthExercise("bicep" ,1,2,3.5);
         StrengthExercise strEx2 = new StrengthExercise("pull up" ,1,2,3);
 
-        CardioExercise carEx1 = new CardioExercise("Running" ,12,45);
-        CardioExercise carEx2 = new CardioExercise("Swimming" ,55,25);
+        CardioExercise carEx1 = new CardioExercise("Running" ,12,45.4);
+        CardioExercise carEx2 = new CardioExercise("Swimming" ,55.5,25);
 
         //add mix of cardio/strength-exercises to placeholder list
         listTest1.add(strEx1);
@@ -170,17 +171,44 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
     //Add the routine
     public void getSelectedRoutine(){
 
+        //Used to remove trailing zeroes from doubles
+        DecimalFormat removeZeroes = new DecimalFormat("0.#");
+
+
         //Get the selected routine
         Routine routine = (Routine) spnPickRoutine.getSelectedItem();
 
         //Get the name of the selected routine
-        String name = routine.getName().toUpperCase();
+        String routineName = routine.getName();
 
         //Display the name of the selected routine
-        txtDisplayRoutines.append(""+ name + "\n");
+        txtDisplayRoutines.append("Routine: " + routineName + "\n");
+
+        //Show all the exercises in the routine
+        for(Exercise exercise : routine.getSavedExerciseList()){
+            if(exercise instanceof StrengthExercise){
+                txtDisplayRoutines.append("Ex: "+ exercise.getName() +
+                        " | Weight: " + removeZeroes.format(((StrengthExercise) exercise).getWeight()) +
+                        " | Sets: " + ((StrengthExercise) exercise).getSets() +
+                        " | Reps: " + ((StrengthExercise) exercise).getReps() +
+                        "\n");
+            }
+            else if(exercise instanceof CardioExercise){
+                txtDisplayRoutines.append("Ex: "+ exercise.getName() +
+                        " | Dist: " + removeZeroes.format(((CardioExercise) exercise).getDistance()) +
+                        " | Time: " + removeZeroes.format(((CardioExercise) exercise).getRunningTime()) +
+                        "\n");
+            } else {
+                txtDisplayRoutines.append("Ex: "+ exercise.getName() + "\n");
+            }
+        }
+
+        //Add extra line between each added routine
+        txtDisplayRoutines.append("\n");
+
 
         //Give feedback to user that the routine has been added
-        String toast = "Routine: " + name + " has been added";
+        String toast = "Routine: " + routineName + " has been added";
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
 
     }
