@@ -17,13 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.traininapp.MainActivity;
-import com.traininapp.Model.CardioExercise;
-import com.traininapp.Model.DatePickerFragment;
-import com.traininapp.Model.Exercise;
+import com.traininapp.Model.Planning.CardioExercise;
+import com.traininapp.View.DatePickerFragment;
+import com.traininapp.Model.Planning.Exercise;
 //import com.traininapp.Model.Model  UNCOMMENT ME WHEN MODEL ADDED!
-import com.traininapp.Model.Routine;
-import com.traininapp.Model.Session;
-import com.traininapp.Model.StrengthExercise;
+import com.traininapp.Model.Planning.Routine;
+import com.traininapp.Model.Planning.Session;
+import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
 import java.text.DateFormat;

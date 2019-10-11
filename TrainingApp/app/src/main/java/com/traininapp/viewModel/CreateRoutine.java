@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.traininapp.Model.Exercise;
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
 
 //import com.traininapp.Model.Model; UNCOMMENT ME WHEN MODEL ADDED!

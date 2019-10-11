@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.traininapp.Model.CardioExercise;
+import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.R;
 import java.util.ArrayList;
 import java.util.List;
