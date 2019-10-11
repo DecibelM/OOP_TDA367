@@ -24,7 +24,6 @@ public class FragStrRow extends Fragment {
     //Placeholder list for all strength exercises
     List<String> strExerciseList = new ArrayList<>();
 
-    CreateSession createSession = new CreateSession();
 
     private EditText txtEnterWeight;
     private EditText txtEnterSets ;

@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".viewModel.AddSession"></activity>
         <activity
-            android:name=".viewModel.CreateSession"
+            android:name=".viewModel.CreateRoutine"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"

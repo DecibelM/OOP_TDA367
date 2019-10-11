@@ -24,7 +24,7 @@ import java.util.List;
 
 
 
-public class CreateSession extends AppCompatActivity implements Serializable {
+public class CreateRoutine extends AppCompatActivity implements Serializable {
 
     private EditText txtEnterExName;
 
@@ -155,7 +155,7 @@ public class CreateSession extends AppCompatActivity implements Serializable {
 
                     //Give feedback that the routine has been saved
                     String toastMessage = "Routine: " + routineName.toUpperCase() + " has been saved!";
-                    Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
                 }
             }
         });
