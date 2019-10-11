@@ -27,4 +27,9 @@ public class Routine {
     public List<Exercise> getSavedExerciseList() {
         return savedExerciseList;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

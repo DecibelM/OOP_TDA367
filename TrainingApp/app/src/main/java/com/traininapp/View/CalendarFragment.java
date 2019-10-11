@@ -1,15 +1,14 @@
 package com.traininapp.View;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.ListAdapter;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +19,12 @@ import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
 import com.traininapp.R;
+import com.traininapp.viewModel.CreateSession;
 import com.traininapp.viewModel.CalendarViewModel;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -42,6 +42,8 @@ public class CalendarFragment extends Fragment {
     private CalendarViewModel viewModel;
     private ListView listView;
     private ArrayList<String> list;
+    private ListView emptyView;
+    private FloatingActionButton btnOpen;
 
     @Nullable
     @Override
@@ -52,34 +54,76 @@ public class CalendarFragment extends Fragment {
         myDate = (TextView) view.findViewById(R.id.myDate);
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         listView = (ListView) view.findViewById(R.id.listViewCalendar);
+        emptyView = (ListView) view.findViewById(R.id.emptyViewCalendar);
+        btnOpen = view.findViewById(R.id.btnOpenID);
 
         list = new ArrayList<>() ;
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
 
         Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d - MM - yyyy");
         myDate.setText(dateFormat.format(date));
 
+
+        btnOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSession();
+            }
+        });
+
+        updateSessionList(LocalDate.now());
         final Context context = this.getContext();
 
+        // Listener for when the user selects a date
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 month++;
-                String date = (day) + "-" + (month) + "-" + year;
-                myDate.setText(date);
-                ArrayList<String> newList = viewModel.getSessionsByDate(LocalDate.of(year, month, day));
-                list.clear();
-                if(newList != null) {
-                    for (String s : newList) {
-                        list.add(s);
-                    }
-                }
-                ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
+                LocalDate localDate = LocalDate.of(year,month,day);
+                String dateString = (day) + " - " + (month) + " - " + year;
+                myDate.setText(dateString);
+
+                updateSessionList(localDate);
 
             }
         });
+
         return view;
     }
+
+    // Method for updating sessions on the selected day
+    public void updateSessionList(LocalDate localDate){
+
+        ArrayList<String> newList = viewModel.getSessionsByDate(localDate);
+
+
+
+        list.clear();
+        if(newList != null) {
+            for (String s : newList) {
+                list.add(s);
+            }
+        }
+        if (newList.isEmpty()) {
+        listView.setEmptyView(emptyView);
+        } else {
+            listView.setEmptyView(listView);
+        }
+            ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
+
+
+
+    }
+
+    public void openSession(){
+        Intent intent = new Intent(getActivity(), CreateSession.class);
+        intent.putExtra("DATE", myDate.getText());
+        intent.putExtra("FROMCALENDAR", "YES");
+        startActivity(intent);
+    }
+
+
+
 }
