@@ -37,6 +37,7 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
     List<Exercise> listTest3 = new ArrayList<>();
 
     List<Routine> listRoutine = new ArrayList<>(); //REMOVE ME WHEN MODEL ADDED!
+    List<Routine> listOfAddedRoutines = new ArrayList<>();
 
 
     private Spinner spnPickRoutine;
@@ -44,6 +45,7 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
     private Button btnOk;
     private Button btnOpenCreateRoutine;
     private Button btnAddRoutine;
+    private Button btnUndo;
     private TextView txtDisplayRoutines;
     //Model model = new Model(); UNCOMMENT ME WHEN MODEL ADDED!
 
@@ -57,6 +59,7 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
 
         btnPickDate = findViewById(R.id.btnPickDateID);
         btnOk = findViewById(R.id.btnOkID);
+        btnUndo = findViewById(R.id.btnUndoID);
         btnAddRoutine = findViewById(R.id.btnAddRoutineID);
         btnOpenCreateRoutine = findViewById(R.id.btnOpenCreateRoutineID);
         spnPickRoutine = findViewById(R.id.spnPickRoutineID);
@@ -139,6 +142,14 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
             }
         });
 
+        btnUndo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                undo();
+            }
+        });
+
+
     }
 
     //open calendar, pick date and put date in textView
@@ -171,45 +182,76 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
     //Add the routine
     public void getSelectedRoutine(){
 
-        //Used to remove trailing zeroes from doubles
-        DecimalFormat removeZeroes = new DecimalFormat("0.#");
-
 
         //Get the selected routine
-        Routine routine = (Routine) spnPickRoutine.getSelectedItem();
+        Routine addedRoutine = (Routine) spnPickRoutine.getSelectedItem();
+
+        listOfAddedRoutines.add(addedRoutine);
 
         //Get the name of the selected routine
-        String routineName = routine.getName();
+        String routineName = listOfAddedRoutines.get(listOfAddedRoutines.size()-1).getName();
 
-        //Display the name of the selected routine
-        txtDisplayRoutines.append("Routine: " + routineName + "\n");
-
-        //Show all the exercises in the routine
-        for(Exercise exercise : routine.getSavedExerciseList()){
-            if(exercise instanceof StrengthExercise){
-                txtDisplayRoutines.append("Ex: "+ exercise.getName() +
-                        " | Weight: " + removeZeroes.format(((StrengthExercise) exercise).getWeight()) +
-                        " | Sets: " + ((StrengthExercise) exercise).getSets() +
-                        " | Reps: " + ((StrengthExercise) exercise).getReps() +
-                        "\n");
-            }
-            else if(exercise instanceof CardioExercise){
-                txtDisplayRoutines.append("Ex: "+ exercise.getName() +
-                        " | Dist: " + removeZeroes.format(((CardioExercise) exercise).getDistance()) +
-                        " | Time: " + removeZeroes.format(((CardioExercise) exercise).getRunningTime()) +
-                        "\n");
-            } else {
-                txtDisplayRoutines.append("Ex: "+ exercise.getName() + "\n");
-            }
-        }
-
-        //Add extra line between each added routine
-        txtDisplayRoutines.append("\n");
-
+        //refresh textview when routine has been added
+        refreshTextView();
 
         //Give feedback to user that the routine has been added
         String toast = "Routine: " + routineName + " has been added";
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
+
+    }
+
+    //Remove the most recently added routine
+    public void undo(){
+        //Check if there is anything to remove
+        if(listOfAddedRoutines.size() > 0){
+            listOfAddedRoutines.remove(listOfAddedRoutines.size()-1);
+            //refresh textview when routine has been removed
+            refreshTextView();
+        } else{
+            Toast.makeText(this, "There is nothing to remove! ", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    //Refreshes the textview when routine is added or removed
+    public void refreshTextView(){
+
+        //Used to remove trailing zeroes from doubles
+        DecimalFormat removeZeroes = new DecimalFormat("0.#");
+
+        //Make the textview empty before writing all info
+        txtDisplayRoutines.setText("");
+
+        //Go through each routine that has been added
+        for(Routine routine : listOfAddedRoutines){
+            //Show name of selected routine
+            txtDisplayRoutines.append("Routine: " + routine.getName() + "\n");
+
+            //Go through each exercise in that routine
+            for(Exercise exercise : routine.getSavedExerciseList()){
+                //if the exercise is a strength exercise, show the relevant information
+                if(exercise instanceof StrengthExercise){
+                    txtDisplayRoutines.append("Ex: "+ exercise.getName() +
+                            " | Weight: " + removeZeroes.format(((StrengthExercise) exercise).getWeight()) +
+                            " | Sets: " + ((StrengthExercise) exercise).getSets() +
+                            " | Reps: " + ((StrengthExercise) exercise).getReps() +
+                            "\n");
+                }
+                //if the exercise is a cardio exercise, show the relevant information
+                else if(exercise instanceof CardioExercise){
+                    txtDisplayRoutines.append("Ex: "+ exercise.getName() +
+                            " | Dist: " + removeZeroes.format(((CardioExercise) exercise).getDistance()) +
+                            " | Time: " + removeZeroes.format(((CardioExercise) exercise).getRunningTime()) +
+                            "\n");
+                    //if the exercise neither, just show the name
+                } else {
+                    txtDisplayRoutines.append("Ex: "+ exercise.getName() + "\n");
+                }
+            }
+
+            //Add extra line between each routine
+            txtDisplayRoutines.append("\n");
+        }
 
     }
 
