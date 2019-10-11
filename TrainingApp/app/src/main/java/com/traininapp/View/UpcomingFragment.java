@@ -15,19 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
 import com.traininapp.viewModel.AddSession;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
-
-import java.util.List;
 
 public class UpcomingFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private FloatingActionButton btnAddSession;
     private SessionAdapter adapter;
-    private List<Session> sessionList;
     private View view;
     private UpcomingSessionsViewModel viewModel;
 

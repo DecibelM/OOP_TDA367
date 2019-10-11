@@ -123,45 +123,22 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
      */
     public void clickSaveSession(){
 
-/*        // TODO Make this work
         // Adding the selected Session to the User's Planner's list of Sessions
-        addSessionToList(selectedRoutine,selectedDate);*/
+        viewModel.addSessionToList(selectedRoutine,selectedDate);
 
         // Directing the user to UpcomingSession page again
         Intent intent = new Intent(this, MainActivity.class);
 
-        intent.putExtra("SELECTED_ROUTINE", selectedRoutine);
-        //intent.putExtra("SELECTED_DATE", selectedDate.toString());
-
+        // Starting activity
         startActivity(intent);
     }
 
-/*    *//**
-     * A method to add the created session to the Planners list of Sessions
-     * @param
-     * @param
-     *//*
-    public void addSessionToList(String name, LocalDate date){
-
-        Session session = new Session(name, date);
-
-        upcomingSessionsViewModel.getListOfSessions().add(session);
-
-        // Printing out the sessions in the list to make sure it has been added
-        for (Session s : model.getUser().getPlanner().getSessionList()){
-            System.out.println(s);
-        }
-
-    }*/
-
-    // TODO Currently updating selectedRoutin or not? Might have to return a new object
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
         // Update the name of the selected Routine when clicking on Routine from list
         selectedRoutine = adapterView.getItemAtPosition(i).toString();
 
-        //Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
