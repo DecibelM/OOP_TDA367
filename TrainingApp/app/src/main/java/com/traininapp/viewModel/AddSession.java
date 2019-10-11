@@ -2,6 +2,7 @@ package com.traininapp.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -28,6 +29,7 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
 
     private String selectedRoutine;
     private LocalDate selectedDate;
+    private UpcomingSessionsViewModel viewModel;
 
     // Dummy list of routines
     List<String> routineList = new ArrayList<>();
@@ -36,6 +38,9 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_date);
+
+        // Attaching the View model to activity
+        viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
 
         Button btnPickDate = findViewById(R.id.btnPickDate);
         Button btnSaveSession = findViewById(R.id.btnSaveSession);
