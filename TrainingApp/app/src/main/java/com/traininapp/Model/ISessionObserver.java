@@ -1,5 +1,7 @@
 package com.traininapp.Model;
 
+import com.traininapp.Model.Planning.Exercise;
+
 import java.util.List;
 
 /**

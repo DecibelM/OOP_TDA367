@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.traininapp.Model.Session;
+import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
 
 import java.util.List;

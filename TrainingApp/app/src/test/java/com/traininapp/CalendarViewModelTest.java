@@ -1,6 +1,7 @@
 package com.traininapp;
 
 import com.traininapp.Model.*;
+import com.traininapp.Model.Planning.Planner;
 import com.traininapp.viewModel.CalendarViewModel;
 
 import static org.junit.Assert.*;

@@ -1,18 +1,13 @@
 package com.traininapp;
 
 import android.os.Bundle;
-import android.widget.CalendarView;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import android.app.Fragment;
 import com.traininapp.Model.*;
-import com.traininapp.Model.Session;
+import com.traininapp.Model.Planning.Planner;
 import com.traininapp.viewModel.CalendarViewModel;
-import com.traininapp.viewModel.TrainingAppViewModel;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,7 +15,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         upcomingSessionsViewModel = new UpcomingSessionsViewModel(model);
 
         Planner planner = model.getUser().getPlanner();
-        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_1);
-        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_1);
-        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_1);
+        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
+        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
+        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
         planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
         planner.addSession("Löpning", LocalDate.of(2019,10,7));
         planner.addSession("Styrketräning", LocalDate.of(2019,10,7));

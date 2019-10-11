@@ -15,11 +15,12 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
-import com.traininapp.Model.Session;
+import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
 import com.traininapp.viewModel.CreateSession;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +57,19 @@ public class UpcomingFragment extends Fragment {
 
         // Initializing the list of sessions and add sessions
         sessionList = new ArrayList<>();
+
+        Intent intent = getActivity().getIntent();
+
+        String name = intent.getStringExtra("SELECTED_ROUTINE");
+        /*String dateString = intent.getStringExtra("SELECTED_DATE");
+
+        LocalDate date = LocalDate.parse(dateString);*/
+
+        if (name != null){
+            upcomingSessionsViewModel.addSessionToList(name, LocalDate.now());
+            intent.removeExtra("SELECTED_ROUTINE");
+        }
+
         updateSessionList();
 
         // Changes in content does not change layout size, set
@@ -80,9 +94,10 @@ public class UpcomingFragment extends Fragment {
 
         sessionList.clear();
 
-        for (Session session : upcomingSessionsViewModel.getListOfSessions()){
-            sessionList.add(session);
+        for (Session s : upcomingSessionsViewModel.getListOfSessions()){
+            sessionList.add(s);
         }
+
     }
 
 

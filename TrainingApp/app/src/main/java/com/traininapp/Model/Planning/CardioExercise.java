@@ -1,4 +1,4 @@
-package com.traininapp.Model;
+package com.traininapp.Model.Planning;
 
 /**
  * Class CardioExercise is a class for cardio exercises.

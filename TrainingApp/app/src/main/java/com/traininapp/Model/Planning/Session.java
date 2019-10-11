@@ -1,4 +1,6 @@
-package com.traininapp.Model;
+package com.traininapp.Model.Planning;
+
+import com.traininapp.Model.ISessionObserver;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

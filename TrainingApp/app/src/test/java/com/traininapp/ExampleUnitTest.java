@@ -1,8 +1,8 @@
 package com.traininapp;
 
-import com.traininapp.Model.Planner;
-import com.traininapp.Model.Exercise;
-import com.traininapp.Model.Session;
+import com.traininapp.Model.Planning.Planner;
+import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.Session;
 
 import org.junit.Test;
 

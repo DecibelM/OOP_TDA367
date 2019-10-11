@@ -1,19 +1,12 @@
 package com.traininapp.viewModel;
 
-import android.widget.ArrayAdapter;
-import android.widget.CalendarView;
-import android.widget.TextView;
-
 import androidx.lifecycle.ViewModel;
 
 import com.traininapp.Model.Model;
-import com.traininapp.Model.Session;
-import com.traininapp.R;
+import com.traininapp.Model.Planning.Session;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class CalendarViewModel is a class representing the viewmodel for the calendar.
