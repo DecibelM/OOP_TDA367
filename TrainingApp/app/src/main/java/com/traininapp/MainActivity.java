@@ -49,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
         planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
         planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
         planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
+        planner.addSession("Löpning", LocalDate.of(2019,10,7));
+        planner.addSession("Styrketräning", LocalDate.of(2019,10,7));
+        planner.addSession("Yoga", LocalDate.of(2019,10,8));
+        planner.addSession("Armträning", LocalDate.of(2019,10,9));
+        planner.addSession("Ben 1", LocalDate.of(2019,10,11));
+        planner.addSession("Ben 2", LocalDate.of(2019,10,11));
+        planner.addSession("Ben 3", LocalDate.of(2019,10,11));
 
     }
 

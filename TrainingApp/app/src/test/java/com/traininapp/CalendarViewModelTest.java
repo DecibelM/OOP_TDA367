@@ -16,8 +16,8 @@ public class CalendarViewModelTest {
 
     @Test
     public void getSessionsByDateTest(){
-        Repository m = new Repository();
-        CalendarViewModel cvm = new CalendarViewModel(m);
+        Repository m = Repository.getInstance();
+        CalendarViewModel cvm = new CalendarViewModel();
 
         Planner planner = m.getUser().getPlanner();
         planner.addSession("Löpning", LocalDate.of(2019,10,7));

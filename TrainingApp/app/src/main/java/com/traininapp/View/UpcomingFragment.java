@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
-import com.traininapp.viewModel.AddSession;
+import com.traininapp.viewModel.CreateSession;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
 import java.time.LocalDate;
@@ -28,10 +28,12 @@ import java.util.List;
 public class UpcomingFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private FloatingActionButton btnAddSession;
+    private FloatingActionButton btnOpen;
     private SessionAdapter adapter;
     private List<Session> sessionList;
     private View view;
+    private FloatingActionButton btnAddSession;
+
     private UpcomingSessionsViewModel viewModel;
 
     @Nullable
@@ -101,12 +103,12 @@ public class UpcomingFragment extends Fragment {
 
 
     /**
-     * Directs the user to AddSession activity when pressing the "Add session" FAB
+     * Directs the user to CreateSession activity when pressing the "Add session" FAB
      */
     public void onAddSessionClick(){
 
         // Creating and initializing the intent object
-        Intent intent = new Intent(getActivity(), AddSession.class);
+        Intent intent = new Intent(getActivity(), CreateSession.class);
 
         /*// Attaching the key value pair using putExtra to this intent
         intent.putExtra("VIEW_MODEL", upcomingSessionsViewModel);*/

@@ -2,8 +2,6 @@ package com.traininapp.viewModel;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +9,23 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.R;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragCarRow extends Fragment {
 
-    //List for all cardio exercises
+    //Placeholder list for all cardio exercises
     List<String> carExerciseList = new ArrayList<>();
+
+    private  EditText txtEnterTime;
+    private  EditText txtEnterDistance;
+    private AutoCompleteTextView autPickCarEx;
+    private Button btnDeleteCar;
 
     public FragCarRow() {
         // Required empty public constructor
@@ -30,15 +36,17 @@ public class FragCarRow extends Fragment {
                              Bundle savedInstanceState)    {
         View v = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
 
-        AutoCompleteTextView autPickCarEx = v.findViewById(R.id.autPickCarExID);
-        Button btnDeleteCar = v.findViewById(R.id.btnDeleteCarID);
+        autPickCarEx = v.findViewById(R.id.autPickCarExID);
+        btnDeleteCar = v.findViewById(R.id.btnDeleteCarID);
+        txtEnterTime = v.findViewById(R.id.txtEnterTimeID);
+        txtEnterDistance = v.findViewById(R.id.txtEnterDistanceID);
 
-        //add all cardio exercises
+        //add placeholder cardio exercises
         carExerciseList.add("Running");
         carExerciseList.add("Swimming");
         carExerciseList.add("Walking");
 
-        //set up adapter and AutoCompleteTextview
+        //create and setup adapter
         ArrayAdapter<String> carExerciseListAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, carExerciseList);
         autPickCarEx.setAdapter(carExerciseListAdapter);
 
@@ -52,8 +60,51 @@ public class FragCarRow extends Fragment {
         return v;
     }
 
+    //method for creating the exercise from the inputted information
+    public CardioExercise saveInfo(){
+        //if the user has not entered an exercise name, return null and tell him to do so
+        if(autPickCarEx.length() == 0){
+            Toast.makeText(getActivity(), "Add exercisename", Toast.LENGTH_SHORT).show();
+            return null;
+            //if the user has not entered a distance, return null and tell him to do so
+        } else if(txtEnterDistance.length() == 0){
+            Toast.makeText(getActivity(), "Add distance", Toast.LENGTH_SHORT).show();
+            return null;
+            //if the user has not entered a time, return null and tell him to do so
+        } else if(txtEnterTime.length() == 0){
+            Toast.makeText(getActivity(), "Add time", Toast.LENGTH_SHORT).show();
+            return null;
+        }else{
+            //Take name, time and distance from edittext, convert into their respective types
+            String name = autPickCarEx.getText().toString();
+            double time = Integer.parseInt(txtEnterDistance.getText().toString());
+            double distance = Integer.parseInt(txtEnterTime.getText().toString());
+
+            //If the fragment has been destroyed (and given an invalid value), rename it to be filtered out later
+            if(time < 0){
+                name = "REMOVE ME";
+            }
+
+            //create new cardioExercise
+            CardioExercise cardioExercise = new CardioExercise(name, time, distance);
+
+            return cardioExercise;
+        }
+    }
+
     //remove selected fragment
     public void destroyFragment(){
+        //Tell user which Exercise has been removed
+        Toast.makeText(getActivity(), "Exercise: " + autPickCarEx.getText().toString() + " has been removed", Toast.LENGTH_SHORT).show();
+
+        //Set name to 'a', so user is not prompted to enter name
+        autPickCarEx.setText("a");
+        //Set time to an invalid value, to be filtered out
+        txtEnterTime.setText("-1");
+        //Set distance to invalid value
+        txtEnterDistance.setText("-1");
+
+        //Remove the fragment
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 }
