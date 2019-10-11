@@ -45,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
         Repository repo = Repository.getInstance();
 
         Planner planner = repo.getUser().getPlanner();
-        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
-        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
-        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
-        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
+
+        // Adding dummy sessions 
+        if (planner.getSessionList().isEmpty()){
+            planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
+            planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
+            planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
+            planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
+        }
 
     }
 
