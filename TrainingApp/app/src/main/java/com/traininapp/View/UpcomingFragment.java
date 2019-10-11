@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
 import com.traininapp.viewModel.AddSession;
@@ -32,14 +31,14 @@ public class UpcomingFragment extends Fragment {
     private SessionAdapter adapter;
     private List<Session> sessionList;
     private View view;
-    private UpcomingSessionsViewModel model;
+    private UpcomingSessionsViewModel viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        // Attaching the View model to activity
-        model = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
+        // Attaching the View viewModel to activity
+        viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
 
         // Connecting to fragment_upcoming.xml
         view = inflater.inflate(R.layout.fragment_upcoming, null);
@@ -65,7 +64,7 @@ public class UpcomingFragment extends Fragment {
         LocalDate date = LocalDate.parse(dateString);*/
 
         if (name != null){
-            upcomingSessionsViewModel.addSessionToList(name, LocalDate.now());
+            viewModel.addSessionToList(name, LocalDate.now());
             intent.removeExtra("SELECTED_ROUTINE");
         }
 
