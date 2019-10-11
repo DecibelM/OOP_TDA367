@@ -18,7 +18,7 @@ import java.time.LocalDate;
 
 public class MainActivity extends AppCompatActivity {
 
-    Model model;
+    Repository model;
     CalendarViewModel cvm;
     UpcomingSessionsViewModel upcomingSessionsViewModel;
 
@@ -39,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        model = new Model();
-        cvm = new CalendarViewModel(model);
-        upcomingSessionsViewModel = new UpcomingSessionsViewModel(model);
+        //model = new Repository();
+        //cvm = new CalendarViewModel(model);
+        //upcomingSessionsViewModel = new UpcomingSessionsViewModel(model);
+        Repository repo = Repository.getInstance();
 
-        Planner planner = model.getUser().getPlanner();
+        Planner planner = repo.getUser().getPlanner();
         planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
         planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
         planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);

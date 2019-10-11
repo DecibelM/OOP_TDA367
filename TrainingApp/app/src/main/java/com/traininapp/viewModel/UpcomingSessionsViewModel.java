@@ -2,7 +2,7 @@ package com.traininapp.viewModel;
 
 import androidx.lifecycle.ViewModel;
 
-import com.traininapp.Model.Model;
+import com.traininapp.Model.Repository;
 import com.traininapp.Model.Planning.Session;
 
 import java.time.LocalDate;
@@ -10,10 +10,10 @@ import java.util.List;
 
 public class UpcomingSessionsViewModel extends ViewModel {
 
-    Model model;
+    Repository model;
 
-    public UpcomingSessionsViewModel(Model model){
-        this.model = model;
+    public UpcomingSessionsViewModel(){
+        this.model = Repository.getInstance();
     }
 
     public List<Session> getListOfSessions(){

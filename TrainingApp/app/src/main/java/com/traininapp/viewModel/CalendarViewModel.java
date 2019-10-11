@@ -2,7 +2,7 @@ package com.traininapp.viewModel;
 
 import androidx.lifecycle.ViewModel;
 
-import com.traininapp.Model.Model;
+import com.traininapp.Model.Repository;
 import com.traininapp.Model.Planning.Session;
 
 import java.time.LocalDate;
@@ -12,10 +12,10 @@ import java.util.ArrayList;
  * Class CalendarViewModel is a class representing the viewmodel for the calendar.
  */
 public class CalendarViewModel extends ViewModel {
-    Model model;
+    private Repository model;
 
-    public CalendarViewModel(Model model) {
-        this.model = model;
+    public CalendarViewModel() {
+        this.model = Repository.getInstance();
     }
 
     /**

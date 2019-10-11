@@ -48,7 +48,8 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, null);
-        viewModel = ((MainActivity)getActivity()).getCvm();
+        viewModel = ViewModelProviders.of(this).get(CalendarViewModel.class);
+        //viewModel = ((MainActivity)getActivity()).getCvm();
         myDate = (TextView) view.findViewById(R.id.myDate);
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         listView = (ListView) view.findViewById(R.id.listViewCalendar);

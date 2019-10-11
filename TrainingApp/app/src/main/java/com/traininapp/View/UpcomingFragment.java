@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,14 +34,14 @@ public class UpcomingFragment extends Fragment {
     private View view;
     private FloatingActionButton btnAddSession;
 
-    private UpcomingSessionsViewModel upcomingSessionsViewModel;
+    private UpcomingSessionsViewModel viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        // Attaching the View model to the one in MainActivity
-        upcomingSessionsViewModel = ((MainActivity)getActivity()).getUpcomingSessionsViewModel();
+        // Attaching the View model to activity
+        viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
 
         // Connecting to fragment_upcoming.xml
         view = inflater.inflate(R.layout.fragment_upcoming, null);
@@ -66,7 +67,7 @@ public class UpcomingFragment extends Fragment {
         LocalDate date = LocalDate.parse(dateString);*/
 
         if (name != null){
-            upcomingSessionsViewModel.addSessionToList(name, LocalDate.now());
+            viewModel.addSessionToList(name, LocalDate.now());
             intent.removeExtra("SELECTED_ROUTINE");
         }
 
@@ -94,7 +95,7 @@ public class UpcomingFragment extends Fragment {
 
         sessionList.clear();
 
-        for (Session s : upcomingSessionsViewModel.getListOfSessions()){
+        for (Session s : viewModel.getListOfSessions()){
             sessionList.add(s);
         }
 
