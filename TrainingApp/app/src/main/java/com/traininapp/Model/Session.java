@@ -13,6 +13,7 @@ public class Session {
     private String name;
     private List<Exercise> exerciseList;
     private List<ISessionObserver> sessionObservers;
+    private List<Routine> savedRoutinesList;
     LocalDate date;
     private int sessionImage;
 
@@ -22,9 +23,13 @@ public class Session {
      * @param date Date of session
      */
     public Session(String name, LocalDate date) {
+
+
+    public Session(String name, List<Routine> savedRoutinesList, LocalDate date) {
         this.name = name;
         this.exerciseList = new ArrayList<>();
         this.date = date;
+        this.savedRoutinesList = savedRoutinesList;
         sessionObservers = new ArrayList<>();
     }
 
