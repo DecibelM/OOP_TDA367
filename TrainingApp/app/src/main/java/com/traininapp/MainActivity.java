@@ -18,7 +18,7 @@ import java.time.LocalDate;
 
 public class MainActivity extends AppCompatActivity {
 
-    Model model;
+    Repository model;
     CalendarViewModel cvm;
     UpcomingSessionsViewModel upcomingSessionsViewModel;
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        model = new Model();
+        model = new Repository();
         cvm = new CalendarViewModel(model);
         upcomingSessionsViewModel = new UpcomingSessionsViewModel(model);
 

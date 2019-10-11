@@ -16,7 +16,7 @@ public class CalendarViewModelTest {
 
     @Test
     public void getSessionsByDateTest(){
-        Model m = new Model();
+        Repository m = new Repository();
         CalendarViewModel cvm = new CalendarViewModel(m);
 
         Planner planner = m.getUser().getPlanner();
