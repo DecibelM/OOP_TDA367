@@ -15,7 +15,7 @@ public class Routine {
      * @param name Name of routine
      * @param savedExerciseList List of saved exercises.
      */
-    Routine(String name, List<Exercise> savedExerciseList) {
+    public Routine(String name, List<Exercise> savedExerciseList) {
         this.name = name;
         this.savedExerciseList = savedExerciseList;
     }
@@ -26,5 +26,10 @@ public class Routine {
 
     public List<Exercise> getSavedExerciseList() {
         return savedExerciseList;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -1,57 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="15dp"
+    android:orientation="vertical"
     tools:context=".viewModel.PickDate">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:text="Date"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnOpenCreateRoutineID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="51dp"
-        android:text="Create routine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnRoutineID" />
-
-    <Spinner
-        android:id="@+id/spnRoutineID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="135dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="53dp"
+        android:text="Create Session"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        android:layout_gravity="center"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter session name"
+        android:layout_marginTop="20dp"
+
+        ></EditText>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnPickDateID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtDisplayDateID"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDisplayDateID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Date: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toEndOf="@+id/btnPickDateID"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spnPickRoutineID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnOkID"
+        android:id="@+id/btnAddRoutineID"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:text="Add routine">
+
+    </Button>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/border"
+        >
+
+        <TextView
+            android:id="@+id/txtDisplayRoutinesID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="display routines"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddRoutineID" />
+    </ScrollView>
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="76dp"
-        android:text="Done"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_weight="1"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnOpenCreateRoutineID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="55dp"
+            android:text="Create routine" />
+
+        <Button
+            android:id="@+id/btnOkID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+
+            android:text="Done" />
+    </LinearLayout>
+
+</LinearLayout>

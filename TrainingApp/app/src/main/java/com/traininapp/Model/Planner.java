@@ -12,9 +12,13 @@ import java.util.List;
 public class Planner {
 
     private List<Session> sessionList;
+    private List<Routine> routineList;
+
 
     public Planner() {
         this.sessionList = new ArrayList<>();
+        this.routineList = new ArrayList<>();
+
     }
 
     /**
@@ -23,10 +27,15 @@ public class Planner {
      * @param date date of the session
      */
     public void addSession(String sessionName, LocalDate date){
-        sessionList.add(new Session(sessionName, date));
+        sessionList.add(new Session(sessionName, getRoutineList(), date));
     }
 
     public List<Session> getSessionList() {
         return sessionList;
     }
+
+    public List<Routine> getRoutineList() {
+        return routineList;
+    }
+
 }
