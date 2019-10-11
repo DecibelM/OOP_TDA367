@@ -37,15 +37,15 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pick_date);
+        setContentView(R.layout.activity_create_session);
 
         // Attaching the View model to activity
         viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
 
-        Button btnPickDate = findViewById(R.id.btnPickDate);
-        Button btnSaveSession = findViewById(R.id.btnSaveSession);
+        Button btnPickDate = findViewById(R.id.btnPickDateID);
+        Button btnSaveSession = findViewById(R.id.btnOkID);
         Button btnOpenCreateSession = findViewById(R.id.btnOpenCreateRoutineID);
-        Spinner spnrRoutineList = findViewById(R.id.spnrRoutineList);
+        Spinner spnrRoutineList = findViewById(R.id.spnPickRoutineID);
 
         //Add dummy text to list of Routines
         routineList.add("Running");
@@ -100,7 +100,7 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         String currentDateString = DateFormat.getDateInstance().format(c.getTime());
 
         // Updating the string shown to the date the user selected
-        TextView textView = findViewById(R.id.txtPickedDate);
+        TextView textView = findViewById(R.id.txtDisplayDateID);
         textView.setText(currentDateString);
 
         // Updating selectedDate to the date selected by user
