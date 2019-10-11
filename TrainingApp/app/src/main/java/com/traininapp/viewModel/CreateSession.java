@@ -68,7 +68,6 @@ public class CreateSession extends AppCompatActivity implements Serializable {
         final  LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
         final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
         txtEnterExName = findViewById(R.id.txtEnterExNameID);
-        txtEnterExName.setText("name");
 
         //hide the titles for cardio exercises when activity starts
         rowCarExerciseInfoID.setVisibility(View.GONE);
