@@ -12,7 +12,7 @@ public class UpcomingSessionsViewModel extends ViewModel {
 
     Repository model;
 
-    public UpcomingSessionsViewModel(Repository model){
+    public UpcomingSessionsViewModel(){
         this.model = Repository.getInstance();
     }
 

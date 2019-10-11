@@ -6,7 +6,7 @@ public class Repository {
 
     private User user;
 
-    public Repository() {
+    private Repository() {
         this.user = new User(new Planner());
     }
 

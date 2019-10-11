@@ -12,10 +12,10 @@ import java.util.ArrayList;
  * Class CalendarViewModel is a class representing the viewmodel for the calendar.
  */
 public class CalendarViewModel extends ViewModel {
-    Repository model;
+    private Repository model;
 
-    public CalendarViewModel(Repository model) {
-        this.model = model;
+    public CalendarViewModel() {
+        this.model = Repository.getInstance();
     }
 
     /**

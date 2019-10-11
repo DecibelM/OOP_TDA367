@@ -32,14 +32,14 @@ public class UpcomingFragment extends Fragment {
     private SessionAdapter adapter;
     private List<Session> sessionList;
     private View view;
-    private UpcomingSessionsViewModel model;
+    private UpcomingSessionsViewModel viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         // Attaching the View model to activity
-        model = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
 
         // Connecting to fragment_upcoming.xml
         view = inflater.inflate(R.layout.fragment_upcoming, null);
@@ -65,7 +65,7 @@ public class UpcomingFragment extends Fragment {
         LocalDate date = LocalDate.parse(dateString);*/
 
         if (name != null){
-            upcomingSessionsViewModel.addSessionToList(name, LocalDate.now());
+            viewModel.addSessionToList(name, LocalDate.now());
             intent.removeExtra("SELECTED_ROUTINE");
         }
 
@@ -93,7 +93,7 @@ public class UpcomingFragment extends Fragment {
 
         sessionList.clear();
 
-        for (Session s : upcomingSessionsViewModel.getListOfSessions()){
+        for (Session s : viewModel.getListOfSessions()){
             sessionList.add(s);
         }
 
