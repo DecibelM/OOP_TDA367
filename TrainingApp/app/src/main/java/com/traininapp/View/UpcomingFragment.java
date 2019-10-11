@@ -20,6 +20,7 @@ import com.traininapp.R;
 import com.traininapp.viewModel.AddSession;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,9 +80,23 @@ public class UpcomingFragment extends Fragment {
 
         sessionList.clear();
 
-        for (Session session : upcomingSessionsViewModel.getListOfSessions()){
-            sessionList.add(session);
+        Intent intent = getActivity().getIntent();
+
+        if (intent != null){
+            String name = intent.getStringExtra("SELECTED_ROUTINE");
+            /*String dateString = intent.getStringExtra("SELECTED_DATE");
+
+            LocalDate date = LocalDate.parse(dateString);*/
+
+            Session session = new Session(name, LocalDate.now());
+
+            upcomingSessionsViewModel.getListOfSessions().add(session);
         }
+
+        for (Session s : upcomingSessionsViewModel.getListOfSessions()){
+            sessionList.add(s);
+        }
+
     }
 
 

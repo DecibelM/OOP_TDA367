@@ -31,18 +31,11 @@ import java.util.List;
 
 public class AddSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
-    // TODO Delete these?
-    private Planner planner;
-    private Model model;
-
-    private UpcomingSessionsViewModel viewModel;
-
     private String selectedRoutine;
     private LocalDate selectedDate;
 
     // Dummy list of routines
     List<String> routineList = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,39 +123,43 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
      */
     public void clickSaveSession(){
 
-        // TODO Make this work
+/*        // TODO Make this work
         // Adding the selected Session to the User's Planner's list of Sessions
-        addSessionToList(selectedRoutine,selectedDate);
+        addSessionToList(selectedRoutine,selectedDate);*/
 
         // Directing the user to UpcomingSession page again
         Intent intent = new Intent(this, MainActivity.class);
+
+        intent.putExtra("SELECTED_ROUTINE", selectedRoutine);
+        //intent.putExtra("SELECTED_DATE", selectedDate.toString());
+
         startActivity(intent);
     }
 
-    /**
+/*    *//**
      * A method to add the created session to the Planners list of Sessions
-     * @param name
-     * @param date
-     */
+     * @param
+     * @param
+     *//*
     public void addSessionToList(String name, LocalDate date){
 
         Session session = new Session(name, date);
 
-        viewModel.getListOfSessions().add(session);
+        upcomingSessionsViewModel.getListOfSessions().add(session);
 
         // Printing out the sessions in the list to make sure it has been added
         for (Session s : model.getUser().getPlanner().getSessionList()){
             System.out.println(s);
         }
 
-    }
+    }*/
 
     // TODO Currently updating selectedRoutin or not? Might have to return a new object
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
         // Update the name of the selected Routine when clicking on Routine from list
-        selectedRoutine = adapterView.getItemAtPosition(i).toString();;
+        selectedRoutine = adapterView.getItemAtPosition(i).toString();
 
         //Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
     }
