@@ -93,7 +93,7 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  UNCOMMENT US WHEN MODEL ADDED!
         spnPickRoutine.setAdapter(adapter);  */
 
-        //REMOVE HERE
+        //REMOVE FROM HERE
         Routine routine1 = new Routine("Routine1" ,listTest1);
         Routine routine2 = new Routine("Routine2" ,listTest2);
         Routine routine3 = new Routine("Routine3" ,listTest3);
@@ -118,7 +118,7 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
         btnAddRoutine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getSelectedExercise();
+                getSelectedRoutine();
 
             }
         });
@@ -168,24 +168,21 @@ public class PickDate extends AppCompatActivity implements DatePickerDialog.OnDa
 
 
     //Add the routine
-    public void getSelectedExercise(){
+    public void getSelectedRoutine(){
 
-        //Get the selected exercise
-        Routine exercise = (Routine) spnPickRoutine.getSelectedItem();
+        //Get the selected routine
+        Routine routine = (Routine) spnPickRoutine.getSelectedItem();
 
-        //Get the name of the selected exercise
-        String name = exercise.getName().toUpperCase();
+        //Get the name of the selected routine
+        String name = routine.getName().toUpperCase();
 
-
-        //Display the name of the selected exercise
+        //Display the name of the selected routine
         txtDisplayRoutines.append(""+ name + "\n");
 
-        //Give feedback to user that the exercise has been added
+        //Give feedback to user that the routine has been added
         String toast = "Routine: " + name + " has been added";
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
 
     }
-
-
 
 }
