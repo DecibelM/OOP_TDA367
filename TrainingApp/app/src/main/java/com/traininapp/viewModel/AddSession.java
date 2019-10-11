@@ -49,7 +49,6 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     private Button btnOpenCreateRoutine;
     private Button btnAddRoutine;
     private Button btnUndo;
-    private Button btnSave;
     private TextView txtDisplayRoutines;
     private EditText txtEnterSessionName;
     //Model model = new Model(); UNCOMMENT ME WHEN MODEL ADDED!
@@ -65,7 +64,6 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         btnPickDate = findViewById(R.id.btnPickDateID);
         btnOk = findViewById(R.id.btnOkID);
         btnUndo = findViewById(R.id.btnUndoID);
-        btnSave = findViewById(R.id.btnSaveID);
         btnAddRoutine = findViewById(R.id.btnAddRoutineID);
         btnOpenCreateRoutine = findViewById(R.id.btnOpenCreateRoutineID);
         spnPickRoutine = findViewById(R.id.spnPickRoutineID);
@@ -145,6 +143,7 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //  Session session = new Session(txtEnterSessionName.getText().toString(), listOfAddedRoutines, )
                 openDone();
             }
         });
@@ -153,13 +152,6 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
             @Override
             public void onClick(View view) {
                 undo();
-            }
-        });
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              //  Session session = new Session(txtEnterSessionName.getText().toString(), listOfAddedRoutines, )
             }
         });
 
@@ -181,9 +173,9 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
 
     }
 
-    //Open CreateSession
+    //Open CreateRoutine
     public void openRoutine(){
-        Intent intent = new Intent(this, CreateSession.class);
+        Intent intent = new Intent(this, CreateRoutine.class);
         startActivity(intent);
     }
 
