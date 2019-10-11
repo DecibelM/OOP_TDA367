@@ -2,15 +2,11 @@ package com.traininapp.View;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.ListAdapter;
 
 
 import android.view.LayoutInflater;
@@ -25,10 +21,9 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
 import com.traininapp.R;
-import com.traininapp.viewModel.AddSession;
+import com.traininapp.viewModel.CreateSession;
 import com.traininapp.viewModel.CalendarViewModel;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -111,6 +106,8 @@ public class CalendarFragment extends Fragment {
         }
         if (newList.isEmpty()) {
         listView.setEmptyView(emptyView);
+        } else {
+            listView.setEmptyView(listView);
         }
             ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
 
@@ -119,10 +116,12 @@ public class CalendarFragment extends Fragment {
     }
 
     public void openSession(){
-        Intent intent = new Intent(getActivity(), AddSession.class);
+        Intent intent = new Intent(getActivity(), CreateSession.class);
         intent.putExtra("DATE", myDate.getText());
         intent.putExtra("FROMCALENDAR", "YES");
         startActivity(intent);
     }
+
+
 
 }

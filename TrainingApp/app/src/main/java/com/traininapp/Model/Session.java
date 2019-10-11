@@ -22,8 +22,6 @@ public class Session {
      * @param name Name of session
      * @param date Date of session
      */
-    public Session(String name, LocalDate date) {
-
 
     public Session(String name, List<Routine> savedRoutinesList, LocalDate date) {
         this.name = name;

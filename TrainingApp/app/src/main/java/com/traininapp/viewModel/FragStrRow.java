@@ -25,6 +25,7 @@ public class FragStrRow extends Fragment {
     List<String> strExerciseList = new ArrayList<>();
 
 
+
     private EditText txtEnterWeight;
     private EditText txtEnterSets ;
     private EditText txtEntersReps;

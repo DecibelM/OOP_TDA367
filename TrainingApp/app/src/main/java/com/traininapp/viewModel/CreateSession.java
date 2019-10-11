@@ -28,12 +28,14 @@ import com.traininapp.R;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class AddSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class CreateSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     //Placeholder list of exercises
     List<Exercise> listTest1 = new ArrayList<>();
     List<Exercise> listTest2 = new ArrayList<>();
@@ -42,6 +44,8 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     List<Routine> listRoutine = new ArrayList<>(); //REMOVE ME WHEN MODEL ADDED!
     List<Routine> listOfAddedRoutines = new ArrayList<>();
 
+    LocalDate selectedDate;
+
 
     private Spinner spnPickRoutine;
     private Button btnPickDate;
@@ -49,6 +53,7 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     private Button btnOpenCreateRoutine;
     private Button btnAddRoutine;
     private Button btnUndo;
+    private Button btnSave;
     private TextView txtDisplayRoutines;
     private EditText txtEnterSessionName;
     //Model model = new Model(); UNCOMMENT ME WHEN MODEL ADDED!
@@ -58,7 +63,7 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pick_date);
+        setContentView(R.layout.activity_create_session);
 
 
         btnPickDate = findViewById(R.id.btnPickDateID);
@@ -70,6 +75,7 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         txtDisplayRoutines = findViewById(R.id.txtDisplayRoutinesID);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
 
+        isDateSelectedAlready();
 
         //Placeholder exercises
         StrengthExercise strEx1 = new StrengthExercise("bicep" ,1,2,3.5);
@@ -97,6 +103,10 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         model.getUser().addRoutine("Routine2" ,listTest2); UNCOMMENT US WHEN MODEL ADDED!
         model.getUser().addRoutine("Routine3" ,listTest3); */
 
+        Button btnPickDate = findViewById(R.id.btnPickDateID);
+        Button btnSaveSession = findViewById(R.id.btnOkID);
+        Button btnOpenCreateSession = findViewById(R.id.btnOpenCreateRoutineID);
+        Spinner spnrRoutineList = findViewById(R.id.spnPickRoutineID);
         //create and setup adapter
         /* ArrayAdapter<Routine> adapter = new ArrayAdapter<Routine>(this, android.R.layout.simple_spinner_dropdown_item, model.getUser().getRoutineList());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  UNCOMMENT US WHEN MODEL ADDED!
@@ -144,7 +154,7 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
             @Override
             public void onClick(View view) {
                 //  Session session = new Session(txtEnterSessionName.getText().toString(), listOfAddedRoutines, )
-                openDone();
+                clickSaveSession();
             }
         });
 
@@ -159,7 +169,13 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
 
     }
 
-    //open calendar, pick date and put date in textView
+    /**
+     * A method to update a string to match the selected date
+     * @param datePicker ???
+     * @param year Year
+     * @param month Month
+     * @param dayOfMonth Day of month
+     */
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();
@@ -168,8 +184,22 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance().format(c.getTime());
 
+
+
+        // Updating selectedDate to the date selected by user
+        selectedDate = LocalDate.of(year, month, dayOfMonth);
+        setDate(currentDateString,selectedDate);
+
+    }
+
+
+    public void setDate(String currentDateString, LocalDate date){
+
+        // Updating selectedDate to the date selected by user
+        selectedDate = date;
+        // Updating the string shown to the date the user selected
         TextView textView = findViewById(R.id.txtDisplayDateID);
-        textView.setText("Date: " + currentDateString);
+        textView.setText(currentDateString);
 
     }
 
@@ -179,8 +209,17 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         startActivity(intent);
     }
 
-    //Open MainActivity
-    public void openDone(){
+    /**
+     * Method of what happens after clicking the "Done" button. Directs the user to the
+     * Upcoming sessions view
+     */
+    public void clickSaveSession(){
+
+        // TODO Make this work
+        // Adding the selected Session to the User's Planner's list of Sessions
+        //addSessionToList(selectedRoutine,selectedDate);
+
+        // Directing the user to UpcomingSession page again
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -263,4 +302,19 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
 
     }
 
+    public void isDateSelectedAlready() {
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            if (intent.getStringExtra("FROMCALENDAR").matches("YES")) {
+
+
+                String pastDate = intent.getStringExtra("DATE");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d - MM - yyyy");
+                LocalDate localDate = LocalDate.parse(pastDate, formatter);
+                setDate(pastDate, localDate);
+            }
+        }
+    }
 }
+
+
