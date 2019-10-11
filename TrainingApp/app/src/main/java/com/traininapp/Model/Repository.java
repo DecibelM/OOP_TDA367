@@ -17,4 +17,9 @@ public class Repository {
     public static Repository getInstance(){
         return RepositoryHolder.instance;
     }
+
+    public User getUser(){
+        return user;
+    }
+
 }

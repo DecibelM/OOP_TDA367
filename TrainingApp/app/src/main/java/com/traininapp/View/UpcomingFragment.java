@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,15 +32,14 @@ public class UpcomingFragment extends Fragment {
     private SessionAdapter adapter;
     private List<Session> sessionList;
     private View view;
-
-    private UpcomingSessionsViewModel upcomingSessionsViewModel;
+    private UpcomingSessionsViewModel model;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        // Attaching the View model to the one in MainActivity
-        upcomingSessionsViewModel = ((MainActivity)getActivity()).getUpcomingSessionsViewModel();
+        // Attaching the View model to activity
+        model = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
 
         // Connecting to fragment_upcoming.xml
         view = inflater.inflate(R.layout.fragment_upcoming, null);
