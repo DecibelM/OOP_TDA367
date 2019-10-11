@@ -1,4 +1,4 @@
-package com.traininapp.Model;
+package com.traininapp.View;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

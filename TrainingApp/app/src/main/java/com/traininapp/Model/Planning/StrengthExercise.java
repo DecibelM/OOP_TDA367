@@ -1,4 +1,4 @@
-package com.traininapp.Model;
+package com.traininapp.Model.Planning;
 
 /**
  * StrengthExercise is a class for exercises involving strength.

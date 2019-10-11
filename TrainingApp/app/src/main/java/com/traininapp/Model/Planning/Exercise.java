@@ -1,4 +1,4 @@
-package com.traininapp.Model;
+package com.traininapp.Model.Planning;
 
 /**
  * Class Exercise, parent class for  different types of exercises.

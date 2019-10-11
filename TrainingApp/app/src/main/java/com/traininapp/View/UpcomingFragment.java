@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
-import com.traininapp.Model.Session;
+import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
 import com.traininapp.viewModel.AddSession;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;

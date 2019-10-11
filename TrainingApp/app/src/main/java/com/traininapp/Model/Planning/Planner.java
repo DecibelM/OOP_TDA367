@@ -1,4 +1,4 @@
-package com.traininapp.Model;
+package com.traininapp.Model.Planning;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

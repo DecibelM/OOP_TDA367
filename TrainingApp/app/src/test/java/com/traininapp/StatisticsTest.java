@@ -1,10 +1,9 @@
 package com.traininapp;
 
-import com.traininapp.Model.Statistic;
-import com.traininapp.Model.ISessionObserver;
-import com.traininapp.Model.Exercise;
-import com.traininapp.Model.CardioExercise;
-import com.traininapp.Model.StrengthExercise;
+import com.traininapp.Model.Statistics.Statistic;
+import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.CardioExercise;
+import com.traininapp.Model.Planning.StrengthExercise;
 import static org.junit.Assert.*;
 
 import org.junit.Test;

@@ -13,15 +13,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.traininapp.MainActivity;
-import com.traininapp.Model.DatePickerFragment;
-import com.traininapp.Model.Model;
-import com.traininapp.Model.Planner;
-import com.traininapp.Model.Session;
+import com.traininapp.View.DatePickerFragment;
 import com.traininapp.R;
-import com.traininapp.View.UpcomingFragment;
 
 import java.text.DateFormat;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package com.traininapp.Model;
+package com.traininapp.Model.Planning;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class Routine {
      * @param name Name of routine
      * @param savedExerciseList List of saved exercises.
      */
-    Routine(String name, List<Exercise> savedExerciseList) {
+    public Routine(String name, List<Exercise> savedExerciseList) {
         this.name = name;
         this.savedExerciseList = savedExerciseList;
     }

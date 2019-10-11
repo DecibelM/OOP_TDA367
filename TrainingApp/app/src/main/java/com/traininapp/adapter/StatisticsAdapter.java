@@ -1,32 +1,22 @@
 package com.traininapp.adapter;
 
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-import com.traininapp.MainActivity;
-import com.traininapp.Model.Goal;
-import com.traininapp.Model.Statistic;
 import com.traininapp.R;
-import com.traininapp.View.GoalsFragment;
 import com.traininapp.viewModel.GoalStatCard;
 import com.traininapp.viewModel.IStatistic;
 import com.traininapp.viewModel.StatisticCard;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

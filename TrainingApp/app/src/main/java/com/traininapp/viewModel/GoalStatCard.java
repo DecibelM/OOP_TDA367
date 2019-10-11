@@ -1,7 +1,5 @@
 package com.traininapp.viewModel;
 
-import com.traininapp.Model.Goal;
-
 
 /**
 * This class keeps hold of the goals and the progression toeards them

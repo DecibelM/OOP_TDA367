@@ -1,6 +1,10 @@
-package com.traininapp.Model;
+package com.traininapp.Model.Statistics;
 
-import java.util.ArrayList;
+import com.traininapp.Model.ISessionObserver;
+import com.traininapp.Model.Planning.CardioExercise;
+import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.StrengthExercise;
+
 import java.util.List;
 
 /**
