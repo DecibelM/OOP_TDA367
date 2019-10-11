@@ -18,15 +18,17 @@ import com.traininapp.MainActivity;
 import com.traininapp.Model.Session;
 import com.traininapp.R;
 import com.traininapp.viewModel.AddSession;
+import com.traininapp.viewModel.AddSession;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UpcomingFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private FloatingActionButton btnAddSession;
+    private FloatingActionButton btnOpen;
     private SessionAdapter adapter;
     private List<Session> sessionList;
     private View view;
