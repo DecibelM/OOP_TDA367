@@ -2,11 +2,13 @@ package com.traininapp;
 
 import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.Session;
 
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -30,9 +32,13 @@ public class ExampleUnitTest {
     public void addCardioExercise(){
         Planner c = new Planner();
         LocalDate date = LocalDate.now();
-        //Session session = new Session("MagPass", date);
-        //session.addCardioExercise("Uppvarmning", 20, 2);
-        //List<Exercise> list = session.getExerciseList();
+        List<Exercise> exerciseList = new ArrayList<>();
+        List<Routine> routineList = new ArrayList<>();
+        Routine routine = new Routine("Testroutine", exerciseList);
+        routineList.add(routine);
+        Session session = new Session("MagPass", routineList, date);
+        session.addCardioExercise("Uppvarmning", 20, 2);
+        List<Exercise> list = session.getExerciseList();
 
         //assertEquals("Uppvarmning", list.get(0).getName());
     }
