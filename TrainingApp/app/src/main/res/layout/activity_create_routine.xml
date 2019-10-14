@@ -39,7 +39,7 @@
         app:layout_constraintStart_toEndOf="@+id/btnDoneID" />
 
     <EditText
-        android:id="@+id/txtEnterExNameID"
+        android:id="@+id/txtEnterRoutineNameID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
@@ -203,6 +203,6 @@
         android:textOff=""
         android:textOn=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEnterExNameID" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEnterRoutineNameID" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
