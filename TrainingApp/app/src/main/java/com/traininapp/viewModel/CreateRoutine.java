@@ -14,6 +14,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
 
@@ -106,6 +107,10 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    //Get the routinename that the user inputted
+                    String routineName = txtEnterRoutineName.getText().toString();
+
                     //Remove all previously added exercises
                     exerciseList.clear();
                     //Set boolean control true, used for seeing if
@@ -147,20 +152,23 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                         }
                     }
 
-                    //if no fragments returned null
+                    //Checks the name of all added routines to see if entered name is unique
+                    for (int i = 0; i < repository.getUser().getRoutineList().size(); i++){
+                        if (repository.getUser().getRoutineList().get(i).getName().equals(routineName)){
+                            String toastMessage = "Name: " + routineName + " is not unique";
+                            Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
+                            control = false;
+                        }
+                    }
+                    //if no fragments returned null and name is unique
                     if (control == true) {
-                        //Get the routinename that the user inputted
-                        String routineName = txtEnterRoutineName.getText().toString();
 
-
-                        //Add the routine with the inputted routinename and the list of exercises
                         repository.getUser().addRoutine(routineName, exerciseList);
-
                         //Give feedback that the routine has been saved
-                    String toastMessage = "Routine: " + routineName.toUpperCase() + " has been saved!";
-                    Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
+                        String toastMessage = "Routine: " + routineName + " has been saved!";
+                        Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
         });
     }
 

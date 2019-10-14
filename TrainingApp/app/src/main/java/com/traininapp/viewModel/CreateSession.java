@@ -213,7 +213,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         } else{
             Toast.makeText(this, "There is nothing to remove! ", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     //Refreshes the textview when routine is added or removed
@@ -255,15 +254,12 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
             //Add extra line between each routine
             txtDisplayRoutines.append("\n");
         }
-
     }
 
     public void isDateSelectedAlready() {
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             if (intent.getStringExtra("FROMCALENDAR").matches("YES")) {
-
-
                 String pastDate = intent.getStringExtra("DATE");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d - MM - yyyy");
                 LocalDate localDate = LocalDate.parse(pastDate, formatter);
