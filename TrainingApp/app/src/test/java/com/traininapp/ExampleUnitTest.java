@@ -40,6 +40,6 @@ public class ExampleUnitTest {
         session.addCardioExercise("Uppvarmning", 20, 2);
         List<Exercise> list = session.getExerciseList();
 
-        //assertEquals("Uppvarmning", list.get(0).getName());
+        assertEquals("Uppvarmning", list.get(0).getName());
     }
 }
