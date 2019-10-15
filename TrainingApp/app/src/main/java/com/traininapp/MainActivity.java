@@ -1,10 +1,14 @@
 package com.traininapp;
 
+import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
+import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.viewModel.CalendarViewModel;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
@@ -15,8 +19,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    DatabaseHelper myDb;
 
     Repository model;
     CalendarViewModel cvm;
@@ -26,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myDb = new DatabaseHelper(this);
+
 
 
 
@@ -56,6 +65,38 @@ public class MainActivity extends AppCompatActivity {
         planner.addSession("Ben 1", LocalDate.of(2019,10,11));
         planner.addSession("Ben 2", LocalDate.of(2019,10,11));
         planner.addSession("Ben 3", LocalDate.of(2019,10,11));
+
+        Cursor res = myDb.getRoutineData();
+        Cursor res2 = myDb.getStrExData();
+
+        /////
+        if(res.getCount() == 0){
+            //message
+            Toast.makeText(this, "No routines", Toast.LENGTH_SHORT).show();
+        }
+
+        while(res.moveToNext()){
+
+            res.getString(1);
+            List<Exercise> exerciseList = new ArrayList<>();
+
+            while(res2.moveToNext()){
+
+                if (res.getString(1).equals(res2.getString(1))){
+                    StrengthExercise strengthExercise = new StrengthExercise(res2.getString(2), res2.getInt(3), res2.getInt(4), res2.getInt(5));
+                    exerciseList.add(strengthExercise);
+                    Toast.makeText(this, "exercise added", Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+
+            repo.getUser().addRoutine(res.getString(1), exerciseList);
+
+        }
+
+/////
+
 
     }
 

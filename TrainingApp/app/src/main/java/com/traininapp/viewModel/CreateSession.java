@@ -3,8 +3,10 @@ package com.traininapp.viewModel;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.traininapp.MainActivity;
+import com.traininapp.Model.DatabaseHelper;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.View.DatePickerFragment;
@@ -42,6 +45,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     LocalDate selectedDate;
 
     Repository repository;
+    DatabaseHelper myDB = new DatabaseHelper(this);
 
 
     private Spinner spnPickRoutine;
@@ -118,7 +122,12 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         btnUndo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                undo();
+
+                viewRoutineAll();
+
+                viewStrExAll();
+
+               // undo();
             }
         });
 
@@ -139,7 +148,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance().format(c.getTime());
-
 
 
         // Updating selectedDate to the date selected by user
@@ -266,6 +274,50 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
                 setDate(pastDate, localDate);
             }
         }
+    }
+
+    public void viewRoutineAll(){
+        Cursor res = myDB.getRoutineData();
+            if(res.getCount() == 0){
+                //message
+                showMessage("ERROR", "no data found");
+                return;
+            }
+
+            StringBuffer buffer = new StringBuffer();
+            while(res.moveToNext()){
+                buffer.append("Name: "+ res.getString(1) + "\n");
+            }
+            showMessage("Data", buffer.toString());
+    }
+
+    public void viewStrExAll(){
+        Cursor res = myDB.getStrExData();
+        if(res.getCount() == 0){
+            //message
+            showMessage("ERROR", "no data found");
+            return;
+        }
+
+        StringBuffer buffer = new StringBuffer();
+        while(res.moveToNext()){
+            buffer.append("routine_id: "+ res.getString(1) + "\n");
+            buffer.append("name: "+ res.getString(2) + "\n");
+            buffer.append("weight: "+ res.getString(3) + "\n");
+            buffer.append("reps: "+ res.getString(4) + "\n");
+            buffer.append("sets: "+ res.getString(5) + "\n");
+
+
+        }
+        showMessage("Data", buffer.toString());
+    }
+
+    public void showMessage(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 }
 

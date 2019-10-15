@@ -13,8 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.traininapp.Model.DatabaseHelper;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Routine;
+import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
 
@@ -35,7 +37,10 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
         Repository repository;
 
+
         private boolean control;
+
+        DatabaseHelper myDb = new DatabaseHelper(this);
 
         //List for all exercises
         private List<Exercise> exerciseList = new ArrayList<>();
@@ -126,6 +131,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                             //remove exercises of deleted fragments
                             removeDeletedExercises();
 
+
                             //if it had returned null
                         } else {
                             //run failsave and break from loop
@@ -144,6 +150,8 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                             //remove exercises of deleted fragments
                             removeDeletedExercises();
 
+
+
                             //if it had returned null
                         } else {
                             //run failsave and break from loop
@@ -160,13 +168,36 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                             control = false;
                         }
                     }
+
+                    if(routineName.length() == 0){
+                        String toastMessage = "No name entered!";
+                        Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
+                        control = false;
+                    }
+
+
                     //if no fragments returned null and name is unique
                     if (control == true) {
 
-                        repository.getUser().addRoutine(routineName, exerciseList);
+
                         //Give feedback that the routine has been saved
                         String toastMessage = "Routine: " + routineName + " has been saved!";
                         Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
+                        repository.getUser().addRoutine(routineName, exerciseList);
+
+                        myDb.insertRoutineData(routineName);
+
+                        for(Exercise exercise : exerciseList) {
+                            if (exercise instanceof StrengthExercise) {
+                                myDb.insertStrExData(routineName,
+                                        exercise.getName(),
+                                        ((StrengthExercise) exercise).getWeight(),
+                                        ((StrengthExercise) exercise).getSets(),
+                                        ((StrengthExercise) exercise).getReps());
+                                }
+                            }
+
+                            txtEnterRoutineName.setText("");
                     }
                 }
         });

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.traininapp.Model.DatabaseHelper;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
@@ -23,7 +24,6 @@ public class FragStrRow extends Fragment {
 
     //Placeholder list for all strength exercises
     List<String> strExerciseList = new ArrayList<>();
-
 
 
     private EditText txtEnterWeight;
@@ -97,6 +97,9 @@ public class FragStrRow extends Fragment {
             if(sets < 0){
                 name = "REMOVE ME";
             }
+            DatabaseHelper myDb = new DatabaseHelper(getActivity());
+
+          //   myDb.insertStrExData("a",name,weight,sets,reps);
 
             //create new strengthExercise
             StrengthExercise strengthExercise = new StrengthExercise(name, sets, reps, weight);
