@@ -13,5 +13,7 @@ public class Results {
         this.statistic = new Statistic();
     }
 
-
+    public Statistic getStatistic() {
+        return statistic;
+    }
 }

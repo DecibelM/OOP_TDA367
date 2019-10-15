@@ -3,10 +3,10 @@ package com.traininapp.Model.Statistics;
 public class Goal {
 
     String name;
-    int goal;
+    int target;
 
-    public Goal(String name, int goal) {
+    public Goal(String name, int target) {
         this.name = name;
-        this.goal = goal;
+        this.target = target;
     }
 }
