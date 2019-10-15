@@ -75,24 +75,25 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "No routines", Toast.LENGTH_SHORT).show();
         }
 
+
         while(res.moveToNext()){
 
             res.getString(1);
             List<Exercise> exerciseList = new ArrayList<>();
+            System.out.println("res1: " + res.getString(1));
 
             while(res2.moveToNext()){
+                System.out.println("res2: " + res2.getString(1));
 
                 if (res.getString(1).equals(res2.getString(1))){
+
                     StrengthExercise strengthExercise = new StrengthExercise(res2.getString(2), res2.getInt(3), res2.getInt(4), res2.getInt(5));
                     exerciseList.add(strengthExercise);
                     Toast.makeText(this, "exercise added", Toast.LENGTH_LONG).show();
-
                 }
-
             }
-
             repo.getUser().addRoutine(res.getString(1), exerciseList);
-
+            res2.moveToFirst();
         }
 
 /////
