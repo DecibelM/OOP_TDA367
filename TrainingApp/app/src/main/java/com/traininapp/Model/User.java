@@ -1,6 +1,7 @@
 package com.traininapp.Model;
 
 import com.traininapp.Model.Planning.*;
+import com.traininapp.Model.Statistics.Goal;
 import com.traininapp.Model.Statistics.Results;
 
 import java.time.LocalDate;

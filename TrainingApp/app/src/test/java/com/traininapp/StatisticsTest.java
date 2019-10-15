@@ -77,7 +77,6 @@ public class StatisticsTest {
         assertTrue(s.isFinished());
         assertEquals(2, user.getResults().getStatistic().getTotDistance(),0);
 
-
     }
 
 

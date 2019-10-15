@@ -16,4 +16,9 @@ public class Results {
     public Statistic getStatistic() {
         return statistic;
     }
+
+    public void addGoal(String name, int target){
+        Goal goal = new Goal(name, target);
+        goalList.add(goal);
+    }
 }
