@@ -54,12 +54,12 @@ public class CalendarFragment extends Fragment {
         myDate = (TextView) view.findViewById(R.id.myDate);
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         listView = (ListView) view.findViewById(R.id.listViewCalendar);
-        emptyView = (ListView) view.findViewById(R.id.emptyViewCalendar);
         btnOpen = view.findViewById(R.id.btnOpenID);
 
         list = new ArrayList<>() ;
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
+
 
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("d - MM - yyyy");
@@ -107,9 +107,11 @@ public class CalendarFragment extends Fragment {
             }
         }
         if (newList.isEmpty()) {
-        listView.setEmptyView(emptyView);
+            listView.setVisibility(View.INVISIBLE);
+        //listView.setEmptyView(emptyView);
         } else {
-            listView.setEmptyView(listView);
+            listView.setVisibility(View.VISIBLE);
+            //listView.setEmptyView(listView);
         }
             ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
 
