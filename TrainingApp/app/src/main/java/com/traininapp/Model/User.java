@@ -1,11 +1,7 @@
 package com.traininapp.Model;
 
-import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.Planner;
-import com.traininapp.Model.Planning.Routine;
-import com.traininapp.Model.Statistics.Goal;
-
-import java.util.ArrayList;
+import com.traininapp.Model.Planning.*;
+import com.traininapp.Model.Statistics.Results;
 import java.util.List;
 
 /**
@@ -15,16 +11,15 @@ import java.util.List;
  */
 public class User {
 
-    private List<Goal> goalList;
     private Planner planner;
     private List<Routine> routineList;
+    private Results results;
 
     /**
      * Constructor for User class.
      * @param planner the planner containing planned sessions
      */
     public User( Planner planner) {
-        this.goalList = new ArrayList<>();
         this.planner = planner;
     }
 
@@ -40,14 +35,9 @@ public class User {
         }
     }
 
-    public List<Goal> getGoalList() {
-        return goalList;
-    }
-
     public Planner getPlanner() {
         return planner;
     }
-
     public List<Routine> getRoutineList() {
         return routineList;
     }

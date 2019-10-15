@@ -11,7 +11,6 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
 public class CalendarViewModelTest {
 
     @Test
