@@ -2,7 +2,7 @@ package com.traininapp.Model;
 
 import com.traininapp.Model.Planning.Planner;
 
-public class Repository { //TODO Fix methods to retrieve specific data.
+public class Repository {
 
     private User user;
 
@@ -21,7 +21,5 @@ public class Repository { //TODO Fix methods to retrieve specific data.
     public User getUser(){
         return user;
     }
-
-
 
 }
