@@ -125,44 +125,9 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                     //Set boolean control true, used for seeing if
                     //everything goes okay when saving the routine
                     control = true;
-                    //go through the list of all created strength fragments
 
-                    for (FragStrRow fr : listStrFrag) {
-
-                        //if saveInfo (in FragStrRow) did not return null, add to list of exercises
-                        if (fr.saveInfo() != null) {
-                            exerciseList.add(fr.saveInfo());
-
-                            //remove exercises of deleted fragments
-                            removeDeletedExercises();
-
-
-                            //if it had returned null
-                        } else {
-                            //run failsave and break from loop
-                            failSave();
-                            break;
-                        }
-                    }
-                    //go through the list of all created cardio fragments
-                    for (FragCarRow fr : listCarFrag) {
-
-                        //if saveInfo (in FragCarRow) did not return null, add to list of exercises
-                        //and if control is still true (no strengthexercises returned null)
-                        if (fr.saveInfo() != null && control == true) {
-                            exerciseList.add(fr.saveInfo());
-
-                            //remove exercises of deleted fragments
-                            removeDeletedExercises();
-
-                            //if it had returned null
-                        } else {
-                            //run failsave and break from loop
-                            failSave();
-                            break;
-                        }
-                    }
-
+                    fragStrToStrExList();
+                    fragCarToCarExList();
 
                     checkName(routineName);
                     checkNameLength(routineName);
@@ -179,7 +144,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                         insertStrExInDB(routineName);
                         insertCarExInDB(routineName);
 
-                            txtEnterRoutineName.setText("");
+                        txtEnterRoutineName.setText("");
                     }
                 }
         });
@@ -190,7 +155,6 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
             Intent intent = new Intent(this, CreateSession.class);
             startActivity(intent);
         }
-
 
       //create a new strength fragment in the row
         public void createFragRow() {
@@ -213,7 +177,6 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
          //Commit and finish the FragmentTransaction
          fragmentTransaction.commit();
         }
-
 
         //hide or show which type of exercise is selected, depending on toggle
         public void selectType(LinearLayout visRow, LinearLayout gonRow) {
@@ -278,5 +241,47 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
              }
 
          }
+
+         public void fragStrToStrExList(){
+             //go through the list of all created strength fragments
+             for (FragStrRow fr : listStrFrag) {
+
+                 //if saveInfo (in FragStrRow) did not return null, add to list of exercises
+                 if (fr.saveInfo() != null) {
+                     exerciseList.add(fr.saveInfo());
+
+                     //remove exercises of deleted fragments
+                     removeDeletedExercises();
+
+                     //if it had returned null
+                 } else {
+                     //run failsave and break from loop
+                     failSave();
+                     break;
+                 }
+             }
+         }
+
+       public void fragCarToCarExList() {
+          //go through the list of all created cardio fragments
+          for (FragCarRow fr : listCarFrag) {
+
+                //if saveInfo (in FragCarRow) did not return null, add to list of exercises
+                //and if control is still true (no strengthexercises returned null)
+                if (fr.saveInfo() != null && control == true) {
+                   exerciseList.add(fr.saveInfo());
+
+                   //remove exercises of deleted fragments
+                  removeDeletedExercises();
+
+                 //if it had returned null
+              } else {
+                 //run failsave and break from loop
+                 failSave();
+                 break;
+            }
+        }
+    }
+
 
 }
