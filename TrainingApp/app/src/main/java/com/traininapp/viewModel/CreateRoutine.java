@@ -14,6 +14,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.traininapp.Model.DatabaseHelper;
+import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.StrengthExercise;
@@ -179,7 +180,6 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                     //if no fragments returned null and name is unique
                     if (control == true) {
 
-
                         //Give feedback that the routine has been saved
                         String toastMessage = "Routine: " + routineName + " has been saved!";
                         Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
@@ -196,6 +196,15 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                                         ((StrengthExercise) exercise).getReps());
                                 }
                             }
+
+                        for(Exercise exercise : exerciseList) {
+                            if (exercise instanceof CardioExercise) {
+                                myDb.insertCarExData(routineName,
+                                        exercise.getName(),
+                                        ((CardioExercise) exercise).getDistance(),
+                                        ((CardioExercise) exercise).getRunningTime());
+                            }
+                        }
 
                             txtEnterRoutineName.setText("");
                     }

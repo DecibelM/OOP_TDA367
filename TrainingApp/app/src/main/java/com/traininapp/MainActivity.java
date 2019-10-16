@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
+import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.StrengthExercise;
@@ -66,34 +67,44 @@ public class MainActivity extends AppCompatActivity {
         planner.addSession("Ben 2", LocalDate.of(2019,10,11));
         planner.addSession("Ben 3", LocalDate.of(2019,10,11));
 
-        Cursor res = myDb.getRoutineData();
-        Cursor res2 = myDb.getStrExData();
+        Cursor routinesInDB = myDb.getRoutineData();
+        Cursor strExInDB = myDb.getStrExData();
+        Cursor carExInDB = myDb.getCarExData();
 
         /////
-        if(res.getCount() == 0){
+        if(routinesInDB.getCount() == 0){
             //message
             Toast.makeText(this, "No routines", Toast.LENGTH_SHORT).show();
         }
 
 
-        while(res.moveToNext()){
+        while(routinesInDB.moveToNext()){
 
-            res.getString(1);
+            routinesInDB.getString(1);
             List<Exercise> exerciseList = new ArrayList<>();
-            System.out.println("res1: " + res.getString(1));
 
-            while(res2.moveToNext()){
-                System.out.println("res2: " + res2.getString(1));
+            while(strExInDB.moveToNext()){
 
-                if (res.getString(1).equals(res2.getString(1))){
+                if (routinesInDB.getString(1).equals(strExInDB.getString(1))){
 
-                    StrengthExercise strengthExercise = new StrengthExercise(res2.getString(2), res2.getInt(3), res2.getInt(4), res2.getInt(5));
+                    StrengthExercise strengthExercise = new StrengthExercise(strExInDB.getString(2), strExInDB.getInt(3), strExInDB.getInt(4), strExInDB.getInt(5));
                     exerciseList.add(strengthExercise);
-                    Toast.makeText(this, "exercise added", Toast.LENGTH_LONG).show();
                 }
             }
-            repo.getUser().addRoutine(res.getString(1), exerciseList);
-            res2.moveToFirst();
+
+            while(carExInDB.moveToNext()){
+
+                if (routinesInDB.getString(1).equals(carExInDB.getString(1))){
+
+                    CardioExercise cardioExercise = new CardioExercise(carExInDB.getString(2), carExInDB.getInt(3), carExInDB.getInt(4));
+                    exerciseList.add(cardioExercise);
+                }
+            }
+
+            repo.getUser().addRoutine(routinesInDB.getString(1), exerciseList);
+            strExInDB.moveToFirst();
+            carExInDB.moveToFirst();
+
         }
 
 /////

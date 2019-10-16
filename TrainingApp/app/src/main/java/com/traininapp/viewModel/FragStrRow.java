@@ -97,9 +97,6 @@ public class FragStrRow extends Fragment {
             if(sets < 0){
                 name = "REMOVE ME";
             }
-            DatabaseHelper myDb = new DatabaseHelper(getActivity());
-
-          //   myDb.insertStrExData("a",name,weight,sets,reps);
 
             //create new strengthExercise
             StrengthExercise strengthExercise = new StrengthExercise(name, sets, reps, weight);
