@@ -123,11 +123,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
             @Override
             public void onClick(View view) {
 
-                viewRoutineAll();
-
-                viewStrExAll();
-
-               // undo();
+                undo();
             }
         });
 
@@ -155,7 +151,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         setDate(currentDateString,selectedDate);
 
     }
-
 
     public void setDate(String currentDateString, LocalDate date){
 
@@ -192,11 +187,10 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     //Add the routine
     public void getSelectedRoutine(){
 
-
         //Get the selected routine
         Routine addedRoutine = (Routine) spnPickRoutine.getSelectedItem();
 
-        //At the routine
+        //Add the routine
         listOfAddedRoutines.add(addedRoutine);
 
         //Get the name of the selected routine
@@ -276,49 +270,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         }
     }
 
-    public void viewRoutineAll(){
-        Cursor res = myDB.getRoutineData();
-            if(res.getCount() == 0){
-                //message
-                showMessage("ERROR", "no data found");
-                return;
-            }
-
-            StringBuffer buffer = new StringBuffer();
-            while(res.moveToNext()){
-                buffer.append("Name: "+ res.getString(1) + "\n");
-            }
-            showMessage("Data", buffer.toString());
-    }
-
-    public void viewStrExAll(){
-        Cursor res = myDB.getStrExData();
-        if(res.getCount() == 0){
-            //message
-            showMessage("ERROR", "no data found");
-            return;
-        }
-
-        StringBuffer buffer = new StringBuffer();
-        while(res.moveToNext()){
-            buffer.append("routine_id: "+ res.getString(1) + "\n");
-            buffer.append("name: "+ res.getString(2) + "\n");
-            buffer.append("weight: "+ res.getString(3) + "\n");
-            buffer.append("reps: "+ res.getString(4) + "\n");
-            buffer.append("sets: "+ res.getString(5) + "\n");
-
-
-        }
-        showMessage("Data", buffer.toString());
-    }
-
-    public void showMessage(String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
-    }
 }
 
 
