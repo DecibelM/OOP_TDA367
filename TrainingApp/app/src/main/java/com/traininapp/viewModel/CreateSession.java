@@ -40,12 +40,12 @@ import java.util.List;
 
 public class CreateSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    List<Routine> listOfAddedRoutines = new ArrayList<>();
+   private List<Routine> listOfAddedRoutines = new ArrayList<>();
 
-    LocalDate selectedDate;
+   private LocalDate selectedDate;
 
-    Repository repository;
-    DatabaseHelper myDB = new DatabaseHelper(this);
+   private Repository repository;
+   private DatabaseHelper myDB = new DatabaseHelper(this);
 
 
     private Spinner spnPickRoutine;

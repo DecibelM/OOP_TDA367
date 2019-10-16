@@ -23,7 +23,7 @@ import java.util.List;
 public class FragStrRow extends Fragment {
 
     //Placeholder list for all strength exercises
-    List<String> strExerciseList = new ArrayList<>();
+    private List<String> strExerciseList = new ArrayList<>();
 
 
     private EditText txtEnterWeight;
@@ -53,6 +53,7 @@ public class FragStrRow extends Fragment {
         strExerciseList.add("Dumbbell Curl");
         strExerciseList.add("Dumbbell Shoulder Fly");
 
+        autPickStrEx.setText(getTag());
 
         //create and setup adapter
         ArrayAdapter<String> strExerciseListAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strExerciseList);

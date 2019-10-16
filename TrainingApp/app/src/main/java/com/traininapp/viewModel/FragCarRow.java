@@ -20,7 +20,7 @@ import java.util.List;
 public class FragCarRow extends Fragment {
 
     //Placeholder list for all cardio exercises
-    List<String> carExerciseList = new ArrayList<>();
+    private List<String> carExerciseList = new ArrayList<>();
 
     private  EditText txtEnterTime;
     private  EditText txtEnterDistance;
@@ -45,6 +45,7 @@ public class FragCarRow extends Fragment {
         carExerciseList.add("Running");
         carExerciseList.add("Swimming");
         carExerciseList.add("Walking");
+        autPickCarEx.setText(getTag());
 
         //create and setup adapter
         ArrayAdapter<String> carExerciseListAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, carExerciseList);

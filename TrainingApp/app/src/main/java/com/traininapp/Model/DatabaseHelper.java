@@ -14,8 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "trainingapp.db";
 
     public static final String ROUTINE_TABLE = "routine_table";
-    public static final String RCOL_1 = "ID";
-    public static final String RCOL_2 = "NAME";
+    public static final String RCOL1 = "NAME";
 
 
     public static final String STREX_TABLE = "strex_table";
@@ -39,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + ROUTINE_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT)");
+        db.execSQL("create table " + ROUTINE_TABLE +" (NAME TEXT PRIMARY KEY)");
         db.execSQL("create table " + STREX_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, ROUTINE_NAME TEXT, NAME TEXT, WEIGHT REAL, SETS INTEGER, REPS INTEGER)");
         db.execSQL("create table " + CAREX_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, ROUTINE_NAME TEXT, NAME TEXT, DISTANCE REAL, TIME INTEGER)");
 
@@ -57,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertRoutineData(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(RCOL_2, name);
+        contentValues.put(RCOL1, name);
         long result =  db.insert(ROUTINE_TABLE, null, contentValues);
         if (result == -1){
             return false;

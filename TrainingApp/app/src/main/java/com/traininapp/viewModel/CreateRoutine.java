@@ -33,18 +33,17 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
         private EditText txtEnterRoutineName;
 
-
-
         //List for all created fragments
-        List<FragStrRow> listStrFrag = new ArrayList<>();
-        List<FragCarRow> listCarFrag = new ArrayList<>();
+       private List<FragStrRow> listStrFrag = new ArrayList<>();
+       private List<FragCarRow> listCarFrag = new ArrayList<>();
 
-        Repository repository;
+       private Repository repository;
+
 
 
         private boolean control;
 
-        DatabaseHelper myDb = new DatabaseHelper(this);
+        private DatabaseHelper myDb = new DatabaseHelper(this);
 
         //List for all exercises
         private List<Exercise> exerciseList = new ArrayList<>();
@@ -125,6 +124,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                     //Set boolean control true, used for seeing if
                     //everything goes okay when saving the routine
                     control = true;
+
 
                     fragStrToStrExList();
                     fragCarToCarExList();
@@ -215,7 +215,6 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                 control = false;
             }
         }
-
 
         public void insertStrExInDB(String name){
             for(Exercise exercise : exerciseList) {

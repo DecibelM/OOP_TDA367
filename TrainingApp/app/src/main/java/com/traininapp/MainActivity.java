@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    DatabaseHelper myDb;
 
     Repository model;
     CalendarViewModel cvm;
@@ -34,10 +33,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myDb = new DatabaseHelper(this);
-
-
-
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -66,48 +61,6 @@ public class MainActivity extends AppCompatActivity {
         planner.addSession("Ben 1", LocalDate.of(2019,10,11));
         planner.addSession("Ben 2", LocalDate.of(2019,10,11));
         planner.addSession("Ben 3", LocalDate.of(2019,10,11));
-
-        Cursor routinesInDB = myDb.getRoutineData();
-        Cursor strExInDB = myDb.getStrExData();
-        Cursor carExInDB = myDb.getCarExData();
-
-        /////
-        if(routinesInDB.getCount() == 0){
-            //message
-            Toast.makeText(this, "No routines", Toast.LENGTH_SHORT).show();
-        }
-
-
-        while(routinesInDB.moveToNext()){
-
-            routinesInDB.getString(1);
-            List<Exercise> exerciseList = new ArrayList<>();
-
-            while(strExInDB.moveToNext()){
-
-                if (routinesInDB.getString(1).equals(strExInDB.getString(1))){
-
-                    StrengthExercise strengthExercise = new StrengthExercise(strExInDB.getString(2), strExInDB.getInt(3), strExInDB.getInt(4), strExInDB.getInt(5));
-                    exerciseList.add(strengthExercise);
-                }
-            }
-
-            while(carExInDB.moveToNext()){
-
-                if (routinesInDB.getString(1).equals(carExInDB.getString(1))){
-
-                    CardioExercise cardioExercise = new CardioExercise(carExInDB.getString(2), carExInDB.getInt(3), carExInDB.getInt(4));
-                    exerciseList.add(cardioExercise);
-                }
-            }
-
-            repo.getUser().addRoutine(routinesInDB.getString(1), exerciseList);
-            strExInDB.moveToFirst();
-            carExInDB.moveToFirst();
-
-        }
-
-/////
 
 
     }
