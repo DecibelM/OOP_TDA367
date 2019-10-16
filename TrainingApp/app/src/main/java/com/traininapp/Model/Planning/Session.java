@@ -18,6 +18,7 @@ public class Session {
     private List<Routine> savedRoutinesList;
     LocalDate date;
     private int sessionImage;
+    private boolean isFinished = false;
 
     /**
      * Constructor for Session which takes name of exercise and date as parameters
@@ -44,6 +45,7 @@ public class Session {
         this.exerciseList = new ArrayList<>();
         this.date = date;
         this.sessionImage = sessionImage;
+        sessionObservers = new ArrayList<>();
     }
 
     /**
@@ -72,6 +74,11 @@ public class Session {
         for (ISessionObserver observer: sessionObservers){
             observer.updateSessionStats(exerciseList);
         }
+    }
+
+    public void finishSession(){
+        isFinished = true;
+        updateSessionObserver();
     }
 
     /**
@@ -109,5 +116,9 @@ public class Session {
 
     public int getSessionImage() {
         return sessionImage;
+    }
+
+    public boolean isFinished() {
+        return isFinished;
     }
 }
