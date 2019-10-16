@@ -48,8 +48,6 @@ public class FragStrRow extends Fragment {
         txtEnterSets = v.findViewById(R.id.txtEnterSetsID);
         txtEntersReps = v.findViewById(R.id.txtEntersRepsID);
 
-        autPickStrEx.setText(getTag());
-
         //add placeholder strength exercises
         strExerciseList.add("Bicep Curl");
         strExerciseList.add("Dumbbell Curl");

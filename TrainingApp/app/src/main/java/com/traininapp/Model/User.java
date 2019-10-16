@@ -17,6 +17,8 @@ public class User {
     private Planner planner;
     private List<Routine> routineList;
     private Results results;
+    private List<Routine> routineList = new ArrayList<>();
+    private Routine routine;
 
     /**
      * Constructor for User class.

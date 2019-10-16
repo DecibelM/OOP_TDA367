@@ -38,7 +38,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date"
-            app:layout_constraintBaseline_toBaselineOf="@+id/txtDisplayDateID"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -47,31 +46,49 @@
             android:layout_height="wrap_content"
             android:hint="Date: "
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toEndOf="@+id/btnPickDateID"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
     <Spinner
         android:id="@+id/spnPickRoutineID"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnAddRoutineID"
-        android:layout_width="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_height="wrap_content"
-        android:text="Add routine">
+        android:layout_marginRight="15dp"
+        android:foreground="@drawable/border"
+        android:layout_gravity="top"/>
 
-    </Button>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btnAddRoutineID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="Add routine">
+        </Button>
+
+
+        <Button
+            android:id="@+id/btnUndoID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Undo"
+            ></Button>
+
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:layout_marginTop="15dp"
+        android:layout_weight="1"
         android:layout_marginRight="15dp"
         android:background="@drawable/border">
 
@@ -80,26 +97,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="display routines"
-            android:layout_marginLeft="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnAddRoutineID" />
+            android:layout_marginLeft="5dp" />
     </ScrollView>
-
-    <Button
-        android:id="@+id/btnUndoID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Undo"
-        android:layout_marginTop="10dp"
-
-        ></Button>
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
         android:layout_gravity="bottom"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
