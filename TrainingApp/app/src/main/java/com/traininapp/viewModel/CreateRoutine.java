@@ -1,6 +1,7 @@
 package com.traininapp.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
@@ -31,6 +32,8 @@ import java.util.List;
 public class CreateRoutine extends AppCompatActivity implements Serializable {
 
         private EditText txtEnterRoutineName;
+
+
 
         //List for all created fragments
         List<FragStrRow> listStrFrag = new ArrayList<>();
@@ -94,10 +97,10 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                 public void onClick(View v) {
                     //if strength is chosen, create strength row
                     if (isStrength) {
-                        createStrRow();
+                        createFragRow();
                     } else {
                         //if strength is not chosen, create cardio row
-                        createCarRow();
+                        createFragRow();
                     }
                 }
             });
@@ -161,21 +164,8 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                         }
                     }
 
-                    //Checks the name of all added routines to see if entered name is unique
-                    for (int i = 0; i < repository.getUser().getRoutineList().size(); i++){
-                        if (repository.getUser().getRoutineList().get(i).getName().equals(routineName)){
-                            String toastMessage = "Name: " + routineName + " is not unique";
-                            Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
-                            control = false;
-                        }
-                    }
-
-                    if(routineName.length() == 0){
-                        String toastMessage = "No name entered!";
-                        Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
-                        control = false;
-                    }
-
+                    checkName();
+                    checkNameLength();
 
                     //if no fragments returned null and name is unique
                     if (control == true) {
@@ -218,38 +208,29 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
             startActivity(intent);
         }
 
-        //create a new cardio fragment in the row
-        public void createCarRow() {
-            //create the fragment
-            FragCarRow fragment;
-            fragment = new FragCarRow();
 
-            //Begin the transaction, to start doing something with the fragment
-            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            //Add the created fragment to "displayRowsID"
-            fragmentTransaction.add(R.id.displayRowsID, fragment);
-            //Add it to the list of all created Cardio fragments
-            listCarFrag.add(fragment);
-            //Commit and finish the FragmentTransaction
-            fragmentTransaction.commit();
+    //create a new strength fragment in the row
+    public void createFragRow() {
+        //create the fragment
+        Fragment fragment;
 
-        }
-
-        //create a new strength fragment in the row
-        public void createStrRow() {
-            //create the fragment
-            FragStrRow fragment;
+        //Begin the transaction, to start doing something with the fragment
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if(isStrength){
             fragment = new FragStrRow();
+            listStrFrag.add((FragStrRow) fragment);
 
-            //Begin the transaction, to start doing something with the fragment
-            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            //Add the created fragment to "displayRowsID"
-            fragmentTransaction.add(R.id.displayRowsID, fragment);
-            //Add it to the list of all created Strength fragments
-            listStrFrag.add(fragment);
-            //Commit and finish the FragmentTransaction
-            fragmentTransaction.commit();
+
+        } else{
+            fragment = new FragCarRow();
+            listCarFrag.add((FragCarRow) fragment);
         }
+        //Add the created fragment to "displayRowsID"
+        fragmentTransaction.add(R.id.displayRowsID, fragment);
+        //Add it to the list of all created Strength fragments
+        //Commit and finish the FragmentTransaction
+        fragmentTransaction.commit();
+    }
 
 
         //hide or show which type of exercise is selected, depending on toggle
@@ -270,6 +251,27 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
             exerciseList.clear();
             control = false;
 
+        }
+
+         //Checks the name of all added routines to see if entered name is unique
+         public void checkName(){
+            String routineName = txtEnterRoutineName.getText().toString();
+            for (int i = 0; i < repository.getUser().getRoutineList().size(); i++){
+                if (repository.getUser().getRoutineList().get(i).getName().equals(routineName)){
+                    String toastMessage = "Name: " + routineName + " is not unique";
+                    Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
+                    control = false;
+                }
+            }
+        }
+
+        public void checkNameLength(){
+            String routineName = txtEnterRoutineName.getText().toString();
+            if(routineName.length() == 0){
+                String toastMessage = "No name entered!";
+                Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
+                control = false;
+            }
         }
 
 }
