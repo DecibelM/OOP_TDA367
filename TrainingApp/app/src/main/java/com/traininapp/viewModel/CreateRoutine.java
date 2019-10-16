@@ -126,6 +126,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                     //everything goes okay when saving the routine
                     control = true;
                     //go through the list of all created strength fragments
+
                     for (FragStrRow fr : listStrFrag) {
 
                         //if saveInfo (in FragStrRow) did not return null, add to list of exercises
@@ -154,8 +155,6 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                             //remove exercises of deleted fragments
                             removeDeletedExercises();
 
-
-
                             //if it had returned null
                         } else {
                             //run failsave and break from loop
@@ -164,8 +163,9 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                         }
                     }
 
-                    checkName();
-                    checkNameLength();
+
+                    checkName(routineName);
+                    checkNameLength(routineName);
 
                     //if no fragments returned null and name is unique
                     if (control == true) {
@@ -176,25 +176,8 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                         repository.getUser().addRoutine(routineName, exerciseList);
 
                         myDb.insertRoutineData(routineName);
-
-                        for(Exercise exercise : exerciseList) {
-                            if (exercise instanceof StrengthExercise) {
-                                myDb.insertStrExData(routineName,
-                                        exercise.getName(),
-                                        ((StrengthExercise) exercise).getWeight(),
-                                        ((StrengthExercise) exercise).getSets(),
-                                        ((StrengthExercise) exercise).getReps());
-                                }
-                            }
-
-                        for(Exercise exercise : exerciseList) {
-                            if (exercise instanceof CardioExercise) {
-                                myDb.insertCarExData(routineName,
-                                        exercise.getName(),
-                                        ((CardioExercise) exercise).getDistance(),
-                                        ((CardioExercise) exercise).getRunningTime());
-                            }
-                        }
+                        insertStrExInDB(routineName);
+                        insertCarExInDB(routineName);
 
                             txtEnterRoutineName.setText("");
                     }
@@ -209,28 +192,27 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
         }
 
 
-    //create a new strength fragment in the row
-    public void createFragRow() {
-        //create the fragment
-        Fragment fragment;
+      //create a new strength fragment in the row
+        public void createFragRow() {
+         //create the fragment
+         Fragment fragment;
 
-        //Begin the transaction, to start doing something with the fragment
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        if(isStrength){
-            fragment = new FragStrRow();
-            listStrFrag.add((FragStrRow) fragment);
+         //Begin the transaction, to start doing something with the fragment
+         fragmentTransaction = getSupportFragmentManager().beginTransaction();
+         if(isStrength){
+             fragment = new FragStrRow();
+             listStrFrag.add((FragStrRow) fragment);
 
+         } else{
+             fragment = new FragCarRow();
+             listCarFrag.add((FragCarRow) fragment);
+         }
 
-        } else{
-            fragment = new FragCarRow();
-            listCarFrag.add((FragCarRow) fragment);
+         //Add the created fragment to "displayRowsID"
+         fragmentTransaction.add(R.id.displayRowsID, fragment);
+         //Commit and finish the FragmentTransaction
+         fragmentTransaction.commit();
         }
-        //Add the created fragment to "displayRowsID"
-        fragmentTransaction.add(R.id.displayRowsID, fragment);
-        //Add it to the list of all created Strength fragments
-        //Commit and finish the FragmentTransaction
-        fragmentTransaction.commit();
-    }
 
 
         //hide or show which type of exercise is selected, depending on toggle
@@ -250,28 +232,51 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
         public void failSave() {
             exerciseList.clear();
             control = false;
-
         }
 
          //Checks the name of all added routines to see if entered name is unique
-         public void checkName(){
-            String routineName = txtEnterRoutineName.getText().toString();
+         public void checkName(String name){
             for (int i = 0; i < repository.getUser().getRoutineList().size(); i++){
-                if (repository.getUser().getRoutineList().get(i).getName().equals(routineName)){
-                    String toastMessage = "Name: " + routineName + " is not unique";
+                if (repository.getUser().getRoutineList().get(i).getName().equals(name)){
+                    String toastMessage = "Name: " + name + " is not unique";
                     Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
                     control = false;
                 }
             }
         }
 
-        public void checkNameLength(){
-            String routineName = txtEnterRoutineName.getText().toString();
-            if(routineName.length() == 0){
+        public void checkNameLength(String name){
+            if(name.length() == 0){
                 String toastMessage = "No name entered!";
                 Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
                 control = false;
             }
         }
+
+
+        public void insertStrExInDB(String name){
+            for(Exercise exercise : exerciseList) {
+                if (exercise instanceof StrengthExercise) {
+                    myDb.insertStrExData(name,
+                            exercise.getName(),
+                            ((StrengthExercise) exercise).getWeight(),
+                            ((StrengthExercise) exercise).getSets(),
+                            ((StrengthExercise) exercise).getReps());
+                }
+            }
+        }
+
+         public void insertCarExInDB(String name){
+
+             for(Exercise exercise : exerciseList) {
+                 if (exercise instanceof CardioExercise) {
+                     myDb.insertCarExData(name,
+                             exercise.getName(),
+                             ((CardioExercise) exercise).getDistance(),
+                             ((CardioExercise) exercise).getRunningTime());
+                 }
+             }
+
+         }
 
 }
