@@ -14,9 +14,9 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Repository;
 import com.traininapp.R;
 
-//import com.traininapp.Model.Model; UNCOMMENT ME WHEN MODEL ADDED!
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,18 +26,17 @@ import java.util.List;
 
 public class CreateRoutine extends AppCompatActivity implements Serializable {
 
-        private EditText txtEnterExName;
-
-        //Model model = new Model(); UNCOMMENT ME WHEN MODEL ADDED!
+        private EditText txtEnterRoutineName;
 
         //List for all created fragments
         List<FragStrRow> listStrFrag = new ArrayList<>();
         List<FragCarRow> listCarFrag = new ArrayList<>();
 
+        Repository repository;
 
         private boolean control;
 
-        //List for all strength exercises
+        //List for all exercises
         private List<Exercise> exerciseList = new ArrayList<>();
 
         private FragmentTransaction fragmentTransaction;
@@ -45,10 +44,13 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
         //boolean to see which type of exercise is currently selected
         private boolean isStrength = true;
 
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_create_routine);
+            repository = Repository.getInstance();
+
 
             ToggleButton togCardioOrStrength = findViewById(R.id.togCardioOrStrengthID);
             Button btnAddnewExersice = findViewById(R.id.btnAddExerciseID);
@@ -57,7 +59,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
             final LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
             final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
-            txtEnterExName = findViewById(R.id.txtEnterExNameID);
+            txtEnterRoutineName = findViewById(R.id.txtEnterRoutineNameID);
 
             //hide the titles for cardio exercises when activity starts
             rowCarExerciseInfoID.setVisibility(View.GONE);
@@ -148,12 +150,13 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                     //if no fragments returned null
                     if (control == true) {
                         //Get the routinename that the user inputted
-                        String routineName = txtEnterExName.getText().toString();
+                        String routineName = txtEnterRoutineName.getText().toString();
+
 
                         //Add the routine with the inputted routinename and the list of exercises
-                        //model.getUser().addRoutine(routineName, exerciseList); UNCOMMENT ME WHEN MODEL ADDED!
+                        repository.getUser().addRoutine(routineName, exerciseList);
 
-                    //Give feedback that the routine has been saved
+                        //Give feedback that the routine has been saved
                     String toastMessage = "Routine: " + routineName.toUpperCase() + " has been saved!";
                     Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
                 }
