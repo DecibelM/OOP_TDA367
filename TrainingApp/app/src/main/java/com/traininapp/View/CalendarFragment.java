@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CalendarView;
@@ -20,10 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.traininapp.MainActivity;
 import com.traininapp.R;
 import com.traininapp.viewModel.CreateSession;
 import com.traininapp.viewModel.CalendarViewModel;
+import com.traininapp.viewModel.SelectedSession;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -65,11 +66,18 @@ public class CalendarFragment extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("d - MM - yyyy");
         myDate.setText(dateFormat.format(date));
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                openSession();
+            }
+        });
+
 
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openSession();
+                openNewSession();
             }
         });
 
@@ -119,11 +127,19 @@ public class CalendarFragment extends Fragment {
 
     }
 
-    public void openSession(){
+    public void openNewSession(){
         Intent intent = new Intent(getActivity(), CreateSession.class);
         intent.putExtra("DATE", myDate.getText());
         intent.putExtra("FROMCALENDAR", "YES");
         startActivity(intent);
+    }
+
+    public void openSession(){
+        Intent intent = new Intent(getActivity(), SelectedSession.class);
+        //intent.putExtra("DATE", myDate.getText());
+        //intent.putExtra("FROMCALENDAR", "YES");
+        startActivity(intent);
+
     }
 
 
