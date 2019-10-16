@@ -3,6 +3,7 @@ package com.traininapp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -143,8 +144,10 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
      */
     class GoalViewHolder extends RecyclerView.ViewHolder{
 
-        TextView txtgoal;
-        TextView txtprogress;
+        ListView goalsList;
+
+        GoalsListAdapter goalsListAdapter;
+
 
         /**
          * The constructor for GoalViewHolder
@@ -153,8 +156,8 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          */
         GoalViewHolder(View itemView) {
             super(itemView);
-            txtgoal = (TextView) itemView.findViewById(R.id.goalID);
-            txtprogress = (TextView) itemView.findViewById(R.id.progressID);
+            goalsList = (ListView) itemView.findViewById(R.id.goalsListID);
+            goalsListAdapter = new GoalsListAdapter();
         }
 
         /**
@@ -163,8 +166,8 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          */
         void bindView(int position) {
             GoalStatCard sCard = (GoalStatCard) dataList.get(position);
-            txtgoal.setText("Goalhard");
-            txtprogress.setText("Progresshard");
+
+
             // bind data to the views
             // textView.setText()...
 

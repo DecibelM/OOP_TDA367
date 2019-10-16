@@ -1,6 +1,8 @@
 package com.traininapp.viewModel;
 
 
+import java.util.List;
+
 /**
 * This class keeps hold of the goals and the progression toeards them
 *
@@ -9,14 +11,14 @@ package com.traininapp.viewModel;
 
 public class GoalStatCard implements IStatistic {
 
-        String goal;
-        String progression;
+        List<String> goalNames;
+        List<Integer> goalStat;
     /**
      * @param goal the goal
      */
-    public GoalStatCard(String goal, String progression) {
-        this.goal = goal;
-        this.progression = progression;
+    public GoalStatCard(List<String> goalNames, List<Integer> goalStat) {
+        this.goalNames = goalNames;
+        this.goalStat = goalStat;
     }
 
     @Override
@@ -24,8 +26,8 @@ public class GoalStatCard implements IStatistic {
             return IStatistic.TYPE_GOALSTAT;
         }
 
-    public String getGoal() {
-        return goal;
+    public List<String> getGoals() {
+        return goalNames;
     }
 
 }
