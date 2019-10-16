@@ -41,7 +41,7 @@ public class Startup extends Application {
             }
             while(carExInDB.moveToNext()){
 
-                if (routinesInDB.getString(1).equals(carExInDB.getString(1))){
+                if (routinesInDB.getString(0).equals(carExInDB.getString(1))){
 
                     CardioExercise cardioExercise = new CardioExercise(carExInDB.getString(2), carExInDB.getInt(3), carExInDB.getInt(4));
                     exerciseList.add(cardioExercise);
