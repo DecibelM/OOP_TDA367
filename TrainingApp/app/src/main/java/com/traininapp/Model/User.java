@@ -1,10 +1,10 @@
 package com.traininapp.Model;
 
 import com.traininapp.Model.Planning.*;
-import com.traininapp.Model.Statistics.Goal;
 import com.traininapp.Model.Statistics.Results;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +17,6 @@ public class User {
     private Planner planner;
     private List<Routine> routineList;
     private Results results;
-    private List<Routine> routineList = new ArrayList<>();
     private Routine routine;
 
     /**
@@ -27,6 +26,7 @@ public class User {
     public User( Planner planner) {
         this.planner = planner;
         this.results = new Results();
+        routineList = new ArrayList<>();
     }
 
     public void addRoutine(String name, List<Exercise> exerciseList){
