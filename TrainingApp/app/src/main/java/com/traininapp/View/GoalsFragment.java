@@ -50,11 +50,10 @@ public class GoalsFragment extends Fragment {
         exampleDateList.add(new Date(2019, 5, 10).getTime());                  //dummy variables to test the functionality
         exampleDateList.add(new Date(2019,5,12).getTime());               //dummy variables to test the functionality
         list.add(new StatisticCard("Strength", exampleStatList, exampleDateList));
-        List<String> goalNames = new ArrayList<>();                                                           //dummy variables
-        List<Integer> goalStat = new ArrayList<>();                                                               //dummy variables
-        goalNames.add("biceeps"); goalNames.add("been"); goalNames.add("Vandra häck");                        //dummy variables
-        goalStat.add(60); goalStat.add(95); goalStat.add(600);
-        list.add(new GoalStatCard(goalNames, goalStat));//dummy variables
+
+        list.add(new GoalStatCard("biceeps", 60, 30));
+        list.add(new GoalStatCard("ben", 95, 71));
+        list.add(new GoalStatCard("Vandra häck", 600, 350));//dummy variables
 
         recyclerView = (RecyclerView) view.findViewById(R.id.myPagesRecyclerViewID);
         recyclerView.setHasFixedSize(true);

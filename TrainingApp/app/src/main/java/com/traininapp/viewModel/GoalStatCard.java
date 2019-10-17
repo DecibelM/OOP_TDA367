@@ -11,14 +11,21 @@ import java.util.List;
 
 public class GoalStatCard implements IStatistic {
 
-        List<String> goalNames;
-        List<Integer> goalStat;
+        String goalName;
+        Integer goalTarget;
+        Integer goalProgress;
+
     /**
-     * @param goal the goal
+     * The constructor for the class GoalStatCard
+     *
+     * @param goalName
+     * @param goalTarget
+     * @param goalProgress
      */
-    public GoalStatCard(List<String> goalNames, List<Integer> goalStat) {
-        this.goalNames = goalNames;
-        this.goalStat = goalStat;
+    public GoalStatCard(String goalName, Integer goalTarget, Integer goalProgress) {
+        this.goalName = goalName;
+        this.goalTarget = goalTarget;
+        this.goalProgress = goalProgress;
     }
 
     @Override
@@ -26,8 +33,15 @@ public class GoalStatCard implements IStatistic {
             return IStatistic.TYPE_GOALSTAT;
         }
 
-    public List<String> getGoals() {
-        return goalNames;
+    public String getName() {
+        return goalName;
     }
 
+    public Integer getTarget() {
+        return goalTarget;
+    }
+
+    public Integer getProgress() {
+        return goalProgress;
+    }
 }
