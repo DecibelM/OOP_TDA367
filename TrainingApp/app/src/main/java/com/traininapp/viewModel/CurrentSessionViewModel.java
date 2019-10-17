@@ -11,12 +11,17 @@ import java.util.ArrayList;
 /**
  * Class CalendarViewModel is a class representing the viewmodel for the calendar.
  */
-public class SelectedSessionViewModel extends ViewModel {
+public class CurrentSessionViewModel extends ViewModel {
+
+
     private Repository model;
 
-    public SelectedSessionViewModel() {
+    public CurrentSessionViewModel() {
         this.model = Repository.getInstance();
     }
 
+    public Repository getModel() {
+        return model;
+    }
 
 }

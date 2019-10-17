@@ -1,5 +1,6 @@
 package com.traininapp.View;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class CalendarFragment extends Fragment {
     private ListView emptyView;
     private FloatingActionButton btnOpen;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,7 +70,11 @@ public class CalendarFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                openSession();
+
+                Object item = adapterView.getItemAtPosition(i);
+
+                String string = item.toString();
+                openSession(string);
             }
         });
 
@@ -133,15 +139,12 @@ public class CalendarFragment extends Fragment {
         startActivity(intent);
     }
 
-    public void openSession(){
-        Intent intent = new Intent(getActivity(), SelectedSessionFragment.class);
-        //intent.putExtra("DATE", myDate.getText());
-        //intent.putExtra("FROMCALENDAR", "YES");
-
-        
+    public void openSession(String string){
+        Intent intent = new Intent(getActivity(), CurrentSessionActivity.class);
+        System.out.println(string);
+        intent.putExtra("Session", string);
+        startActivity(intent);
 
     }
-
-
 
 }
