@@ -10,20 +10,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:background="#FFF"
         android:layout_weight="0"
         android:gravity="center"
-
         >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Session name"
+        android:text="Session name pg"
         android:id="@+id/sessionName"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="35sp"
+        android:textSize="40sp"
 
         />
 
@@ -62,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_weight="1"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         >
@@ -205,18 +205,16 @@
         android:layout_height="0dip"
         android:layout_weight="1"
         android:gravity="center|bottom"
-        android:orientation="vertical" >
-
+        android:orientation="vertical">
 
 
         <Button
-        android:id="@+id/btnDoneID"
-        android:layout_width="145dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center"
-        android:layout_marginBottom="10dp"
-        android:text="Done"
-         />
+            android:id="@+id/btnDoneID"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginBottom="10dp"
+            android:text="Done" />
 
     </LinearLayout>
 

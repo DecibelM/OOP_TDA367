@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.traininapp.Model.Planning.CardioExercise;
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,5 +107,13 @@ public class FragCarRow extends Fragment {
 
         //Remove the fragment
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+    }
+
+
+    public void setCardioValues(CardioExercise exercise, FragCarRow fragCarRow){
+        fragCarRow.autPickCarEx.setText(exercise.getName());
+
+        fragCarRow.txtEnterTime.setText(Double.toString(exercise.getRunningTime()));
+        fragCarRow.txtEnterDistance.setText(Double.toString(exercise.getDistance()));
     }
 }

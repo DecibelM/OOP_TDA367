@@ -15,7 +15,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
 
 import com.traininapp.MainActivity;
+import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
@@ -28,6 +30,7 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CurrentSessionActivity extends AppCompatActivity {
@@ -51,6 +54,10 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     private FragmentTransaction fragmentTransaction;
 
+    /* Some teststuff */
+    private Session session;
+    private LocalDate localDate;
+    private List<Routine> routineList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,12 +69,10 @@ public class CurrentSessionActivity extends AppCompatActivity {
         listStrFrag = new ArrayList<>();
         listCarFrag = new ArrayList<>();
 
-        dateFormat = new SimpleDateFormat("d - MM - yyyy");
+        dateFormat = new SimpleDateFormat("dd - MM - yyyy");
 
         intent = getIntent();
 
-        final LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
-        final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
         txtEnterExName = findViewById(R.id.txtEnterExNameID);
 
         doneBtn = findViewById(R.id.btnDoneID);
@@ -77,9 +82,17 @@ public class CurrentSessionActivity extends AppCompatActivity {
         addExerciseBtn = findViewById(R.id.addExerciseBtn);
         viewModel = new CurrentSessionViewModel();
 
-
-
         sessionName.setText(intent.getStringExtra("Session"));
+
+        // Test stuff
+        routineList = new ArrayList<>();
+        localDate = LocalDate.now();
+        session = new Session("Test 1", routineList,localDate );
+
+        loadSession(session);
+        testingStuff();
+
+
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,32 +117,34 @@ public class CurrentSessionActivity extends AppCompatActivity {
     }
 
     public LocalDate getSelectedDate() {
-        return selectedDate;
-    }
+        return selectedDate; }
 
     public void setSelectedDate(LocalDate selectedDate) {
-        this.selectedDate = selectedDate;
-    }
+        this.selectedDate = selectedDate; }
 
     public Time getTime() {
-        return time;
-    }
+        return time; }
 
     public void setTime(Time time) {
-        this.time = time;
-    }
+        this.time = time; }
 
     public void loadSession(Session session){
 
         sessionName.setText(session.getName());
 
-        sessionDate.setText(dateFormat.format(session.getDate()));
+        String string = session.getDate().toString();
 
+        sessionDate.setText(string);
     }
 
-    public void loadExercises(){
+    public void loadExercises(List list, Session session){
 
+        if(session != null){
+        list.addAll(session.getExerciseList());
 
+        } else {
+            System.out.println("Null pointer bitch");
+        }
     }
 
     //create a new cardio fragment in the row
@@ -140,6 +155,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         fragment = new FragCarRow();
 
         fragmentHandeler(listCarFrag,fragment);
+        fragment.setCardioValues((CardioExercise) session.getExerciseList().get(0), fragment);
 
     }
 
@@ -154,6 +170,19 @@ public class CurrentSessionActivity extends AppCompatActivity {
         list.add(fragment);
         //Commit and finish the FragmentTransaction
         fragmentTransaction.commit();
+    }
+
+
+    public void testingStuff(){
+
+        session.addCardioExercise("Spring MF", 10,10);
+
+        loadExercises(listCarFrag,session);
+
+        createCarRow();
+
+
+
     }
 
 
