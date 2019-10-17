@@ -7,32 +7,81 @@
     card_view:cardElevation="3dp"
     card_view:cardUseCompatPadding="true">
 
-    <!-- <ImageView
-         android:id="@+id/imageViewID"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_alignParentTop="true"/> -->
-
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/goalID"
+            android:id="@+id/goalHedderID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_alignParentTop="true"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/progressID"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/goalID"
-            />
+            android:layout_below="@+id/goalHedderID">
 
+            <LinearLayout
+                android:id="@+id/infoID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                >
+
+                <TextView
+                    android:id="@+id/goalprogressID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textAlignment="center"
+                    android:text="Progress"/>
+
+                <TextView
+                    android:id="@+id/goaltargetID"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Target"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/lineID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/infoID"
+                android:background="@drawable/bottom_border"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:layout_below="@+id/lineID"
+                >
+
+                <TextView
+                    android:id="@+id/currentprogressID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textAlignment="center"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:id="@+id/currenttargetID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textAlignment="center"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
