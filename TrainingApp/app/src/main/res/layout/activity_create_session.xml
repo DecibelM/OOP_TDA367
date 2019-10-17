@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="15dp"
     android:orientation="vertical"
-    tools:context=".viewModel.CreateSession">
+    tools:context=".viewModel.AddSession">
 
 
     <TextView
@@ -28,6 +28,7 @@
         android:layout_marginTop="20dp"
 
         ></EditText>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_marginTop="15dp"
@@ -49,57 +50,31 @@
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
-    <Spinner
-        android:id="@+id/spnPickRoutineID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:foreground="@drawable/border"
-        android:layout_gravity="top"/>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-
-        <Button
-            android:id="@+id/btnAddRoutineID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="Add routine">
-        </Button>
-
-
-        <Button
-            android:id="@+id/btnUndoID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Undo"
-            ></Button>
-
-
     </LinearLayout>
 
-    <ScrollView
+
+    <TextView
+        android:id="@+id/txtExerciseHeaderID"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="15dp"
-        android:layout_weight="1"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/border">
+        android:layout_height="wrap_content"
+        android:text="Exercises"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txtDisplayRoutinesID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="display routines"
-            android:layout_marginLeft="5dp" />
-    </ScrollView>
+    <EditText
+        android:id="@+id/txtExerciseNameID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:inputType="text"
 
+        android:textSize="14sp"></EditText>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -109,18 +84,9 @@
         android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnOpenCreateRoutineID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginRight="35dp"
-            android:text="Create routine" />
-
-
 
         <Button
-            android:id="@+id/btnOkID"
+            android:id="@+id/btnSaveSessionID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

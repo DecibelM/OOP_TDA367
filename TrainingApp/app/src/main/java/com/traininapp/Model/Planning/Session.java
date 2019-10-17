@@ -19,6 +19,12 @@ public class Session {
     LocalDate date;
     private int sessionImage;
 
+    public Session(String sessionName, LocalDate sessionDate, List<Exercise> exerciseList){
+        this.name = sessionName;
+        this.date = sessionDate;
+        this.exerciseList = exerciseList;
+    }
+
     /**
      * Constructor for Session which takes name of exercise and date as parameters
      * @param name Name of session

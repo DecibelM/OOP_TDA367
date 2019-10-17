@@ -9,13 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Spinner;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.traininapp.MainActivity;
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.View.DatePickerFragment;
 import com.traininapp.R;
 
@@ -28,11 +28,17 @@ import java.util.List;
 public class AddSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
     private String selectedRoutine;
+
     private LocalDate selectedDate;
     private UpcomingSessionsViewModel viewModel;
 
-    // Dummy list of routines
-    List<String> routineList = new ArrayList<>();
+    // Adding buttons
+    private Button btnPickDate;
+    private Button btnSaveSession;
+
+    // Adding EditTexts
+    private EditText txtEnterSessionName;
+    private EditText txtExerciseName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +48,13 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         // Attaching the View model to activity
         viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
 
-        Button btnPickDate = findViewById(R.id.btnPickDateID);
-        Button btnSaveSession = findViewById(R.id.btnOkID);
-        Button btnOpenCreateSession = findViewById(R.id.btnOpenCreateRoutineID);
-        Spinner spnrRoutineList = findViewById(R.id.spnPickRoutineID);
+        // Initializing Buttons
+        btnPickDate = findViewById(R.id.btnPickDateID);
+        btnSaveSession = findViewById(R.id.btnSaveSessionID);
 
-        //Add dummy text to list of Routines
-        routineList.add("Running");
-        routineList.add("Swimming");
-        routineList.add("Walking");
-
-        ArrayAdapter<CharSequence> spnRoutineAdapter = ArrayAdapter.createFromResource(this, R.array.sessions, android.R.layout.simple_spinner_item);
-        spnRoutineAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnrRoutineList.setAdapter(spnRoutineAdapter);
-        spnrRoutineList.setOnItemSelectedListener(this);
+        // Initializing EditTexts
+        txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
+        txtExerciseName = findViewById(R.id.txtExerciseNameID);
 
         // Clicking the "Date" button to decide date of Routine
         btnPickDate.setOnClickListener(new View.OnClickListener() {
@@ -63,14 +62,6 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
             public void onClick(View view) {
                 DialogFragment datePicker = new DatePickerFragment();
                 datePicker.show(getSupportFragmentManager(), "date picker");
-            }
-        });
-
-        // Clicking the "Create routine" button
-        btnOpenCreateSession.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickCreateSession();
             }
         });
 
@@ -108,29 +99,36 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     }
 
     /**
-     * Method of what happens after clicking the "Create session" button. Directs the user
-     * to create a session.
-     */
-    public void clickCreateSession(){
-        Intent intent = new Intent(this, CreateRoutine.class);
-
-        startActivity(intent);
-    }
-
-    /**
      * Method of what happens after clicking the "Done" button. Directs the user to the
      * Upcoming sessions view
      */
     public void clickSaveSession(){
 
+        // Fetching name of Session
+        String sessionName = txtEnterSessionName.getText().toString();
+
         // Adding the selected Session to the User's Planner's list of Sessions
-        viewModel.addSessionToList(selectedRoutine,selectedDate);
+        viewModel.model.getUser().getPlanner().addSession(sessionName, selectedDate, createExerciseList());
 
         // Directing the user to UpcomingSession page again
         Intent intent = new Intent(this, MainActivity.class);
 
         // Starting activity
         startActivity(intent);
+    }
+
+    private List<Exercise> createExerciseList() {
+
+        ArrayList<Exercise> listOfExercises = new ArrayList<>();
+
+        String nameOfExercise = txtExerciseName.getText().toString();
+
+        Exercise exercise = new Exercise(nameOfExercise);
+
+        listOfExercises.add(exercise);
+
+        return listOfExercises;
+
     }
 
     @Override

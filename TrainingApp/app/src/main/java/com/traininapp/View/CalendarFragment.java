@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.R;
+import com.traininapp.viewModel.AddSession;
 import com.traininapp.viewModel.CreateSession;
 import com.traininapp.viewModel.CalendarViewModel;
 import com.traininapp.viewModel.SelectedSession;
@@ -128,7 +129,7 @@ public class CalendarFragment extends Fragment {
     }
 
     public void openNewSession(){
-        Intent intent = new Intent(getActivity(), CreateSession.class);
+        Intent intent = new Intent(getActivity(), AddSession.class);
         intent.putExtra("DATE", myDate.getText());
         intent.putExtra("FROMCALENDAR", "YES");
         startActivity(intent);

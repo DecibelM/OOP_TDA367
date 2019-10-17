@@ -7,7 +7,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -22,7 +21,6 @@ import com.traininapp.Model.Repository;
 import com.traininapp.View.DatePickerFragment;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Routine;
-import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
@@ -32,7 +30,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class CreateSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -64,11 +61,11 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         repository = Repository.getInstance();
 
         btnPickDate = findViewById(R.id.btnPickDateID);
-        btnOk = findViewById(R.id.btnOkID);
-        btnUndo = findViewById(R.id.btnUndoID);
+        btnOk = findViewById(R.id.btnSaveSessionID);
+/*        btnUndo = findViewById(R.id.btnUndoID);
         btnAddRoutine = findViewById(R.id.btnAddRoutineID);
         btnOpenCreateRoutine = findViewById(R.id.btnOpenCreateRoutineID);
-        spnPickRoutine = findViewById(R.id.spnPickRoutineID);
+        spnPickRoutine = findViewById(R.id.spnPickRoutineID);*/
         txtDisplayRoutines = findViewById(R.id.txtDisplayRoutinesID);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
 
@@ -139,9 +136,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance().format(c.getTime());
-
-
-
+        
         // Updating selectedDate to the date selected by user
         selectedDate = LocalDate.of(year, month, dayOfMonth);
         setDate(currentDateString,selectedDate);

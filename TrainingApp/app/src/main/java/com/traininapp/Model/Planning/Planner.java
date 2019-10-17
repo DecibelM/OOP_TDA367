@@ -23,6 +23,13 @@ public class Planner {
         this.exerciseList = new ArrayList<>();
     }
 
+    public void addSession(String sessionName, LocalDate date, List<Exercise> exerciseList){
+
+        Session session = new Session(sessionName, date, exerciseList);
+
+        sessionList.add(session);
+    }
+
     /**
      * Adds a new session to the Planner sessionList, without image.
      * @param sessionName name of the session
