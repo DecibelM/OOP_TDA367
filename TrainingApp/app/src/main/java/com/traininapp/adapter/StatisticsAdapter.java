@@ -3,6 +3,7 @@ package com.traininapp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     /**
      * This is the constructor for the class StatisticsAdapter
-     * @param dataList A list of statistics
+     * @param dataList A list of statistics and/or goals
      */
     public StatisticsAdapter(ArrayList<IStatistic> dataList) {
         this.dataList = dataList;
@@ -103,7 +104,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
         /**
-         * Binds the view to this data.
+         * Binds the view to this data. (adds text to textFields)
          * @param position The position of the data in the specific list
          */
         void bindView(int position) {
@@ -144,10 +145,11 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
      */
     class GoalViewHolder extends RecyclerView.ViewHolder{
 
-        ListView goalsList;
-
         GoalsListAdapter goalsListAdapter;
 
+        TextView goalName;
+        TextView goalTarget;
+        TextView goalProgress;
 
         /**
          * The constructor for GoalViewHolder
@@ -156,7 +158,9 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          */
         GoalViewHolder(View itemView) {
             super(itemView);
-            goalsList = (ListView) itemView.findViewById(R.id.goalsListID);
+            goalName = (TextView) itemView.findViewById(R.id.goalHedderID);
+            goalTarget = (TextView) itemView.findViewById(R.id.currenttargetID);
+            goalProgress = (TextView) itemView.findViewById(R.id.currentprogressID);
             goalsListAdapter = new GoalsListAdapter();
         }
 
@@ -167,7 +171,9 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         void bindView(int position) {
             GoalStatCard sCard = (GoalStatCard) dataList.get(position);
 
-
+            goalName.setText(sCard.getName());
+            goalTarget.setText(Integer.toString(sCard.getTarget()));
+            goalProgress.setText(Integer.toString(sCard.getProgress()));
             // bind data to the views
             // textView.setText()...
 

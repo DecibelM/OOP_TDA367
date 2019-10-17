@@ -18,54 +18,70 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:padding="10dp"
-            android:textSize="30sp"
-            android:text="Goals" />
+            android:textAlignment="center"
+            android:textSize="30sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/goalHedderID">
 
-            <TextView
-                android:id="@+id/goalnameID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:paddingLeft="20dp"
-                android:text="Exercise" />
-            <TextView
-                android:id="@+id/goalprogressID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toStartOf="@+id/goaltargetID"
-                android:paddingEnd="50dp"
-                android:text="Progress"/>
-            <TextView
-                android:id="@+id/goaltargetID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:paddingEnd="20dp"
-                android:text="Target"/>
-
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/infoID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/goalnameID"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:weightSum="1"
+                >
+
+                <TextView
+                    android:id="@+id/goalprogressID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textAlignment="center"
+                    android:text="Progress"/>
+
+                <TextView
+                    android:id="@+id/goaltargetID"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Target"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/lineID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/infoID"
                 android:background="@drawable/bottom_border"/>
 
-            <ListView
-                android:id="@+id/goalsListID"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="vertical"
-                android:padding="5dp">
+                android:weightSum="1"
+                android:layout_below="@+id/lineID"
+                >
 
-            </ListView>
+                <TextView
+                    android:id="@+id/currentprogressID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textAlignment="center"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:id="@+id/currenttargetID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textAlignment="center"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
