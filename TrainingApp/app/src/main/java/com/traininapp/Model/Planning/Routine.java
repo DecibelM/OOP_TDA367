@@ -1,6 +1,5 @@
 package com.traininapp.Model.Planning;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,24 +18,6 @@ public class Routine {
     public Routine(String name, List<Exercise> savedExerciseList) {
         this.name = name;
         this.savedExerciseList = savedExerciseList;
-    }
-
-    // TODO Är det bra att kunna skapa en Routine utan lista med Exercises?
-    /**
-     * Constructor for Routine class with empty list of Exercises
-     * @param name Name of Routine
-     */
-    public Routine(String name){
-        this.name = name;
-        this.savedExerciseList = new ArrayList<>();
-    }
-
-    /**
-     * Method to add an Exercise to
-     * @param exercise Which Exercise to add
-     */
-    public void addExerciseToList(Exercise exercise){
-        savedExerciseList.add(exercise);
     }
 
     public String getName() {

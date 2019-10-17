@@ -17,8 +17,7 @@ public class User {
 
     private List<Goal> goalList;
     private Planner planner;
-    private List<Routine> routineList = new ArrayList<>();
-    private Routine routine;
+    private List<Routine> routineList;
 
     /**
      * Constructor for User class.
@@ -32,9 +31,6 @@ public class User {
     public void addRoutine(String name, List<Exercise> exerciseList){
         routineList.add(new Routine(name, exerciseList));
     }
-
-
-
 
     public void removeRoutine(String name){
         for(Routine r : routineList){

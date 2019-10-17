@@ -18,9 +18,9 @@ import android.widget.Toast;
 
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.CardioExercise;
-import com.traininapp.Model.Repository;
 import com.traininapp.View.DatePickerFragment;
 import com.traininapp.Model.Planning.Exercise;
+//import com.traininapp.Model.Model  UNCOMMENT ME WHEN MODEL ADDED!
 import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
@@ -36,12 +36,15 @@ import java.util.Date;
 import java.util.List;
 
 public class CreateSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    //Placeholder list of exercises
+    List<Exercise> listTest1 = new ArrayList<>();
+    List<Exercise> listTest2 = new ArrayList<>();
+    List<Exercise> listTest3 = new ArrayList<>();
 
+    List<Routine> listRoutine = new ArrayList<>(); //REMOVE ME WHEN MODEL ADDED!
     List<Routine> listOfAddedRoutines = new ArrayList<>();
 
     LocalDate selectedDate;
-
-    Repository repository;
 
 
     private Spinner spnPickRoutine;
@@ -50,8 +53,10 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     private Button btnOpenCreateRoutine;
     private Button btnAddRoutine;
     private Button btnUndo;
+    private Button btnSave;
     private TextView txtDisplayRoutines;
     private EditText txtEnterSessionName;
+    //Model model = new Model(); UNCOMMENT ME WHEN MODEL ADDED!
 
 
 
@@ -60,8 +65,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_session);
 
-
-        repository = Repository.getInstance();
 
         btnPickDate = findViewById(R.id.btnPickDateID);
         btnOk = findViewById(R.id.btnOkID);
@@ -74,13 +77,53 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
         isDateSelectedAlready();
 
+        //Placeholder exercises
+        StrengthExercise strEx1 = new StrengthExercise("bicep" ,1,2,3.5);
+        StrengthExercise strEx2 = new StrengthExercise("pull up" ,1,2,3);
+
+        CardioExercise carEx1 = new CardioExercise("Running" ,12,45.4);
+        CardioExercise carEx2 = new CardioExercise("Swimming" ,55.5,25);
+
+        //add mix of cardio/strength-exercises to placeholder list
+        listTest1.add(strEx1);
+        listTest1.add(strEx2);
+        listTest1.add(carEx1);
+        listTest1.add(carEx2);
+
+        //add mix of strength-exercises to placeholder list
+        listTest2.add(strEx1);
+        listTest2.add(strEx2);
+
+        //add mix of cardio-exercises to placeholder list
+        listTest3.add(carEx1);
+        listTest3.add(carEx2);
+
+        //add routines to user
+        /*model.getUser().addRoutine("Routine1" ,listTest);
+        model.getUser().addRoutine("Routine2" ,listTest2); UNCOMMENT US WHEN MODEL ADDED!
+        model.getUser().addRoutine("Routine3" ,listTest3); */
+
         Button btnPickDate = findViewById(R.id.btnPickDateID);
-
-
+        Button btnSaveSession = findViewById(R.id.btnOkID);
+        Button btnOpenCreateSession = findViewById(R.id.btnOpenCreateRoutineID);
+        Spinner spnrRoutineList = findViewById(R.id.spnPickRoutineID);
         //create and setup adapter
-        ArrayAdapter<Routine> adapter = new ArrayAdapter<Routine>(this, android.R.layout.simple_spinner_dropdown_item, repository.getUser().getRoutineList());
+        /* ArrayAdapter<Routine> adapter = new ArrayAdapter<Routine>(this, android.R.layout.simple_spinner_dropdown_item, model.getUser().getRoutineList());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  UNCOMMENT US WHEN MODEL ADDED!
+        spnPickRoutine.setAdapter(adapter);  */
+
+        //REMOVE FROM HERE
+        Routine routine1 = new Routine("Routine1" ,listTest1);
+        Routine routine2 = new Routine("Routine2" ,listTest2);
+        Routine routine3 = new Routine("Routine3" ,listTest3);
+        listRoutine.add(routine1);
+        listRoutine.add(routine2);
+        listRoutine.add(routine3);
+
+        ArrayAdapter<Routine> adapter = new ArrayAdapter<Routine>(this, android.R.layout.simple_spinner_dropdown_item, listRoutine);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnPickRoutine.setAdapter(adapter);
+        //TO HERE WHEN MODEL ADDED
 
 
         btnPickDate.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +164,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
                 undo();
             }
         });
+
 
 
     }

@@ -24,7 +24,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.R;
 import com.traininapp.viewModel.CreateSession;
 import com.traininapp.viewModel.CalendarViewModel;
-import com.traininapp.viewModel.SelectedSession;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -116,10 +115,10 @@ public class CalendarFragment extends Fragment {
         }
         if (newList.isEmpty()) {
             listView.setVisibility(View.INVISIBLE);
-        //listView.setEmptyView(emptyView);
+
         } else {
             listView.setVisibility(View.VISIBLE);
-            //listView.setEmptyView(listView);
+
         }
             ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
 
@@ -135,10 +134,11 @@ public class CalendarFragment extends Fragment {
     }
 
     public void openSession(){
-        Intent intent = new Intent(getActivity(), SelectedSession.class);
+        Intent intent = new Intent(getActivity(), SelectedSessionFragment.class);
         //intent.putExtra("DATE", myDate.getText());
         //intent.putExtra("FROMCALENDAR", "YES");
-        startActivity(intent);
+
+        
 
     }
 
