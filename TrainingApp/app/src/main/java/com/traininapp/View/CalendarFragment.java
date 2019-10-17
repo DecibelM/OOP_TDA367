@@ -45,6 +45,7 @@ public class CalendarFragment extends Fragment {
     private ArrayList<String> list;
     private ListView emptyView;
     private FloatingActionButton btnOpen;
+    private SimpleDateFormat dateFormat;
 
 
     @Nullable
@@ -64,7 +65,7 @@ public class CalendarFragment extends Fragment {
 
 
         Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d - MM - yyyy");
+        dateFormat = new SimpleDateFormat("d - MM - yyyy");
         myDate.setText(dateFormat.format(date));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
