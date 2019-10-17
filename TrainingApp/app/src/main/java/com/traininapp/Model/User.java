@@ -1,7 +1,5 @@
 package com.traininapp.Model;
 
-import com.traininapp.Model.Planning.*;
-import com.traininapp.Model.Statistics.Results;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Routine;
@@ -22,7 +20,6 @@ public class User {
     private List<Goal> goalList;
     private Planner planner;
     private List<Routine> routineList;
-    private Results results;
     private Routine routine;
 
     /**
@@ -32,7 +29,6 @@ public class User {
     public User( Planner planner) {
         this.goalList = new ArrayList<>();
         this.planner = planner;
-        this.results = new Results();
         routineList = new ArrayList<>();
     }
 
