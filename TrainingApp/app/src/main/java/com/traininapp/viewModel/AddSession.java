@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProviders;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -44,7 +46,7 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     // Adding ListView
     private ListView listView;
 
-    private List<Exercise> exercises = new ArrayList<>();
+    private List<Exercise> exerciseList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +68,11 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         // Defining List
         listView = findViewById(R.id.exerciseListViewID);
 
-        // Add dummy exercises TODO Remove
-        exercises.add(new Exercise("Hej"));
-        exercises.add(new Exercise("Hej hej"));
+        // Adding first Exercise to list for User to modify
+        exerciseList.add(new Exercise());
 
         //Creating Adapter object for setting to listview
-        final ExerciseAdapter adapter = new ExerciseAdapter(this,exercises);
+        final ExerciseAdapter adapter = new ExerciseAdapter(this, exerciseList);
         listView.setAdapter(adapter);
 
 
@@ -92,13 +93,31 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
-        // TODO Change to TextView or something
+        // TODO Change Button to TextView or something
         // Clicking the "Add exercise" button to add one more exercise to list
         btnAddExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                exercises.add(new Exercise("Hej hej"));
+                exerciseList.add(new Exercise());
                 adapter.notifyDataSetChanged();
+            }
+        });
+
+        txtEnterSessionName.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Nothing needs to be done
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -136,8 +155,18 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         // Fetching name of Session
         String sessionName = txtEnterSessionName.getText().toString();
 
+        // Fetching information from the Exercises created by user
+        getExercisesInfo();
+
         // Adding the selected Session to the User's Planner's list of Sessions
-        viewModel.model.getUser().getPlanner().addSession(sessionName, selectedDate, exercises);
+        viewModel.model.getUser().getPlanner().addSession(sessionName, selectedDate, exerciseList);
+
+        // ---------- Printing out to check if added correctly --------------
+        System.out.println("Lenght of list: " + exerciseList.size());
+
+        for (Exercise exercise : exerciseList){
+            System.out.println("Name of exercise: " + exercise.getName());
+        }
 
         // Directing the user to UpcomingSession page again
         Intent intent = new Intent(this, MainActivity.class);
@@ -146,17 +175,19 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         startActivity(intent);
     }
 
-/*    private List<Exercise> getExerciseList() {
+    /**
+     * A method called when user presses "Done" and saves session. It goes through the list of
+     * Exercises and fetches the information of each Exercise based on the input of the user.
+     */
+    private void getExercisesInfo() {
 
-        ArrayList<Exercise> listOfExercises = new ArrayList<>();
+/*        for (int i = 0; i < listView.getCount(); i++){
+            View view = listView.getChildAt(i);
+            EditText editText = view.findViewById(R.id.txtExerciseNameID);
 
-        for (Exercise e : exercises){
-
-        }
-
-        return listOfExercises;
-
-    }*/
+            exerciseList.get(i).setName(editText.getText().toString());
+        }*/
+    }
 
     // TODO What to do with this method?
     @Override

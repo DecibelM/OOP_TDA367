@@ -15,13 +15,13 @@ import java.util.List;
 
 public class ExerciseAdapter extends BaseAdapter {
 
-    Context context;
-    List<Exercise> listforview;
-    LayoutInflater inflator = null;
-    View v;
-    ViewHolder vholder;
+    private Context context;
+    private List<Exercise> listforview;
+    private LayoutInflater inflator = null;
+    private View v;
+    private ViewHolder vholder;
 
-    //Constructor
+    // Constructor
     public ExerciseAdapter(Context con, List<Exercise> list) {
         super();
         context = con;
@@ -29,25 +29,25 @@ public class ExerciseAdapter extends BaseAdapter {
         inflator = LayoutInflater.from(con);
     }
 
-    // return position here
+    // Return position
     @Override
     public long getItemId(int position) {
         return position;
     }
 
-    // return size of list
+    // Return size of list
     @Override
     public int getCount() {
         return listforview.size();
     }
 
-    //get Object from each position
+    // Get Object from each position
     @Override
     public Object getItem(int position) {
         return listforview.get(position);
     }
 
-    //Viewholder class to contain inflated xml views
+    // ViewHolder class to contain inflated xml views
     private class ViewHolder {
         TextView title;
     }

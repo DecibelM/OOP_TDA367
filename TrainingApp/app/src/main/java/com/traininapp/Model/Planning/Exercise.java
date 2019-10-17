@@ -10,7 +10,18 @@ public class Exercise {
         this.name = name;
     }
 
+    /**
+     * Empty constructor for when creating Exercises in AddSession
+     */
+    public Exercise(){
+        name = null;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
