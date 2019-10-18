@@ -2,6 +2,7 @@ package com.traininapp.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -116,6 +117,12 @@ public class CurrentSessionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public LocalDate getSelectedDate() {
+        return selectedDate; }
+
+    public void setSelectedDate(LocalDate selectedDate) {
+        this.selectedDate = selectedDate; }
+
     public Time getTime() {
         return time; }
 
@@ -137,7 +144,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         list.addAll(session.getExerciseList());
 
         } else {
-            System.out.println("Nullpointer");
+            System.out.println("Null pointer bitch");
         }
     }
 
@@ -145,15 +152,22 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     public void createCarRow() {
         //create the fragment
-        FragCarRow fragment = new FragCarRow();
+        final FragCarRow fragment;
+        fragment = new FragCarRow();
 
         fragmentHandeler(listCarFrag,fragment);
 
-        //fragment.setCardioValues((CardioExercise) session.getExerciseList().get(0), fragment);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fragment.setCardioValues((CardioExercise) session.getExerciseList().get(0), fragment);
+            }
+        }, 1);
 
     }
 
-    public void fragmentHandeler(List list, FragCarRow fragment){
+    public void fragmentHandeler(List list, Fragment fragment){
 
 
         //Begin the transaction, to start doing something with the fragment
