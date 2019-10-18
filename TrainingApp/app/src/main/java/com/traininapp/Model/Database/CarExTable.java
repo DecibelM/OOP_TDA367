@@ -27,7 +27,6 @@ public class CarExTable {
         contentValues.put(COL_5, time);
 
         db.insert(myDb.getCarExTableName(), null, contentValues);
-
     }
 
     public Cursor getCarExData(){
@@ -49,4 +48,12 @@ public class CarExTable {
                 "ID = ?",new String[] {String.valueOf(id)});
         return true;
     }
+
+    public Integer deleteData(String id){
+        SQLiteDatabase db = myDb.getWritableDatabase();
+        return db.delete(myDb.getRoutineTableName(), "ID = ?", new String[] {id});
+
+
+    }
+
 }

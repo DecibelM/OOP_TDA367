@@ -38,5 +38,12 @@ public class RoutineTable {
         return true;
     }
 
+    public Integer deleteData(String name){
+        SQLiteDatabase db = myDb.getWritableDatabase();
+        return db.delete(myDb.getRoutineTableName(), "ID = ?", new String[] {name});
+
+    }
+
+
 
 }

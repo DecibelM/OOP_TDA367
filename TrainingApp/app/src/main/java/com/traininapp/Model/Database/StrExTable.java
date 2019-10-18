@@ -53,4 +53,11 @@ public class StrExTable {
                 "ID = ?",new String[] {String.valueOf(id)});
         return true;
     }
+
+    public Integer deleteData(String id){
+        SQLiteDatabase db = myDb.getWritableDatabase();
+        return db.delete(myDb.getRoutineTableName(), "ID = ?", new String[] {id});
+
+
+    }
 }
