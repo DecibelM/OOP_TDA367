@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.traininapp.Model.Repository;
+import com.traininapp.Model.Statistics.IGoal;
+import com.traininapp.Model.Statistics.IStat;
 import com.traininapp.R;
 import com.traininapp.adapter.StatisticsAdapter;
 import com.traininapp.viewModel.GoalStatCard;
@@ -40,27 +42,11 @@ public class GoalsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_goals, null);
         repository = Repository.getInstance();
-
         statisticsList = new ArrayList<>();
 
-        //TODO move dummy variables to backend and create a way to get it all from here                                                                                         //dummy variables
-        ArrayList<Integer> exampleStatList= new ArrayList<>();                                   //dummy variables to test the functionality
-        exampleStatList.add(1); exampleStatList.add(3); exampleStatList.add(2); exampleStatList.add(4); exampleStatList.add(5); exampleStatList.add(5);                                    //dummy variables to test the functionality
+        System.out.println(repository.getStatList().size());
+        System.out.println(repository.getGoalList().size());
 
-        ArrayList<Long> exampleDateList = new ArrayList<>();
-        exampleDateList.add(new Date(2012, 3, 5).getTime());                  //dummy variables to test the functionality
-        exampleDateList.add(new Date(2019,4,5).getTime());                                          //dummy variables to test the functionality
-        exampleDateList.add(new Date(2019, 5, 5).getTime());                  //dummy variables to test the functionality
-        exampleDateList.add(new Date(2019,5,9).getTime());                                          //dummy variables to test the functionality
-        exampleDateList.add(new Date(2019, 5, 10).getTime());                  //dummy variables to test the functionality
-        exampleDateList.add(new Date(2019,5,12).getTime());               //dummy variables to test the functionality
-
-
-        statisticsList.add(new StatisticCard("Strength", exampleStatList, exampleDateList));
-
-        statisticsList.add(new GoalStatCard("biceeps", 60, 30));
-        statisticsList.add(new GoalStatCard("ben", 95, 71));
-        statisticsList.add(new GoalStatCard("Vandra häck", 600, 350));//TODO fix
 
 
 
@@ -82,6 +68,13 @@ public class GoalsFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);
+
+        for (IStat statistic: repository.getStatList()){
+            statisticsList.add(new StatisticCard(statistic.getName(), statistic.getDataList(), statistic.getDatesList()));
+        }
+        for (IGoal goal: repository.getGoalList()){
+            statisticsList.add(new GoalStatCard(goal.getName(), goal.getTarget(), goal.getProgress()));
+        }
     }
 
 }
