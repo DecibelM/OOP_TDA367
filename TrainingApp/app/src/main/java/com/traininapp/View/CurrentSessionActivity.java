@@ -116,12 +116,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public LocalDate getSelectedDate() {
-        return selectedDate; }
-
-    public void setSelectedDate(LocalDate selectedDate) {
-        this.selectedDate = selectedDate; }
-
     public Time getTime() {
         return time; }
 
@@ -143,7 +137,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         list.addAll(session.getExerciseList());
 
         } else {
-            System.out.println("Null pointer bitch");
+            System.out.println("Nullpointer");
         }
     }
 
@@ -151,15 +145,15 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     public void createCarRow() {
         //create the fragment
-        FragCarRow fragment;
-        fragment = new FragCarRow();
+        FragCarRow fragment = new FragCarRow();
 
         fragmentHandeler(listCarFrag,fragment);
-        fragment.setCardioValues((CardioExercise) session.getExerciseList().get(0), fragment);
+
+        //fragment.setCardioValues((CardioExercise) session.getExerciseList().get(0), fragment);
 
     }
 
-    public void fragmentHandeler(List list, Fragment fragment){
+    public void fragmentHandeler(List list, FragCarRow fragment){
 
 
         //Begin the transaction, to start doing something with the fragment

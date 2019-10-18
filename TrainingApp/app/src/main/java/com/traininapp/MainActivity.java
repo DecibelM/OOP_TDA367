@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.Planner;
+import com.traininapp.Model.Planning.Session;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
             planner.addSession("Yoga2", LocalDate.now().plusDays(1),R.drawable.workout_2);
             planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
             planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
+
+            Session session = new Session("Spring", LocalDate.now(),R.drawable.workout_5);
+            session.addCardioExercise("Spring",1,1);
         }
     }
 }

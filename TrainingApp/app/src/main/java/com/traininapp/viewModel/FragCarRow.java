@@ -27,6 +27,8 @@ public class FragCarRow extends Fragment {
     private  EditText txtEnterDistance;
     private AutoCompleteTextView autPickCarEx;
     private Button btnDeleteCar;
+    private View v;
+    private CardioExercise exercise;
 
     public FragCarRow() {
         // Required empty public constructor
@@ -35,12 +37,22 @@ public class FragCarRow extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)    {
-        View v = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
+        v = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
+
 
         autPickCarEx = v.findViewById(R.id.autPickCarExID);
         btnDeleteCar = v.findViewById(R.id.btnDeleteCarID);
         txtEnterTime = v.findViewById(R.id.txtEnterTimeID);
         txtEnterDistance = v.findViewById(R.id.txtEnterDistanceID);
+
+        List<Exercise> exerciseList = new ArrayList<>();
+
+        exercise = new CardioExercise("Spring",10,10);
+
+
+        autPickCarEx.setText(exercise.getName());
+        txtEnterTime.setText(Double.toString(exercise.getRunningTime()));
+        txtEnterDistance.setText(Double.toString(exercise.getDistance()));
 
         //add placeholder cardio exercises
         carExerciseList.add("Running");
@@ -60,6 +72,16 @@ public class FragCarRow extends Fragment {
 
         return v;
     }
+    /*
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        view.findViewById(R.id.yourId).setOnClickListener(this);
+
+        // or
+        getActivity().findViewById(R.id.yourId).setOnClickListener(this);
+    }*/
+
 
     //method for creating the exercise from the inputted information
     public CardioExercise saveInfo(){
@@ -111,6 +133,11 @@ public class FragCarRow extends Fragment {
 
 
     public void setCardioValues(CardioExercise exercise, FragCarRow fragCarRow){
+
+        View view = fragCarRow.getView();
+
+
+
         fragCarRow.autPickCarEx.setText(exercise.getName());
 
         fragCarRow.txtEnterTime.setText(Double.toString(exercise.getRunningTime()));
