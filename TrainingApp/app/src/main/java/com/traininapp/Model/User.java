@@ -7,8 +7,6 @@ import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Statistics.Goal;
 import com.traininapp.Model.Statistics.Results;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,4 +69,6 @@ public class User {
     public List<Routine> getRoutineList() {
         return routineList;
     }
+
+
 }

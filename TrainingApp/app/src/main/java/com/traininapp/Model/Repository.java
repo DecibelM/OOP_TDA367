@@ -1,6 +1,9 @@
 package com.traininapp.Model;
 
 import com.traininapp.Model.Planning.Planner;
+import com.traininapp.viewModel.IStatistic;
+
+import java.util.List;
 
 public class Repository {
 
@@ -9,6 +12,8 @@ public class Repository {
     private Repository() {
         this.user = new User(new Planner());
     }
+
+
 
     private static class RepositoryHolder{
         private static Repository instance = new Repository();
@@ -21,5 +26,6 @@ public class Repository {
     public User getUser(){
         return user;
     }
+
 
 }

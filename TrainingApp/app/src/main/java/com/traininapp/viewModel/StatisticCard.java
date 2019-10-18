@@ -21,7 +21,7 @@ public class StatisticCard implements IStatistic {
      * @param statistics
      * @param dates
      */
-    public StatisticCard(String statisticName, ArrayList<Integer> statistics, ArrayList<Long> dates) {
+    public StatisticCard(String statisticName, List<Integer> statistics, List<Long> dates) {
         this.statisticName = statisticName;
         this.statistics = statistics;
         this.dates = dates;

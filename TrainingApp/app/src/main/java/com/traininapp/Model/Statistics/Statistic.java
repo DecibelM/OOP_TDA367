@@ -123,4 +123,9 @@ public class Statistic implements ISessionObserver {
     public double getMaxWeight() {
         return maxWeight;
     }
+
+    /**
+     * Clears the max weight variable.
+     */
+    public void clrMaxWeight(){maxWeight = 0;}
 }

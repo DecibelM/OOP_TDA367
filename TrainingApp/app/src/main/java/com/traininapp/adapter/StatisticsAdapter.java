@@ -27,13 +27,13 @@ import java.util.List;
  */
 public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<IStatistic> dataList;
+    private List<IStatistic> dataList;
 
     /**
      * This is the constructor for the class StatisticsAdapter
      * @param dataList A list of statistics and/or goals
      */
-    public StatisticsAdapter(ArrayList<IStatistic> dataList) {
+    public StatisticsAdapter(List<IStatistic> dataList) {
         this.dataList = dataList;
     }
 
