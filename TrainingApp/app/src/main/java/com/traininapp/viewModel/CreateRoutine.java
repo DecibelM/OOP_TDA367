@@ -14,7 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.traininapp.Model.DatabaseHelper;
+import com.traininapp.Model.Database.CarExTable;
+import com.traininapp.Model.Database.DatabaseHelper;
+import com.traininapp.Model.Database.RoutineTable;
+import com.traininapp.Model.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Routine;
@@ -43,7 +46,8 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
         private boolean control;
 
-        private DatabaseHelper myDb = new DatabaseHelper(this);
+        //private DatabaseHelper myDb = new DatabaseHelper(this);
+
 
         //List for all exercises
         private List<Exercise> exerciseList = new ArrayList<>();
@@ -53,6 +57,8 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
         //boolean to see which type of exercise is currently selected
         private boolean isStrength = true;
 
+        private StrExTable strExTable;
+        private CarExTable carExTable;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +74,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
             final LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
             final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
-            txtEnterRoutineName = findViewById(R.id.txtEnterRoutineNameID);
+            //txtEnterRoutineName = findViewById(R.id.txtEnterRoutineNameID);
 
             //hide the titles for cardio exercises when activity starts
             rowCarExerciseInfoID.setVisibility(View.GONE);
@@ -139,8 +145,8 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                         String toastMessage = "Routine: " + routineName + " has been saved!";
                         Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
                         repository.getUser().addRoutine(routineName, exerciseList);
-
-                        myDb.insertRoutineData(routineName);
+                        RoutineTable routineTable = new RoutineTable(getApplicationContext());
+                        routineTable.insertRoutineData(routineName);
                         insertStrExInDB(routineName);
                         insertCarExInDB(routineName);
 
@@ -218,8 +224,9 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
         public void insertStrExInDB(String name){
             for(Exercise exercise : exerciseList) {
+                strExTable = new StrExTable(getApplicationContext());
                 if (exercise instanceof StrengthExercise) {
-                    myDb.insertStrExData(name,
+                    strExTable.insertStrExData(name,
                             exercise.getName(),
                             ((StrengthExercise) exercise).getWeight(),
                             ((StrengthExercise) exercise).getSets(),
@@ -229,10 +236,10 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
         }
 
          public void insertCarExInDB(String name){
-
              for(Exercise exercise : exerciseList) {
+                 carExTable = new CarExTable(getApplicationContext());
                  if (exercise instanceof CardioExercise) {
-                     myDb.insertCarExData(name,
+                     carExTable.insertCarExData(name,
                              exercise.getName(),
                              ((CardioExercise) exercise).getDistance(),
                              ((CardioExercise) exercise).getRunningTime());

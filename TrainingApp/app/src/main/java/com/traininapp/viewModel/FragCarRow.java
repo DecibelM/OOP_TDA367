@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.traininapp.Model.Planning.CardioExercise;
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 public class FragCarRow extends Fragment {
 
     //Placeholder list for all cardio exercises
-    private List<String> carExerciseList = new ArrayList<>();
+    List<String> carExerciseList = new ArrayList<>();
 
     private  EditText txtEnterTime;
     private  EditText txtEnterDistance;
@@ -45,7 +46,6 @@ public class FragCarRow extends Fragment {
         carExerciseList.add("Running");
         carExerciseList.add("Swimming");
         carExerciseList.add("Walking");
-        autPickCarEx.setText(getTag());
 
         //create and setup adapter
         ArrayAdapter<String> carExerciseListAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, carExerciseList);
@@ -107,5 +107,13 @@ public class FragCarRow extends Fragment {
 
         //Remove the fragment
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+    }
+
+
+    public void setCardioValues(CardioExercise exercise, FragCarRow fragCarRow){
+        fragCarRow.autPickCarEx.setText(exercise.getName());
+
+       // fragCarRow.txtEnterTime.setText(Double.toString(exercise.getRunningTime()));
+      // fragCarRow.txtEnterDistance.setText(Double.toString(exercise.getDistance()));
     }
 }
