@@ -29,7 +29,7 @@ import java.util.List;
 
 public class CreateRoutine extends AppCompatActivity implements Serializable {
 
-        private EditText txtEnterRoutineName;
+        private EditText txtEnterSessionName;
 
         //List for all created fragments
         private List<FragStrRow> listStrFrag = new ArrayList<>();
@@ -68,7 +68,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
             final LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
             final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
-            txtEnterRoutineName = findViewById(R.id.txtEnterSessionNameID);
+            txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
 
             //hide the titles for cardio exercises when activity starts
             rowCarExerciseInfoID.setVisibility(View.GONE);
@@ -116,29 +116,32 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
         //open new activity
         public void onDoneClick() {
 
-            //Get the routinename that the user inputted
-            String routineName = txtEnterRoutineName.getText().toString();
+            // Get the Session name from user input
+            String sessionName = txtEnterSessionName.getText().toString();
 
-            //Remove all previously added exercises
+            // Remove all previously added exercises
             exerciseList.clear();
+
             //Set boolean control true, used for seeing if
             //everything goes okay when saving the routine
             control = true;
 
-
+            // Using the fragments created to save exercises in exerciseList
             fragStrToStrExList();
             fragCarToCarExList();
 
-            checkName(routineName);
-            checkNameLength(routineName);
+            // Controlling if valid user input
+            checkName(sessionName);
+            checkNameLength(sessionName);
 
-            //if no fragments returned null and name is unique
+            // If no fragments returned null and name is unique
             if (control == true) {
 
-                repository.getUser().getPlanner().addSession(routineName, LocalDate.now(), exerciseList);
+                // Adding Session to users list
+                repository.getUser().getPlanner().addSession(sessionName, LocalDate.now(), exerciseList);
 
-                //Give feedback that the routine has been saved
-                String toastMessage = "Session: " + routineName + " has been saved!";
+                // Give feedback that the routine has been saved
+                String toastMessage = "Session: " + sessionName + " has been saved!";
                 Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
 
                         /*RoutineTable routineTable = new RoutineTable(getApplicationContext());
@@ -146,20 +149,24 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                         insertStrExInDB(routineName);
                         insertCarExInDB(routineName);*/
 
-                txtEnterRoutineName.setText("");
+                // Clear Session name field
+                txtEnterSessionName.setText("");
             }
 
+            // Directing the user to Upcoming session view
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
 
-      //create a new strength fragment in the row
+        // Create a new strength fragment in the row
         public void createFragRow() {
-         //create the fragment
+
+         // Create the fragment
          Fragment fragment;
 
          //Begin the transaction, to start doing something with the fragment
          fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
          if(isStrength){
              fragment = new FragStrRow();
              listStrFrag.add((FragStrRow) fragment);
@@ -169,13 +176,14 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
              listCarFrag.add((FragCarRow) fragment);
          }
 
-         //Add the created fragment to "displayRowsID"
+         // Add the created fragment to "displayRowsID"
          fragmentTransaction.add(R.id.displayRowsID, fragment);
-         //Commit and finish the FragmentTransaction
+
+         // Commit and finish the FragmentTransaction
          fragmentTransaction.commit();
         }
 
-        //hide or show which type of exercise is selected, depending on toggle
+        // hide or show which type of exercise is selected, depending on toggle
         public void selectType(LinearLayout visRow, LinearLayout gonRow) {
             visRow.setVisibility(View.VISIBLE);
             gonRow.setVisibility(View.GONE);
