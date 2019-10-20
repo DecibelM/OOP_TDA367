@@ -24,15 +24,12 @@ import com.traininapp.Model.Repository;
 import com.traininapp.R;
 import com.traininapp.View.DatePickerFragment;
 
-
-import java.io.Serializable;
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class CreateRoutine extends AppCompatActivity implements Serializable, DatePickerDialog.OnDateSetListener {
+public class CreateRoutine extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     // Declaring elements
     private EditText txtEnterSessionName;
