@@ -13,7 +13,7 @@ public class Planner {
 
     private List<Session> sessionList;
     private List<Routine> routineList;
-
+    private List<Exercise> exerciseList;
 
     public Planner() {
         this.sessionList = new ArrayList<>();
@@ -38,6 +38,10 @@ public class Planner {
      */
     public void addSession(String sessionName, LocalDate date, int sessionImage){
         sessionList.add(new Session(sessionName, date, sessionImage));
+    }
+
+    public void addSession(String sessionName, LocalDate date, List<Exercise> list){
+        sessionList.add(new Session(sessionName, date, list));
     }
 
     public List<Session> getSessionList() {

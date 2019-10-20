@@ -46,6 +46,12 @@ public class Session {
         this.sessionImage = sessionImage;
     }
 
+    public Session(String name, LocalDate date, List<Exercise> list) {
+        this.name = name;
+        this.exerciseList = list;
+        this.date = date;
+    }
+
     /**
      * Adds an observer to the session
      *

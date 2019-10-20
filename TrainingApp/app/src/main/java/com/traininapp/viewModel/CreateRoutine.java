@@ -14,19 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.traininapp.Model.Database.CarExTable;
-import com.traininapp.Model.Database.DatabaseHelper;
-import com.traininapp.Model.Database.RoutineTable;
-import com.traininapp.Model.Database.StrExTable;
-import com.traininapp.Model.Planning.CardioExercise;
+import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.Routine;
-import com.traininapp.Model.Planning.StrengthExercise;
+import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
 
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +33,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
         private EditText txtEnterRoutineName;
 
         //List for all created fragments
-       private List<FragStrRow> listStrFrag = new ArrayList<>();
+        private List<FragStrRow> listStrFrag = new ArrayList<>();
        private List<FragCarRow> listCarFrag = new ArrayList<>();
 
        private Repository repository;
@@ -57,8 +53,8 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
         //boolean to see which type of exercise is currently selected
         private boolean isStrength = true;
 
-        private StrExTable strExTable;
-        private CarExTable carExTable;
+/*        private StrExTable strExTable;
+        private CarExTable carExTable;*/
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +70,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
             final LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
             final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
-            //txtEnterRoutineName = findViewById(R.id.txtEnterRoutineNameID);
+            txtEnterRoutineName = findViewById(R.id.txtEnterRoutineNameID);
 
             //hide the titles for cardio exercises when activity starts
             rowCarExerciseInfoID.setVisibility(View.GONE);
@@ -110,14 +106,16 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                 }
             });
 
+            // Clicking the Done button, directing the user to the Upcoming session view
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    openActivity();
+                    onDoneClick();
 
                 }
             });
 
+            // Clicking on the Save button
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -141,14 +139,16 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                     //if no fragments returned null and name is unique
                     if (control == true) {
 
+                        repository.getUser().getPlanner().addSession(routineName, LocalDate.now(), exerciseList);
+
                         //Give feedback that the routine has been saved
-                        String toastMessage = "Routine: " + routineName + " has been saved!";
+                        String toastMessage = "Session: " + routineName + " has been saved!";
                         Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
-                        repository.getUser().addRoutine(routineName, exerciseList);
-                        RoutineTable routineTable = new RoutineTable(getApplicationContext());
+
+                        /*RoutineTable routineTable = new RoutineTable(getApplicationContext());
                         routineTable.insertRoutineData(routineName);
                         insertStrExInDB(routineName);
-                        insertCarExInDB(routineName);
+                        insertCarExInDB(routineName);*/
 
                         txtEnterRoutineName.setText("");
                     }
@@ -157,8 +157,8 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
     }
 
         //open new activity
-        public void openActivity() {
-            Intent intent = new Intent(this, CreateSession.class);
+        public void onDoneClick() {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
 
@@ -222,7 +222,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
             }
         }
 
-        public void insertStrExInDB(String name){
+/*        public void insertStrExInDB(String name){
             for(Exercise exercise : exerciseList) {
                 strExTable = new StrExTable(getApplicationContext());
                 if (exercise instanceof StrengthExercise) {
@@ -233,9 +233,9 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                             ((StrengthExercise) exercise).getReps());
                 }
             }
-        }
+        }*/
 
-         public void insertCarExInDB(String name){
+/*         public void insertCarExInDB(String name){
              for(Exercise exercise : exerciseList) {
                  carExTable = new CarExTable(getApplicationContext());
                  if (exercise instanceof CardioExercise) {
@@ -246,7 +246,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                  }
              }
 
-         }
+         }*/
 
          public void fragStrToStrExList(){
              //go through the list of all created strength fragments
