@@ -149,7 +149,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         // Updating selectedDate to the date selected by user
         selectedDate = LocalDate.of(year, month, dayOfMonth);
         setDate(currentDateString,selectedDate);
-
     }
 
     public void setDate(String currentDateString, LocalDate date){

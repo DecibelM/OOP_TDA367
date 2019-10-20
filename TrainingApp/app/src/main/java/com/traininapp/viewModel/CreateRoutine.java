@@ -1,16 +1,20 @@
 package com.traininapp.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -18,18 +22,22 @@ import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
+import com.traininapp.View.DatePickerFragment;
 
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class CreateRoutine extends AppCompatActivity implements Serializable {
+public class CreateRoutine extends AppCompatActivity implements Serializable, DatePickerDialog.OnDateSetListener {
 
     // Declaring elements
     private EditText txtEnterSessionName;
-    private Button btnAddNewExercise, btnDone;
+    private TextView txtSelectedDate;
+    private Button btnAddNewExercise, btnDone, btnSelectDate;
 
     // Lists for created fragments
     private List<FragStrRow> listStrFrag = new ArrayList<>();
@@ -37,6 +45,9 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
     // List for exercises
     private List<Exercise> exerciseList = new ArrayList<>();
+
+    // Date of session, set to today's date by default
+    private LocalDate selectedDate = LocalDate.now();
 
     // Repo
     private Repository repository;
@@ -66,9 +77,14 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
         ToggleButton togCardioOrStrength = findViewById(R.id.togCardioOrStrengthID);
         btnAddNewExercise = findViewById(R.id.btnAddExerciseID);
         btnDone = findViewById(R.id.btnDoneID);
+        btnSelectDate = findViewById(R.id.btnSelectDateID);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
+        txtSelectedDate = findViewById(R.id.txtSelectedDateID);
         final LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
         final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
+
+        // Updating text to match selectedDate, today's date by default
+        txtSelectedDate.setText(selectedDate.toString());
 
         //hide the titles for cardio exercises when activity starts
         rowCarExerciseInfoID.setVisibility(View.GONE);
@@ -104,6 +120,15 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
             }
         });
 
+        // Clicking the Date button, directs the user to a calendar
+        btnSelectDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+            }
+        });
+
         // Clicking the Done button, saving Session and directing the user to the Upcoming session view
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +136,25 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                 onDoneClick();
             }
         });
+    }
+
+    /**
+     * Method which updates selectedDate based on user input
+     * @param datePicker -
+     * @param year Year
+     * @param month Month
+     * @param dayOfMonth Day of month
+     */
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+        // Updating selectedDate to the date selected by user
+        selectedDate = LocalDate.of(year, month, dayOfMonth);
+        txtSelectedDate.setText(selectedDate.toString());
     }
 
     /**
@@ -141,7 +185,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
         if (control == true) {
 
             // Adding Session to users list
-            repository.getUser().getPlanner().addSession(sessionName, LocalDate.now(), exerciseList);
+            repository.getUser().getPlanner().addSession(sessionName, selectedDate, exerciseList);
 
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
