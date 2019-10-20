@@ -16,7 +16,6 @@ import android.widget.ToggleButton;
 
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
 
@@ -66,11 +65,10 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
             ToggleButton togCardioOrStrength = findViewById(R.id.togCardioOrStrengthID);
             Button btnAddnewExersice = findViewById(R.id.btnAddExerciseID);
             Button btnDone = findViewById(R.id.btnDoneID);
-            Button btnSave = findViewById(R.id.btnSaveID);
 
             final LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
             final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
-            txtEnterRoutineName = findViewById(R.id.txtEnterRoutineNameID);
+            txtEnterRoutineName = findViewById(R.id.txtEnterSessionNameID);
 
             //hide the titles for cardio exercises when activity starts
             rowCarExerciseInfoID.setVisibility(View.GONE);
@@ -111,53 +109,46 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                 @Override
                 public void onClick(View v) {
                     onDoneClick();
-
                 }
             });
+    }
 
-            // Clicking on the Save button
-            btnSave.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        //open new activity
+        public void onDoneClick() {
 
-                    //Get the routinename that the user inputted
-                    String routineName = txtEnterRoutineName.getText().toString();
+            //Get the routinename that the user inputted
+            String routineName = txtEnterRoutineName.getText().toString();
 
-                    //Remove all previously added exercises
-                    exerciseList.clear();
-                    //Set boolean control true, used for seeing if
-                    //everything goes okay when saving the routine
-                    control = true;
+            //Remove all previously added exercises
+            exerciseList.clear();
+            //Set boolean control true, used for seeing if
+            //everything goes okay when saving the routine
+            control = true;
 
 
-                    fragStrToStrExList();
-                    fragCarToCarExList();
+            fragStrToStrExList();
+            fragCarToCarExList();
 
-                    checkName(routineName);
-                    checkNameLength(routineName);
+            checkName(routineName);
+            checkNameLength(routineName);
 
-                    //if no fragments returned null and name is unique
-                    if (control == true) {
+            //if no fragments returned null and name is unique
+            if (control == true) {
 
-                        repository.getUser().getPlanner().addSession(routineName, LocalDate.now(), exerciseList);
+                repository.getUser().getPlanner().addSession(routineName, LocalDate.now(), exerciseList);
 
-                        //Give feedback that the routine has been saved
-                        String toastMessage = "Session: " + routineName + " has been saved!";
-                        Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
+                //Give feedback that the routine has been saved
+                String toastMessage = "Session: " + routineName + " has been saved!";
+                Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
 
                         /*RoutineTable routineTable = new RoutineTable(getApplicationContext());
                         routineTable.insertRoutineData(routineName);
                         insertStrExInDB(routineName);
                         insertCarExInDB(routineName);*/
 
-                        txtEnterRoutineName.setText("");
-                    }
-                }
-        });
-    }
+                txtEnterRoutineName.setText("");
+            }
 
-        //open new activity
-        public void onDoneClick() {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }

@@ -29,22 +29,13 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
 
-    <Button
-        android:id="@+id/btnSaveID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Save"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnDoneID"
-        app:layout_constraintStart_toEndOf="@+id/btnDoneID" />
-
     <EditText
-        android:id="@+id/txtEnterRoutineNameID"
+        android:id="@+id/txtEnterSessionNameID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
         android:layout_marginTop="64dp"
-        android:hint="Enter routine name"
+        android:hint="Session name"
         android:inputType="text"
         android:maxWidth="170dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -186,7 +177,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Create routine"
+        android:text="Create session"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -203,6 +194,6 @@
         android:textOff=""
         android:textOn=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEnterRoutineNameID" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEnterSessionNameID" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
