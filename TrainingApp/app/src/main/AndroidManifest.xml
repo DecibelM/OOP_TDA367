@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".viewModel.CreateSession"></activity>
+        <activity android:name=".viewModel.CreateSession2"></activity>
         <activity
             android:name=".viewModel.CreateRoutine"
             android:windowSoftInputMode="adjustPan" />

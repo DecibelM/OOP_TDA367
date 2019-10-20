@@ -179,7 +179,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
             //Begin the transaction, to start doing something with the fragment
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             //Add the created fragment to "displayRowsID"
-            fragmentTransaction.add(R.id.displayRowsID, fragment);
+            fragmentTransaction.add(R.id.displayStrRowsID, fragment);
             //Add it to the list of all created Cardio fragments
             listCarFrag.add(fragment);
             //Commit and finish the FragmentTransaction
@@ -196,7 +196,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
             //Begin the transaction, to start doing something with the fragment
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             //Add the created fragment to "displayRowsID"
-            fragmentTransaction.add(R.id.displayRowsID, fragment);
+            fragmentTransaction.add(R.id.displayStrRowsID, fragment);
             //Add it to the list of all created Strength fragments
             listStrFrag.add(fragment);
             //Commit and finish the FragmentTransaction
