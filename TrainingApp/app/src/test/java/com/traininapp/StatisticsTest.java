@@ -1,6 +1,5 @@
 package com.traininapp;
 
-import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Statistics.Results;
 import com.traininapp.Model.Planning.Exercise;

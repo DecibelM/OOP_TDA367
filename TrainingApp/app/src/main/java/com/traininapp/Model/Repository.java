@@ -1,12 +1,5 @@
 package com.traininapp.Model;
 
-import com.traininapp.Model.Planning.Planner;
-import com.traininapp.Model.Statistics.IGoal;
-import com.traininapp.Model.Statistics.IStat;
-import com.traininapp.viewModel.IStatistic;
-
-import java.util.List;
-
 public class Repository {
 
     private User user;
