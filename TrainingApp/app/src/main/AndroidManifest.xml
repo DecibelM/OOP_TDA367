@@ -15,6 +15,11 @@
             android:name=".viewModel.CreateRoutine"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".viewModel.AddSession"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".viewModel.SelectedSession"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>

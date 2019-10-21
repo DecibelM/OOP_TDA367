@@ -1,17 +1,12 @@
 package com.traininapp;
 
-import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
-import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
-import com.traininapp.Model.Planning.StrengthExercise;
-import com.traininapp.viewModel.CalendarViewModel;
-import com.traininapp.viewModel.UpcomingSessionsViewModel;
+import com.traininapp.Model.Planning.Routine;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -20,14 +15,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    Repository model;
-    CalendarViewModel cvm;
-    UpcomingSessionsViewModel upcomingSessionsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,32 +33,73 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        //model = new Repository();
-        //cvm = new CalendarViewModel(model);
-        //upcomingSessionsViewModel = new UpcomingSessionsViewModel(model);
+        // Initializing the singleton repo
         Repository repo = Repository.getInstance();
 
+        // Fetching the Users planner
         Planner planner = repo.getUser().getPlanner();
+
+
+        // TODO Gör detta till en metod endast?
+        // Adding Exercises to Planner's exerciseList
+        if (planner.getExerciseList().isEmpty()){
+            initializeExercises(planner);
+        }
+
+        // Adding dummy Routines
+        if (repo.getUser().getRoutineList().isEmpty()){
+            initializeDummyRoutines(planner);
+        }
+
+        // Adding dummy Sessions
+        if (planner.getSessionList().isEmpty()){
+            initializeDummySessions(planner);
+        }
+
+    }
+
+    /**
+     * Method to initialize the Planner's list with pre-made exercises
+     * @param planner The User's Planner
+     */
+    private void initializeExercises(Planner planner){
+
+        planner.addExercise(new Exercise("Barbell row"));
+        planner.addExercise(new Exercise("Deadlift"));
+        planner.addExercise(new Exercise("Squat"));
+        planner.addExercise(new Exercise("Bench press"));
+        planner.addExercise(new Exercise("Overhead press"));
+
+    }
+
+    private void initializeDummyRoutines(Planner planner) {
+
+        // Creating Routine A and Routine B for StrongLifts 5x5
+        Routine routineA = new Routine("5x5 Routine A");
+        Routine routineB = new Routine("5x5 Routine B");
+
+        // Adding Exercises to Routine A
+        routineA.addExerciseToList(planner.getExercise("Squat"));
+        routineA.addExerciseToList(planner.getExercise("Overhead press"));
+        routineA.addExerciseToList(planner.getExercise("Deadlift"));
+
+        // Adding Exercises to Routine B
+        routineB.addExerciseToList(planner.getExercise("Squat"));
+        routineA.addExerciseToList(planner.getExercise("Bench press"));
+        routineA.addExerciseToList(planner.getExercise("Barbell row"));
+
+        // Adding Routines to Planner's routineList
+        planner.addRoutine(routineA);
+        planner.addRoutine(routineB);
+
+    }
+
+    private void initializeDummySessions(Planner planner){
+
         planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
         planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
         planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
         planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
-        planner.addSession("Löpning", LocalDate.of(2019,10,7));
-        planner.addSession("Styrketräning", LocalDate.of(2019,10,7));
-        planner.addSession("Yoga", LocalDate.of(2019,10,8));
-        planner.addSession("Armträning", LocalDate.of(2019,10,9));
-        planner.addSession("Ben 1", LocalDate.of(2019,10,11));
-        planner.addSession("Ben 2", LocalDate.of(2019,10,11));
-        planner.addSession("Ben 3", LocalDate.of(2019,10,11));
 
-
-    }
-
-    public CalendarViewModel getCvm() {
-        return cvm;
-    }
-
-    public UpcomingSessionsViewModel getUpcomingSessionsViewModel(){
-        return upcomingSessionsViewModel;
     }
 }
