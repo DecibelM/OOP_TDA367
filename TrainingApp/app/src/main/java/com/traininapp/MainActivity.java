@@ -1,18 +1,10 @@
 package com.traininapp;
 
-import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
-import com.traininapp.Model.Planning.CardioExercise;
-import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
-import com.traininapp.Model.Planning.Session;
-import com.traininapp.Model.Planning.StrengthExercise;
-import com.traininapp.viewModel.CalendarViewModel;
-import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -23,9 +15,6 @@ import androidx.navigation.ui.NavigationUI;
 import java.time.LocalDate;
 
 public class MainActivity extends AppCompatActivity {
-    
-    CalendarViewModel cvm;
-    UpcomingSessionsViewModel upcomingSessionsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +31,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        //model = new Repository();
-        //cvm = new CalendarViewModel(model);
-        //upcomingSessionsViewModel = new UpcomingSessionsViewModel(model);
         Repository repo = Repository.getInstance();
-
-
         Planner planner = repo.getUser().getPlanner();
 
+        // Adding dummy sessions 
         if (planner.getSessionList().isEmpty()){
             planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
             planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
@@ -60,13 +45,5 @@ public class MainActivity extends AppCompatActivity {
         // Print details of session (for checking only)
         planner.printSessionDetails();
 
-    }
-
-    public CalendarViewModel getCvm() {
-        return cvm;
-    }
-
-    public UpcomingSessionsViewModel getUpcomingSessionsViewModel(){
-        return upcomingSessionsViewModel;
     }
 }
