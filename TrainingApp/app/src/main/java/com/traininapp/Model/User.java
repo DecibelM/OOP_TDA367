@@ -4,11 +4,11 @@ import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.Session;
-import com.traininapp.Model.Statistics.Goal;
+import com.traininapp.Model.Statistics.IGoal;
+import com.traininapp.Model.Statistics.IStat;
 import com.traininapp.Model.Statistics.Results;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +19,6 @@ import java.util.List;
  */
 public class User {
 
-    private List<Goal> goalList;
     private Planner planner;
     private List<Routine> routineList;
     private Routine routine;
@@ -30,7 +29,6 @@ public class User {
      * @param planner the planner containing planned sessions
      */
     public User( Planner planner) {
-        this.goalList = new ArrayList<>();
         this.planner = planner;
         routineList = new ArrayList<>();
         this.results = new Results();
@@ -42,7 +40,7 @@ public class User {
 
     public void addSession(String name, LocalDate date, int image){
         Session s = new Session(name, date, image);
-        s.addObserver(results.getStatistic());
+        s.addObserver(results);
         planner.getSessionList().add(s);
     }
 
@@ -60,9 +58,11 @@ public class User {
         }
     }
 
-    public List<Goal> getGoalList() {
-        return goalList;
+    public List<IGoal> getGoalList() {
+        return results.getGoalList();
     }
+
+    public List<IStat> getStatList(){ return results.getStatList(); }
 
     public Planner getPlanner() {
         return planner;
@@ -71,4 +71,6 @@ public class User {
     public List<Routine> getRoutineList() {
         return routineList;
     }
+
+
 }

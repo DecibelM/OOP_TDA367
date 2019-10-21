@@ -27,13 +27,13 @@ import java.util.List;
  */
 public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<IStatistic> dataList;
+    private List<IStatistic> dataList;
 
     /**
      * This is the constructor for the class StatisticsAdapter
      * @param dataList A list of statistics and/or goals
      */
-    public StatisticsAdapter(ArrayList<IStatistic> dataList) {
+    public StatisticsAdapter(List<IStatistic> dataList) {
         this.dataList = dataList;
     }
 
@@ -123,7 +123,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          * @param statisticCard an instance of the Statistics
          */
         void drawGraph(StatisticCard statisticCard){
-            List<Integer> statistics = statisticCard.getStatistics();
+            List<Double> statistics = statisticCard.getStatistics();
             List<Integer> dates = new ArrayList<>();
 
             DataPoint[] dataPoints = new DataPoint[statistics.size()];
@@ -172,8 +172,8 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             GoalStatCard sCard = (GoalStatCard) dataList.get(position);
 
             goalName.setText(sCard.getName());
-            goalTarget.setText(Integer.toString(sCard.getTarget()));
-            goalProgress.setText(Integer.toString(sCard.getProgress()));
+            goalTarget.setText(Double.toString(sCard.getTarget()));
+            goalProgress.setText(Double.toString(sCard.getProgress()));
             // bind data to the views
             // textView.setText()...
 

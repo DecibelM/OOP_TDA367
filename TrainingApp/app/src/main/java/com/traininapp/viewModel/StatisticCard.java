@@ -12,7 +12,7 @@ import java.util.List;
 public class StatisticCard implements IStatistic {
 
     String statisticName;
-    private List<Integer> statistics;
+    private List<Double> statistics;
     private List<Long> dates;
 
     /**
@@ -21,7 +21,7 @@ public class StatisticCard implements IStatistic {
      * @param statistics
      * @param dates
      */
-    public StatisticCard(String statisticName, ArrayList<Integer> statistics, ArrayList<Long> dates) {
+    public StatisticCard(String statisticName, List<Double> statistics, List<Long> dates) {
         this.statisticName = statisticName;
         this.statistics = statistics;
         this.dates = dates;
@@ -53,7 +53,7 @@ public class StatisticCard implements IStatistic {
      * @param statistic the statistig, like weight distance etc.
      * @param date the date of the recorded statistic.
      */
-    public void addStatistics(Integer statistic, Date date){
+    public void addStatistics(Double statistic, Date date){
         statistics.add(statistic);
         dates.add(date.getTime());
     }
@@ -61,7 +61,7 @@ public class StatisticCard implements IStatistic {
     /**
      * @return returns a list of statistics
      */
-    public ArrayList<Integer> getStatistics() {
+    public ArrayList<Double> getStatistics() {
         return new ArrayList<>(statistics);
     }
 
