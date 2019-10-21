@@ -26,11 +26,11 @@ public class User {
 
     /**
      * Constructor for User class.
-     * @param planner the planner containing planned sessions
+     *
      */
-    public User( Planner planner) {
+    public User() {
         this.goalList = new ArrayList<>();
-        this.planner = planner;
+        this.planner = new Planner();
         routineList = new ArrayList<>();
         this.results = new Results();
     }
@@ -55,6 +55,7 @@ public class User {
         for(Routine r : routineList){
             if(name.equals(r.getName())){
                 routineList.remove(r);
+                return;
             }
         }
     }

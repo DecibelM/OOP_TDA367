@@ -40,11 +40,4 @@ public class PlannerTest {
     public void getSessionList() {
     }
 
-    @Test
-    public void getRoutineList() {
-    }
-
-    @Test
-    public void getExerciseList() {
-    }
 }
