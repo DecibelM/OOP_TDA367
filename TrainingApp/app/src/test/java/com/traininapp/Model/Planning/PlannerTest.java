@@ -19,7 +19,6 @@ public class PlannerTest {
 
     private List<Session> sessionList = new ArrayList<>();
     private List<Routine> routineList = new ArrayList<>();
-    private List<Exercise> exerciseList = planner.getExerciseList();
 
     @Test
     public void addSession() {
@@ -35,27 +34,6 @@ public class PlannerTest {
 
     @Test
     public void addExercise() {
-    }
-
-    @Test
-    public void getExercise() {
-
-        // Creating Exercise objects
-        Exercise barbellrow = new Exercise("Barbell row");
-        Exercise squat = new Exercise("Squat");
-        Exercise deadlift = new Exercise("Deadlift");
-
-        // Adding Exercises to Planner's list
-        exerciseList.add(barbellrow);
-        exerciseList.add(squat);
-        exerciseList.add(deadlift);
-
-        // Creating test Exercise object
-        Exercise barbellrowTest = planner.getExercise("Barbell row");
-
-        // Testing if barbellrowTest is same as barbellrow
-        assertEquals(barbellrowTest, barbellrow);
-        assertNotEquals(barbellrowTest, squat);
     }
 
     @Test
