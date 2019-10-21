@@ -58,6 +58,5 @@ public class StrExTable {
         SQLiteDatabase db = myDb.getWritableDatabase();
         return db.delete(myDb.getStrexTableName(), "ID = ?", new String[] {id});
 
-
     }
 }

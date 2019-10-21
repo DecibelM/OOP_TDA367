@@ -43,11 +43,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+STREX_TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+CAREX_TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+GOAL_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS "+SESSION_TABLE);
 
         onCreate(db);
     }
-
-
 
     //Get the names of all tables
     public String getStrexTableName(){
@@ -63,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public String getSessionTable(){
-        return GOAL_TABLE;
+        return SESSION_TABLE;
     }
 
 }

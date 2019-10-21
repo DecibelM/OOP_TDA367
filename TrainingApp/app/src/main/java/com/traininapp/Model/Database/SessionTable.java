@@ -51,6 +51,5 @@ public class SessionTable {
         SQLiteDatabase db = myDb.getWritableDatabase();
         return db.delete(myDb.getSessionTable(), "ID = ?", new String[] {id});
 
-
     }
 }

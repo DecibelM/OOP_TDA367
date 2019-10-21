@@ -51,6 +51,5 @@ public class GoalTable {
         SQLiteDatabase db = myDb.getWritableDatabase();
         return db.delete(myDb.getGoalTableName(), "ID = ?", new String[] {id});
 
-
     }
 }
