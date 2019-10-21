@@ -1,4 +1,4 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;

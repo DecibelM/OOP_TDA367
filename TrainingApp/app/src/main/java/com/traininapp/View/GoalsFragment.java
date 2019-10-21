@@ -14,13 +14,10 @@ import android.view.ViewGroup;
 
 import com.traininapp.R;
 import com.traininapp.adapter.StatisticsAdapter;
-import com.traininapp.viewModel.GoalStatCard;
-import com.traininapp.viewModel.IStatistic;
-import com.traininapp.viewModel.StatisticCard;
+import com.traininapp.adapter.IStatistic;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Keeps hold of the goals page or my page. Also holds the recyclerview along with its adapter and Layout manager.

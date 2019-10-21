@@ -1,4 +1,4 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Routine;
 import com.traininapp.R;
+import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
 import java.sql.Time;
 import java.time.LocalDate;
@@ -54,7 +55,7 @@ public class SelectedSession extends AppCompatActivity {
     }
 
     public void sessionDone(){
-        Intent intent = new Intent(this,UpcomingSessionsViewModel.class);
+        Intent intent = new Intent(this, UpcomingSessionsViewModel.class);
         startActivity(intent);
     }
 

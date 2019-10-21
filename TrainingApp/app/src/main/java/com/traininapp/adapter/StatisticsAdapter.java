@@ -3,8 +3,6 @@ package com.traininapp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,9 +12,8 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.traininapp.R;
-import com.traininapp.viewModel.GoalStatCard;
-import com.traininapp.viewModel.IStatistic;
-import com.traininapp.viewModel.StatisticCard;
+import com.traininapp.View.GoalStatCard;
+import com.traininapp.View.StatisticCard;
 
 import java.util.ArrayList;
 import java.util.List;

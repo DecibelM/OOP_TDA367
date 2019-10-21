@@ -16,9 +16,6 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.R;
-import com.traininapp.viewModel.AddSession;
-import com.traininapp.viewModel.CreateSession;
-import com.traininapp.viewModel.SelectedSession;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
 public class UpcomingFragment extends Fragment {
