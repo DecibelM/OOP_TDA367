@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Repository;
@@ -32,7 +33,8 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
     // Declaring elements
     private EditText txtEnterSessionName;
     private TextView txtSelectedDate;
-    private Button btnAddStrength, btnDone, btnSelectDate, btnAddCardio;
+    private Button btnAddStrength, btnSelectDate, btnAddCardio;
+    private FloatingActionButton btnDone;
 
     // Lists for created fragments
     private List<FragStrRow> listStrFrag = new ArrayList<>();
@@ -75,26 +77,21 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
         btnSelectDate = findViewById(R.id.btnSelectDateID);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
         txtSelectedDate = findViewById(R.id.txtSelectedDateID);
-        final LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
-        final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
 
         // Updating text to match selectedDate, today's date by default
         txtSelectedDate.setText(selectedDate.toString());
 
-        //hide the titles for cardio exercises when activity starts
-        rowCarExerciseInfoID.setVisibility(View.GONE);
-
         btnAddStrength.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFragRow(true);
+                createStrFragRow();
             }
         });
 
         btnAddCardio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFragRow(false);
+                createCarFragRow();
             }
         });
 
@@ -118,9 +115,10 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
 
     /**
      * Method which updates selectedDate based on user input
+     *
      * @param datePicker -
-     * @param year Year
-     * @param month Month
+     * @param year       Year
+     * @param month      Month
      * @param dayOfMonth Day of month
      */
     @Override
@@ -186,7 +184,7 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
     /**
      * Method which adds another row fragment, allowing the user to add exercises
      */
-    public void createFragRow(Boolean isStrength) {
+    public void createCarFragRow() {
 
         // Create the fragment
         Fragment fragment;
@@ -194,17 +192,32 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
         //Begin the transaction, to start doing something with the fragment
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-        if (isStrength) {
-            fragment = new FragStrRow();
-            listStrFrag.add((FragStrRow) fragment);
-
-        } else {
-            fragment = new FragCarRow();
-            listCarFrag.add((FragCarRow) fragment);
-        }
+        fragment = new FragCarRow();
+        listCarFrag.add((FragCarRow) fragment);
 
         // Add the created fragment to "displayRowsID"
-        fragmentTransaction.add(R.id.displayRowsID, fragment);
+        fragmentTransaction.add(R.id.displayCarRowsID, fragment);
+
+        // Commit and finish the FragmentTransaction
+        fragmentTransaction.commit();
+    }
+
+    /**
+     * Method which adds Strength exercises row fragment, allowing the user to add exercises
+     */
+    public void createStrFragRow() {
+
+        // Create the fragment
+        Fragment fragment;
+
+        //Begin the transaction, to start doing something with the fragment
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragment = new FragStrRow();
+        listStrFrag.add((FragStrRow) fragment);
+
+        // Add the created fragment to "displayRowsID"
+        fragmentTransaction.add(R.id.displayStrRowsID, fragment);
 
         // Commit and finish the FragmentTransaction
         fragmentTransaction.commit();
@@ -242,6 +255,7 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
 
     /**
      * Method to check if string is at least one character long. If not, setting control to false
+     *
      * @param name String input from user
      */
     public void checkNameLength(String name) {
@@ -293,7 +307,7 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
                 // Remove exercises of deleted fragments
                 removeDeletedExercises();
 
-            // If it had returned null
+                // If it had returned null
             } else {
 
                 //run failsave and break from loop
@@ -320,7 +334,7 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
                 // Remove exercises of deleted fragments
                 removeDeletedExercises();
 
-            // If it had returned null
+                // If it had returned null
             } else {
 
                 // Run failsave and break from loop
