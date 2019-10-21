@@ -3,8 +3,6 @@ package com.traininapp.View;
 
 import com.traininapp.adapter.IStatistic;
 
-import java.util.List;
-
 /**
 * This class keeps hold of the goals and the progression toeards them
 *

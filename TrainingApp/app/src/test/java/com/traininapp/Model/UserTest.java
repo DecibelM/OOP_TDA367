@@ -2,7 +2,6 @@ package com.traininapp.Model;
 
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.StrengthExercise;
 

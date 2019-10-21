@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.Routine;
 import com.traininapp.R;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 

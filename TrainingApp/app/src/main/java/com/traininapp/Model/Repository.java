@@ -1,7 +1,5 @@
 package com.traininapp.Model;
 
-import com.traininapp.Model.Planning.Planner;
-
 public class Repository {
 
     private User user;

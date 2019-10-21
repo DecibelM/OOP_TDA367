@@ -9,7 +9,6 @@ import com.traininapp.Model.Statistics.Results;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
