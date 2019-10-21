@@ -17,10 +17,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "trainingapp.db";
 
     //All tables
-    private static final String ROUTINE_TABLE = "routine_table";
     private static final String STREX_TABLE = "strex_table";
     private static final String CAREX_TABLE = "carex_table";
     private static final String GOAL_TABLE = "goal_table";
+    private static final String SESSION_TABLE = "session_table";
 
 
     public DatabaseHelper(Context context) {
@@ -30,17 +30,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Create the tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + ROUTINE_TABLE +" (NAME TEXT PRIMARY KEY)");
-        db.execSQL("create table " + STREX_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, ROUTINE_NAME TEXT, NAME TEXT, WEIGHT REAL, SETS INTEGER, REPS INTEGER)");
-        db.execSQL("create table " + CAREX_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, ROUTINE_NAME TEXT, NAME TEXT, DISTANCE REAL, TIME INTEGER)");
-        db.execSQL("create table " + GOAL_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, GOAL_NAME TEXT, TARGET REALZ, PROGRESS REAL)");
+        db.execSQL("create table " + STREX_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, SESSION_ID INTEGER, NAME TEXT, WEIGHT REAL, SETS INTEGER, REPS INTEGER)");
+        db.execSQL("create table " + CAREX_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, SESSION_ID INTEGER, NAME TEXT, DISTANCE REAL, TIME INTEGER)");
+        db.execSQL("create table " + GOAL_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, TARGET REAL, PROGRESS REAL)");
+        db.execSQL("create table " + SESSION_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, DATE TEXT)");
 
     }
 
     //Upgrade table
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP TABLE IF EXISTS "+ROUTINE_TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+STREX_TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+CAREX_TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+GOAL_TABLE);
@@ -55,15 +54,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return STREX_TABLE;
     }
 
-    public String getRoutineTableName(){
-        return ROUTINE_TABLE;
-    }
-
     public String getCarExTableName(){
         return CAREX_TABLE;
     }
 
     public String getGoalTableName(){
+        return GOAL_TABLE;
+    }
+
+    public String getSessionTable(){
         return GOAL_TABLE;
     }
 

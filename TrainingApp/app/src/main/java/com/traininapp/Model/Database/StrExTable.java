@@ -21,7 +21,7 @@ public class StrExTable {
     }
 
 
-    public void insertStrExData(String routine_name, String name,double weight, int sets, int reps){
+    public void insertData(String routine_name, String name,double weight, int sets, int reps){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, routine_name);
@@ -33,7 +33,7 @@ public class StrExTable {
         db.insert(myDb.getStrexTableName(), null, contentValues);
     }
 
-    public Cursor getStrExData(){
+    public Cursor getData(){
         SQLiteDatabase db = myDb.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+myDb.getStrexTableName(), null);
         return res;
@@ -49,14 +49,14 @@ public class StrExTable {
         contentValues.put(COL_5, sets);
         contentValues.put(COL_6, reps);
 
-        db.update(myDb.getRoutineTableName(), contentValues,
+        db.update(myDb.getStrexTableName(), contentValues,
                 "ID = ?",new String[] {String.valueOf(id)});
         return true;
     }
 
     public Integer deleteData(String id){
         SQLiteDatabase db = myDb.getWritableDatabase();
-        return db.delete(myDb.getRoutineTableName(), "ID = ?", new String[] {id});
+        return db.delete(myDb.getStrexTableName(), "ID = ?", new String[] {id});
 
 
     }

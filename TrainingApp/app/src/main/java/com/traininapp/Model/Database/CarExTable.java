@@ -18,7 +18,7 @@ public class CarExTable {
         this.myDb = new DatabaseHelper(context);
     }
 
-    public void insertCarExData(String routine_name, String name, double distance, double time){
+    public void insertData(String routine_name, String name, double distance, double time){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, routine_name);
@@ -29,7 +29,7 @@ public class CarExTable {
         db.insert(myDb.getCarExTableName(), null, contentValues);
     }
 
-    public Cursor getCarExData(){
+    public Cursor getData(){
         SQLiteDatabase db = myDb.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+myDb.getCarExTableName(), null);
         return res;
@@ -44,14 +44,14 @@ public class CarExTable {
         contentValues.put(COL_4, distance);
         contentValues.put(COL_5, time);
 
-        db.update(myDb.getRoutineTableName(), contentValues,
+        db.update(myDb.getCarExTableName(), contentValues,
                 "ID = ?",new String[] {String.valueOf(id)});
         return true;
     }
 
     public Integer deleteData(String id){
         SQLiteDatabase db = myDb.getWritableDatabase();
-        return db.delete(myDb.getRoutineTableName(), "ID = ?", new String[] {id});
+        return db.delete(myDb.getCarExTableName(), "ID = ?", new String[] {id});
 
 
     }

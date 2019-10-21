@@ -15,12 +15,9 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.traininapp.Model.Database.CarExTable;
-import com.traininapp.Model.Database.DatabaseHelper;
-import com.traininapp.Model.Database.RoutineTable;
 import com.traininapp.Model.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
@@ -74,7 +71,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
             final LinearLayout rowStrExerciseInfoID = findViewById(R.id.rowStrExerciseInfoID);
             final LinearLayout rowCarExerciseInfoID = findViewById(R.id.rowCarExerciseInfoID);
-            //txtEnterRoutineName = findViewById(R.id.txtEnterRoutineNameID);
+            txtEnterRoutineName = findViewById(R.id.txtEnterRoutineNameID);
 
             //hide the titles for cardio exercises when activity starts
             rowCarExerciseInfoID.setVisibility(View.GONE);
@@ -145,10 +142,10 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                         String toastMessage = "Routine: " + routineName + " has been saved!";
                         Toast.makeText(CreateRoutine.this, toastMessage, Toast.LENGTH_SHORT).show();
                         repository.getUser().addRoutine(routineName, exerciseList);
-                        RoutineTable routineTable = new RoutineTable(getApplicationContext());
-                        routineTable.insertRoutineData(routineName);
-                        insertStrExInDB(routineName);
-                        insertCarExInDB(routineName);
+                        /*RoutineTable routineTable = new RoutineTable(getApplicationContext());
+                        routineTable.insertRoutineData(routineName);*/
+                      //  insertStrExInDB(routineName);
+                    //    insertCarExInDB(routineName);
 
                         txtEnterRoutineName.setText("");
                     }
@@ -222,7 +219,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
             }
         }
 
-        public void insertStrExInDB(String name){
+   /*     public void insertStrExInDB(String name){
             for(Exercise exercise : exerciseList) {
                 strExTable = new StrExTable(getApplicationContext());
                 if (exercise instanceof StrengthExercise) {
@@ -246,7 +243,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                  }
              }
 
-         }
+         }*/
 
          public void fragStrToStrExList(){
              //go through the list of all created strength fragments

@@ -5,11 +5,10 @@ import android.database.Cursor;
 
 import com.traininapp.Model.Database.CarExTable;
 import com.traininapp.Model.Database.DatabaseHelper;
-import com.traininapp.Model.Database.RoutineTable;
+import com.traininapp.Model.Database.SessionTable;
 import com.traininapp.Model.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.Model.Repository;
 
@@ -27,18 +26,17 @@ public class Startup extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
-        DatabaseHelper myDb;
         Repository repository;
         repository = Repository.getInstance();
 
        // myDb = new DatabaseHelper(this);
-        RoutineTable routineTable = new RoutineTable(this);
+        SessionTable sessionTable = new SessionTable(this);
         StrExTable strExTable = new StrExTable(this);
         CarExTable carExTable = new CarExTable(this);
 
-        Cursor routinesInDB = routineTable.getRoutineData();
-        Cursor strExInDB = strExTable.getStrExData();
-        Cursor carExInDB = carExTable.getCarExData();
+        Cursor routinesInDB = sessionTable.getData();
+        Cursor strExInDB = strExTable.getData();
+        Cursor carExInDB = carExTable.getData();
 
         while(routinesInDB.moveToNext()){
             routinesInDB.getString(0);
