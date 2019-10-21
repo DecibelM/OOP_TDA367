@@ -72,16 +72,6 @@ public class FragCarRow extends Fragment {
 
         return v;
     }
-    /*
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.yourId).setOnClickListener(this);
-
-        // or
-        getActivity().findViewById(R.id.yourId).setOnClickListener(this);
-    }*/
-
 
     //method for creating the exercise from the inputted information
     public CardioExercise saveInfo(){
