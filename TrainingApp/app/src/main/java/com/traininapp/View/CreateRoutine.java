@@ -1,4 +1,4 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -133,7 +133,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
 
                         //if saveInfo (in FragCarRow) did not return null, add to list of exercises
                         //and if control is still true (no strengthexercises returned null)
-                        if (fr.saveInfo() != null && control == true) {
+                        if (fr.saveInfo() != null && control) {
                             exerciseList.add(fr.saveInfo());
 
                             //remove exercises of deleted fragments
@@ -148,7 +148,7 @@ public class CreateRoutine extends AppCompatActivity implements Serializable {
                     }
 
                     //if no fragments returned null
-                    if (control == true) {
+                    if (control) {
                         //Get the routinename that the user inputted
                         String routineName = txtEnterRoutineName.getText().toString();
 

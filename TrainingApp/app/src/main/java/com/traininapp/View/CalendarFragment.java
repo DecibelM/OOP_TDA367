@@ -22,9 +22,7 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.R;
-import com.traininapp.viewModel.CreateSession;
 import com.traininapp.viewModel.CalendarViewModel;
-import com.traininapp.viewModel.SelectedSession;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

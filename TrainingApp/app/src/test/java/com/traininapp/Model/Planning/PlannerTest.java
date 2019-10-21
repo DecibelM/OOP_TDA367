@@ -4,6 +4,7 @@ import com.traininapp.Model.Repository;
 
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,54 +20,18 @@ public class PlannerTest {
 
     private List<Session> sessionList = new ArrayList<>();
     private List<Routine> routineList = new ArrayList<>();
-    private List<Exercise> exerciseList = planner.getExerciseList();
 
     @Test
     public void addSession() {
+        StrengthExercise strengthExercise = new StrengthExercise("Benpress", 1,2,10);
+        CardioExercise cardioExercise = new CardioExercise("5km",2,5);
+        List<Exercise> exerciseList = new ArrayList<Exercise>();
+        exerciseList.add(strengthExercise);
+        exerciseList.add(cardioExercise);
+
+        planner.addSession("hej", exerciseList, LocalDate.now());
+        assertEquals(1,planner.getSessionList().size());
     }
 
-    @Test
-    public void addSession1() {
-    }
 
-    @Test
-    public void addRoutine() {
-    }
-
-    @Test
-    public void addExercise() {
-    }
-
-    @Test
-    public void getExercise() {
-
-        // Creating Exercise objects
-        Exercise barbellrow = new Exercise("Barbell row");
-        Exercise squat = new Exercise("Squat");
-        Exercise deadlift = new Exercise("Deadlift");
-
-        // Adding Exercises to Planner's list
-        exerciseList.add(barbellrow);
-        exerciseList.add(squat);
-        exerciseList.add(deadlift);
-
-        // Creating test Exercise object
-        Exercise barbellrowTest = planner.getExercise("Barbell row");
-
-        // Testing if barbellrowTest is same as barbellrow
-        assertEquals(barbellrowTest, barbellrow);
-        assertNotEquals(barbellrowTest, squat);
-    }
-
-    @Test
-    public void getSessionList() {
-    }
-
-    @Test
-    public void getRoutineList() {
-    }
-
-    @Test
-    public void getExerciseList() {
-    }
 }

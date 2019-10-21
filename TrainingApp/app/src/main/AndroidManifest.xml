@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".viewModel.CreateSession"></activity>
+        <activity android:name=".View.CreateSession"></activity>
         <activity
-            android:name=".viewModel.CreateRoutine"
+            android:name=".View.CreateRoutine"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".viewModel.AddSession"
+            android:name=".View.AddSession"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".viewModel.SelectedSession"
+        <activity android:name=".View.SelectedSession"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".MainActivity"
