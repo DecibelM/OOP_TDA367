@@ -25,7 +25,7 @@ public class User {
 
     /**
      * Constructor for User class.
-     * @param planner the planner containing planned sessions
+     *
      */
     public User( Planner planner) {
         this.planner = planner;
@@ -53,6 +53,7 @@ public class User {
         for(Routine r : routineList){
             if(name.equals(r.getName())){
                 routineList.remove(r);
+                return;
             }
         }
     }

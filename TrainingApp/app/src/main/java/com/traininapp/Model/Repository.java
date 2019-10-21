@@ -12,7 +12,7 @@ public class Repository {
     private User user;
 
     private Repository() {
-        this.user = new User(new Planner());
+        this.user = new User();
     }
 
 
