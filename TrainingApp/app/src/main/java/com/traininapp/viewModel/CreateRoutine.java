@@ -10,13 +10,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.Exercise;
@@ -34,7 +32,7 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
     // Declaring elements
     private EditText txtEnterSessionName;
     private TextView txtSelectedDate;
-    private Button btnAddNewExercise, btnDone, btnSelectDate;
+    private Button btnAddStrength, btnDone, btnSelectDate, btnAddCardio;
 
     // Lists for created fragments
     private List<FragStrRow> listStrFrag = new ArrayList<>();
@@ -71,8 +69,8 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
         repository = Repository.getInstance();
 
         // Initializing elements
-        ToggleButton togCardioOrStrength = findViewById(R.id.togCardioOrStrengthID);
-        btnAddNewExercise = findViewById(R.id.btnAddExerciseID);
+        btnAddCardio = findViewById(R.id.btnAddCardioExerciseID);
+        btnAddStrength = findViewById(R.id.btnAddExerciseID);
         btnDone = findViewById(R.id.btnDoneID);
         btnSelectDate = findViewById(R.id.btnSelectDateID);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
@@ -86,34 +84,17 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
         //hide the titles for cardio exercises when activity starts
         rowCarExerciseInfoID.setVisibility(View.GONE);
 
-        //depending on if toggle is enabled, hide or show relevant titles
-        //also change boolean isStrength, for creating the right exercise
-        togCardioOrStrength.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //for cardio
-                if (isChecked) {
-                    selectType(rowCarExerciseInfoID, rowStrExerciseInfoID);
-                    isStrength = false;
-                }
-                //for strength
-                else {
-                    // The toggle is disabled
-                    selectType(rowStrExerciseInfoID, rowCarExerciseInfoID);
-                    isStrength = true;
-                }
+        btnAddStrength.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createFragRow(true);
             }
         });
 
-        btnAddNewExercise.setOnClickListener(new View.OnClickListener() {
+        btnAddCardio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if strength is chosen, create strength row
-                if (isStrength) {
-                    createFragRow();
-                } else {
-                    //if strength is not chosen, create cardio row
-                    createFragRow();
-                }
+                createFragRow(false);
             }
         });
 
@@ -205,7 +186,7 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
     /**
      * Method which adds another row fragment, allowing the user to add exercises
      */
-    public void createFragRow() {
+    public void createFragRow(Boolean isStrength) {
 
         // Create the fragment
         Fragment fragment;
