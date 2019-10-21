@@ -52,4 +52,27 @@ public class Planner {
         return routineList;
     }
 
+    public void printSessionDetails(){
+
+        int i = 1;
+
+        for (Session session : sessionList){
+
+            System.out.println("");
+            System.out.print(i + ". ");
+            System.out.println("Name of session: " + session.getName());
+            System.out.println("Date of session: " + session.getDate().toString());
+
+            if (session.getExerciseList().isEmpty()) {
+                System.out.println("There are no exercises in session " + session.getName());
+            } else {
+                System.out.println("Exercises in session: ");
+                for (Exercise exercise : session.getExerciseList()){
+                    System.out.println("   " + exercise.getName());
+                }
+            }
+            i++;
+        }
+    }
+
 }

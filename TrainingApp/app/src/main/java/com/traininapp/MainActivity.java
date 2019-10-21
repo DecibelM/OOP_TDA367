@@ -57,15 +57,8 @@ public class MainActivity extends AppCompatActivity {
             planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
         }
 
-/*        planner.addSession("Löpning", LocalDate.of(2019,10,7));
-        planner.addSession("Styrketräning", LocalDate.of(2019,10,7));
-        planner.addSession("Yoga", LocalDate.of(2019,10,8));
-        planner.addSession("Armträning", LocalDate.of(2019,10,9));
-        planner.addSession("Ben 1", LocalDate.of(2019,10,11));
-        planner.addSession("Ben 2", LocalDate.of(2019,10,11));
-        planner.addSession("Ben 3", LocalDate.of(2019,10,11));*/
-
-        printSessionDetails(planner);
+        // Print details of session (for checking only)
+        planner.printSessionDetails();
 
     }
 
@@ -75,28 +68,5 @@ public class MainActivity extends AppCompatActivity {
 
     public UpcomingSessionsViewModel getUpcomingSessionsViewModel(){
         return upcomingSessionsViewModel;
-    }
-
-    public void printSessionDetails(Planner planner){
-
-        int i = 1;
-
-        for (Session session : planner.getSessionList()){
-
-            System.out.println("");
-            System.out.print(i + ". ");
-            System.out.println("Name of session: " + session.getName());
-            System.out.println("Date of session: " + session.getDate().toString());
-
-            if (session.getExerciseList().isEmpty()) {
-                System.out.println("There are no exercises in session " + session.getName());
-            } else {
-                System.out.println("Exercises in session: ");
-                for (Exercise exercise : session.getExerciseList()){
-                    System.out.println("   " + exercise.getName());
-                }
-            }
-            i++;
-        }
     }
 }
