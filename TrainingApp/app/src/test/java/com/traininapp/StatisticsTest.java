@@ -68,7 +68,9 @@ public class StatisticsTest {
     public void testUpdateObserver(){
         //Session s = new Session("Birthdaywoho", LocalDate.of(2019, 11, 02), R.drawable.workout_1);
         User user = new User(new Planner());
-        user.addSession("Birthdaywoho", LocalDate.of(2019,11,2), R.drawable.workout_1);
+        exerciseList.add(cardioExercise);
+        exerciseList.add(strengthExercise);
+        user.addSession("Birthdaywoho",exerciseList, LocalDate.of(2019,11,2));
         List<Session> sessionList = user.getPlanner().getSessionList();
         Session s = sessionList.get(0);
         s.addCardioExercise("RunRun", 20, 2);
