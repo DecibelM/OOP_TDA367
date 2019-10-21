@@ -1,7 +1,5 @@
 package com.traininapp.View;
 
-
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.traininapp.R;
 import com.traininapp.adapter.StatisticsAdapter;
@@ -54,6 +50,10 @@ public class GoalsFragment extends Fragment {
         exampleDateList.add(new Date(2019, 5, 10).getTime());                  //dummy variables to test the functionality
         exampleDateList.add(new Date(2019,5,12).getTime());               //dummy variables to test the functionality
         list.add(new StatisticCard("Strength", exampleStatList, exampleDateList));
+
+        list.add(new GoalStatCard("biceeps", 60, 30));
+        list.add(new GoalStatCard("ben", 95, 71));
+        list.add(new GoalStatCard("Vandra häck", 600, 350));//dummy variables
 
         recyclerView = (RecyclerView) view.findViewById(R.id.myPagesRecyclerViewID);
         recyclerView.setHasFixedSize(true);
