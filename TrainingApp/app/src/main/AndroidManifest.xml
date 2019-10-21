@@ -12,7 +12,7 @@
         android:name=".Startup">
         <activity android:name=".viewModel.CreateSession"></activity>
         <activity
-            android:name=".viewModel.CreateRoutine"
+            android:name=".viewModel.CreateSession2"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"

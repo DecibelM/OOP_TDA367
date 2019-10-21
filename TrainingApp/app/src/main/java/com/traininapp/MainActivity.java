@@ -21,12 +21,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    Repository model;
+    
     CalendarViewModel cvm;
     UpcomingSessionsViewModel upcomingSessionsViewModel;
 

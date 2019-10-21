@@ -3,13 +3,10 @@ package com.traininapp.viewModel;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -25,7 +22,6 @@ import com.traininapp.Model.Repository;
 import com.traininapp.View.DatePickerFragment;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Routine;
-import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
@@ -35,7 +31,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class CreateSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -161,9 +156,9 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
     }
 
-    //Open CreateRoutine
+    //Open CreateSession2
     public void openRoutine(){
-        Intent intent = new Intent(this, CreateRoutine.class);
+        Intent intent = new Intent(this, CreateSession2.class);
         startActivity(intent);
     }
 
