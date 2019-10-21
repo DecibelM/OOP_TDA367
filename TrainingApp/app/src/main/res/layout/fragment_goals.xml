@@ -4,11 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/btnAddGoalID"
+        android:layout_width="wrap_content"
+        android:layout_height="40sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4sp"
+        android:background="@drawable/button_rounded"
+        android:elevation="16dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Add goal +"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:textStyle="bold">
+
+
+    </Button>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myPagesRecyclerViewID"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="42sp"
+        android:clipToPadding="false">
+
+
 
     </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>
