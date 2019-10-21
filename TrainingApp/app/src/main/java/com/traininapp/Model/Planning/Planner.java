@@ -52,6 +52,10 @@ public class Planner {
         return routineList;
     }
 
+    /**
+     * Method used for printing details of the Sessions in Planner's list. Used only for
+     * making sure Sessions were added correctly.
+     */
     public void printSessionDetails(){
 
         int i = 1;

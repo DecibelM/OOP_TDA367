@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Repository repo = Repository.getInstance();
         Planner planner = repo.getUser().getPlanner();
 
-        // Adding dummy sessions 
+        // Adding dummy sessions
         if (planner.getSessionList().isEmpty()){
             planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
             planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
