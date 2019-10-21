@@ -22,7 +22,6 @@ public class User {
     private List<Goal> goalList;
     private Planner planner;
     private List<Routine> routineList;
-    private Routine routine;
     private Results results;
 
     /**
@@ -40,8 +39,8 @@ public class User {
         routineList.add(new Routine(name, exerciseList));
     }
 
-    public void addSession(String name, LocalDate date, int image){
-        Session s = new Session(name, date, image);
+    public void addSession(String name, List<Exercise> eList, LocalDate date){
+        Session s = new Session(name, eList,date);
         s.addObserver(results.getStatistic());
         planner.getSessionList().add(s);
     }
