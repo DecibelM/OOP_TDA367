@@ -18,6 +18,12 @@ import java.util.List;
 
 public class Startup extends Application {
 
+    /**
+     * Code running when the app starts.
+     * Creates objects of the data in
+     * the database.
+     */
+
     @Override
     public void onCreate(){
         super.onCreate();

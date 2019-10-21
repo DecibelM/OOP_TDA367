@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class RoutineTable {
     private final DatabaseHelper myDb;
 
-    private static final String COL1 = "NAME";
+    private static final String COL1 = "ID";
 
 
     public RoutineTable(Context context) {
@@ -40,10 +40,7 @@ public class RoutineTable {
 
     public Integer deleteData(String name){
         SQLiteDatabase db = myDb.getWritableDatabase();
-        return db.delete(myDb.getRoutineTableName(), "ID = ?", new String[] {name});
+        return db.delete(myDb.getRoutineTableName(), "NAME = ?", new String[] {name});
 
     }
-
-
-
 }

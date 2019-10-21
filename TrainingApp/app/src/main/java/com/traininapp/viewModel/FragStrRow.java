@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.traininapp.Model.DatabaseHelper;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
