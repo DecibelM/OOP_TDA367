@@ -1,4 +1,4 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.View.DatePickerFragment;
 import com.traininapp.R;
+import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
 import java.text.DateFormat;
 import java.time.LocalDate;

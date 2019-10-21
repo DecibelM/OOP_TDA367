@@ -1,5 +1,7 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 
+
+import com.traininapp.adapter.IStatistic;
 
 import java.util.List;
 
