@@ -42,14 +42,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
 
-                <Button
-                    android:id="@+id/btnAddStrExerciseID"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/colorPrimary"
-                    android:foreground="@android:drawable/ic_input_add"
-                    app:layout_constraintTop_toBottomOf="@+id/btnSelectDateID" />
+                <TextView
+                    android:id="@+id/txtAddStrExerciseID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="+ Add exercise"
+                    android:textColor="#ADA4A4" />
 
             </LinearLayout>
 
@@ -124,12 +123,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
 
-                <Button
-                    android:id="@+id/btnAddCarExerciseID"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/txtAddCarExerciseID"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:text="Add cardio" />
+                    android:layout_marginStart="8dp"
+                    android:text="+ Add exercise"
+                    android:textColor="#ADA4A4" />
 
             </LinearLayout>
 

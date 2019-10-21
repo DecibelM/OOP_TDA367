@@ -32,8 +32,8 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
 
     // Declaring elements
     private EditText txtEnterSessionName;
-    private TextView txtSelectedDate;
-    private Button btnAddStrength, btnSelectDate, btnAddCardio;
+    private TextView txtSelectedDate, txtAddCarExercise, txtAddStrExercise;
+    private Button btnSelectDate;
     private FloatingActionButton btnDone;
 
     // Lists for created fragments
@@ -71,24 +71,25 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
         repository = Repository.getInstance();
 
         // Initializing elements
-        btnAddCardio = findViewById(R.id.btnAddCarExerciseID);
-        btnAddStrength = findViewById(R.id.btnAddStrExerciseID);
         btnDone = findViewById(R.id.btnDoneID);
         btnSelectDate = findViewById(R.id.btnSelectDateID);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
         txtSelectedDate = findViewById(R.id.txtSelectedDateID);
 
+        txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
+        txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
+
         // Updating text to match selectedDate, today's date by default
         txtSelectedDate.setText(selectedDate.toString());
 
-        btnAddStrength.setOnClickListener(new View.OnClickListener() {
+        txtAddStrExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createStrFragRow();
             }
         });
 
-        btnAddCardio.setOnClickListener(new View.OnClickListener() {
+        txtAddCarExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createCarFragRow();
