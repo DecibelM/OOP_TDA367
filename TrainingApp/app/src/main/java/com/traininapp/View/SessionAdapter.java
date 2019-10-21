@@ -33,8 +33,14 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
     // Replaces the contents of the view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(SessionViewHolder holder, int position) {
+
+        // Setting the title/name of the session
         holder.txtSessionName.setText(sessionList.get(position).getName());
+
+        // Setting the date of the session
         holder.txtSessionDate.setText(sessionList.get(position).getDate().toString());
+
+        // Setting the image of the session
         holder.imgSessionImage.setImageResource(sessionList.get(position).getSessionImage());
     }
 

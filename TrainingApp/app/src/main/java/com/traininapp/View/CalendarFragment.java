@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CalendarView;
@@ -20,9 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.traininapp.MainActivity;
 import com.traininapp.R;
-import com.traininapp.viewModel.CreateSession;
 import com.traininapp.viewModel.CalendarViewModel;
 
 import java.text.SimpleDateFormat;
@@ -54,22 +53,29 @@ public class CalendarFragment extends Fragment {
         myDate = (TextView) view.findViewById(R.id.myDate);
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         listView = (ListView) view.findViewById(R.id.listViewCalendar);
-        emptyView = (ListView) view.findViewById(R.id.emptyViewCalendar);
         btnOpen = view.findViewById(R.id.btnOpenID);
 
         list = new ArrayList<>() ;
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
 
+
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("d - MM - yyyy");
         myDate.setText(dateFormat.format(date));
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                openSession();
+            }
+        });
 
 
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openSession();
+                openNewSession();
             }
         });
 
@@ -107,9 +113,11 @@ public class CalendarFragment extends Fragment {
             }
         }
         if (newList.isEmpty()) {
-        listView.setEmptyView(emptyView);
+            listView.setVisibility(View.INVISIBLE);
+        //listView.setEmptyView(emptyView);
         } else {
-            listView.setEmptyView(listView);
+            listView.setVisibility(View.VISIBLE);
+            //listView.setEmptyView(listView);
         }
             ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
 
@@ -117,11 +125,19 @@ public class CalendarFragment extends Fragment {
 
     }
 
-    public void openSession(){
+    public void openNewSession(){
         Intent intent = new Intent(getActivity(), CreateSession.class);
         intent.putExtra("DATE", myDate.getText());
         intent.putExtra("FROMCALENDAR", "YES");
         startActivity(intent);
+    }
+
+    public void openSession(){
+        Intent intent = new Intent(getActivity(), SelectedSession.class);
+        //intent.putExtra("DATE", myDate.getText());
+        //intent.putExtra("FROMCALENDAR", "YES");
+        startActivity(intent);
+
     }
 
 

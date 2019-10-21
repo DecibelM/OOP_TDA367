@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFF"
+        android:layout_weight="0"
+        android:gravity="center"
+        >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Session name"
+        android:id="@+id/sessionName"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="40sp"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Session Date"
+        android:id="@+id/sessionDate"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/sessionTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Session Time"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:layout_marginStart="60dp"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ExerciseName"
+            android:id="@+id/exerciseText"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/sessionWeightTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight/Time"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            android:layout_marginStart="10dp"
+            />
+
+        <TextView
+            android:id="@+id/sessionRepsDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reps/Distance"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            android:layout_marginStart="10dp"
+            />
+
+        <TextView
+            android:id="@+id/sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sets"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            android:layout_marginStart="10dp"
+            />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/border_white"
+        android:minHeight="100dp"
+        >
+
+        <TextView
+            android:id="@+id/txtDisplayRoutinesID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="display routines"
+            android:layout_marginLeft="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddRoutineID" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="vertical" >
+    <Button
+        android:id="@+id/btnDoneID"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_marginBottom="10dp"
+        android:text="Done"
+
+         />
+
+    </LinearLayout>
+
+</LinearLayout>

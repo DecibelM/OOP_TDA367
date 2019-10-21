@@ -12,9 +12,8 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.traininapp.R;
-import com.traininapp.viewModel.GoalStatCard;
-import com.traininapp.viewModel.IStatistic;
-import com.traininapp.viewModel.StatisticCard;
+import com.traininapp.View.GoalStatCard;
+import com.traininapp.View.StatisticCard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +24,13 @@ import java.util.List;
  */
 public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<IStatistic> dataList;
+    private List<IStatistic> dataList;
 
     /**
      * This is the constructor for the class StatisticsAdapter
-     * @param dataList A list of statistics
+     * @param dataList A list of statistics and/or goals
      */
-    public StatisticsAdapter(ArrayList<IStatistic> dataList) {
+    public StatisticsAdapter(List<IStatistic> dataList) {
         this.dataList = dataList;
     }
 
@@ -102,7 +101,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
         /**
-         * Binds the view to this data.
+         * Binds the view to this data. (adds text to textFields)
          * @param position The position of the data in the specific list
          */
         void bindView(int position) {
@@ -121,7 +120,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          * @param statisticCard an instance of the Statistics
          */
         void drawGraph(StatisticCard statisticCard){
-            List<Integer> statistics = statisticCard.getStatistics();
+            List<Double> statistics = statisticCard.getStatistics();
             List<Integer> dates = new ArrayList<>();
 
             DataPoint[] dataPoints = new DataPoint[statistics.size()];
@@ -143,8 +142,11 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
      */
     class GoalViewHolder extends RecyclerView.ViewHolder{
 
-        TextView txtgoal;
-        TextView txtprogress;
+        GoalsListAdapter goalsListAdapter;
+
+        TextView goalName;
+        TextView goalTarget;
+        TextView goalProgress;
 
         /**
          * The constructor for GoalViewHolder
@@ -153,8 +155,10 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          */
         GoalViewHolder(View itemView) {
             super(itemView);
-            txtgoal = (TextView) itemView.findViewById(R.id.goalID);
-            txtprogress = (TextView) itemView.findViewById(R.id.progressID);
+            goalName = (TextView) itemView.findViewById(R.id.goalHedderID);
+            goalTarget = (TextView) itemView.findViewById(R.id.currenttargetID);
+            goalProgress = (TextView) itemView.findViewById(R.id.currentprogressID);
+            goalsListAdapter = new GoalsListAdapter();
         }
 
         /**
@@ -163,8 +167,10 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          */
         void bindView(int position) {
             GoalStatCard sCard = (GoalStatCard) dataList.get(position);
-            txtgoal.setText("Goalhard");
-            txtprogress.setText("Progresshard");
+
+            goalName.setText(sCard.getName());
+            goalTarget.setText(Double.toString(sCard.getTarget()));
+            goalProgress.setText(Double.toString(sCard.getProgress()));
             // bind data to the views
             // textView.setText()...
 

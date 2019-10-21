@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.Planner;
+import com.traininapp.Model.Planning.Routine;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -31,19 +32,33 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        // Initializing the singleton repo
         Repository repo = Repository.getInstance();
+
+        // Fetching the Users planner
         Planner planner = repo.getUser().getPlanner();
 
-        // Adding dummy sessions
+        // Adding dummy Routines
+        if (repo.getUser().getRoutineList().isEmpty()){
+            initializeDummyRoutines(planner);
+        }
+
+        // Adding dummy Sessions
         if (planner.getSessionList().isEmpty()){
-            planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
-            planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
-            planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
-            planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
+            initializeDummySessions(planner);
         }
 
         // Print details of session (for checking only)
         planner.printSessionDetails();
+
+    }
+
+    private void initializeDummySessions(Planner planner){
+
+        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
+        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
+        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
+        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
 
     }
 }

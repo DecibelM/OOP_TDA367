@@ -20,16 +20,11 @@ import com.traininapp.R;
 import com.traininapp.viewModel.CreateSession2;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 public class UpcomingFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private FloatingActionButton btnOpen;
     private SessionAdapter adapter;
-    private List<Session> sessionList;
     private View view;
     private FloatingActionButton btnAddSession;
 
@@ -54,31 +49,13 @@ public class UpcomingFragment extends Fragment {
             }
         });
 
-
-        // Initializing the list of sessions and add sessions
-        sessionList = new ArrayList<>();
-
-        Intent intent = getActivity().getIntent();
-
-        String name = intent.getStringExtra("SELECTED_ROUTINE");
-        /*String dateString = intent.getStringExtra("SELECTED_DATE");
-
-        LocalDate date = LocalDate.parse(dateString);*/
-
-        if (name != null){
-            viewModel.addSessionToList(name, LocalDate.now());
-            intent.removeExtra("SELECTED_ROUTINE");
-        }
-
-        updateSessionList();
-
         // Changes in content does not change layout size, set
         // to true for improved performance
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
         // Specifying the adapter
-        adapter = new SessionAdapter(sessionList);
+        adapter = new SessionAdapter(viewModel.getListOfSessions());
         recyclerView.setAdapter(adapter);
 
         // Using a linear layout manager
@@ -87,19 +64,6 @@ public class UpcomingFragment extends Fragment {
 
         return view;
     }
-
-
-    // Load the sessionList with Sessions saved in the User's Planner
-    public void updateSessionList(){
-
-        sessionList.clear();
-
-        for (Session s : viewModel.getListOfSessions()){
-            sessionList.add(s);
-        }
-
-    }
-
 
     /**
      * Directs the user to CreateSession activity when pressing the "Add session" FAB
@@ -113,6 +77,12 @@ public class UpcomingFragment extends Fragment {
         intent.putExtra("VIEW_MODEL", upcomingSessionsViewModel);*/
 
         // Starting the activity
+        startActivity(intent);
+    }
+
+    public void openSession(){
+        Intent intent = new Intent(getActivity(), SelectedSession.class);
+
         startActivity(intent);
     }
 
