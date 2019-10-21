@@ -71,8 +71,8 @@ public class CreateRoutine extends AppCompatActivity implements DatePickerDialog
         repository = Repository.getInstance();
 
         // Initializing elements
-        btnAddCardio = findViewById(R.id.btnAddCardioExerciseID);
-        btnAddStrength = findViewById(R.id.btnAddExerciseID);
+        btnAddCardio = findViewById(R.id.btnAddCarExerciseID);
+        btnAddStrength = findViewById(R.id.btnAddStrExerciseID);
         btnDone = findViewById(R.id.btnDoneID);
         btnSelectDate = findViewById(R.id.btnSelectDateID);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);

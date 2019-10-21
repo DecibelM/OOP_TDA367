@@ -15,17 +15,6 @@
             android:layout_height="fill_parent"
             tools:context=".viewModel.CreateRoutine">
 
-            <Button
-                android:id="@+id/btnAddExerciseID"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@color/colorPrimary"
-                android:foreground="@android:drawable/ic_input_add"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnSelectDateID" />
-
 
             <EditText
                 android:id="@+id/txtEnterSessionNameID"
@@ -52,6 +41,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
+
+                <Button
+                    android:id="@+id/btnAddStrExerciseID"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/colorPrimary"
+                    android:foreground="@android:drawable/ic_input_add"
+                    app:layout_constraintTop_toBottomOf="@+id/btnSelectDateID" />
+
             </LinearLayout>
 
             <Button
@@ -72,25 +71,16 @@
                 app:layout_constraintStart_toEndOf="@+id/btnSelectDateID"
                 app:layout_constraintTop_toTopOf="@+id/btnSelectDateID" />
 
-            <Button
-                android:id="@+id/btnAddCardioExerciseID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:text="Add cardio"
-                app:layout_constraintStart_toEndOf="@+id/btnAddExerciseID"
-                app:layout_constraintTop_toTopOf="@+id/btnAddExerciseID" />
-
             <TextView
                 android:id="@+id/txtStrengthExercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="Strength exercise"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnAddExerciseID" />
+                app:layout_constraintTop_toBottomOf="@+id/btnSelectDateID" />
 
             <TextView
                 android:id="@+id/txtWeight"
@@ -133,6 +123,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
+
+                <Button
+                    android:id="@+id/btnAddCarExerciseID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Add cardio" />
 
             </LinearLayout>
 
