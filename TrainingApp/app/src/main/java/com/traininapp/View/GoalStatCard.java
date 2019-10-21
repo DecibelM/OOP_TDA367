@@ -12,8 +12,8 @@ import com.traininapp.adapter.IStatistic;
 public class GoalStatCard implements IStatistic {
 
         String goalName;
-        Double goalTarget;
-        Double goalProgress;
+        Integer goalTarget;
+        Integer goalProgress;
 
     /**
      * The constructor for the class GoalStatCard
@@ -22,7 +22,7 @@ public class GoalStatCard implements IStatistic {
      * @param goalTarget
      * @param goalProgress
      */
-    public GoalStatCard(String goalName, Double goalTarget, Double goalProgress) {
+    public GoalStatCard(String goalName, Integer goalTarget, Integer goalProgress) {
         this.goalName = goalName;
         this.goalTarget = goalTarget;
         this.goalProgress = goalProgress;
@@ -37,11 +37,11 @@ public class GoalStatCard implements IStatistic {
         return goalName;
     }
 
-    public Double getTarget() {
+    public Integer getTarget() {
         return goalTarget;
     }
 
-    public Double getProgress() {
+    public Integer getProgress() {
         return goalProgress;
     }
 }
