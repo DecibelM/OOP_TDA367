@@ -1,6 +1,5 @@
 package com.traininapp.View;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
 import com.traininapp.viewModel.CreateSession;
 import com.traininapp.viewModel.CalendarViewModel;
@@ -46,6 +46,7 @@ public class CalendarFragment extends Fragment {
     private ListView emptyView;
     private FloatingActionButton btnOpen;
     private SimpleDateFormat dateFormat;
+    LocalDate localDate;
 
 
     @Nullable
@@ -58,7 +59,7 @@ public class CalendarFragment extends Fragment {
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         listView = (ListView) view.findViewById(R.id.listViewCalendar);
         btnOpen = view.findViewById(R.id.btnOpenID);
-
+        localDate = LocalDate.now();
         list = new ArrayList<>() ;
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
@@ -72,10 +73,7 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Object item = adapterView.getItemAtPosition(i);
-
-                String string = item.toString();
-                openSession(string);
+               openSession(viewModel.getSession(i, localDate));
             }
         });
 
@@ -95,7 +93,7 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 month++;
-                LocalDate localDate = LocalDate.of(year,month,day);
+                localDate = LocalDate.of(year,month,day);
                 String dateString = (day) + " - " + (month) + " - " + year;
                 myDate.setText(dateString);
 
@@ -110,7 +108,7 @@ public class CalendarFragment extends Fragment {
     // Method for updating sessions on the selected day
     public void updateSessionList(LocalDate localDate){
 
-        ArrayList<String> newList = viewModel.getSessionsByDate(localDate);
+        ArrayList<String> newList = viewModel.getSessionsByDateString(localDate);
 
 
 
@@ -140,10 +138,11 @@ public class CalendarFragment extends Fragment {
         startActivity(intent);
     }
 
-    public void openSession(String string){
+    public void openSession(Session session){
         Intent intent = new Intent(getActivity(), CurrentSessionActivity.class);
-        System.out.println(string);
-        intent.putExtra("Session", string);
+        System.out.println(session);
+        intent.putExtra("Session", session.toString());
+
         startActivity(intent);
 
     }

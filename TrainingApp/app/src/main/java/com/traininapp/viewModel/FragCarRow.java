@@ -1,4 +1,5 @@
 package com.traininapp.viewModel;
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
+import com.traininapp.View.CurrentSessionActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +26,21 @@ public class FragCarRow extends Fragment {
     //Placeholder list for all cardio exercises
     List<String> carExerciseList = new ArrayList<>();
 
-    private  EditText txtEnterTime;
-    private  EditText txtEnterDistance;
+    private EditText txtEnterTime;
+
+    public String getTxtEnterTime() {
+        return txtEnterTime.getText().toString();
+    }
+
+    public EditText getTxtEnterDistance() {
+        return txtEnterDistance;
+    }
+
+    public AutoCompleteTextView getAutPickCarEx() {
+        return autPickCarEx;
+    }
+
+    private EditText txtEnterDistance;
     private AutoCompleteTextView autPickCarEx;
     private Button btnDeleteCar;
     private View v;
@@ -44,8 +60,6 @@ public class FragCarRow extends Fragment {
         btnDeleteCar = v.findViewById(R.id.btnDeleteCarID);
         txtEnterTime = v.findViewById(R.id.txtEnterTimeID);
         txtEnterDistance = v.findViewById(R.id.txtEnterDistanceID);
-
-        List<Exercise> exerciseList = new ArrayList<>();
 
         exercise = new CardioExercise("Spring",10,10);
 
@@ -70,8 +84,35 @@ public class FragCarRow extends Fragment {
             }
         });
 
+
+        autPickCarEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                exercise.setName(autPickCarEx.getText().toString());
+            }
+        });
+
+        txtEnterTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+               exercise.setRunningTime(Double.valueOf(txtEnterTime.getText().toString()));
+            }
+        });
+
+        txtEnterDistance.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                exercise.setRunningTime(Double.valueOf(txtEnterDistance.getText().toString()));
+            }
+        });
+
+
+
+
+
         return v;
     }
+
 
     //method for creating the exercise from the inputted information
     public CardioExercise saveInfo(){
@@ -124,13 +165,15 @@ public class FragCarRow extends Fragment {
 
     public void setCardioValues(CardioExercise exercise, FragCarRow fragCarRow){
 
-        View view = fragCarRow.getView();
-
-
-
         fragCarRow.autPickCarEx.setText(exercise.getName());
 
         fragCarRow.txtEnterTime.setText(Double.toString(exercise.getRunningTime()));
         fragCarRow.txtEnterDistance.setText(Double.toString(exercise.getDistance()));
     }
+
+    public void setExercise (CardioExercise exercise){
+        this.exercise = exercise;
+    }
+
+
 }

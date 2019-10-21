@@ -2,6 +2,7 @@ package com.traininapp.Model.Planning;
 
 import com.traininapp.Model.ISessionObserver;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

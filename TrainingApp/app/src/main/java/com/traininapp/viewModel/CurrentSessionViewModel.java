@@ -24,4 +24,14 @@ public class CurrentSessionViewModel extends ViewModel {
         return model;
     }
 
+    public Session getSession(String sessionID){
+
+
+        for (Session session : model.getUser().getPlanner().getSessionList()) {
+            if (session.toString().equals(sessionID)){
+                return session;
+            }
+
+        } return null;
+    }
 }

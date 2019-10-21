@@ -5,33 +5,29 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModel;
 
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.Session;
+import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
 import com.traininapp.viewModel.CurrentSessionViewModel;
 import com.traininapp.viewModel.FragCarRow;
 import com.traininapp.viewModel.FragStrRow;
-import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CurrentSessionActivity extends AppCompatActivity {
@@ -59,6 +55,8 @@ public class CurrentSessionActivity extends AppCompatActivity {
     private Session session;
     private LocalDate localDate;
     private List<Routine> routineList;
+    private String sessionID;
+    int test;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,7 +72,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         intent = getIntent();
 
-        txtEnterExName = findViewById(R.id.txtEnterExNameID);
 
         doneBtn = findViewById(R.id.btnDoneID);
         sessionName = findViewById(R.id.sessionName);
@@ -82,16 +79,22 @@ public class CurrentSessionActivity extends AppCompatActivity {
         sessionTime = findViewById(R.id.sessionTime);
         addExerciseBtn = findViewById(R.id.addExerciseBtn);
         viewModel = new CurrentSessionViewModel();
+        sessionID = intent.getStringExtra("Session");
 
-        sessionName.setText(intent.getStringExtra("Session"));
+        //Finds the session
+        session = viewModel.getSession(sessionID);
 
+        sessionName.setText(session.getName());
+        System.out.println(session);
+
+        loadExercises(session);
         // Test stuff
         routineList = new ArrayList<>();
         localDate = LocalDate.now();
         session = new Session("Test 1", routineList,localDate );
 
         loadSession(session);
-        testingStuff();
+        //testingStuff();
 
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +108,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         addExerciseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    createCarRow();
+                    addCardioExercise();
 
             }
         });
@@ -114,6 +117,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     public void sessionDone(){
         Intent intent = new Intent(this, MainActivity.class);
+        //session.finishSession();
         startActivity(intent);
     }
 
@@ -131,29 +135,35 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     public void loadSession(Session session){
 
-        sessionName.setText(session.getName());
+        //sessionName.setText(session.getName());
 
         String string = session.getDate().toString();
 
         sessionDate.setText(string);
     }
 
-    public void loadExercises(List list, Session session){
+    public void loadExercises(Session session){
 
         if(session != null){
-        list.addAll(session.getExerciseList());
+        for (Exercise exercise : session.getExerciseList()){
+            if (exercise instanceof CardioExercise)
+            createCarRow((CardioExercise) exercise);
+            else {
+                createStrRow(exercise);
+            }
+        }
 
         } else {
-            System.out.println("Null pointer bitch");
+            System.out.println("Nullpointer");
         }
     }
 
     //create a new cardio fragment in the row
 
-    public void createCarRow() {
+    public void createCarRow(final CardioExercise exercise) {
         //create the fragment
-        final FragCarRow fragment;
-        fragment = new FragCarRow();
+        final FragCarRow fragment = new FragCarRow();
+        fragment.setExercise(exercise);
 
         fragmentHandeler(listCarFrag,fragment);
 
@@ -161,14 +171,29 @@ public class CurrentSessionActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                fragment.setCardioValues((CardioExercise) session.getExerciseList().get(0), fragment);
+                fragment.setCardioValues(exercise, fragment);
+            }
+        }, 1);
+
+    }
+
+    public void createStrRow(final Exercise exercise){
+        //create the fragment
+        final FragStrRow fragment = new FragStrRow();
+
+        fragmentHandeler(listStrFrag,fragment);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fragment.setStrengthValues((StrengthExercise) exercise, fragment);
             }
         }, 1);
 
     }
 
     public void fragmentHandeler(List list, Fragment fragment){
-
 
         //Begin the transaction, to start doing something with the fragment
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -178,16 +203,28 @@ public class CurrentSessionActivity extends AppCompatActivity {
         list.add(fragment);
         //Commit and finish the FragmentTransaction
         fragmentTransaction.commit();
+
+    }
+
+    public  void addCardioExercise(){
+
+        CardioExercise exercise = new CardioExercise("Hej",0,0);
+        System.out.println(session.toString());
+        session.getExerciseList().add(exercise);
+
+        createCarRow(exercise);
     }
 
 
     public void testingStuff(){
 
-        session.addCardioExercise("Spring MF", 10,10);
+        session.addCardioExercise("Spring", 10,10);
+        session.addCardioExercise("Fort", 10,10);
+        session.addStrengthExercise("Lyft",10,10,10);
 
-        loadExercises(listCarFrag,session);
+        loadExercises(session);
 
-        createCarRow();
+
 
 
 
