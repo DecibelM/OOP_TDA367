@@ -20,11 +20,12 @@
                 android:id="@+id/txtEnterSessionNameID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginTop="12dp"
                 android:hint="Session name"
                 android:inputType="text"
                 android:maxWidth="170dp"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,38 +49,33 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="+ Add exercise"
-                    android:textColor="#ADA4A4" />
+                    android:textColor="#ADA4A4"
+                    android:textSize="16sp" />
 
             </LinearLayout>
-
-            <Button
-                android:id="@+id/btnSelectDateID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:text="Date"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtEnterSessionNameID" />
 
             <TextView
                 android:id="@+id/txtSelectedDateID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                app:layout_constraintStart_toEndOf="@+id/btnSelectDateID"
-                app:layout_constraintTop_toTopOf="@+id/btnSelectDateID" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="Date"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEnterSessionNameID" />
 
             <TextView
                 android:id="@+id/txtStrengthExercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Strength exercise"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnSelectDateID" />
+                app:layout_constraintTop_toBottomOf="@+id/txtSelectedDateID" />
 
             <TextView
                 android:id="@+id/txtWeight"
@@ -87,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Weight"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/txtStrengthExercise"
                 app:layout_constraintTop_toTopOf="@+id/txtStrengthExercise" />
@@ -97,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Reps"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/txtWeight"
                 app:layout_constraintTop_toTopOf="@+id/txtWeight" />
@@ -107,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:text="Sets"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/txtReps"
                 app:layout_constraintTop_toTopOf="@+id/txtReps" />
@@ -129,7 +128,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="+ Add exercise"
-                    android:textColor="#ADA4A4" />
+                    android:textColor="#ADA4A4"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -138,8 +138,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="32dp"
                 android:text="Cardio exercise"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -150,6 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Time"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/txtCardioExercise"
                 app:layout_constraintTop_toTopOf="@+id/txtCardioExercise" />
@@ -160,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:text="Distance"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/txtTime"
                 app:layout_constraintTop_toTopOf="@+id/txtTime" />

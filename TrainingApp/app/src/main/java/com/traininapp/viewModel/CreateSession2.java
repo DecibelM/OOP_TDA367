@@ -24,6 +24,8 @@ import com.traininapp.R;
 import com.traininapp.View.DatePickerFragment;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -33,7 +35,6 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
     // Declaring elements
     private EditText txtEnterSessionName;
     private TextView txtSelectedDate, txtAddCarExercise, txtAddStrExercise;
-    private Button btnSelectDate;
     private FloatingActionButton btnDone;
 
     // Lists for created fragments
@@ -58,9 +59,6 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
     private StrExTable strExTable;
     private CarExTable carExTable;*/
 
-    //boolean to see which type of exercise is currently selected
-    private boolean isStrength = true;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -72,7 +70,6 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
 
         // Initializing elements
         btnDone = findViewById(R.id.btnDoneID);
-        btnSelectDate = findViewById(R.id.btnSelectDateID);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
         txtSelectedDate = findViewById(R.id.txtSelectedDateID);
 
@@ -80,7 +77,7 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
         txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
 
         // Updating text to match selectedDate, today's date by default
-        txtSelectedDate.setText(selectedDate.toString());
+        txtSelectedDate.setText(selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
 
         txtAddStrExercise.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +94,7 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
         });
 
         // Clicking the Date button, directs the user to a calendar
-        btnSelectDate.setOnClickListener(new View.OnClickListener() {
+        txtSelectedDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment datePicker = new DatePickerFragment();
@@ -130,8 +127,8 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
         // Updating selectedDate to the date selected by user
-        selectedDate = LocalDate.of(year, month, dayOfMonth);
-        txtSelectedDate.setText(selectedDate.toString());
+        selectedDate = LocalDate.of(year, month+1, dayOfMonth);
+        txtSelectedDate.setText(selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
     }
 
     /**
