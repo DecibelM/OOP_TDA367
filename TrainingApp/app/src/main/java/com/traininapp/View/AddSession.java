@@ -1,4 +1,4 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -16,8 +16,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.traininapp.MainActivity;
-import com.traininapp.View.DatePickerFragment;
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
+import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
 import java.text.DateFormat;
 import java.time.LocalDate;
@@ -124,7 +125,8 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
     public void clickSaveSession(){
 
         // Adding the selected Session to the User's Planner's list of Sessions
-        viewModel.addSessionToList(selectedRoutine,selectedDate);
+        List<Exercise> exerciseList = new ArrayList<>();
+        viewModel.addSessionToList(selectedRoutine,exerciseList,selectedDate);
 
         // Directing the user to UpcomingSession page again
         Intent intent = new Intent(this, MainActivity.class);

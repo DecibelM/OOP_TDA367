@@ -21,8 +21,8 @@ import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
 import com.traininapp.viewModel.CurrentSessionViewModel;
-import com.traininapp.viewModel.FragCarRow;
-import com.traininapp.viewModel.FragStrRow;
+import com.traininapp.View.FragCarRow;
+import com.traininapp.View.FragStrRow;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -91,7 +91,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
         // Test stuff
         routineList = new ArrayList<>();
         localDate = LocalDate.now();
-        session = new Session("Test 1", routineList,localDate );
 
         loadSession(session);
         //testingStuff();

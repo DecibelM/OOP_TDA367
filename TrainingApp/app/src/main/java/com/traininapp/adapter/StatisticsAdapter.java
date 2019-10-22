@@ -3,8 +3,6 @@ package com.traininapp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,9 +12,8 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.traininapp.R;
-import com.traininapp.viewModel.GoalStatCard;
-import com.traininapp.viewModel.IStatistic;
-import com.traininapp.viewModel.StatisticCard;
+import com.traininapp.View.GoalStatCard;
+import com.traininapp.View.StatisticCard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +24,13 @@ import java.util.List;
  */
 public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<IStatistic> dataList;
+    private List<IStatistic> dataList;
 
     /**
      * This is the constructor for the class StatisticsAdapter
      * @param dataList A list of statistics and/or goals
      */
-    public StatisticsAdapter(ArrayList<IStatistic> dataList) {
+    public StatisticsAdapter(List<IStatistic> dataList) {
         this.dataList = dataList;
     }
 
@@ -122,8 +119,9 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          *
          * @param statisticCard an instance of the Statistics
          */
+
         void drawGraph(StatisticCard statisticCard){
-            List<Integer> statistics = statisticCard.getStatistics();
+            /*List<Double> statistics = statisticCard.getStatistics(); Temoporärt bort den här
             List<Integer> dates = new ArrayList<>();
 
             DataPoint[] dataPoints = new DataPoint[statistics.size()];
@@ -135,7 +133,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
             graphView.setMinimumWidth(statistics.size());
             graphView.addSeries(series);
-        }
+        } */
     }
 
     /**
@@ -172,8 +170,8 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             GoalStatCard sCard = (GoalStatCard) dataList.get(position);
 
             goalName.setText(sCard.getName());
-            goalTarget.setText(Integer.toString(sCard.getTarget()));
-            goalProgress.setText(Integer.toString(sCard.getProgress()));
+            goalTarget.setText(Double.toString(sCard.getTarget()));
+            goalProgress.setText(Double.toString(sCard.getProgress()));
             // bind data to the views
             // textView.setText()...
 

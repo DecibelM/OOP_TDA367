@@ -1,7 +1,7 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 
 
-import java.util.List;
+import com.traininapp.adapter.IStatistic;
 
 /**
 * This class keeps hold of the goals and the progression toeards them

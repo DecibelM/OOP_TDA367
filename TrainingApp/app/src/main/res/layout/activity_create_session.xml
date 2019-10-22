@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="15dp"
     android:orientation="vertical"
-    tools:context=".viewModel.CreateSession">
+    tools:context=".View.CreateSession">
 
 
     <TextView

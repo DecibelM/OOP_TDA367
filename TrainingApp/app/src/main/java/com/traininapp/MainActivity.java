@@ -1,18 +1,13 @@
 package com.traininapp;
 
-import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
-import com.traininapp.Model.Planning.CardioExercise;
-import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.Exercise; // Samma här som nedanför. Vet att du tog bort den Maria men behövs tillfälligt för test.
 import com.traininapp.Model.Planning.Planner;
-import com.traininapp.Model.Planning.Session;
-import com.traininapp.Model.Planning.StrengthExercise;
-import com.traininapp.viewModel.CalendarViewModel;
-import com.traininapp.viewModel.UpcomingSessionsViewModel;
+import com.traininapp.Model.Planning.Routine;
+import com.traininapp.Model.Planning.Session; // Borde kanske tas bort innan inlämning, används mest för test nu
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -21,14 +16,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    Repository model;
-    CalendarViewModel cvm;
-    UpcomingSessionsViewModel upcomingSessionsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         Planner planner = repo.getUser().getPlanner();
 
-        // Adding dummy sessions 
+
+        // Adding dummy Sessions
         if (planner.getSessionList().isEmpty()){
             planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
             planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
@@ -80,16 +70,23 @@ public class MainActivity extends AppCompatActivity {
         session.addCardioExercise("Spring",1,1);
 
         printSessionDetails(planner);
+            initializeDummySessions(planner);
+        }
+
+
+
+
+
+    private void initializeDummySessions(Planner planner){
+
+        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
+        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
+        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
+        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
 
     }
 
-    public CalendarViewModel getCvm() {
-        return cvm;
-    }
 
-    public UpcomingSessionsViewModel getUpcomingSessionsViewModel(){
-        return upcomingSessionsViewModel;
-    }
 
     public void printSessionDetails(Planner planner){
 

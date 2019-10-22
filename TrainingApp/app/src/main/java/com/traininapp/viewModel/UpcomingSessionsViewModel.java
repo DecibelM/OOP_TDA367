@@ -2,6 +2,7 @@ package com.traininapp.viewModel;
 
 import androidx.lifecycle.ViewModel;
 
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.Model.Planning.Session;
 
@@ -21,8 +22,8 @@ public class UpcomingSessionsViewModel extends ViewModel {
         return model.getUser().getPlanner().getSessionList();
     }
 
-    public void addSessionToList(String name, LocalDate date){
-        model.getUser().getPlanner().addSession(name, date);
+    public void addSessionToList(String name, List<Exercise> exerciseList, LocalDate date){
+        model.getUser().addSession(name, exerciseList, date);
     }
 
 }

@@ -1,5 +1,4 @@
-package com.traininapp.viewModel;
-import android.app.Activity;
+package com.traininapp.View;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,8 +15,6 @@ import android.widget.Toast;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
-import com.traininapp.View.CurrentSessionActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +40,8 @@ public class FragCarRow extends Fragment {
     private EditText txtEnterDistance;
     private AutoCompleteTextView autPickCarEx;
     private Button btnDeleteCar;
-    private View v;
-    private CardioExercise exercise;
+
+    CardioExercise exercise; // Borde det kanske inte vara här? Det är svårt att komma åt den annars
 
     public FragCarRow() {
         // Required empty public constructor
@@ -53,20 +50,12 @@ public class FragCarRow extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)    {
-        v = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
-
+        View v = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
 
         autPickCarEx = v.findViewById(R.id.autPickCarExID);
         btnDeleteCar = v.findViewById(R.id.btnDeleteCarID);
         txtEnterTime = v.findViewById(R.id.txtEnterTimeID);
         txtEnterDistance = v.findViewById(R.id.txtEnterDistanceID);
-
-        exercise = new CardioExercise("Spring",10,10);
-
-
-        autPickCarEx.setText(exercise.getName());
-        txtEnterTime.setText(Double.toString(exercise.getRunningTime()));
-        txtEnterDistance.setText(Double.toString(exercise.getDistance()));
 
         //add placeholder cardio exercises
         carExerciseList.add("Running");

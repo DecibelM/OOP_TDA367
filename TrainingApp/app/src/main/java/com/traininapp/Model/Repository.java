@@ -1,14 +1,14 @@
 package com.traininapp.Model;
 
-import com.traininapp.Model.Planning.Planner;
-
 public class Repository {
 
     private User user;
 
     private Repository() {
-        this.user = new User(new Planner());
+        this.user = new User();
     }
+
+
 
     private static class RepositoryHolder{
         private static Repository instance = new Repository();
@@ -21,5 +21,10 @@ public class Repository {
     public User getUser(){
         return user;
     }
+    //Tillfälligt bort det här
+    /*public List<IGoal> getGoalList() {
+        return user.getGoalList();
+    }
 
+    public List<IStat> getStatList(){ return user.getStatList(); } */
 }

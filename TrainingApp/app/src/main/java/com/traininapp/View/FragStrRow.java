@@ -1,4 +1,4 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;

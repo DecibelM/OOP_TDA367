@@ -12,26 +12,22 @@ import java.util.List;
 public class Planner {
 
     private List<Session> sessionList;
-    private List<Routine> routineList;
-    private List<Exercise> exerciseList;
 
     public Planner() {
         this.sessionList = new ArrayList<>();
-        this.routineList = new ArrayList<>();
-
     }
 
     /**
-     * Adds a new session to the Planner list.
+     * Adds a new session to the Planner sessionList, without image.
      * @param sessionName name of the session
      * @param date date of the session
      */
-    public void addSession(String sessionName, LocalDate date){
-        sessionList.add(new Session(sessionName, getRoutineList(), date));
+    public void addSession(String sessionName,List<Exercise> exList,  LocalDate date){
+        sessionList.add(new Session(sessionName, exList, date));
     }
 
     /**
-     * Adds a new session to the Planner list, with image.
+     * Adds a new session to the Planner sessionList, with image.
      * @param sessionName Name of session
      * @param date Date of session
      * @param sessionImage Image of session
@@ -40,16 +36,9 @@ public class Planner {
         sessionList.add(new Session(sessionName, date, sessionImage));
     }
 
-    public void addSession(String sessionName, LocalDate date, List<Exercise> list){
-        sessionList.add(new Session(sessionName, date, list));
-    }
 
     public List<Session> getSessionList() {
         return sessionList;
-    }
-
-    public List<Routine> getRoutineList() {
-        return routineList;
     }
 
 }
