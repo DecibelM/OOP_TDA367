@@ -37,9 +37,16 @@ public class Planner {
     }
 
     public void addSession(String sessionName, LocalDate date, List<Exercise> list){
-        sessionList.add(new Session(sessionName, date, list));
+        sessionList.add(new Session(sessionName, list, date));
     }
 
+    /**
+     * Adds a new Session to Planner sessionList, with name, date, list and image
+     * @param sessionName Name of Session
+     * @param date Date of Session
+     * @param list Exercise list of Session
+     * @param sessionImage Image of Session
+     */
     public void addSession(String sessionName, LocalDate date, List<Exercise> list, int sessionImage){
         sessionList.add(new Session(sessionName, date, list, sessionImage));
     }
@@ -48,7 +55,7 @@ public class Planner {
         return sessionList;
     }
 
-    /**
+    /** TODO Delete this method when handing in project
      * Method used for printing details of the Sessions in Planner's list. Used only for
      * making sure Sessions were added correctly.
      */

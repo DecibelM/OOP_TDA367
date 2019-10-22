@@ -12,7 +12,7 @@
         <activity android:name=".View.CreateSession"></activity>
         <activity android:name=".viewModel.UpcomingSessionsViewModel"></activity>
         <activity
-            android:name=".View.CreateSession2"
+            android:name=".View.CreateSession"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".View.AddSession"

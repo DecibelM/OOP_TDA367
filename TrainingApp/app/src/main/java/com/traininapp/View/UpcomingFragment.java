@@ -69,7 +69,7 @@ public class UpcomingFragment extends Fragment {
     public void onAddSessionClick(){
 
         // Creating and initializing the intent object
-        Intent intent = new Intent(getActivity(), CreateSession2.class);
+        Intent intent = new Intent(getActivity(), CreateSession.class);
 
         // Starting the activity
         startActivity(intent);
