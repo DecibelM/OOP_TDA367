@@ -4,6 +4,18 @@ package com.traininapp.Model.Planning;
  * StrengthExercise is a class for exercises involving strength.
  */
 public class StrengthExercise extends Exercise {
+    public void setSets(int sets) {
+        this.sets = sets;
+    }
+
+    public void setReps(int reps) {
+        this.reps = reps;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
     private int sets;
     private int reps;
     private double weight;

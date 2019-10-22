@@ -24,7 +24,7 @@ public class CalendarViewModel extends ViewModel {
      * @param date The date of interest.
      * @return a list of sessions connected to that date.
      */
-    public ArrayList<String> getSessionsByDate(LocalDate date){
+    public ArrayList<String> getSessionsByDateString(LocalDate date){
         ArrayList<String> list = new ArrayList<>();
         ArrayList<Session> sessionList = (ArrayList<Session>) model.getUser().getPlanner().getSessionList();
 
@@ -34,5 +34,17 @@ public class CalendarViewModel extends ViewModel {
             }
         }
         return list;
+    }
+
+    public Session getSession(int i, LocalDate localDate){
+
+        ArrayList<Session> list = new ArrayList<>();
+        ArrayList<Session> sessionList = (ArrayList<Session>) model.getUser().getPlanner().getSessionList();
+
+        for(Session s: sessionList){
+            if (s.getDate().equals( localDate)){
+                list.add(s);
+            }
+        } return list.get(i);
     }
 }

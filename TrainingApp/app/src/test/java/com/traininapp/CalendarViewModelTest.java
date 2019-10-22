@@ -33,7 +33,7 @@ public class CalendarViewModelTest {
         planner.addSession("Yoga", exerciseList, LocalDate.of(2019,10,8));
         planner.addSession("Armträning", exerciseList, LocalDate.of(2019,10,9));
 
-        ArrayList<String> list = cvm.getSessionsByDate(LocalDate.of(2019,10,7));
+        ArrayList<String> list = cvm.getSessionsByDateString(LocalDate.of(2019,10,7));
         assertEquals("Löpning", list.get(0));
     }
 }

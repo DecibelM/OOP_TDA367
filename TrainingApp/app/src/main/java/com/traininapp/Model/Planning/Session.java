@@ -2,6 +2,7 @@ package com.traininapp.Model.Planning;
 
 import com.traininapp.Model.ISessionObserver;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
  * Class Session which holds a list of exercises and a date.s
  */
 public class Session {
+
+
     private String name;
     private List<Exercise> exerciseList;
     private List<ISessionObserver> sessionObservers;
@@ -123,6 +126,10 @@ public class Session {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDate getDate() {

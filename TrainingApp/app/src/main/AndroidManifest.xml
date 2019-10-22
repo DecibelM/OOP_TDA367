@@ -19,6 +19,9 @@
         <activity android:name=".View.SelectedSession"
             android:windowSoftInputMode="adjustPan"/>
         <activity
+            android:name=".View.CurrentSessionActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>

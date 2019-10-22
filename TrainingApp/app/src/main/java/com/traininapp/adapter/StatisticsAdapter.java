@@ -119,6 +119,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          *
          * @param statisticCard an instance of the Statistics
          */
+
         void drawGraph(StatisticCard statisticCard){
             List<Double> statistics = statisticCard.getStatistics();
             List<Integer> dates = new ArrayList<>();

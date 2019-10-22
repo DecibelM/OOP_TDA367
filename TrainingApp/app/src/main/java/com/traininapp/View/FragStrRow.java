@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.DatabaseHelper;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
@@ -29,6 +31,7 @@ public class FragStrRow extends Fragment {
     private EditText txtEnterSets ;
     private EditText txtEntersReps;
     private AutoCompleteTextView autPickStrEx;
+    private StrengthExercise exercise;
 
     private FragmentTransaction fragmentTransaction;
 
@@ -47,16 +50,45 @@ public class FragStrRow extends Fragment {
         txtEnterSets = v.findViewById(R.id.txtEnterSetsID);
         txtEntersReps = v.findViewById(R.id.txtEntersRepsID);
 
+        autPickStrEx.setText(getTag());
+
         //add placeholder strength exercises
         strExerciseList.add("Bicep Curl");
         strExerciseList.add("Dumbbell Curl");
         strExerciseList.add("Dumbbell Shoulder Fly");
 
-        autPickStrEx.setText(getTag());
 
         //create and setup adapter
         ArrayAdapter<String> strExerciseListAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strExerciseList);
         autPickStrEx.setAdapter(strExerciseListAdapter);
+
+        autPickStrEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                exercise.setName(autPickStrEx.getText().toString());
+            }
+        });
+
+        txtEnterWeight.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                exercise.setWeight(Double.valueOf(txtEnterWeight.getText().toString()));
+            }
+        });
+
+        txtEnterSets.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                exercise.setSets(Integer.valueOf(txtEnterSets.getText().toString()));
+            }
+        });
+
+        txtEntersReps.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                exercise.setReps(Integer.valueOf(txtEntersReps.getText().toString()));
+            }
+        });
 
         btnDeletestr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,5 +153,14 @@ public class FragStrRow extends Fragment {
 
         //Remove the fragment
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+    }
+
+    public void setStrengthValues(StrengthExercise exercise, FragStrRow fragStrRow){
+
+        autPickStrEx.setText(exercise.getName());
+        txtEnterSets.setText(String.valueOf(exercise.getSets()));
+        txtEntersReps.setText(String.valueOf(exercise.getSets()));
+        txtEnterWeight.setText(String.valueOf(exercise.getWeight()));
+
     }
 }

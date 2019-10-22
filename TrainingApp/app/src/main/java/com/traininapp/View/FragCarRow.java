@@ -23,10 +23,25 @@ public class FragCarRow extends Fragment {
     //Placeholder list for all cardio exercises
     List<String> carExerciseList = new ArrayList<>();
 
-    private  EditText txtEnterTime;
-    private  EditText txtEnterDistance;
+    private EditText txtEnterTime;
+
+    public String getTxtEnterTime() {
+        return txtEnterTime.getText().toString();
+    }
+
+    public EditText getTxtEnterDistance() {
+        return txtEnterDistance;
+    }
+
+    public AutoCompleteTextView getAutPickCarEx() {
+        return autPickCarEx;
+    }
+
+    private EditText txtEnterDistance;
     private AutoCompleteTextView autPickCarEx;
     private Button btnDeleteCar;
+
+    CardioExercise exercise; // Borde det kanske inte vara här? Det är svårt att komma åt den annars
 
     public FragCarRow() {
         // Required empty public constructor
@@ -58,8 +73,35 @@ public class FragCarRow extends Fragment {
             }
         });
 
+
+        autPickCarEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                exercise.setName(autPickCarEx.getText().toString());
+            }
+        });
+
+        txtEnterTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+               exercise.setRunningTime(Double.valueOf(txtEnterTime.getText().toString()));
+            }
+        });
+
+        txtEnterDistance.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                exercise.setRunningTime(Double.valueOf(txtEnterDistance.getText().toString()));
+            }
+        });
+
+
+
+
+
         return v;
     }
+
 
     //method for creating the exercise from the inputted information
     public CardioExercise saveInfo(){
@@ -111,9 +153,16 @@ public class FragCarRow extends Fragment {
 
 
     public void setCardioValues(CardioExercise exercise, FragCarRow fragCarRow){
+
         fragCarRow.autPickCarEx.setText(exercise.getName());
 
-       // fragCarRow.txtEnterTime.setText(Double.toString(exercise.getRunningTime()));
-      // fragCarRow.txtEnterDistance.setText(Double.toString(exercise.getDistance()));
+        fragCarRow.txtEnterTime.setText(Double.toString(exercise.getRunningTime()));
+        fragCarRow.txtEnterDistance.setText(Double.toString(exercise.getDistance()));
     }
+
+    public void setExercise (CardioExercise exercise){
+        this.exercise = exercise;
+    }
+
+
 }
