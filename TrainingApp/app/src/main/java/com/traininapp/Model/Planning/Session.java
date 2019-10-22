@@ -10,10 +10,11 @@ import java.util.List;
  * Class Session which holds a list of exercises and a date.s
  */
 public class Session implements Comparable<Session>{
+
     private String name;
     private List<Exercise> exerciseList;
     private List<ISessionObserver> sessionObservers;
-    LocalDate date;
+    private LocalDate date;
     private int sessionImage;
     private boolean isFinished = false;
 
@@ -136,7 +137,7 @@ public class Session implements Comparable<Session>{
     /**
      * Method to compare the dates of two Sessions
      * @param session The Session to be compared with
-     * @return -1 if earlier, 0 if same, 1 if later
+     * @return The difference in days as an int
      */
     @Override
     public int compareTo(Session session) {
