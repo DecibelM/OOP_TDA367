@@ -27,8 +27,8 @@ public class User {
      * Constructor for User class.
      *
      */
-    public User( Planner planner) {
-        this.planner = planner;
+    public User() {
+        this.planner = new Planner();
         routineList = new ArrayList<>();
         this.results = new Results();
     }
@@ -39,14 +39,9 @@ public class User {
 
     public void addSession(String name, List<Exercise> eList, LocalDate date){
         Session s = new Session(name, eList,date);
-        //s.addObserver(results.getStatistic()); Temoporärt bort den här
+        s.addObserver(results);
         planner.getSessionList().add(s);
     }
-
-    public Results getResults() {
-        return results;
-    }
-
 
 
     public void removeRoutine(String name){

@@ -21,7 +21,7 @@ import com.traininapp.adapter.IStatistic;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List; // La till det här igen. Kanske inte behövs
+import java.util.List;
 
 /**
  * Keeps hold of the goals page or my page. Also holds the recyclerview along with its adapter and Layout manager.
@@ -41,10 +41,10 @@ public class GoalsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_goals, null);
         repository = Repository.getInstance();
         statisticsList = new ArrayList<>();
-        /*  Temoporärt bort den här
+
         System.out.println(repository.getStatList().size());
         System.out.println(repository.getGoalList().size());
-        */
+
 
 
 
@@ -66,13 +66,13 @@ public class GoalsFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);
-        /* Temoporärt bort den här
+
         for (IStat statistic: repository.getStatList()){
             statisticsList.add(new StatisticCard(statistic.getName(), statistic.getDataList(), statistic.getDatesList()));
         }
         for (IGoal goal: repository.getGoalList()){
             statisticsList.add(new GoalStatCard(goal.getName(), goal.getTarget(), goal.getProgress()));
-        }*/
+        }
     }
 
 }
