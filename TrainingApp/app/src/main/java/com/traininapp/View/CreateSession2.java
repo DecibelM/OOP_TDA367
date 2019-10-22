@@ -9,8 +9,12 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +37,10 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
     private EditText txtEnterSessionName;
     private TextView txtSelectedDate, txtAddCarExercise, txtAddStrExercise;
     private FloatingActionButton btnDone;
+    private ImageView imgSessionIcon;
+    private Spinner spnrIcon;
+    private String[] iconsStrArray;
+    private int image;
 
     // Lists for created fragments
     private List<FragStrRow> listStrFrag = new ArrayList<>();
@@ -69,13 +77,23 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
         btnDone = findViewById(R.id.btnDoneID);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
         txtSelectedDate = findViewById(R.id.txtSelectedDateID);
-
+        imgSessionIcon = findViewById(R.id.imgSessionIconID);
         txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
+        spnrIcon = findViewById(R.id.spnrIconID);
+        iconsStrArray = getResources().getStringArray(R.array.iconsStringArray);
+
+        // Setting image to Strength by default
+        image = getResources().getIdentifier("workout_1", "drawable", getPackageName());
 
         // Updating text to match selectedDate, today's date by default
         txtSelectedDate.setText(selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
 
+        spnrIcon.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, iconsStrArray));
+
+        spnrIcon.setOnItemSelectedListener(new SpinnerItemSelectedListener());
+
+        // Clicking on Add exercise text adds a strength exercise row
         txtAddStrExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +101,7 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
             }
         });
 
+        // Clicking on Add exercise text adds a cardio exercise row
         txtAddCarExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +125,42 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
                 onDoneClick();
             }
         });
+
+        // Clicking the Session icon, directs user to icon selection
+        imgSessionIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onIconClick();
+            }
+        });
+    }
+
+    private class SpinnerItemSelectedListener implements AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view,
+                                   int position, long id) {
+
+            // TODO Make this to switch-case. Probably want to generalize setting the image and
+            // TODO getting the image information
+            if (position == 0){
+                imgSessionIcon.setImageResource(R.drawable.workout_1);
+                image = getResources().getIdentifier("workout_1", "drawable", getPackageName());
+            } else {
+                imgSessionIcon.setImageResource(R.drawable.workout_5);
+                image = getResources().getIdentifier("workout_5", "drawable", getPackageName());
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+            // Empty necessary method
+        }
+    }
+
+    /**
+     * Method used when pressing Session icon, allows user to choose an icon for the Session
+     */
+    private void onIconClick() {
     }
 
     /**
@@ -153,10 +208,10 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
         checkNameLength(sessionName);
 
         // If no fragments returned null and name is unique
-        if (control == true) {
+        if (control) {
 
             // Adding Session to users list
-            repository.getUser().getPlanner().addSession(sessionName, selectedDate, exerciseList);
+            repository.getUser().getPlanner().addSession(sessionName, selectedDate, exerciseList, image);
 
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";

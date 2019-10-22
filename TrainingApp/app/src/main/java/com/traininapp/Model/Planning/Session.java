@@ -1,5 +1,8 @@
 package com.traininapp.Model.Planning;
 
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
+
 import com.traininapp.Model.ISessionObserver;
 
 import java.time.LocalDate;
@@ -39,6 +42,21 @@ public class Session {
     public Session(String name, LocalDate date, int sessionImage) {
         this.name = name;
         this.exerciseList = new ArrayList<>();
+        this.date = date;
+        this.sessionImage = sessionImage;
+        sessionObservers = new ArrayList<>();
+    }
+
+    /**
+     * Constructor for creating a Session with name, date, exercise list and image
+     * @param name Name of Session
+     * @param date Date of Session
+     * @param exerciseList Exercise list of Session
+     * @param sessionImage Image of Session
+     */
+    public Session(String name, LocalDate date, List<Exercise> exerciseList, int sessionImage) {
+        this.name = name;
+        this.exerciseList = exerciseList;
         this.date = date;
         this.sessionImage = sessionImage;
         sessionObservers = new ArrayList<>();

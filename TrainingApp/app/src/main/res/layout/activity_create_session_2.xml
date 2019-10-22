@@ -16,6 +16,16 @@
             tools:context=".View.CreateSession2">
 
 
+            <ImageView
+                android:id="@+id/imgSessionIconID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/workout_1" />
+
             <EditText
                 android:id="@+id/txtEnterSessionNameID"
                 android:layout_width="wrap_content"
@@ -166,6 +176,17 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/txtTime"
                 app:layout_constraintTop_toTopOf="@+id/txtTime" />
+
+            <Spinner
+                android:id="@+id/spnrIconID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:spinnerMode="dialog"
+                android:prompt="@string/icon_prompt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgSessionIconID" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

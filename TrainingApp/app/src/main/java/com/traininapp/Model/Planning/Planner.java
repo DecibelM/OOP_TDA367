@@ -40,6 +40,10 @@ public class Planner {
         sessionList.add(new Session(sessionName, date, list));
     }
 
+    public void addSession(String sessionName, LocalDate date, List<Exercise> list, int sessionImage){
+        sessionList.add(new Session(sessionName, date, list, sessionImage));
+    }
+
     public List<Session> getSessionList() {
         return sessionList;
     }

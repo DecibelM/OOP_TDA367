@@ -1,3 +1,4 @@
+/*
 package com.traininapp.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -86,13 +87,15 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
 
     }
 
-    /**
+    */
+/**
      * A method to update a string to match the selected date
      * @param datePicker ???
      * @param year Year
      * @param month Month
      * @param dayOfMonth Day of month
-     */
+     *//*
+
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();
@@ -109,20 +112,24 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
         selectedDate = LocalDate.of(year, month, dayOfMonth);
     }
 
-    /**
+    */
+/**
      * Method of what happens after clicking the "Create session" button. Directs the user
      * to create a session.
-     */
+     *//*
+
     public void clickCreateSession(){
         Intent intent = new Intent(this, CreateRoutine.class);
 
         startActivity(intent);
     }
 
-    /**
+    */
+/**
      * Method of what happens after clicking the "Done" button. Directs the user to the
      * Upcoming sessions view
-     */
+     *//*
+
     public void clickSaveSession(){
 
         // Adding the selected Session to the User's Planner's list of Sessions
@@ -149,3 +156,4 @@ public class AddSession extends AppCompatActivity implements DatePickerDialog.On
 
     }
 }
+*/
