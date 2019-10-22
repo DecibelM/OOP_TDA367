@@ -36,7 +36,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     private CurrentSessionViewModel viewModel;
     private LocalDate selectedDate;
-    private Time time;
     private Button doneBtn;
     private Button addExerciseBtn;
     private TextView sessionName;
@@ -54,15 +53,15 @@ public class CurrentSessionActivity extends AppCompatActivity {
     /* Some teststuff */
     private Session session;
     private LocalDate localDate;
-    private List<Routine> routineList;
+
     private String sessionID;
-    int test;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.current_session);
+        setContentView(R.layout.newcurrent_session);
 
         //List for all created fragments. Should probably be in the viewModel
         listStrFrag = new ArrayList<>();
@@ -74,10 +73,10 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
 
         doneBtn = findViewById(R.id.btnDoneID);
-        sessionName = findViewById(R.id.sessionName);
-        sessionDate = findViewById(R.id.sessionDate);
-        sessionTime = findViewById(R.id.sessionTime);
-        addExerciseBtn = findViewById(R.id.addExerciseBtn);
+        sessionName = findViewById(R.id.txtEnterSessionNameID);
+        sessionDate = findViewById(R.id.txtSelectedDateID);
+        TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
+        TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
         viewModel = new CurrentSessionViewModel();
         sessionID = intent.getStringExtra("Session");
 
@@ -89,7 +88,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         loadExercises(session);
         // Test stuff
-        routineList = new ArrayList<>();
+
         localDate = LocalDate.now();
 
         loadSession(session);
@@ -103,20 +102,36 @@ public class CurrentSessionActivity extends AppCompatActivity {
             }
         });
 
-
-        addExerciseBtn.setOnClickListener(new View.OnClickListener() {
+        sessionName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                    addCardioExercise();
-
+            public void onFocusChange(View view, boolean b) {
+                session.setName(sessionName.getText().toString());
             }
         });
+
+        // Clicking on Add exercise text adds a strength exercise row
+        txtAddStrExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addStrengthExercise();
+            }
+        });
+
+        // Clicking on Add exercise text adds a cardio exercise row
+        txtAddCarExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addCardioExercise();
+            }
+        });
+
+
 
     }
 
     public void sessionDone(){
         Intent intent = new Intent(this, MainActivity.class);
-        //session.finishSession();
+        session.finishSession();
         startActivity(intent);
     }
 
@@ -126,11 +141,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
     public void setSelectedDate(LocalDate selectedDate) {
         this.selectedDate = selectedDate; }
 
-    public Time getTime() {
-        return time; }
-
-    public void setTime(Time time) {
-        this.time = time; }
 
     public void loadSession(Session session){
 
@@ -164,7 +174,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         final FragCarRow fragment = new FragCarRow();
         fragment.setExercise(exercise);
 
-        fragmentHandeler(listCarFrag,fragment);
+        fragmentCardioHandeler(listCarFrag,fragment);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -180,7 +190,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         //create the fragment
         final FragStrRow fragment = new FragStrRow();
 
-        fragmentHandeler(listStrFrag,fragment);
+        fragmentStrHandeler(listStrFrag,fragment);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -192,12 +202,12 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     }
 
-    public void fragmentHandeler(List list, Fragment fragment){
+    public void fragmentStrHandeler(List list, Fragment fragment){
 
         //Begin the transaction, to start doing something with the fragment
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         //Add the created fragment to "displayRowsID"
-        fragmentTransaction.add(R.id.displayRowsID, fragment);
+        fragmentTransaction.add(R.id.displayStrRowsID, fragment);
         //Add it to the list of all created Cardio fragments
         list.add(fragment);
         //Commit and finish the FragmentTransaction
@@ -205,7 +215,20 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     }
 
-    public  void addCardioExercise(){
+    public void fragmentCardioHandeler(List list, Fragment fragment){
+
+        //Begin the transaction, to start doing something with the fragment
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        //Add the created fragment to "displayRowsID"
+        fragmentTransaction.add(R.id.displayCarRowsID, fragment);
+        //Add it to the list of all created Cardio fragments
+        list.add(fragment);
+        //Commit and finish the FragmentTransaction
+        fragmentTransaction.commit();
+
+    }
+
+    public void addCardioExercise(){
 
         CardioExercise exercise = new CardioExercise("Hej",0,0);
         System.out.println(session.toString());
@@ -214,20 +237,21 @@ public class CurrentSessionActivity extends AppCompatActivity {
         createCarRow(exercise);
     }
 
+    public void addStrengthExercise(){
 
-    public void testingStuff(){
+        StrengthExercise exercise = new StrengthExercise("Lyft",0,0,0);
+        session.getExerciseList().add(exercise);
 
-        session.addCardioExercise("Spring", 10,10);
-        session.addCardioExercise("Fort", 10,10);
-        session.addStrengthExercise("Lyft",10,10,10);
-
-        loadExercises(session);
-
-
-
-
-
+        createStrRow(exercise);
     }
+
+
+    /*
+    Kvar att göra. Fixa så du kan ta bort session. Anting för att du inte vill göra den eller för att du har gymmat klart
+    Snygga till med Done knappen
+    Tester
+    Ta bort gamla xml när helt säker att den inte behövs
+     */
 
 
 

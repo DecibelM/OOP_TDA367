@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.Planner;
+import com.traininapp.Model.Planning.Session;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
