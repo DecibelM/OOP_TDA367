@@ -45,10 +45,19 @@ public class Session {
         sessionObservers = new ArrayList<>();
     }
 
-    public Session(String name, LocalDate date, List<Exercise> list) {
+    /**
+     * Constructor for creating a Session with name, date, exercise list and image
+     * @param name Name of Session
+     * @param date Date of Session
+     * @param exerciseList Exercise list of Session
+     * @param sessionImage Image of Session
+     */
+    public Session(String name, LocalDate date, List<Exercise> exerciseList, int sessionImage) {
         this.name = name;
-        this.exerciseList = list;
+        this.exerciseList = exerciseList;
         this.date = date;
+        this.sessionImage = sessionImage;
+        sessionObservers = new ArrayList<>();
     }
 
     /**

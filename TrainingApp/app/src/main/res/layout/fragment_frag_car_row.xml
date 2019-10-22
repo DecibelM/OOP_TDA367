@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".View.FragCarRow">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <AutoCompleteTextView
             android:id="@+id/autPickCarExID"
-            android:layout_width="wrap_content"
+            android:layout_width="141dp"
             android:layout_height="wrap_content"
             android:completionThreshold="0"
             android:hint="Enter exercise"
@@ -44,10 +44,10 @@
 
         <Button
             android:id="@+id/btnDeleteCarID"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="30dp"
-            android:background="@android:drawable/ic_delete" />
+            android:background="@android:drawable/ic_menu_delete" />
 
     </LinearLayout>
 
