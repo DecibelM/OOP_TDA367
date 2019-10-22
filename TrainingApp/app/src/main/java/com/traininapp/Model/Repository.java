@@ -26,10 +26,10 @@ public class Repository {
     public User getUser(){
         return user;
     }
-    //Tillfälligt bort det här
-    /*public List<IGoal> getGoalList() {
+
+    public List<IGoal> getGoalList() {
         return user.getGoalList();
     }
 
-    public List<IStat> getStatList(){ return user.getStatList(); } */
+    public List<IStat> getStatList(){ return user.getStatList(); }
 }

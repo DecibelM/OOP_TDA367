@@ -121,7 +121,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          */
 
         void drawGraph(StatisticCard statisticCard){
-            /*List<Double> statistics = statisticCard.getStatistics(); Temoporärt bort den här
+            List<Double> statistics = statisticCard.getStatistics();
             List<Integer> dates = new ArrayList<>();
 
             DataPoint[] dataPoints = new DataPoint[statistics.size()];
@@ -133,7 +133,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
             graphView.setMinimumWidth(statistics.size());
             graphView.addSeries(series);
-        } */
+        }
     }
 
     /**
