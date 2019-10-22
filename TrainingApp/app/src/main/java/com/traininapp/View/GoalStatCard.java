@@ -1,7 +1,7 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 
 
-import java.util.List;
+import com.traininapp.adapter.IStatistic;
 
 /**
 * This class keeps hold of the goals and the progression toeards them
@@ -12,17 +12,16 @@ import java.util.List;
 public class GoalStatCard implements IStatistic {
 
         String goalName;
-        Integer goalTarget;
-        Integer goalProgress;
+        Double goalTarget;
+        Double goalProgress;
 
     /**
      * The constructor for the class GoalStatCard
-     *
-     * @param goalName
+     *  @param goalName
      * @param goalTarget
      * @param goalProgress
      */
-    public GoalStatCard(String goalName, Integer goalTarget, Integer goalProgress) {
+    public GoalStatCard(String goalName, Double goalTarget, Double goalProgress) {
         this.goalName = goalName;
         this.goalTarget = goalTarget;
         this.goalProgress = goalProgress;
@@ -37,11 +36,11 @@ public class GoalStatCard implements IStatistic {
         return goalName;
     }
 
-    public Integer getTarget() {
+    public Double getTarget() {
         return goalTarget;
     }
 
-    public Integer getProgress() {
+    public Double getProgress() {
         return goalProgress;
     }
 }

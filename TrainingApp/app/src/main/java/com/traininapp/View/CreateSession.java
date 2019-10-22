@@ -1,4 +1,4 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Repository;
-import com.traininapp.View.DatePickerFragment;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.StrengthExercise;
