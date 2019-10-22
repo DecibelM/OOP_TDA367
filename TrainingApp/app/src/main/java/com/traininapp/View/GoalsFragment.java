@@ -68,10 +68,10 @@ public class GoalsFragment extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapter);
 
         for (IStat statistic: repository.getStatList()){
-            //statisticsList.add(new StatisticCard(statistic.getName(), statistic.getDataList(), statistic.getDatesList()));
+            statisticsList.add(new StatisticCard(statistic.getName(), statistic.getDataList(), statistic.getDatesList()));
         }
         for (IGoal goal: repository.getGoalList()){
-            //statisticsList.add(new GoalStatCard(goal.getName(), goal.getTarget(), goal.getProgress()));
+            statisticsList.add(new GoalStatCard(goal.getName(), goal.getTarget(), goal.getProgress()));
         }
     }
 

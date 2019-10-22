@@ -15,9 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
-import com.traininapp.viewModel.CreateSession2;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
 public class UpcomingFragment extends Fragment {
@@ -72,9 +70,6 @@ public class UpcomingFragment extends Fragment {
 
         // Creating and initializing the intent object
         Intent intent = new Intent(getActivity(), CreateSession2.class);
-
-        /*// Attaching the key value pair using putExtra to this intent
-        intent.putExtra("VIEW_MODEL", upcomingSessionsViewModel);*/
 
         // Starting the activity
         startActivity(intent);

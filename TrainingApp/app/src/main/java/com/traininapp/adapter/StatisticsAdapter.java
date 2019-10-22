@@ -120,8 +120,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          * @param statisticCard an instance of the Statistics
          */
         void drawGraph(StatisticCard statisticCard){
-            // TODO Changed Type in List below from Double to Integer because of error message from merge
-            List<Integer> statistics = statisticCard.getStatistics();
+            List<Double> statistics = statisticCard.getStatistics();
             List<Integer> dates = new ArrayList<>();
 
             DataPoint[] dataPoints = new DataPoint[statistics.size()];

@@ -1,4 +1,4 @@
-package com.traininapp.viewModel;
+package com.traininapp.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -9,10 +9,8 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +19,6 @@ import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
-import com.traininapp.View.DatePickerFragment;
-import com.traininapp.View.FragCarRow;
-import com.traininapp.View.FragStrRow;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

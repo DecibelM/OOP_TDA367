@@ -13,7 +13,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            tools:context=".viewModel.CreateSession2">
+            tools:context=".View.CreateSession2">
 
 
             <EditText

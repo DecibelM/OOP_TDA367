@@ -10,8 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".View.CreateSession"></activity>
+        <activity android:name=".viewModel.UpcomingSessionsViewModel"></activity>
         <activity
-            android:name=".View.CreateRoutine"
+            android:name=".View.CreateSession2"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".View.AddSession"

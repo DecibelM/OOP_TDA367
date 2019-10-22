@@ -23,7 +23,6 @@ import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
-import com.traininapp.viewModel.CreateSession2;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
