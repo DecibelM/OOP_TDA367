@@ -59,7 +59,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_session_2);
+        setContentView(R.layout.activity_create_session);
 
         // Initializing the repository
         repository = Repository.getInstance();
