@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
+import com.traininapp.viewModel.CreateRoutine;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
 import java.text.DateFormat;

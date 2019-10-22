@@ -16,6 +16,9 @@ import android.widget.ToggleButton;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
+import com.traininapp.View.CreateSession;
+import com.traininapp.View.FragCarRow;
+import com.traininapp.View.FragStrRow;
 
 
 import java.io.Serializable;

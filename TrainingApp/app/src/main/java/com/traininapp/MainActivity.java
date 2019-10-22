@@ -38,11 +38,6 @@ public class MainActivity extends AppCompatActivity {
         // Fetching the Users planner
         Planner planner = repo.getUser().getPlanner();
 
-        // Adding dummy Routines
-        if (repo.getUser().getRoutineList().isEmpty()){
-            initializeDummyRoutines(planner);
-        }
-
         // Adding dummy Sessions
         if (planner.getSessionList().isEmpty()){
             initializeDummySessions(planner);

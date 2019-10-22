@@ -22,6 +22,8 @@ import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
 import com.traininapp.View.DatePickerFragment;
+import com.traininapp.View.FragCarRow;
+import com.traininapp.View.FragStrRow;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -219,12 +221,6 @@ public class CreateSession2 extends AppCompatActivity implements DatePickerDialo
 
         // Commit and finish the FragmentTransaction
         fragmentTransaction.commit();
-    }
-
-    // hide or show which type of exercise is selected, depending on toggle
-    public void selectType(LinearLayout visRow, LinearLayout gonRow) {
-        visRow.setVisibility(View.VISIBLE);
-        gonRow.setVisibility(View.GONE);
     }
 
     //if the fragment had been removed remove it from the list of added exercises

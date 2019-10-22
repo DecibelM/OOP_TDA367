@@ -1,5 +1,10 @@
 package com.traininapp.Model;
 
+import com.traininapp.Model.Statistics.IGoal;
+import com.traininapp.Model.Statistics.IStat;
+
+import java.util.List;
+
 public class Repository {
 
     private User user;
