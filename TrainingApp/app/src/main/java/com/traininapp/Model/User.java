@@ -27,18 +27,11 @@ public class User {
      * Constructor for User class.
      *
      */
-    public User(Planner planner) {
-        this.planner = planner;
+    public User() {
+        this.planner = new Planner();
         routineList = new ArrayList<>();
         this.results = new Results();
     }
-/*
-    // TODO Made constructor with no argument because of error message in Repository class after merge
-    public User(){
-        this.planner = planner;
-        routineList = new ArrayList<>();
-        this.results = new Results();
-    }*/
 
     public void addRoutine(String name, List<Exercise> exerciseList){
         routineList.add(new Routine(name, exerciseList));
@@ -46,15 +39,9 @@ public class User {
 
     public void addSession(String name, List<Exercise> eList, LocalDate date){
         Session s = new Session(name, eList,date);
-        // TODO Uncomment the line below, getting error message from merge
-        //s.addObserver(results.getStatistic());
+        s.addObserver(results);
         planner.getSessionList().add(s);
     }
-
-    public Results getResults() {
-        return results;
-    }
-
 
 
     public void removeRoutine(String name){
