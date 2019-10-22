@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Class Session which holds a list of exercises and a date.s
  */
-public class Session {
+public class Session implements Comparable<Session>{
     private String name;
     private List<Exercise> exerciseList;
     private List<ISessionObserver> sessionObservers;
@@ -131,5 +131,15 @@ public class Session {
 
     public int getSessionImage() {
         return sessionImage;
+    }
+
+    /**
+     * Method to compare the dates of two Sessions
+     * @param session The Session to be compared with
+     * @return -1 if earlier, 0 if same, 1 if later
+     */
+    @Override
+    public int compareTo(Session session) {
+        return this.getDate().compareTo(session.getDate());
     }
 }
