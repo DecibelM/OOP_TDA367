@@ -36,9 +36,50 @@ public class Planner {
         sessionList.add(new Session(sessionName, date, sessionImage));
     }
 
+    public void addSession(String sessionName, LocalDate date, List<Exercise> list){
+        sessionList.add(new Session(sessionName, list, date));
+    }
+
+    /**
+     * Adds a new Session to Planner sessionList, with name, date, list and image
+     * @param sessionName Name of Session
+     * @param date Date of Session
+     * @param list Exercise list of Session
+     * @param sessionImage Image of Session
+     */
+    public void addSession(String sessionName, LocalDate date, List<Exercise> list, int sessionImage){
+        sessionList.add(new Session(sessionName, date, list, sessionImage));
+    }
 
     public List<Session> getSessionList() {
         return sessionList;
+    }
+
+    /** TODO Delete this method when handing in project
+     * Method used for printing details of the Sessions in Planner's list. Used only for
+     * making sure Sessions were added correctly.
+     */
+    public void printSessionDetails(){
+
+        int i = 1;
+
+        for (Session session : sessionList){
+
+            System.out.println("");
+            System.out.print(i + ". ");
+            System.out.println("Name of session: " + session.getName());
+            System.out.println("Date of session: " + session.getDate().toString());
+
+            if (session.getExerciseList().isEmpty()) {
+                System.out.println("There are no exercises in session " + session.getName());
+            } else {
+                System.out.println("Exercises in session: ");
+                for (Exercise exercise : session.getExerciseList()){
+                    System.out.println("   " + exercise.getName());
+                }
+            }
+            i++;
+        }
     }
 
 }
