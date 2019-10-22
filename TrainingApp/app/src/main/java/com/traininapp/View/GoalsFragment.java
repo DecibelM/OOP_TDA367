@@ -21,6 +21,7 @@ import com.traininapp.adapter.IStatistic;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Keeps hold of the goals page or my page. Also holds the recyclerview along with its adapter and Layout manager.
