@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.traininapp.Model.Repository;
 import com.traininapp.Model.Statistics.IGoal;
@@ -34,6 +35,7 @@ public class GoalsFragment extends Fragment {
     private View view;
     private Repository repository;
     private List<IStatistic> statisticsList;
+    private Button addGoal;
 
     @Nullable
     @Override
@@ -41,12 +43,6 @@ public class GoalsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_goals, null);
         repository = Repository.getInstance();
         statisticsList = new ArrayList<>();
-
-        System.out.println(repository.getStatList().size());
-        System.out.println(repository.getGoalList().size());
-
-
-
 
         bindView();
 
@@ -57,15 +53,19 @@ public class GoalsFragment extends Fragment {
      * Connects the right view to the right element and init them correspondingly.
      */
     private void bindView() {
+        addGoal = (Button) view.findViewById(R.id.btnAddGoalID);
+
         recyclerView = (RecyclerView) view.findViewById(R.id.myPagesRecyclerViewID);
         recyclerView.setHasFixedSize(true);
 
         recyclerViewAdapter = new StatisticsAdapter(statisticsList);
 
-        layoutManager= new LinearLayoutManager(GoalsFragment.super.getContext());
+        layoutManager = new LinearLayoutManager(GoalsFragment.super.getContext());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);
+
+
 
         for (IStat statistic: repository.getStatList()){
             statisticsList.add(new StatisticCard(statistic.getName(), statistic.getDataList(), statistic.getDatesList()));
@@ -75,6 +75,8 @@ public class GoalsFragment extends Fragment {
         }
     }
 
+    private void replaceFragment(Fragment fragment){
+    }
 }
 
 
