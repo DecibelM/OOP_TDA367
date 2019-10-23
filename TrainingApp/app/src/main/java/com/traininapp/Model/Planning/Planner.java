@@ -18,7 +18,7 @@ public class Planner {
     }
 
     /**
-     * Adds a new session to the Planner sessionList, with image.
+     * Adds a new session to the Planner sessionList.
      * @param session Name of session
      */
     public void addSession(Session session){

@@ -1,13 +1,9 @@
 package com.traininapp.Model.Planning;
 
 import com.traininapp.Model.ISessionObserver;
-
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-// TODO Ta bort onödig import
 
 /**
  * Class Session which holds a list of exercises and a date.s
@@ -23,6 +19,7 @@ public class Session implements Comparable<Session>{
 
     /**
      * Constructor for Session which takes name of exercise and date as parameters
+     * For testing only!
      * @param name Name of session
      * @param date Date of session
      */
@@ -31,20 +28,6 @@ public class Session implements Comparable<Session>{
         this.name = name;
         this.exerciseList = new ArrayList<>();
         this.date = date;
-        sessionObservers = new ArrayList<>();
-    }
-
-    /**
-     * Constructor for Session which takes name, date and image as parameters
-     * @param name Name of session
-     * @param date Date of session
-     * @param sessionImage Image of session
-     */
-    public Session(String name, LocalDate date, int sessionImage) {
-        this.name = name;
-        this.exerciseList = new ArrayList<>();
-        this.date = date;
-        this.sessionImage = sessionImage;
         sessionObservers = new ArrayList<>();
     }
 
@@ -73,15 +56,6 @@ public class Session implements Comparable<Session>{
     }
 
     /**
-     * Removes an observer from the session
-     *
-     * @param observer
-     */
-    public void removeObservers(ISessionObserver observer){
-        sessionObservers.remove(observer);
-    }
-
-    /**
      *Sends the list of exercises over to the observer
      * Call for this only once! otherwise there will be duplicate data in statistics.
      */
@@ -91,6 +65,9 @@ public class Session implements Comparable<Session>{
         }
     }
 
+    /**
+     * Called when a session is marked as finished
+     */
     public void finishSession(){
         isFinished = true;
         updateSessionObserver();
