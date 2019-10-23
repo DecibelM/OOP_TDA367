@@ -9,7 +9,7 @@ public class CarExTable {
     private final DatabaseHelper myDb;
 
     private static final String COL_1 = "ID";
-    private static final String COL_2 = "ROUTINE_NAME";
+    private static final String COL_2 = "SESSION_ID";
     private static final String COL_3 = "NAME";
     private static final String COL_4 = "DISTANCE";
     private static final String COL_5 = "TIME";
@@ -18,10 +18,10 @@ public class CarExTable {
         this.myDb = new DatabaseHelper(context);
     }
 
-    public void insertData(String routine_name, String name, double distance, double time){
+    public void insertData(int session_id, String name, double distance, double time){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_2, routine_name);
+        contentValues.put(COL_2, session_id);
         contentValues.put(COL_3, name);
         contentValues.put(COL_4, distance);
         contentValues.put(COL_5, time);
@@ -52,7 +52,6 @@ public class CarExTable {
     public Integer deleteData(String id){
         SQLiteDatabase db = myDb.getWritableDatabase();
         return db.delete(myDb.getCarExTableName(), "ID = ?", new String[] {id});
-
 
     }
 

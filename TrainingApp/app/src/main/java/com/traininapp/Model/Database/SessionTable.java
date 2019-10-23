@@ -14,17 +14,18 @@ public class SessionTable {
     private static final String COL_1 = "ID";
     private static final String COL_2 = "NAME";
     private static final String COL_3 = "DATE";
-
+    private static final String COL_4 = "IMAGE";
 
     public SessionTable(Context context) {
         this.myDb = new DatabaseHelper(context);
     }
 
-    public void insertData(String name, String DATE){
+    public void insertData(String name, String DATE, int image){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, name);
         contentValues.put(COL_3, DATE);
+        contentValues.put(COL_4, image);
 
         db.insert(myDb.getSessionTable(), null, contentValues);
     }
@@ -33,6 +34,22 @@ public class SessionTable {
         SQLiteDatabase db = myDb.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+myDb.getSessionTable(), null);
         return res;
+    }
+
+    public int getLatestTable(){
+        SQLiteDatabase db = myDb.getWritableDatabase();
+        //   Cursor res = db.rawQuery("select * from "+myDb.getSessionTable(), null);
+        String query = "SELECT MAX(id) AS max_id FROM "+ myDb.getSessionTable();
+        Cursor res = db.rawQuery(query, null);
+        int id = 0;
+        if (res.moveToFirst())
+        {
+            do
+            {
+                id = res.getInt(0);
+            } while(res.moveToNext());
+        }
+        return id;
     }
 
     public boolean updateData(int id, String name, String date){

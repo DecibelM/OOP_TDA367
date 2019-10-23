@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:completionThreshold="0"
         android:hint="Enter exercise"
+        android:text="ccc"
         android:inputType="text"
         android:maxWidth="150dp" />
 

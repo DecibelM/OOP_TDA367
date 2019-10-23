@@ -2,6 +2,8 @@ package com.traininapp;
 
 import android.app.Application;
 import android.database.Cursor;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.traininapp.Model.Database.CarExTable;
 import com.traininapp.Model.Database.DatabaseHelper;
@@ -12,7 +14,13 @@ import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.Model.Repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Startup extends Application {
@@ -29,22 +37,22 @@ public class Startup extends Application {
         Repository repository;
         repository = Repository.getInstance();
 
-       // myDb = new DatabaseHelper(this);
         SessionTable sessionTable = new SessionTable(this);
         StrExTable strExTable = new StrExTable(this);
         CarExTable carExTable = new CarExTable(this);
 
-        Cursor routinesInDB = sessionTable.getData();
+        Cursor sessionsInDB = sessionTable.getData();
         Cursor strExInDB = strExTable.getData();
         Cursor carExInDB = carExTable.getData();
 
-        while(routinesInDB.moveToNext()){
-            routinesInDB.getString(0);
+
+        while(sessionsInDB.moveToNext()){
+            sessionsInDB.getString(0);
             List<Exercise> exerciseList = new ArrayList<>();
 
             while(strExInDB.moveToNext()){
 
-                if (routinesInDB.getString(0).equals(strExInDB.getString(1))){
+                if (sessionsInDB.getInt(0) == (strExInDB.getInt(1))){
 
                     StrengthExercise strengthExercise = new StrengthExercise(strExInDB.getString(2), strExInDB.getInt(3), strExInDB.getInt(4), strExInDB.getInt(5));
                     exerciseList.add(strengthExercise);
@@ -52,15 +60,20 @@ public class Startup extends Application {
             }
             while(carExInDB.moveToNext()){
 
-                if (routinesInDB.getString(0).equals(carExInDB.getString(1))){
+                if (sessionsInDB.getInt(0) == carExInDB.getInt(1)){
 
                     CardioExercise cardioExercise = new CardioExercise(carExInDB.getString(2), carExInDB.getInt(3), carExInDB.getInt(4));
                     exerciseList.add(cardioExercise);
+                    System.out.println("session: " +sessionsInDB.getString(1) +", exercise: " + carExInDB.getString(2));
                 }
             }
-            repository.getUser().addRoutine(routinesInDB.getString(0), exerciseList);
+            repository.getUser().getPlanner().addSession(sessionsInDB.getString(1), convert(sessionsInDB.getString(2)),exerciseList, sessionsInDB.getInt(3));
             strExInDB.moveToFirst();
             carExInDB.moveToFirst();
         }
+    }
+
+    static LocalDate convert(String date) {
+        return LocalDate.parse(date, DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
     }
 }
