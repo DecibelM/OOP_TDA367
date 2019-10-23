@@ -75,7 +75,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
         Spinner spnrIcon = findViewById(R.id.spnrIconID);
-        //String[] iconsStrArray = getResources().getStringArray(R.array.iconsStringArray); Error här venne varför
+        String[] iconsStrArray = getResources().getStringArray(R.array.iconsStringArray);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
         txtSelectedDate = findViewById(R.id.txtSelectedDateID);
         imgSessionIcon = findViewById(R.id.imgSessionIconID);
@@ -87,7 +87,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         txtSelectedDate.setText(selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
 
         // Setting adapter for Spinner and add Listener
-        //spnrIcon.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, iconsStrArray)); // Error här venne varför
+        spnrIcon.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, iconsStrArray));
         spnrIcon.setOnItemSelectedListener(new SpinnerItemSelectedListener());
 
         // Clicking on Add exercise text adds a strength exercise row
