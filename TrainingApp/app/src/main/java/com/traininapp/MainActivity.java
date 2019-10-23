@@ -85,6 +85,17 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Method to add dummy sessions to the list
      */
+    public void replaceFragments () {
+        AddGoalFragment addGoalFragment = new AddGoalFragment();
+        addFragment(addGoalFragment);
+    }
+    private void addFragment(Fragment fragment) {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.container, fragment);
+        fragmentTransaction.commit();
+    }
+
     private void initializeDummySessions(){
         List<Exercise> eList = new ArrayList<>();
         eList.add(new CardioExercise("Spring",10,10));
