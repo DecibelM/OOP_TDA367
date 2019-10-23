@@ -60,20 +60,22 @@ public class Startup extends Application {
 
                     CardioExercise cardioExercise = new CardioExercise(carExInDB.getString(2), carExInDB.getInt(3), carExInDB.getInt(4));
                     exerciseList.add(cardioExercise);
-                    System.out.println("session: " +sessionsInDB.getString(1) +", exercise: " + carExInDB.getString(2));
                 }
             }
 
             if(convert(sessionsInDB.getString(2)).isAfter(LocalDate.now().minusDays(1))){
                 repository.getUser().getPlanner().addSession(sessionsInDB.getString(1), convert(sessionsInDB.getString(2)),exerciseList, sessionsInDB.getInt(3));
             } else{
-                sessionTable.deleteData(String.valueOf(sessionTable.getLatestTable()));
+                sessionTable.deleteData(String.valueOf(sessionsInDB.getString(0)));
             }
 
 
+            System.out.println("Sessiontable: " + sessionsInDB.getString(1));
             strExInDB.moveToFirst();
             carExInDB.moveToFirst();
         }
+
+
     }
 
     static LocalDate convert(String date) {
