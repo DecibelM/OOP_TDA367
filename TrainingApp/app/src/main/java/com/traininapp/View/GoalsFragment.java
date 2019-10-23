@@ -49,6 +49,7 @@ public class GoalsFragment extends Fragment {
      * Sets up the RecyclerView and gives it something to use and fill itself with
      */
     private void bindView(View view) {
+        addGoal = (Button) view.findViewById(R.id.btnAddGoalID);
         RecyclerView recyclerView = view.findViewById(R.id.myPagesRecyclerViewID);
         recyclerView.setHasFixedSize(true);
         StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
