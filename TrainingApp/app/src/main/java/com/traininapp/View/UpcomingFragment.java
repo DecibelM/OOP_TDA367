@@ -15,8 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
+
+import java.util.List;
 
 public class UpcomingFragment extends Fragment {
 
@@ -44,8 +47,11 @@ public class UpcomingFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
+        // Getting a sorted list of Sessions from Planner's list of Sessions, based on date
+        List<Session> sortedSessionList = viewModel.getSortedSessionList();
+
         // Specifying the adapter
-        SessionAdapter adapter = new SessionAdapter(viewModel.getListOfSessions());
+        SessionAdapter adapter = new SessionAdapter(sortedSessionList);
         recyclerView.setAdapter(adapter);
 
         // Using a linear layout manager
