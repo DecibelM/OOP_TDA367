@@ -48,22 +48,13 @@ public class MainActivity extends AppCompatActivity {
         if (planner.getSessionList().isEmpty()){
             initializeDummySessions(planner);
         }
-
     }
 
     private void initializeDummySessions(Planner planner){
-
         List<Exercise> eList = new ArrayList<>();
         planner.addSession("Löpning", LocalDate.now(), eList,R.drawable.workout_5);
         planner.addSession("Yoga", LocalDate.now().plusDays(1),eList, R.drawable.workout_2);
         planner.addSession("Armträning", LocalDate.now().plusDays(2), eList,R.drawable.workout_4);
         planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),eList,R.drawable.workout_1);
-        Session session = planner.getSessionList().get(0);
-        session.addCardioExercise("Spring",10,10);
-        session.addStrengthExercise("Lyft",10,100,10);
-        session.addCardioExercise("Spring2",100,10);
-        session.addStrengthExercise("Lyft2",10,10,10);
-        session.addCardioExercise("Spring3",100,100);
-        session.addStrengthExercise("Lyft3",100,100,100);
     }
 }

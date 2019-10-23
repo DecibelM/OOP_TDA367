@@ -100,27 +100,6 @@ public class Session implements Comparable<Session>{
         return isFinished;
     }
 
-    /**
-     * Method adds a Cardio Exercise into a Session.
-     * @param name name of added exercise
-     * @param runningTime time running (min)
-     * @param distance distance run (m)
-     */
-    public void addCardioExercise(String name, double runningTime, double distance ){
-        exerciseList.add(new CardioExercise(name, runningTime, distance));
-    }
-
-    /**
-     * Method adds a Strength exercise into a Session.
-     * @param name name of added exercise
-     * @param sets number of sets
-     * @param reps number of reps
-     * @param weight weight used in the exercise
-     */
-    public void addStrengthExercise(String name, int sets, int reps, double weight ){
-        exerciseList.add(new StrengthExercise(name, sets, reps, weight));
-    }
-
     public List<Exercise> getExerciseList() {
         return exerciseList;
     }
