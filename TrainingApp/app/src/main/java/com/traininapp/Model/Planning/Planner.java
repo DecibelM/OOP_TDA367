@@ -18,15 +18,6 @@ public class Planner {
     }
 
     /**
-     * Adds a new session to the Planner sessionList, without image.
-     * @param sessionName name of the session
-     * @param date date of the session
-     */
-    public void addSession(String sessionName,List<Exercise> exList,  LocalDate date){
-        sessionList.add(new Session(sessionName, exList, date));
-    }
-
-    /**
      * Adds a new session to the Planner sessionList, with image.
      * @param sessionName Name of session
      * @param date Date of session
@@ -36,6 +27,12 @@ public class Planner {
         sessionList.add(new Session(sessionName, date, sessionImage));
     }
 
+    /**
+     * Adds a new session to the Planner sessionList, without image.
+     * @param sessionName name of the session
+     * @param date date of the session
+     * @param list list of exercises
+     */
     public void addSession(String sessionName, LocalDate date, List<Exercise> list){
         sessionList.add(new Session(sessionName, list, date));
     }
@@ -53,33 +50,6 @@ public class Planner {
 
     public List<Session> getSessionList() {
         return sessionList;
-    }
-
-    /** TODO Delete this method when handing in project
-     * Method used for printing details of the Sessions in Planner's list. Used only for
-     * making sure Sessions were added correctly.
-     */
-    public void printSessionDetails(){
-
-        int i = 1;
-
-        for (Session session : sessionList){
-
-            System.out.println("");
-            System.out.print(i + ". ");
-            System.out.println("Name of session: " + session.getName());
-            System.out.println("Date of session: " + session.getDate().toString());
-
-            if (session.getExerciseList().isEmpty()) {
-                System.out.println("There are no exercises in session " + session.getName());
-            } else {
-                System.out.println("Exercises in session: ");
-                for (Exercise exercise : session.getExerciseList()){
-                    System.out.println("   " + exercise.getName());
-                }
-            }
-            i++;
-        }
     }
 
 }
