@@ -81,8 +81,9 @@ public class UpcomingFragment extends Fragment {
     }
 
 
-    public void openSession(){
+    public void openSession() {
         Intent intent = new Intent(getActivity(), CurrentSessionActivity.class);
+    }
 
 
     public void openSession(Session session){
