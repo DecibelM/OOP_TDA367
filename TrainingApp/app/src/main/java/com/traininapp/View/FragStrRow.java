@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.DatabaseHelper;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
@@ -55,8 +56,6 @@ public class FragStrRow extends Fragment {
         strExerciseList.add("Bicep Curl");
         strExerciseList.add("Dumbbell Curl");
         strExerciseList.add("Dumbbell Shoulder Fly");
-
-        autPickStrEx.setText("aaa");
 
 
         //create and setup adapter
@@ -160,7 +159,7 @@ public class FragStrRow extends Fragment {
 
         autPickStrEx.setText(exercise.getName());
         txtEnterSets.setText(String.valueOf(exercise.getSets()));
-        txtEntersReps.setText(String.valueOf(exercise.getReps()));
+        txtEntersReps.setText(String.valueOf(exercise.getSets()));
         txtEnterWeight.setText(String.valueOf(exercise.getWeight()));
 
     }

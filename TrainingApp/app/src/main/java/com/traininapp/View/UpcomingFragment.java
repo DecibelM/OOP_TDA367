@@ -47,6 +47,13 @@ public class UpcomingFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //openSession();
+            }
+        });
+
         // Getting a sorted list of Sessions from Planner's list of Sessions, based on date
         List<Session> sortedSessionList = viewModel.getSortedSessionList();
 
@@ -73,9 +80,9 @@ public class UpcomingFragment extends Fragment {
         startActivity(intent);
     }
 
-    public void openSession(){
+    public void openSession(Session session){
         Intent intent = new Intent(getActivity(), CurrentSessionActivity.class);
-
+        intent.putExtra("Session", session.toString());
         startActivity(intent);
     }
 
