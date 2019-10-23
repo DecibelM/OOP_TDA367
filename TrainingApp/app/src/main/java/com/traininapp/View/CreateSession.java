@@ -27,10 +27,7 @@ import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
 
-import com.traininapp.Model.Planning.CardioExercise;
-
 import com.traininapp.Model.Repository;
-import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
 
 import java.time.LocalDate;

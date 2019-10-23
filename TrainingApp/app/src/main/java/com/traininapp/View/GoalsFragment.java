@@ -20,7 +20,6 @@ import com.traininapp.adapter.StatisticsAdapter;
 import com.traininapp.adapter.IStatistic;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,10 +27,8 @@ import java.util.List;
  */
 public class GoalsFragment extends Fragment {
 
-    //TODO gör variabler lokala. SPACE! Kommentarer i bindview. Onödig casting. Onödig import
-    private RecyclerView recyclerView;
-    private StatisticsAdapter recyclerViewAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    //TODO Kommentarer i bindview
+
     private View view;
     private Repository repository;
     private List<IStatistic> statisticsList;
@@ -43,12 +40,6 @@ public class GoalsFragment extends Fragment {
         repository = Repository.getInstance();
         statisticsList = new ArrayList<>();
 
-        System.out.println(repository.getStatList().size());
-        System.out.println(repository.getGoalList().size());
-
-
-
-
         bindView();
 
         return view;
@@ -58,12 +49,12 @@ public class GoalsFragment extends Fragment {
      * Connects the right view to the right element and init them correspondingly.
      */
     private void bindView() {
-        recyclerView = (RecyclerView) view.findViewById(R.id.myPagesRecyclerViewID);
+        RecyclerView recyclerView = view.findViewById(R.id.myPagesRecyclerViewID);
         recyclerView.setHasFixedSize(true);
 
-        recyclerViewAdapter = new StatisticsAdapter(statisticsList);
+        StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
 
-        layoutManager= new LinearLayoutManager(GoalsFragment.super.getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GoalsFragment.super.getContext());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);

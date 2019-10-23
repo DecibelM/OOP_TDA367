@@ -162,7 +162,7 @@ public class Results implements ISessionObserver {
      * @param data The weight or distance for the exercise
      * @param date Date of the exercise
      */
-    void updateExerciseList(String name, Double data, Long date){
+    private void updateExerciseList(String name, Double data, Long date){
 
 
         for (ExerciseSpecificStatistic exerciseStat: exerciseStatistics){
