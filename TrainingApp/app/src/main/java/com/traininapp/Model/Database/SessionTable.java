@@ -38,7 +38,6 @@ public class SessionTable {
 
     public int getLatestTable(){
         SQLiteDatabase db = myDb.getWritableDatabase();
-        //   Cursor res = db.rawQuery("select * from "+myDb.getSessionTable(), null);
         String query = "SELECT MAX(id) AS max_id FROM "+ myDb.getSessionTable();
         Cursor res = db.rawQuery(query, null);
         int id = 0;
