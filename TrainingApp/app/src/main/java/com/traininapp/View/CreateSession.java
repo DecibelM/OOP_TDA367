@@ -186,7 +186,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         if (control) {
 
             // Adding Session to users list
-            repository.getUser().getPlanner().addSession(sessionName, selectedDate, exerciseList, image);
+            repository.addSession(sessionName, exerciseList, selectedDate, image);
 
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";

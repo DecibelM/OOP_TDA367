@@ -3,6 +3,7 @@ package com.traininapp;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class ExampleUnitTest {
         List<Exercise> exerciseList = new ArrayList<Exercise>();
         exerciseList.add(strengthExercise);
         exerciseList.add(cardioExercise);
-        c.addSession("Magpass", date,exerciseList);
+        c.addSession(new Session("Magpass", exerciseList, date));
         assertEquals(1,c.getSessionList().size());
     }
 }

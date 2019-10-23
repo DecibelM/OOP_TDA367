@@ -28,10 +28,10 @@ public class UpcomingSessionsViewModelTest {
         UpcomingSessionsViewModel viewModel = new UpcomingSessionsViewModel();
         List <Exercise> eList = new ArrayList<>();
 
-        planner.addSession("Löpning",LocalDate.now().minusDays(1),eList,R.drawable.workout_5);
-        planner.addSession("Yoga", LocalDate.now(),eList,R.drawable.workout_2);
-        planner.addSession("Armträning", LocalDate.now().plusDays(1),eList,R.drawable.workout_4);
-        planner.addSession("Hjärngympa", LocalDate.now().plusDays(2),eList,R.drawable.workout_1);
+        planner.addSession(new Session("Löpning",LocalDate.now().minusDays(1),eList,R.drawable.workout_5));
+        planner.addSession(new Session("Yoga", LocalDate.now(),eList,R.drawable.workout_2));
+        planner.addSession(new Session("Armträning", LocalDate.now().plusDays(1),eList,R.drawable.workout_4));
+        planner.addSession(new Session("Hjärngympa", LocalDate.now().plusDays(2),eList,R.drawable.workout_1));
 
         List<Session> list = viewModel.getListOfSessions();
 
@@ -44,10 +44,10 @@ public class UpcomingSessionsViewModelTest {
         planner.getSessionList().clear();
         List <Exercise> eList = new ArrayList<>();
 
-        planner.addSession("Löpning", LocalDate.now(),eList, R.drawable.workout_5);
-        planner.addSession("Yoga", LocalDate.now().plusDays(1),eList,R.drawable.workout_2);
-        planner.addSession("Armträning", LocalDate.now().plusDays(2),eList,R.drawable.workout_4);
-        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),eList,R.drawable.workout_1);
+        planner.addSession(new Session("Löpning",LocalDate.now().minusDays(1),eList,R.drawable.workout_5));
+        planner.addSession(new Session("Yoga", LocalDate.now(),eList,R.drawable.workout_2));
+        planner.addSession(new Session("Armträning", LocalDate.now().plusDays(1),eList,R.drawable.workout_4));
+        planner.addSession(new Session("Hjärngympa", LocalDate.now().plusDays(2),eList,R.drawable.workout_1));
 
         assertEquals(4, planner.getSessionList().size());
     }

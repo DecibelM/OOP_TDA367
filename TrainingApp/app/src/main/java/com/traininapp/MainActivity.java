@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeDummySessions(Planner planner){
         List<Exercise> eList = new ArrayList<>();
-        planner.addSession("Löpning", LocalDate.now(), eList,R.drawable.workout_5);
-        planner.addSession("Yoga", LocalDate.now().plusDays(1),eList, R.drawable.workout_2);
-        planner.addSession("Armträning", LocalDate.now().plusDays(2), eList,R.drawable.workout_4);
-        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),eList,R.drawable.workout_1);
+        planner.addSession(new Session("Löpning", LocalDate.now(), eList,R.drawable.workout_5));
+        planner.addSession(new Session("Yoga", LocalDate.now().plusDays(1),eList, R.drawable.workout_2));
+        planner.addSession(new Session("Armträning", LocalDate.now().plusDays(2), eList,R.drawable.workout_4));
+        planner.addSession(new Session("Hjärngympa", LocalDate.now().plusDays(3),eList,R.drawable.workout_1));
     }
 }
