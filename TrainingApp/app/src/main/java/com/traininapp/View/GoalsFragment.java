@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.traininapp.MainActivity;
 import com.traininapp.Model.Repository;
 import com.traininapp.Model.Statistics.IGoal;
 import com.traininapp.Model.Statistics.IStat;
@@ -41,7 +42,7 @@ public class GoalsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_goals, null);
+        view = inflater.inflate(R.layout.fragment_goals, container, false);
         repository = Repository.getInstance();
         statisticsList = new ArrayList<>();
 
@@ -74,9 +75,19 @@ public class GoalsFragment extends Fragment {
         for (IGoal goal: repository.getGoalList()){
             statisticsList.add(new GoalStatCard(goal.getName(), goal.getTarget(), goal.getProgress()));
         }
+
+        addGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment();
+            }
+        });
     }
 
-    private void replaceFragment(Fragment fragment){
+
+    private void replaceFragment(){
+        MainActivity mainActivity = (MainActivity) getActivity();
+        ((MainActivity) getActivity()).replaceFragments();
     }
 }
 
