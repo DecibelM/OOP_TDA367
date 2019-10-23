@@ -32,20 +32,17 @@ import java.util.List;
  */
 public class CalendarFragment extends Fragment {
 
-        // TODO göra Localdate private. Gör lokala variabler. Ta bort emptyview. Ta bort space. Gör metoder private. Javadoc kommentarer. Ta bort utkommenterade grejer
+    // TODO göra Localdate private. Gör lokala variabler. Ta bort emptyview. Ta bort space. Gör metoder private. Javadoc kommentarer. Ta bort utkommenterade grejer
     // TODO Opensession gör boolean av "YES". Gör "List" till en list och inte arraylist samt bättre namn. Ta bort onödig casting. Ta bort Context skiten.
 
     /*
-    Done: Localdate private. Boolean av Yes. Metoder privata. Utkommenterade grejer. SPACE!
+    Done: Localdate private. Boolean av Yes. Metoder privata. Utkommenterade grejer. SPACE! Visar inte klara sessions. Onödig Casting. Lokala variabler. Emptey view.
      */
 
     private TextView myDate;
-    private CalendarView calendarView;
     private CalendarViewModel viewModel;
     private ListView listView;
     private List <String> sessionList;
-    private FloatingActionButton btnOpen;
-    private SimpleDateFormat dateFormat;
     private LocalDate localDate;
 
 
@@ -55,16 +52,16 @@ public class CalendarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_calendar, null);
         viewModel = ViewModelProviders.of(this).get(CalendarViewModel.class);
         myDate = view.findViewById(R.id.myDate);
-        calendarView = view.findViewById(R.id.calendarView);
+        CalendarView calendarView = view.findViewById(R.id.calendarView);
         listView = view.findViewById(R.id.listViewCalendar);
-        btnOpen = view.findViewById(R.id.btnOpenID);
+        FloatingActionButton btnOpen = view.findViewById(R.id.btnOpenID);
         localDate = LocalDate.now();
         sessionList = new ArrayList<>() ;
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, sessionList);
         listView.setAdapter(adapter);
 
         Date date = new Date();
-        dateFormat = new SimpleDateFormat("d - MM - yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d - MM - yyyy");
         myDate.setText(dateFormat.format(date));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -105,8 +102,9 @@ public class CalendarFragment extends Fragment {
         sessionList.clear();
         if(sessionNameList != null) {
             for (Session s : sessionNameList) {
-
-                sessionList.add(s.getName());
+                if(!s.isFinished()) {
+                    sessionList.add(s.getName());
+                }
             }
         }
         if (sessionNameList.isEmpty()) {

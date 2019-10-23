@@ -16,10 +16,12 @@ import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 import com.traininapp.viewModel.CurrentSessionViewModel;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Acticity for handling an already created session. Lets you see what exercises you have, add new ones and letting the app know you have finished the session
+ */
 public class CurrentSessionActivity extends AppCompatActivity {
 
     // TODO Ta bort skit som inte används längre. Done button kan göras local. Ta bort gamla kommentarer. Javadoc. Fler övriga kommentarer. Bryt ut session och sessionID till CurrentSessionViewModel.
@@ -27,7 +29,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     // Done: Onödiga imports, gammal skit, SPACE, gamla kommentarer
 
-    private LocalDate selectedDate;
     private TextView sessionName;
     private TextView sessionDate;
     private List<FragStrRow> listStrFrag;
@@ -67,6 +68,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
             }
         });
 
+        // Lets you change the name of the session
         sessionName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -91,29 +93,31 @@ public class CurrentSessionActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sets to session to finished. Sending the exercise info to statistics and open the main page
+     * @param session selected session
+     */
     public void sessionDone(Session session) {
         Intent intent = new Intent(this, MainActivity.class);
         session.finishSession();
         startActivity(intent);
     }
 
-    public LocalDate getSelectedDate() {
-        return selectedDate;
-    }
-
-    public void setSelectedDate(LocalDate selectedDate) {
-        this.selectedDate = selectedDate;
-    }
-
-
+    /**
+     * Sets the name and date of the session
+     * @param session selected session
+     */
     public void loadSession(Session session) {
         String string = session.getDate().toString();
         sessionName.setText(session.getName());
         sessionDate.setText(string);
     }
 
+    /**
+     * Loads all the exercises currently assigned to the session
+     * @param session selected session
+     */
     public void loadExercises(Session session) {
-
         if (session != null) {
             for (Exercise exercise : session.getExerciseList()) {
                 if (exercise instanceof CardioExercise)
@@ -125,7 +129,10 @@ public class CurrentSessionActivity extends AppCompatActivity {
         }
     }
 
-    //create a new cardio fragment in the Cardio scrollview
+    /**
+     * Creates a new row for a CardioExercise in the Cardioexercise scrollview
+     * @param exercise the cardio exercise for which the row will be created
+     */
     public void createCarRow(final CardioExercise exercise) {
         //create the fragment
         final FragCarRow fragment = new FragCarRow();
@@ -142,7 +149,11 @@ public class CurrentSessionActivity extends AppCompatActivity {
         }, 1);
 
     }
-    //create a new Strength fragment in the Strength scrollview
+
+    /**
+     * Creates a new row for a StrengthExercise in the Strengthexercise scrollview
+     * @param exercise the strengthexercise for which the row will be created
+     */
     public void createStrRow(final Exercise exercise) {
         //create the fragment
         final FragStrRow fragment = new FragStrRow();
@@ -159,46 +170,60 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     }
 
-    public void fragmentStrHandeler(List list, Fragment fragment) {
+    /**
+     * Handles and adds the strengthrows
+     * @param StrengthRowlist the list of all Strengthexerciserows
+     * @param fragment the new fragment for the exercise
+     */
+    public void fragmentStrHandeler(List StrengthRowlist, Fragment fragment) {
 
         //Begin the transaction, to start doing something with the fragment
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         //Add the created fragment to "displayRowsID"
         fragmentTransaction.add(R.id.displayStrRowsID, fragment);
         //Add it to the list of all created Cardio fragments
-        list.add(fragment);
+        StrengthRowlist.add(fragment);
         //Commit and finish the FragmentTransaction
         fragmentTransaction.commit();
-
     }
-
-    public void fragmentCardioHandeler(List list, Fragment fragment) {
+    /**
+     * Handles and adds the cardiorows
+     * @param CardioRowList the list of all Cardioexerciserows
+     * @param fragment the new fragment for the exercise
+     */
+    public void fragmentCardioHandeler(List CardioRowList, Fragment fragment) {
 
         //Begin the transaction, to start doing something with the fragment
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         //Add the created fragment to "displayRowsID"
         fragmentTransaction.add(R.id.displayCarRowsID, fragment);
         //Add it to the list of all created Cardio fragments
-        list.add(fragment);
+        CardioRowList.add(fragment);
         //Commit and finish the FragmentTransaction
         fragmentTransaction.commit();
 
     }
 
+    /**
+     * Adds a new CardioExercise to the current Session and creates the new row
+     * @param session Current session
+     */
     public void addCardioExercise(Session session) {
 
         CardioExercise exercise = new CardioExercise("Hej", 0, 0);
         System.out.println(session.toString());
         session.getExerciseList().add(exercise);
-
         createCarRow(exercise);
     }
 
+    /**
+     * Adds a new StrengthExercise to the current session and creates the new row
+     * @param session Current session
+     */
     public void addStrengthExercise(Session session) {
 
         StrengthExercise exercise = new StrengthExercise("Lyft", 0, 0, 0);
         session.getExerciseList().add(exercise);
-
         createStrRow(exercise);
     }
 
@@ -208,9 +233,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
     Fixa så du kan ta bort session. Anting för att du inte vill göra den eller för att du har gymmat klart
     Linka upp CurrentSession med Upcoming Session
     Snygga till med Done knappen
-    Tester
-    Ta bort gamla xml när helt säker att den inte behövs
-    Kommentarer
      */
 
 
