@@ -21,6 +21,16 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
+
+import com.traininapp.Model.Database.CarExTable;
+import com.traininapp.Model.Database.SessionTable;
+import com.traininapp.Model.Database.StrExTable;
+import com.traininapp.Model.Planning.CardioExercise;
+import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.StrengthExercise;
+
+import com.traininapp.Model.Planning.CardioExercise;
+
 import com.traininapp.Model.Repository;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
@@ -37,6 +47,8 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
 
     // TODO ta bort imports. Skapa viewmodel. Javadoc för klassen. Mindre space om möjligt. Fundera på control booleanen.
     // TODO Adam fixa isDateSelected. Ta bort onödig import. Fixa så dubbles funkar
+
+
 
     // Declaring elements
     private EditText txtEnterSessionName;
@@ -85,6 +97,9 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
 
         // Setting image to Strength by default
         image = getResources().getIdentifier("workout_1", "drawable", getPackageName());
+
+        //Checks if you are coming from the calendar and then sets the date accordingly
+        isDateSelectedAlready();
 
         // Updating text to match selectedDate, today's date by default
         txtSelectedDate.setText(selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
@@ -188,8 +203,40 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
         // If no fragments returned null and name is unique
         if (control) {
 
+            SessionTable sessionTable = new SessionTable(getApplicationContext());
+            sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image);
+
             // Adding Session to users list
             repository.getUser().getPlanner().addSession(sessionName, selectedDate, exerciseList, image);
+
+
+            for(Exercise exercise : exerciseList) {
+
+                if (exercise instanceof StrengthExercise) {
+                    StrExTable strExTable = new StrExTable(getApplicationContext());
+
+                    strExTable.insertData(sessionTable.getLatestTable(),
+                            exercise.getName(),
+                            ((StrengthExercise) exercise).getSets(),
+                            ((StrengthExercise) exercise).getReps(),
+                            ((StrengthExercise) exercise).getWeight());
+                }
+            }
+
+            for(Exercise exercise : exerciseList) {
+
+                if (exercise instanceof CardioExercise) {
+                    CarExTable carExTable = new CarExTable(getApplicationContext());
+
+                    carExTable.insertData(sessionTable.getLatestTable(),
+                            exercise.getName(),
+                            ((CardioExercise) exercise).getDistance(),
+                            ((CardioExercise) exercise).getRunningTime());
+                }
+            }
+
+
+
 
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
@@ -349,5 +396,23 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
         public void onNothingSelected(AdapterView<?> parent) {
             // Empty necessary method
         }
+    }
+
+    public void isDateSelectedAlready() {
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            if (intent.getBooleanExtra("FROMCALENDAR",true)) {
+
+
+                String pastDate = intent.getStringExtra("DATE");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d - MM - yyyy");
+                LocalDate localDate = LocalDate.parse(pastDate, formatter);
+                setDate(localDate);
+            }
+        }
+    }
+
+    private void setDate(LocalDate localDate){
+        selectedDate = localDate;
     }
 }
