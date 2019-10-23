@@ -3,9 +3,6 @@ package com.traininapp.Model.Database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.traininapp.Model.Planning.Routine;
-
 /**
  * The class which names and creates all
  * the tables in the database

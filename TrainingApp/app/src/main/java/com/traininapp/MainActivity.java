@@ -3,8 +3,12 @@ package com.traininapp;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
+import com.traininapp.Model.Planning.CardioExercise;
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Session;
+import com.traininapp.Model.Planning.StrengthExercise;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -12,9 +16,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    Repository repo = Repository.getInstance();
         //TODO Javadoc, imports, SPACE! Flytta alla dummys hit.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,39 +39,25 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         // Initializing the singleton repo
-        Repository repo = Repository.getInstance();
 
-        // Fetching the Users planner
-        Planner planner = repo.getUser().getPlanner();
 
         // Adding dummy Sessions
-        if (planner.getSessionList().isEmpty()){
-            initializeDummySessions(planner);
+        if (repo.getSessionList().isEmpty()){
+            initializeDummySessions();
         }
-
-        // Print details of session (for checking only)
-        planner.printSessionDetails();
-
     }
 
-    private void initializeDummySessions(Planner planner){
+    private void initializeDummySessions(){
+        List<Exercise> eList = new ArrayList<>();
+        eList.add(new CardioExercise("Spring",10,10));
+        eList.add(new StrengthExercise("Lyft",10,100,10));
+        eList.add(new CardioExercise("Spring2",100,10));
+        eList.add(new StrengthExercise("Lyft2",10,10,10));
 
-        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
-        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
-        planner.addSession("Yoga2", LocalDate.now().plusDays(1),R.drawable.workout_2);
-        planner.addSession("Yoga3", LocalDate.now().plusDays(1),R.drawable.workout_2);
-        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
-        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
-
-
-
-        Session session = planner.getSessionList().get(0);
-        session.addCardioExercise("Spring",10,10);
-        session.addStrengthExercise("Lyft",10,100,10);
-        session.addCardioExercise("Spring2",100,10);
-        session.addStrengthExercise("Lyft2",10,10,10);
-        session.addCardioExercise("Spring3",100,100);
-        session.addStrengthExercise("Lyft3",100,100,100);
+        repo.addSession("Löpning", eList, LocalDate.now(),R.drawable.workout_5);
+        repo.addSession("Yoga", eList, LocalDate.now().plusDays(1), R.drawable.workout_2);
+        repo.addSession("Armträning", eList, LocalDate.now().plusDays(2),R.drawable.workout_4);
+        repo.addSession("Hjärngympa", eList,LocalDate.now().plusDays(3),R.drawable.workout_1);
 
     }
 }
