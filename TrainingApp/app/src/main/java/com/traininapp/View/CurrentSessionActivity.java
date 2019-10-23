@@ -246,6 +246,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
     }
 
 
+
     /*
     Kvar att göra:
     Fixa så du kan ta bort session. Anting för att du inte vill göra den eller för att du har gymmat klart

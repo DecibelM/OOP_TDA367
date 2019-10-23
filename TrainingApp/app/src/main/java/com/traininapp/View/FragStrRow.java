@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.DatabaseHelper;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
@@ -62,7 +61,7 @@ public class FragStrRow extends Fragment {
         ArrayAdapter<String> strExerciseListAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strExerciseList);
         autPickStrEx.setAdapter(strExerciseListAdapter);
 
-        autPickStrEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+     /*   autPickStrEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 exercise.setName(autPickStrEx.getText().toString());
@@ -88,7 +87,7 @@ public class FragStrRow extends Fragment {
             public void onFocusChange(View view, boolean b) {
                 exercise.setReps(Integer.valueOf(txtEntersReps.getText().toString()));
             }
-        });
+        });*/
 
         btnDeletestr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,5 +161,10 @@ public class FragStrRow extends Fragment {
         txtEntersReps.setText(String.valueOf(exercise.getSets()));
         txtEnterWeight.setText(String.valueOf(exercise.getWeight()));
 
+    }
+
+    public void setExercise(Exercise exercise){
+
+        this.exercise = (StrengthExercise) exercise;
     }
 }

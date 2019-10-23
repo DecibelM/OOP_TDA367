@@ -2,11 +2,9 @@ package com.traininapp;
 
 import android.app.Application;
 import android.database.Cursor;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.traininapp.Model.Database.CarExTable;
-import com.traininapp.Model.Database.DatabaseHelper;
 import com.traininapp.Model.Database.SessionTable;
 import com.traininapp.Model.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
@@ -14,13 +12,11 @@ import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.Model.Repository;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class Startup extends Application {
@@ -67,7 +63,14 @@ public class Startup extends Application {
                     System.out.println("session: " +sessionsInDB.getString(1) +", exercise: " + carExInDB.getString(2));
                 }
             }
-            repository.getUser().getPlanner().addSession(sessionsInDB.getString(1), convert(sessionsInDB.getString(2)),exerciseList, sessionsInDB.getInt(3));
+
+            if(convert(sessionsInDB.getString(2)).isAfter(LocalDate.now().minusDays(1))){
+                repository.getUser().getPlanner().addSession(sessionsInDB.getString(1), convert(sessionsInDB.getString(2)),exerciseList, sessionsInDB.getInt(3));
+            } else{
+                sessionTable.deleteData(String.valueOf(sessionTable.getLatestTable()));
+            }
+
+
             strExInDB.moveToFirst();
             carExInDB.moveToFirst();
         }

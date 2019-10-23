@@ -74,7 +74,7 @@ public class FragCarRow extends Fragment {
         });
 
 
-        autPickCarEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+       /* autPickCarEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 exercise.setName(autPickCarEx.getText().toString());
@@ -93,7 +93,7 @@ public class FragCarRow extends Fragment {
             public void onFocusChange(View view, boolean b) {
                 exercise.setDistance(Double.valueOf(txtEnterDistance.getText().toString()));
             }
-        });
+        });*/
 
         return v;
     }

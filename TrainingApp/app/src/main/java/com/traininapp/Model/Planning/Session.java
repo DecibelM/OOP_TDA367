@@ -10,12 +10,8 @@ import java.util.List;
 /**
  * Class Session which holds a list of exercises and a date.s
  */
-<<<<<<<<< Temporary merge branch 1
-public class Session {
 
-=========
 public class Session implements Comparable<Session>{
->>>>>>>>> Temporary merge branch 2
 
     private String name;
     private List<Exercise> exerciseList;
