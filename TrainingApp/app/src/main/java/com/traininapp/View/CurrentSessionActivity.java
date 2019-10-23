@@ -48,6 +48,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         Button doneBtn = findViewById(R.id.btnDoneID);
+        Button saveBtn = findViewById(R.id.btnSaveID);
         sessionName = findViewById(R.id.txtEnterSessionNameID);
         sessionDate = findViewById(R.id.txtSelectedDateID);
         TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
@@ -65,6 +66,13 @@ public class CurrentSessionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sessionDone(session);
+            }
+        });
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveSession(session);
             }
         });
 
@@ -103,6 +111,11 @@ public class CurrentSessionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void sessionSaved(Session session){
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
     /**
      * Sets the name and date of the session
      * @param session selected session
@@ -123,7 +136,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
                 if (exercise instanceof CardioExercise)
                     createCarRow((CardioExercise) exercise);
                 else {
-                    createStrRow(exercise);
+                    createStrRow((StrengthExercise)exercise);
                 }
             }
         }
@@ -136,7 +149,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
     public void createCarRow(final CardioExercise exercise) {
         //create the fragment
         final FragCarRow fragment = new FragCarRow();
-        fragment.setExercise(exercise);
+        //fragment.setExercise(exercise);
 
         fragmentCardioHandeler(listCarFrag, fragment);
 
@@ -144,9 +157,12 @@ public class CurrentSessionActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                fragment.setCardioValues(exercise, fragment);
+                //fragment.setCardioValues(exercise, fragment);
+                setCardio(fragment, exercise);
             }
         }, 1);
+
+
 
     }
 
@@ -154,19 +170,21 @@ public class CurrentSessionActivity extends AppCompatActivity {
      * Creates a new row for a StrengthExercise in the Strengthexercise scrollview
      * @param exercise the strengthexercise for which the row will be created
      */
-    public void createStrRow(final Exercise exercise) {
+    public void createStrRow(final StrengthExercise exercise) {
         //create the fragment
         final FragStrRow fragment = new FragStrRow();
-        fragment.setExercise(exercise);
         fragmentStrHandeler(listStrFrag, fragment);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                fragment.setStrengthValues((StrengthExercise) exercise, fragment);
+                //fragment.setStrengthValues(exercise, fragment);
+                setStrength(fragment, exercise);
             }
         }, 1);
+
+
 
     }
 
@@ -210,8 +228,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
      */
     public void addCardioExercise(Session session) {
 
-        CardioExercise exercise = new CardioExercise("Hej", 0, 0);
-        System.out.println(session.toString());
+        CardioExercise exercise = new CardioExercise("Cardio", 0, 0);
         session.getExerciseList().add(exercise);
         createCarRow(exercise);
     }
@@ -222,9 +239,48 @@ public class CurrentSessionActivity extends AppCompatActivity {
      */
     public void addStrengthExercise(Session session) {
 
-        StrengthExercise exercise = new StrengthExercise("Lyft", 0, 0, 0);
-        session.getExerciseList().add(exercise);
+        StrengthExercise exercise = new StrengthExercise("Power", 0, 0, 0);
         createStrRow(exercise);
+    }
+
+    /**
+     * Saves all the exercises as they currently are and opens the main activity
+     * @param session Current session
+     */
+    public void saveSession(Session session){
+        session.getExerciseList().clear();
+
+        for(FragCarRow cardio: listCarFrag){
+            session.getExerciseList().add(cardio.saveInfo());
+        }
+
+        for(FragStrRow strength: listStrFrag){
+            session.getExerciseList().add(strength.saveInfo());
+        }
+
+        sessionSaved(session);
+
+    }
+
+    /**
+     * Loads all the values for the exercise into the FragCarRow
+     * @param cardio A fragment for a cardiorow
+     * @param exercise the exercise you want to load
+     */
+    public void setCardio(FragCarRow cardio, CardioExercise exercise){
+        cardio.setValues(exercise);
+    }
+
+    /**
+     * Loads all the values for the exercise into the FragStrRow
+     * @param strength A fragment for a strengthrow
+     * @param exercise the exercise you want to load
+     */
+    public void setStrength(FragStrRow strength, StrengthExercise exercise){
+        strength.setAutPickStrEx(exercise.getName());
+        strength.setTxtEnterSets(String.valueOf(exercise.getSets()));
+        strength.setTxtEntersReps(String.valueOf(exercise.getReps()));
+        strength.setTxtEnterWeight(String.valueOf(exercise.getReps()));
     }
 
 

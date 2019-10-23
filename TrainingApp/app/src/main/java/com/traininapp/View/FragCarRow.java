@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,23 +29,11 @@ public class FragCarRow extends Fragment {
 
     private EditText txtEnterTime;
 
-    public String getTxtEnterTime() {
-        return txtEnterTime.getText().toString();
-    }
 
-    public EditText getTxtEnterDistance() {
-        return txtEnterDistance;
-    }
-
-    public AutoCompleteTextView getAutPickCarEx() {
-        return autPickCarEx;
-    }
 
     private EditText txtEnterDistance;
     private AutoCompleteTextView autPickCarEx;
-    private Button btnDeleteCar;
 
-    CardioExercise exercise; // Borde det kanske inte vara här? Det är svårt att komma åt den annars
 
     public FragCarRow() {
         // Required empty public constructor
@@ -53,12 +42,12 @@ public class FragCarRow extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)    {
-        View v = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
+        View view = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
 
-        autPickCarEx = v.findViewById(R.id.autPickCarExID);
-        btnDeleteCar = v.findViewById(R.id.btnDeleteCarID);
-        txtEnterTime = v.findViewById(R.id.txtEnterTimeID);
-        txtEnterDistance = v.findViewById(R.id.txtEnterDistanceID);
+        autPickCarEx = view.findViewById(R.id.autPickCarExID);
+        Button btnDeleteCar = view.findViewById(R.id.btnDeleteCarID);
+        txtEnterTime = view.findViewById(R.id.txtEnterTimeID);
+        txtEnterDistance = view.findViewById(R.id.txtEnterDistanceID);
 
         //add placeholder cardio exercises
         carExerciseList.add("Running");
@@ -76,29 +65,7 @@ public class FragCarRow extends Fragment {
             }
         });
 
-
-       /* autPickCarEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                exercise.setName(autPickCarEx.getText().toString());
-            }
-        });
-
-        txtEnterTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-               exercise.setRunningTime(Double.valueOf(txtEnterTime.getText().toString()));
-            }
-        });
-
-        txtEnterDistance.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                exercise.setDistance(Double.valueOf(txtEnterDistance.getText().toString()));
-            }
-        });*/
-
-        return v;
+        return view;
     }
 
 
@@ -150,17 +117,22 @@ public class FragCarRow extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 
-
-    public void setCardioValues(CardioExercise exercise, FragCarRow fragCarRow){
-
-        fragCarRow.autPickCarEx.setText(exercise.getName());
-
-        fragCarRow.txtEnterTime.setText(Double.toString(exercise.getRunningTime()));
-        fragCarRow.txtEnterDistance.setText(Double.toString(exercise.getDistance()));
+    public void setTxtEnterTime(String string) {
+        txtEnterTime.setText(string);
     }
 
-    public void setExercise (CardioExercise exercise){
-        this.exercise = exercise;
+    public void setTxtEnterDistance(String string) {
+        txtEnterDistance.setText(string);
     }
 
+    public void setAutPickCarEx(String string) {
+        autPickCarEx.setText(string);
+    }
+
+    public void setValues(CardioExercise exercise){
+        txtEnterTime.setText(String.valueOf(exercise.getRunningTime()));
+        txtEnterDistance.setText(String.valueOf(exercise.getDistance()));
+        autPickCarEx.setText(exercise.getName());
+
+    }
 }
