@@ -40,7 +40,6 @@ public class GoalsFragment extends Fragment {
         statisticsList = new ArrayList<>();
 
         bindView(view);
-
         return view;
     }
 
@@ -48,12 +47,11 @@ public class GoalsFragment extends Fragment {
      * Connects the right view to the right element and init them correspondingly.
      * Sets up the RecyclerView and gives it something to use and fill itself with
      */
-    private void bindView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.myPagesRecyclerViewID);
         addGoal = (Button) view.findViewById(R.id.btnAddGoalID);
         recyclerView.setHasFixedSize(true);
-        StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GoalsFragment.super.getContext());
+        StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);
 
