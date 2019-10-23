@@ -95,13 +95,8 @@ public class FragCarRow extends Fragment {
             }
         });
 
-
-
-
-
         return v;
     }
-
 
     //method for creating the exercise from the inputted information
     public CardioExercise saveInfo(){

@@ -219,8 +219,8 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
 
             // Give feedback that the routine has been saved
-       //     String toastMessage = "Session: " + sessionName + " has been saved!";
-       //     Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
+            String toastMessage = "Session: " + sessionName + " has been saved!";
+            Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
 
             // Clear Session name field
             txtEnterSessionName.setText("");
