@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.CreateSession"></activity>
+        <activity android:name=".View.CreateSessionActivity"></activity>
         <activity android:name=".viewModel.UpcomingSessionsViewModel"></activity>
         <activity
             android:name=".View.CurrentSessionActivity"

@@ -2,7 +2,9 @@ package com.traininapp.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -19,10 +21,10 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
-import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
+import com.traininapp.viewModel.CreateSessionViewModel;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,12 +33,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class CreateSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class CreateSessionActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     // TODO ta bort imports. Skapa viewmodel. Javadoc för klassen. Mindre space om möjligt. Fundera på control booleanen.
     // TODO Adam fixa isDateSelected. Ta bort onödig import. Fixa så dubbles funkar
-
-
 
     // Declaring elements
     private EditText txtEnterSessionName;
@@ -63,6 +63,9 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Attaching the View model to activity
+        CreateSessionViewModel viewModel = ViewModelProviders.of(this).get(CreateSessionViewModel.class);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_session);
@@ -190,7 +193,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
-            Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateSessionActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
             //TODO ta bort den här
             // Clear Session name field
             txtEnterSessionName.setText("");
@@ -204,7 +207,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     /**
      * Method which adds another row fragment, allowing the user to add exercises
      */
-
     // TODO Bryt ut det gemensamma i dessa två till en. Dumt med samma kod två gånger
     public void createCarFragRow() {
 
@@ -266,7 +268,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     public void checkNameLength(String name) {
         if (name.length() == 0) {
             String toastMessage = "No name entered!";
-            Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateSessionActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
             control = false;
         }
     }
@@ -346,20 +348,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
             // Empty necessary method
-        }
-    }
-
-    public void isDateSelectedAlready() {
-        Intent intent = getIntent();
-        if (intent.getExtras() != null) {
-            if (intent.getStringExtra("FROMCALENDAR").matches("YES")) {
-
-
-                String pastDate = intent.getStringExtra("DATE");
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d - MM - yyyy");
-                LocalDate localDate = LocalDate.parse(pastDate, formatter);
-                //setDate(pastDate, localDate);
-            }
         }
     }
 }

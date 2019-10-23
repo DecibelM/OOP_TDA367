@@ -1,4 +1,4 @@
-package com.traininapp.View;
+package com.traininapp.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
