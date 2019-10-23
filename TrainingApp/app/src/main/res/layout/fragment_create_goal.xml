@@ -3,6 +3,69 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/CreateGoalHeadder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create goal"
+        android:textAlignment="center"
+        android:textSize="40sp"/>
 
+    <LinearLayout
+        android:id="@+id/exerciseSelectionID"
+        android:layout_below="@+id/CreateGoalHeadder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="16dp"
+        android:weightSum="1">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:text="Exercise:"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"/>
+
+        <Spinner
+            android:id="@+id/exerciseSpinnerID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:paddingEnd="40dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/TargetSelection"
+        android:layout_below="@+id/exerciseSelectionID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="16dp"
+        android:weightSum="1">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".4"
+        android:text="Target:"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/txtTargetFieldID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".6"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:paddingEnd="20dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSaveID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/TargetSelection"
+        android:text="Save"
+        />
 
 </RelativeLayout>
