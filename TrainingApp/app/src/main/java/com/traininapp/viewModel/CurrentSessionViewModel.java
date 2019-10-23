@@ -26,7 +26,7 @@ public class CurrentSessionViewModel extends ViewModel {
     public Session getSession(String sessionID){
 
 
-        for (Session session : model.getUser().getPlanner().getSessionList()) {
+        for (Session session : model.getSessionList()) {
             if (session.toString().equals(sessionID)){
                 return session;
             }

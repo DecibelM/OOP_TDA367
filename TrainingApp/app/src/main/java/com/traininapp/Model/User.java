@@ -31,8 +31,8 @@ public class User {
         this.results = new Results();
     }
 
-    public void addSession(String name, List<Exercise> eList, LocalDate date){
-        Session s = new Session(name, eList,date);
+    public void addSession(String name, List<Exercise> exerciseList, LocalDate date){
+        Session s = new Session(name, exerciseList,date);
         s.addObserver(results);
         planner.getSessionList().add(s);
     }

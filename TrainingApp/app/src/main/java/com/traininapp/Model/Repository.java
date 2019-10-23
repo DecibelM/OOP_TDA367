@@ -8,9 +8,12 @@ import com.traininapp.Model.Statistics.IStat;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Repository holds the model and
+ * shares information about the model.
+ */
 public class Repository {
 
-    // TODO Javadoc på vad repository är för något
     private User user;
 
     private Repository() {
@@ -25,9 +28,12 @@ public class Repository {
         return RepositoryHolder.instance;
     }
 
+    /*
     public User getUser(){
         return user;
     }
+    */
+
 
     public void addSession(String name, List<Exercise> exerciseList, LocalDate date, int image){
         Session s = new Session(name, date, exerciseList, image);

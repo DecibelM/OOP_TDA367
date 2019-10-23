@@ -24,7 +24,7 @@ public class Session implements Comparable<Session>{
      * @param date Date of session
      */
 
-    public Session(String name, List<Exercise> exList, LocalDate date) {
+    public Session(String name, List<Exercise> exerciseList, LocalDate date) {
         this.name = name;
         this.exerciseList = new ArrayList<>();
         this.date = date;

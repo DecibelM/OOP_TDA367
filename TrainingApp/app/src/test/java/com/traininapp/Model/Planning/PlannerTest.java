@@ -1,6 +1,7 @@
 package com.traininapp.Model.Planning;
 
 import com.traininapp.Model.Repository;
+import com.traininapp.R;
 
 import org.junit.Test;
 
@@ -19,18 +20,14 @@ public class PlannerTest {
         // Initializing the singleton repo
         Repository r = Repository.getInstance();
 
-
-        // Fetching the Users planner
-        Planner p = r.getUser().getPlanner();
-
         StrengthExercise strengthExercise = new StrengthExercise("Benpress", 1,2,10);
         CardioExercise cardioExercise = new CardioExercise("5km",2,5);
         List<Exercise> exerciseList = new ArrayList<Exercise>();
         exerciseList.add(strengthExercise);
         exerciseList.add(cardioExercise);
 
-        p.addSession(new Session("hej",  exerciseList,LocalDate.now()));
-        assertEquals(5,p.getSessionList().size());
+        r.addSession("hej",  exerciseList,LocalDate.now(), R.drawable.workout_1);
+        assertEquals(5,r.getSessionList().size());
     }
 
 

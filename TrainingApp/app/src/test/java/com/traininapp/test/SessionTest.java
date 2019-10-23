@@ -18,19 +18,13 @@ import static org.junit.Assert.*;
 
 public class SessionTest {
 
-    private Repository repo = Repository.getInstance();
-    private UpcomingSessionsViewModel viewModel = new UpcomingSessionsViewModel();
-    private Planner planner = repo.getUser().getPlanner();
-
     private List<Exercise> exerciseList = new ArrayList<>();
-
     private Session session = new Session("Session 2", exerciseList, LocalDate.now());
 
     @Test
     public void finishSession() {
 
         session.finishSession();
-
         assertTrue(session.isFinished());
     }
 

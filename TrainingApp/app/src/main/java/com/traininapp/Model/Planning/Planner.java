@@ -13,6 +13,9 @@ public class Planner {
 
     private List<Session> sessionList;
 
+    /**
+     * Constructor for planner
+     */
     public Planner() {
         this.sessionList = new ArrayList<>();
     }

@@ -22,6 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    Repository repo = Repository.getInstance();
         //TODO Javadoc, imports, SPACE! Flytta alla dummys hit.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +40,19 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         // Initializing the singleton repo
-        Repository repo = Repository.getInstance();
 
-        // Fetching the Users planner
-        Planner planner = repo.getUser().getPlanner();
 
         // Adding dummy Sessions
-        if (planner.getSessionList().isEmpty()){
-            initializeDummySessions(planner);
+        if (repo.getSessionList().isEmpty()){
+            initializeDummySessions();
         }
     }
 
-    private void initializeDummySessions(Planner planner){
+    private void initializeDummySessions(){
         List<Exercise> eList = new ArrayList<>();
-        planner.addSession(new Session("Löpning", LocalDate.now(), eList,R.drawable.workout_5));
-        planner.addSession(new Session("Yoga", LocalDate.now().plusDays(1),eList, R.drawable.workout_2));
-        planner.addSession(new Session("Armträning", LocalDate.now().plusDays(2), eList,R.drawable.workout_4));
-        planner.addSession(new Session("Hjärngympa", LocalDate.now().plusDays(3),eList,R.drawable.workout_1));
+        repo.addSession("Löpning", eList, LocalDate.now(),R.drawable.workout_5);
+        repo.addSession("Yoga", eList, LocalDate.now().plusDays(1), R.drawable.workout_2);
+        repo.addSession("Armträning", eList, LocalDate.now().plusDays(2),R.drawable.workout_4);
+        repo.addSession("Hjärngympa", eList,LocalDate.now().plusDays(3),R.drawable.workout_1);
     }
 }
