@@ -49,7 +49,7 @@ public class UpcomingSessionsViewModel extends ViewModel {
         }
 
         // Sort the added Sessions by date
-        Collections.sort(sortedSessions);
+        //Collections.sort(sortedSessions);
 
         return sortedSessions;
     }

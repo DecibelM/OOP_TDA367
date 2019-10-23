@@ -105,7 +105,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         sessionName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                session.setName(sessionName.getText().toString());
+              //  session.setName(sessionName.getText().toString());
             }
         });
 
