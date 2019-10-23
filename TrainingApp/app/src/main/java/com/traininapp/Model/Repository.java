@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Repository {
 
+    // TODO Javadoc på vad repository är för något
     private User user;
 
     private Repository() {

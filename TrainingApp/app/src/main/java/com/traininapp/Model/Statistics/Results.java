@@ -14,6 +14,8 @@ import java.util.List;
  */
 public class Results implements ISessionObserver {
 
+    // TODO mer kommentarer. Göra updateExercise till private
+
     private List<Goal> goalList;
     private List<ExerciseSpecificStatistic> exerciseStatistics;
 
@@ -91,7 +93,7 @@ public class Results implements ISessionObserver {
      * Preferably in the future it should also split the information based on exercise type and divide it accordingly.
      * @param exercise
      */
-    private void updateStrengthExercise(StrengthExercise exercise) {    //TODO this should also update the statistics of a specific exercise
+    private void updateStrengthExercise(StrengthExercise exercise) {
 
         double tempWeight = exercise.getWeight();
         if (this.maxWeight < tempWeight) {
@@ -116,7 +118,7 @@ public class Results implements ISessionObserver {
      * Preferably in the future it should also split the information based on exercise type and divide it accordingly.
      * @param exercise
      */
-    private void updateCardioExercise(CardioExercise exercise){         //TODO this should also update the statistics of a specific exercise
+    private void updateCardioExercise(CardioExercise exercise){
 
         totTrainingTime = totTrainingTime + exercise.getRunningTime();
 

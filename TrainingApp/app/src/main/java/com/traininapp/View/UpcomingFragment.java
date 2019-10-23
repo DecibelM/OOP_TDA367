@@ -27,6 +27,8 @@ public class UpcomingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        //TODO Javadoc. Make openSession work.
+
         // Attaching the View model to activity
         UpcomingSessionsViewModel viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
 

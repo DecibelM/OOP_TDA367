@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class StatisticCard implements IStatistic {
 
+    // TODO Private på variabel. Ta bort onödiga metoder.
     String statisticName;
     private List<Double> statistics;
     private List<Long> dates;

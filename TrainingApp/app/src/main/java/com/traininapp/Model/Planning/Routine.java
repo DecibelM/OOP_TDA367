@@ -2,6 +2,8 @@ package com.traininapp.Model.Planning;
 
 import java.util.List;
 
+// TODO ta bort hela skiten
+
 /**
  * Class Routine. Holds a list of exercises that the user wishes to save
  * and use later when creating a new Session.

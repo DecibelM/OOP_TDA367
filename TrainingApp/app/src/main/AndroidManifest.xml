@@ -11,8 +11,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".View.CreateSession"></activity>
         <activity android:name=".viewModel.UpcomingSessionsViewModel"></activity>
-        <activity android:name=".View.SelectedSession"
-            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".View.CurrentSessionActivity"
             android:windowSoftInputMode="adjustPan" />

@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+    //TODO kan man göra metoderna package private?
 /**
  * Class User which represents the User.
  * It holds the information which belongs to the User

@@ -24,6 +24,8 @@ import java.util.List;
  */
 public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    // TODO Ta bort onödig import
+
     private List<IStatistic> dataList;
 
     /**
@@ -122,7 +124,6 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         void drawGraph(StatisticCard statisticCard){
             List<Double> statistics = statisticCard.getStatistics();
-            List<Integer> dates = new ArrayList<>();
 
             DataPoint[] dataPoints = new DataPoint[statistics.size()];
 
@@ -172,8 +173,6 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             goalName.setText(sCard.getName());
             goalTarget.setText(Double.toString(sCard.getTarget()));
             goalProgress.setText(Double.toString(sCard.getProgress()));
-            // bind data to the views
-            // textView.setText()...
 
         }
     }

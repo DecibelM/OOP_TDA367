@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO Ta bort onödig import
+
 /**
  * Class Session which holds a list of exercises and a date.s
  */

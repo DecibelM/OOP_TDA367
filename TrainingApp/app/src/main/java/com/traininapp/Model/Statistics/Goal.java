@@ -2,6 +2,8 @@ package com.traininapp.Model.Statistics;
 
 class Goal implements IGoal {
 
+    // TODO Göra variabler och konstruktorer private / package private
+
     String name;
     Double target;
     Double progress;

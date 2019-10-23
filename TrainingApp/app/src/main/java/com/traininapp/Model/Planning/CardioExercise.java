@@ -4,13 +4,7 @@ package com.traininapp.Model.Planning;
  * Class CardioExercise is a class for cardio exercises.
  */
 public class CardioExercise extends Exercise{
-    public void setRunningTime(double runningTime) {
-        this.runningTime = runningTime;
-    }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
 
     private double runningTime;
     private double distance;
@@ -27,5 +21,13 @@ public class CardioExercise extends Exercise{
 
     public double getDistance() {
         return distance;
+    }
+
+    public void setRunningTime(double runningTime) {
+        this.runningTime = runningTime;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 }
