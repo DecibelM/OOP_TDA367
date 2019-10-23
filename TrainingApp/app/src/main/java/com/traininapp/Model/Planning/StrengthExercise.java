@@ -10,6 +10,13 @@ public class StrengthExercise extends Exercise {
     private int reps;
     private double weight;
 
+    /**
+     * Contructor for strength exercise
+     * @param name
+     * @param sets
+     * @param reps
+     * @param weight
+     */
     public StrengthExercise(String name, int sets, int reps, double weight) {
         super(name);
         this.sets = sets;

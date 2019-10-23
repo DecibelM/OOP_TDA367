@@ -18,45 +18,14 @@ import static org.junit.Assert.*;
 
 public class SessionTest {
 
-    private Repository repo = Repository.getInstance();
-    private UpcomingSessionsViewModel viewModel = new UpcomingSessionsViewModel();
-    private Planner planner = repo.getUser().getPlanner();
-
     private List<Exercise> exerciseList = new ArrayList<>();
-
     private Session session = new Session("Session 2", exerciseList, LocalDate.now());
 
     @Test
     public void finishSession() {
 
         session.finishSession();
-
         assertTrue(session.isFinished());
-    }
-
-    @Test
-    public void addCardioExercise() {
-
-        session.addCardioExercise("Running",2,5);
-        session.addCardioExercise("Swimming",25,56);
-        session.addCardioExercise("Walking",1,72);
-        session.addCardioExercise("Skipping rope",30,0);
-
-        int i = session.getExerciseList().size();
-
-        assertEquals(i,4);
-    }
-
-    @Test
-    public void addStrengthExercise() {
-
-        session.addStrengthExercise("Biceps curl", 1,1,1);
-        session.addStrengthExercise("Biceps curl", 1,1,1);
-        session.addStrengthExercise("Biceps curl", 1,1,1);
-
-        int i = session.getExerciseList().size();
-
-        assertEquals(i,3);
     }
 
     @Test

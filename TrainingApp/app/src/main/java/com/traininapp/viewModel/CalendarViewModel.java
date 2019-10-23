@@ -27,7 +27,7 @@ public class CalendarViewModel extends ViewModel {
      */
     public ArrayList<String> getSessionsByDateString(LocalDate date){
         ArrayList<String> list = new ArrayList<>();
-        ArrayList<Session> sessionList = (ArrayList<Session>) repository.getUser().getPlanner().getSessionList();
+        ArrayList<Session> sessionList = (ArrayList<Session>) repository.getSessionList();
 
         for(Session s: sessionList){
             if (s.getDate().equals( date)){
@@ -46,7 +46,7 @@ public class CalendarViewModel extends ViewModel {
     public Session getSession(int i, LocalDate localDate){
 
         ArrayList<Session> list = new ArrayList<>();
-        ArrayList<Session> sessionList = (ArrayList<Session>) repository.getUser().getPlanner().getSessionList();
+        ArrayList<Session> sessionList = (ArrayList<Session>) repository.getSessionList();
 
         for(Session s: sessionList){
             if (s.getDate().equals( localDate)){
@@ -62,7 +62,7 @@ public class CalendarViewModel extends ViewModel {
      */
     public ArrayList<Session> getSessionListByDate(LocalDate localDate) {
         ArrayList<Session> sessionByDateList = new ArrayList<>();
-        ArrayList<Session> sessionList = (ArrayList<Session>) repository.getUser().getPlanner().getSessionList();
+        ArrayList<Session> sessionList = (ArrayList<Session>) repository.getSessionList();
 
         for (Session s : sessionList) {
             if (s.getDate().equals(localDate)) {

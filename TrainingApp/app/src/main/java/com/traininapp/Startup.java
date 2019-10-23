@@ -67,7 +67,7 @@ public class Startup extends Application {
                     System.out.println("session: " +sessionsInDB.getString(1) +", exercise: " + carExInDB.getString(2));
                 }
             }
-            repository.getUser().getPlanner().addSession(sessionsInDB.getString(1), convert(sessionsInDB.getString(2)),exerciseList, sessionsInDB.getInt(3));
+            repository.addSession(sessionsInDB.getString(1), exerciseList,convert(sessionsInDB.getString(2)), sessionsInDB.getInt(3));
             strExInDB.moveToFirst();
             carExInDB.moveToFirst();
         }

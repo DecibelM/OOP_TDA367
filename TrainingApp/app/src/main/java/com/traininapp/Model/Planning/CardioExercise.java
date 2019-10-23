@@ -5,10 +5,15 @@ package com.traininapp.Model.Planning;
  */
 public class CardioExercise extends Exercise{
 
-
     private double runningTime;
     private double distance;
 
+    /**
+     * Constructor for cardio exercise
+     * @param name
+     * @param runningTime
+     * @param distance
+     */
     public CardioExercise(String name, double runningTime, double distance) {
         super(name);
         this.runningTime = runningTime;
