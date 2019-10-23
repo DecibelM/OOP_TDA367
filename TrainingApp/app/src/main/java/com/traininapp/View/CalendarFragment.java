@@ -1,15 +1,11 @@
 package com.traininapp.View;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +15,15 @@ import android.widget.BaseAdapter;
 import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
 import com.traininapp.viewModel.CalendarViewModel;
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -37,18 +32,18 @@ import java.util.Date;
  */
 public class CalendarFragment extends Fragment {
 
-        // TODO göra Localdate private. Gör lokala variabler. Ta bort emptyview. Ta bort space. Gör metoder private. Javadoc kommentarer. Ta bort utkommenterade grejer
+    // TODO göra Localdate private. Gör lokala variabler. Ta bort emptyview. Ta bort space. Gör metoder private. Javadoc kommentarer. Ta bort utkommenterade grejer
     // TODO Opensession gör boolean av "YES". Gör "List" till en list och inte arraylist samt bättre namn. Ta bort onödig casting. Ta bort Context skiten.
 
+    /*
+    Done: Localdate private. Boolean av Yes. Metoder privata. Utkommenterade grejer. SPACE! Visar inte klara sessions. Onödig Casting. Lokala variabler. Emptey view.
+     */
+
     private TextView myDate;
-    private CalendarView calendarView;
     private CalendarViewModel viewModel;
     private ListView listView;
-    private ArrayList<String> list;
-    private ListView emptyView;
-    private FloatingActionButton btnOpen;
-    private SimpleDateFormat dateFormat;
-    LocalDate localDate;
+    private List <String> sessionList;
+    private LocalDate localDate;
 
 
     @Nullable
@@ -56,25 +51,22 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, null);
         viewModel = ViewModelProviders.of(this).get(CalendarViewModel.class);
-        //viewModel = ((MainActivity)getActivity()).getCvm();
-        myDate = (TextView) view.findViewById(R.id.myDate);
-        calendarView = (CalendarView) view.findViewById(R.id.calendarView);
-        listView = (ListView) view.findViewById(R.id.listViewCalendar);
-        btnOpen = view.findViewById(R.id.btnOpenID);
+        myDate = view.findViewById(R.id.myDate);
+        CalendarView calendarView = view.findViewById(R.id.calendarView);
+        listView = view.findViewById(R.id.listViewCalendar);
+        FloatingActionButton btnOpen = view.findViewById(R.id.btnOpenID);
         localDate = LocalDate.now();
-        list = new ArrayList<>() ;
-        ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, list);
+        sessionList = new ArrayList<>() ;
+        ArrayAdapter adapter = new ArrayAdapter(this.getContext(),android.R.layout.simple_list_item_1, sessionList);
         listView.setAdapter(adapter);
 
-
         Date date = new Date();
-        dateFormat = new SimpleDateFormat("d - MM - yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d - MM - yyyy");
         myDate.setText(dateFormat.format(date));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                openSession(viewModel.getSession(i, localDate));
             }
         });
@@ -86,9 +78,7 @@ public class CalendarFragment extends Fragment {
                 openNewSession();
             }
         });
-
         updateSessionList(LocalDate.now());
-        final Context context = this.getContext();
 
         // Listener for when the user selects a date
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -98,29 +88,26 @@ public class CalendarFragment extends Fragment {
                 localDate = LocalDate.of(year,month,day);
                 String dateString = (day) + " - " + (month) + " - " + year;
                 myDate.setText(dateString);
-
                 updateSessionList(localDate);
-
             }
         });
-
         return view;
     }
 
     // Method for updating sessions on the selected day
-    public void updateSessionList(LocalDate localDate){
+    private void updateSessionList(LocalDate localDate){
 
-        ArrayList<String> newList = viewModel.getSessionsByDateString(localDate);
+        ArrayList<Session> sessionNameList = viewModel.getSessionListByDate(localDate);
 
-
-
-        list.clear();
-        if(newList != null) {
-            for (String s : newList) {
-                list.add(s);
+        sessionList.clear();
+        if(sessionNameList != null) {
+            for (Session s : sessionNameList) {
+                if(!s.isFinished()) {
+                    sessionList.add(s.getName());
+                }
             }
         }
-        if (newList.isEmpty()) {
+        if (sessionNameList.isEmpty()) {
             listView.setVisibility(View.INVISIBLE);
 
         } else {
@@ -128,25 +115,19 @@ public class CalendarFragment extends Fragment {
 
         }
             ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
-
-
-
     }
 
-    public void openNewSession(){
+    private void openNewSession(){
         Intent intent = new Intent(getActivity(), CreateSession.class);
         intent.putExtra("DATE", myDate.getText());
-        intent.putExtra("FROMCALENDAR", "YES");
+        intent.putExtra("FROMCALENDAR", true);
         startActivity(intent);
     }
 
-    public void openSession(Session session){
+    private void openSession(Session session){
         Intent intent = new Intent(getActivity(), CurrentSessionActivity.class);
         System.out.println(session);
         intent.putExtra("Session", session.toString());
-
         startActivity(intent);
-
     }
-
 }
