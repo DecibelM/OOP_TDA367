@@ -163,4 +163,9 @@ public class FragStrRow extends Fragment {
         txtEnterWeight.setText(String.valueOf(exercise.getWeight()));
 
     }
+
+    public void setExercise(Exercise exercise){
+
+        this.exercise = (StrengthExercise) exercise;
+    }
 }

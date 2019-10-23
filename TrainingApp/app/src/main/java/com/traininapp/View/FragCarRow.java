@@ -91,7 +91,7 @@ public class FragCarRow extends Fragment {
         txtEnterDistance.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                exercise.setRunningTime(Double.valueOf(txtEnterDistance.getText().toString()));
+                exercise.setDistance(Double.valueOf(txtEnterDistance.getText().toString()));
             }
         });
 
