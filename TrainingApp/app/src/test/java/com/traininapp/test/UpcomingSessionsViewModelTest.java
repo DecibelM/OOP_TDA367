@@ -22,6 +22,8 @@ public class UpcomingSessionsViewModelTest {
     @Test
     public void getListOfSessions() {
 
+        planner.getSessionList().clear();
+
         UpcomingSessionsViewModel viewModel = new UpcomingSessionsViewModel();
 
         planner.addSession("Löpning", LocalDate.now().minusDays(1),R.drawable.workout_5);
@@ -37,11 +39,13 @@ public class UpcomingSessionsViewModelTest {
     @Test
     public void addSessionToList() {
 
+        planner.getSessionList().clear();
+
         planner.addSession("Löpning", LocalDate.now(), R.drawable.workout_5);
         planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
         planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
         planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
 
-        assertEquals(8, planner.getSessionList().size());
+        assertEquals(4, planner.getSessionList().size());
     }
 }
