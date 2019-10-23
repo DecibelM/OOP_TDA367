@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Session;
 
@@ -48,17 +49,15 @@ public class MainActivity extends AppCompatActivity {
             initializeDummySessions(planner);
         }
 
-        // Print details of session (for checking only)
-        planner.printSessionDetails();
-
     }
 
     private void initializeDummySessions(Planner planner){
 
-        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
-        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
-        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
-        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
+        List<Exercise> eList = new ArrayList<>();
+        planner.addSession("Löpning", LocalDate.now(), eList,R.drawable.workout_5);
+        planner.addSession("Yoga", LocalDate.now().plusDays(1),eList, R.drawable.workout_2);
+        planner.addSession("Armträning", LocalDate.now().plusDays(2), eList,R.drawable.workout_4);
+        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),eList,R.drawable.workout_1);
         Session session = planner.getSessionList().get(0);
         session.addCardioExercise("Spring",10,10);
         session.addStrengthExercise("Lyft",10,100,10);

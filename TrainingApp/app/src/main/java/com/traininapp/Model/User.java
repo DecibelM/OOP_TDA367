@@ -68,5 +68,7 @@ public class User {
         return routineList;
     }
 
-
+    public Results getResults() {
+        return results;
+    }
 }
