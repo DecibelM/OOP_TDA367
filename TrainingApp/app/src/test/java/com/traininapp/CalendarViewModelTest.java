@@ -29,9 +29,9 @@ public class CalendarViewModelTest {
         exerciseList.add(cardioExercise);
 
         Planner planner = m.getUser().getPlanner();
-        planner.addSession("Löpning",exerciseList, LocalDate.of(2019,10,7));
-        planner.addSession("Yoga", exerciseList, LocalDate.of(2019,10,8));
-        planner.addSession("Armträning", exerciseList, LocalDate.of(2019,10,9));
+        planner.addSession("Löpning",LocalDate.of(2019,10,7),exerciseList );
+        planner.addSession("Yoga", LocalDate.of(2019,10,8), exerciseList);
+        planner.addSession("Armträning", LocalDate.of(2019,10,9), exerciseList);
 
         ArrayList<String> list = cvm.getSessionsByDateString(LocalDate.of(2019,10,7));
         assertEquals("Löpning", list.get(0));

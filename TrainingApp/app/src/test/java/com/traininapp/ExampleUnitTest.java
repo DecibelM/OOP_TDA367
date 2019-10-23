@@ -31,22 +31,7 @@ public class ExampleUnitTest {
         List<Exercise> exerciseList = new ArrayList<Exercise>();
         exerciseList.add(strengthExercise);
         exerciseList.add(cardioExercise);
-        c.addSession("Magpass", exerciseList, date);
+        c.addSession("Magpass", date,exerciseList);
         assertEquals(1,c.getSessionList().size());
-    }
-
-    @Test
-    public void addCardioExercise(){
-        Planner c = new Planner();
-        LocalDate date = LocalDate.now();
-        List<Exercise> exerciseList = new ArrayList<>();
-        List<Routine> routineList = new ArrayList<>();
-        Routine routine = new Routine("Testroutine", exerciseList);
-        routineList.add(routine);
-        Session session = new Session("MagPass", exerciseList, date);
-        session.addCardioExercise("Uppvarmning", 20, 2);
-        List<Exercise> list = session.getExerciseList();
-
-        assertEquals("Uppvarmning", list.get(0).getName());
     }
 }

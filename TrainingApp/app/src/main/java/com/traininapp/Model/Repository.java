@@ -35,7 +35,9 @@ public class Repository {
         user.getPlanner().addSession(s);
     }
 
-    public List<Session> sessionList = user.getPlanner().getSessionList();
+    public List<Session> getSessionList(){
+        return user.getPlanner().getSessionList();
+    }
 
     public List<IGoal> getGoalList() {
         return user.getGoalList();

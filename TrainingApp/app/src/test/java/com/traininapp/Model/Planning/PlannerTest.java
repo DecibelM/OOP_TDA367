@@ -29,8 +29,8 @@ public class PlannerTest {
         exerciseList.add(strengthExercise);
         exerciseList.add(cardioExercise);
 
-        p.addSession("hej", exerciseList, LocalDate.now());
-        assertEquals(1,p.getSessionList().size());
+        p.addSession("hej", LocalDate.now(), exerciseList);
+        assertEquals(5,p.getSessionList().size());
     }
 
 
