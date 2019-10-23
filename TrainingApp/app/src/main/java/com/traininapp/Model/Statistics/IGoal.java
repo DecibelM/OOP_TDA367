@@ -1,7 +1,7 @@
 package com.traininapp.Model.Statistics;
 
 public interface IGoal {
-
+    // TODO ta bort public
     /**
      * @return the name of this goal.
      */

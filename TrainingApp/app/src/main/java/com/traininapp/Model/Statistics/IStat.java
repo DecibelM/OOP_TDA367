@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface IStat {
 
+    // TODO ta bort public
     /**
      * @return the name of this goal.
      */

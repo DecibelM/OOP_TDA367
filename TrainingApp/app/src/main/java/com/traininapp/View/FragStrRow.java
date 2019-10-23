@@ -22,6 +22,9 @@ import java.util.List;
 
 public class FragStrRow extends Fragment {
 
+    // TODO Javadoc. Ta bort saker som inte används. Metoder körs redan, kan ta bort. CardioExercise gör private. REMOVE SPACE! Gör viewmodel till den här och Cardiorow.
+    // TODO  Gör saker till package private. Döp om Viewen v till View.
+
     //Placeholder list for all strength exercises
     private List<String> strExerciseList = new ArrayList<>();
 
@@ -56,12 +59,11 @@ public class FragStrRow extends Fragment {
         strExerciseList.add("Dumbbell Curl");
         strExerciseList.add("Dumbbell Shoulder Fly");
 
-
         //create and setup adapter
         ArrayAdapter<String> strExerciseListAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strExerciseList);
         autPickStrEx.setAdapter(strExerciseListAdapter);
 
-     /*   autPickStrEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        autPickStrEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 exercise.setName(autPickStrEx.getText().toString());
@@ -87,7 +89,7 @@ public class FragStrRow extends Fragment {
             public void onFocusChange(View view, boolean b) {
                 exercise.setReps(Integer.valueOf(txtEntersReps.getText().toString()));
             }
-        });*/
+        });
 
         btnDeletestr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,13 +160,13 @@ public class FragStrRow extends Fragment {
 
         autPickStrEx.setText(exercise.getName());
         txtEnterSets.setText(String.valueOf(exercise.getSets()));
-        txtEntersReps.setText(String.valueOf(exercise.getSets()));
+        txtEntersReps.setText(String.valueOf(exercise.getReps()));
         txtEnterWeight.setText(String.valueOf(exercise.getWeight()));
 
     }
-
     public void setExercise(Exercise exercise){
 
         this.exercise = (StrengthExercise) exercise;
     }
+
 }

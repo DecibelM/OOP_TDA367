@@ -19,13 +19,18 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
+
 import com.traininapp.Model.Database.CarExTable;
 import com.traininapp.Model.Database.SessionTable;
 import com.traininapp.Model.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
+
+import com.traininapp.Model.Planning.CardioExercise;
+
 import com.traininapp.Model.Repository;
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
 
 import java.time.LocalDate;
@@ -36,6 +41,11 @@ import java.util.Calendar;
 import java.util.List;
 
 public class CreateSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+
+    // TODO ta bort imports. Skapa viewmodel. Javadoc för klassen. Mindre space om möjligt. Fundera på control booleanen.
+    // TODO Adam fixa isDateSelected. Ta bort onödig import. Fixa så dubbles funkar
+
+
 
     // Declaring elements
     private EditText txtEnterSessionName;
@@ -81,6 +91,9 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
         // Setting image to Strength by default
         image = getResources().getIdentifier("workout_1", "drawable", getPackageName());
+
+        //Checks if you are coming from the calendar and then sets the date accordingly
+        isDateSelectedAlready();
 
         // Updating text to match selectedDate, today's date by default
         txtSelectedDate.setText(selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
@@ -129,6 +142,8 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
                 onIconClick();
             }
         });
+
+
     }
 
     /**
@@ -222,7 +237,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
             Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
-
+            //TODO ta bort den här
             // Clear Session name field
             txtEnterSessionName.setText("");
         }
@@ -235,6 +250,8 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     /**
      * Method which adds another row fragment, allowing the user to add exercises
      */
+
+    // TODO Bryt ut det gemensamma i dessa två till en. Dumt med samma kod två gånger
     public void createCarFragRow() {
 
         // Create the fragment
@@ -378,5 +395,21 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         }
     }
 
+    public void isDateSelectedAlready() {
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            if (intent.getBooleanExtra("FROMCALENDAR",true)) {
 
+
+                String pastDate = intent.getStringExtra("DATE");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d - MM - yyyy");
+                LocalDate localDate = LocalDate.parse(pastDate, formatter);
+                setDate(localDate);
+            }
+        }
+    }
+
+    private void setDate(LocalDate localDate){
+        selectedDate = localDate;
+    }
 }

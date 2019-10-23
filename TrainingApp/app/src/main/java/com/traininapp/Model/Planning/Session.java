@@ -2,7 +2,6 @@ package com.traininapp.Model.Planning;
 
 import com.traininapp.Model.ISessionObserver;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +9,15 @@ import java.util.List;
 /**
  * Class Session which holds a list of exercises and a date.s
  */
-
 public class Session implements Comparable<Session>{
+<<<<<<<<< Temporary merge branch 1
+=========
 
+>>>>>>>>> Temporary merge branch 2
     private String name;
     private List<Exercise> exerciseList;
     private List<ISessionObserver> sessionObservers;
-    private LocalDate date;
+    LocalDate date;
     private int sessionImage;
     private boolean isFinished = false;
 
@@ -128,10 +129,6 @@ public class Session implements Comparable<Session>{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public LocalDate getDate() {
         return date;
     }
@@ -140,11 +137,6 @@ public class Session implements Comparable<Session>{
         return sessionImage;
     }
 
-    /**
-     * Method to compare the dates of two Sessions
-     * @param session The Session to be compared with
-     * @return The difference in days as an int
-     */
     @Override
     public int compareTo(Session session) {
         return this.getDate().compareTo(session.getDate());

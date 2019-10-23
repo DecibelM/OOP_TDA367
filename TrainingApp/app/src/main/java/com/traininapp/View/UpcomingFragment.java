@@ -27,6 +27,8 @@ public class UpcomingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        //TODO Javadoc. Make openSession work.
+
         // Attaching the View model to activity
         UpcomingSessionsViewModel viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
 
@@ -50,7 +52,7 @@ public class UpcomingFragment extends Fragment {
         recyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //openSession();
+                //openSession(); Kör när du kan klicka på korten
             }
         });
 
@@ -80,9 +82,16 @@ public class UpcomingFragment extends Fragment {
         startActivity(intent);
     }
 
+
+    public void openSession() {
+        Intent intent = new Intent(getActivity(), CurrentSessionActivity.class);
+    }
+
+
     public void openSession(Session session){
         Intent intent = new Intent(getActivity(), CurrentSessionActivity.class);
         intent.putExtra("Session", session.toString());
+
         startActivity(intent);
     }
 

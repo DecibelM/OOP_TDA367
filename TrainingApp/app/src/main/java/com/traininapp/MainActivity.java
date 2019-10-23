@@ -1,12 +1,10 @@
 package com.traininapp;
 
 import android.os.Bundle;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Session;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -17,6 +15,7 @@ import java.time.LocalDate;
 
 public class MainActivity extends AppCompatActivity {
 
+        //TODO Javadoc, imports, SPACE! Flytta alla dummys hit.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +51,13 @@ public class MainActivity extends AppCompatActivity {
 
         planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
         planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
+        planner.addSession("Yoga2", LocalDate.now().plusDays(1),R.drawable.workout_2);
+        planner.addSession("Yoga3", LocalDate.now().plusDays(1),R.drawable.workout_2);
         planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
         planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
+
+
+
         Session session = planner.getSessionList().get(0);
         session.addCardioExercise("Spring",10,10);
         session.addStrengthExercise("Lyft",10,100,10);
@@ -61,10 +65,6 @@ public class MainActivity extends AppCompatActivity {
         session.addStrengthExercise("Lyft2",10,10,10);
         session.addCardioExercise("Spring3",100,100);
         session.addStrengthExercise("Lyft3",100,100,100);
-        planner.addSession("Löpning", LocalDate.now().minusDays(1),R.drawable.workout_5);
-        planner.addSession("Yoga", LocalDate.now(),R.drawable.workout_2);
-        planner.addSession("Armträning", LocalDate.now().plusDays(1),R.drawable.workout_4);
-        planner.addSession("Hjärngympa", LocalDate.now().plusDays(2),R.drawable.workout_1);
 
     }
 }
