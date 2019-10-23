@@ -15,16 +15,12 @@ import androidx.fragment.app.FragmentTransaction;
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.Routine;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.R;
 import com.traininapp.viewModel.CurrentSessionViewModel;
-import com.traininapp.View.FragCarRow;
-import com.traininapp.View.FragStrRow;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
