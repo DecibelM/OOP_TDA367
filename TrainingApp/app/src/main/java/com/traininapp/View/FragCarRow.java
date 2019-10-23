@@ -98,10 +98,6 @@ public class FragCarRow extends Fragment {
             }
         });
 
-
-
-
-
         return v;
     }
 
@@ -166,6 +162,5 @@ public class FragCarRow extends Fragment {
     public void setExercise (CardioExercise exercise){
         this.exercise = exercise;
     }
-
 
 }

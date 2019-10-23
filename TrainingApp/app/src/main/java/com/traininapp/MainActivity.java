@@ -1,15 +1,11 @@
 package com.traininapp;
 
-import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Session;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -17,8 +13,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,5 +48,24 @@ public class MainActivity extends AppCompatActivity {
         repo.addSession("Yoga", eList, LocalDate.now().plusDays(1), R.drawable.workout_2);
         repo.addSession("Armträning", eList, LocalDate.now().plusDays(2),R.drawable.workout_4);
         repo.addSession("Hjärngympa", eList,LocalDate.now().plusDays(3),R.drawable.workout_1);
+    private void initializeDummySessions(Planner planner){
+
+        planner.addSession("Löpning", LocalDate.now(),R.drawable.workout_5);
+        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
+        planner.addSession("Yoga2", LocalDate.now().plusDays(1),R.drawable.workout_2);
+        planner.addSession("Yoga3", LocalDate.now().plusDays(1),R.drawable.workout_2);
+        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
+        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
+
+
+
+        Session session = planner.getSessionList().get(0);
+        session.addCardioExercise("Spring",10,10);
+        session.addStrengthExercise("Lyft",10,100,10);
+        session.addCardioExercise("Spring2",100,10);
+        session.addStrengthExercise("Lyft2",10,10,10);
+        session.addCardioExercise("Spring3",100,100);
+        session.addStrengthExercise("Lyft3",100,100,100);
+
     }
 }
