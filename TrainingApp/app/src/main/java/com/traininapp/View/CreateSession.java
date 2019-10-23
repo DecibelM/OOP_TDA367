@@ -184,11 +184,12 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         // If no fragments returned null and name is unique
         if (control) {
 
+            SessionTable sessionTable = new SessionTable(getApplicationContext());
+            sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image);
+
             // Adding Session to users list
             repository.getUser().getPlanner().addSession(sessionName, selectedDate, exerciseList, image);
 
-            SessionTable sessionTable = new SessionTable(getApplicationContext());
-            sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image);
 
             for(Exercise exercise : exerciseList) {
 
