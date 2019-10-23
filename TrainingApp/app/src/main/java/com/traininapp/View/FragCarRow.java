@@ -91,12 +91,13 @@ public class FragCarRow extends Fragment {
         txtEnterDistance.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                exercise.setRunningTime(Double.valueOf(txtEnterDistance.getText().toString()));
+                exercise.setDistance(Double.valueOf(txtEnterDistance.getText().toString()));
             }
         });
 
         return v;
     }
+
 
     //method for creating the exercise from the inputted information
     public CardioExercise saveInfo(){
@@ -158,6 +159,5 @@ public class FragCarRow extends Fragment {
     public void setExercise (CardioExercise exercise){
         this.exercise = exercise;
     }
-
 
 }

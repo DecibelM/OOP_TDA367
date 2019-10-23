@@ -87,12 +87,11 @@ public class CurrentSessionActivity extends AppCompatActivity {
         System.out.println(session);
 
         loadExercises(session);
-        // Test stuff
 
         localDate = LocalDate.now();
 
         loadSession(session);
-        //testingStuff();
+
 
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +104,10 @@ public class CurrentSessionActivity extends AppCompatActivity {
         sessionName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-              //  session.setName(sessionName.getText().toString());
+              
+
+                session.setName(sessionName.getText().toString());
+
             }
         });
 
@@ -190,6 +192,8 @@ public class CurrentSessionActivity extends AppCompatActivity {
         //create the fragment
         final FragStrRow fragment = new FragStrRow();
 
+        fragment.setExercise(exercise);
+
         fragmentStrHandeler(listStrFrag,fragment);
 
         final Handler handler = new Handler();
@@ -247,10 +251,13 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
 
     /*
-    Kvar att göra. Fixa så du kan ta bort session. Anting för att du inte vill göra den eller för att du har gymmat klart
+    Kvar att göra:
+    Fixa så du kan ta bort session. Anting för att du inte vill göra den eller för att du har gymmat klart
+    Linka upp CurrentSession med Upcoming Session
     Snygga till med Done knappen
     Tester
     Ta bort gamla xml när helt säker att den inte behövs
+    Kommentarer
      */
 
 

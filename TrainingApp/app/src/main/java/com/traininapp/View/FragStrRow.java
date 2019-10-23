@@ -56,9 +56,6 @@ public class FragStrRow extends Fragment {
         strExerciseList.add("Dumbbell Curl");
         strExerciseList.add("Dumbbell Shoulder Fly");
 
-        autPickStrEx.setText("aaa");
-
-
         //create and setup adapter
         ArrayAdapter<String> strExerciseListAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strExerciseList);
         autPickStrEx.setAdapter(strExerciseListAdapter);
@@ -164,4 +161,9 @@ public class FragStrRow extends Fragment {
         txtEnterWeight.setText(String.valueOf(exercise.getWeight()));
 
     }
+    public void setExercise(Exercise exercise){
+
+        this.exercise = (StrengthExercise) exercise;
+    }
+
 }

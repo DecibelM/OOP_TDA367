@@ -2,6 +2,7 @@ package com.traininapp.Model.Planning;
 
 import com.traininapp.Model.ISessionObserver;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -123,6 +124,10 @@ public class Session implements Comparable<Session>{
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDate getDate() {

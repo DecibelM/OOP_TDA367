@@ -19,13 +19,18 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
+
 import com.traininapp.Model.Database.CarExTable;
 import com.traininapp.Model.Database.SessionTable;
 import com.traininapp.Model.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
+
+import com.traininapp.Model.Planning.CardioExercise;
+
 import com.traininapp.Model.Repository;
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
 
 import java.time.LocalDate;
@@ -74,7 +79,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
         Spinner spnrIcon = findViewById(R.id.spnrIconID);
-        String[] iconsStrArray = getResources().getStringArray(R.array.iconsStringArray);
+        //String[] iconsStrArray = getResources().getStringArray(R.array.iconsStringArray); Error här venne varför
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
         txtSelectedDate = findViewById(R.id.txtSelectedDateID);
         imgSessionIcon = findViewById(R.id.imgSessionIconID);
@@ -86,7 +91,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         txtSelectedDate.setText(selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
 
         // Setting adapter for Spinner and add Listener
-        spnrIcon.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, iconsStrArray));
+        //spnrIcon.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, iconsStrArray)); // Error här venne varför
         spnrIcon.setOnItemSelectedListener(new SpinnerItemSelectedListener());
 
         // Clicking on Add exercise text adds a strength exercise row
@@ -378,5 +383,17 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         }
     }
 
+    public void isDateSelectedAlready() {
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            if (intent.getStringExtra("FROMCALENDAR").matches("YES")) {
 
+
+                String pastDate = intent.getStringExtra("DATE");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d - MM - yyyy");
+                LocalDate localDate = LocalDate.parse(pastDate, formatter);
+                //setDate(pastDate, localDate);
+            }
+        }
+    }
 }
