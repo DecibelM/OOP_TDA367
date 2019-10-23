@@ -6,8 +6,12 @@ import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
+import com.traininapp.View.AddGoalFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -49,6 +53,17 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Method to add dummy sessions to the list
      */
+    public void replaceFragments () {
+        AddGoalFragment addGoalFragment = new AddGoalFragment();
+        addFragment(addGoalFragment);
+    }
+    private void addFragment(Fragment fragment) {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.container, fragment);
+        fragmentTransaction.commit();
+    }
+
     private void initializeDummySessions(){
         List<Exercise> eList = new ArrayList<>();
         eList.add(new CardioExercise("Spring",10,10));
