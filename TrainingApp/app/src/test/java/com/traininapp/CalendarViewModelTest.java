@@ -4,6 +4,7 @@ import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
+import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.viewModel.CalendarViewModel;
 
@@ -28,10 +29,10 @@ public class CalendarViewModelTest {
         exerciseList.add(strengthExercise);
         exerciseList.add(cardioExercise);
 
-        Planner planner = m.getUser().getPlanner();
-        planner.addSession("Löpning",exerciseList, LocalDate.of(2019,10,7));
-        planner.addSession("Yoga", exerciseList, LocalDate.of(2019,10,8));
-        planner.addSession("Armträning", exerciseList, LocalDate.of(2019,10,9));
+
+        m.addSession("Löpning", exerciseList,LocalDate.of(2019,10,7), R.drawable.workout_1);
+        m.addSession("Yoga", exerciseList, LocalDate.of(2019,10,8), R.drawable.workout_1);
+        m.addSession("Armträning", exerciseList, LocalDate.of(2019,10,9), R.drawable.workout_1);
 
         ArrayList<String> list = cvm.getSessionsByDateString(LocalDate.of(2019,10,7));
         assertEquals("Löpning", list.get(0));

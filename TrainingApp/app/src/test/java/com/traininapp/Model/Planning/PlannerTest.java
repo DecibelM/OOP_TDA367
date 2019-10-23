@@ -1,6 +1,7 @@
 package com.traininapp.Model.Planning;
 
 import com.traininapp.Model.Repository;
+import com.traininapp.R;
 
 import org.junit.Test;
 
@@ -12,25 +13,21 @@ import static org.junit.Assert.*;
 
 public class PlannerTest {
 
-    // Initializing the singleton repo
-    Repository repo = Repository.getInstance();
 
-    // Fetching the Users planner
-    Planner planner = repo.getUser().getPlanner();
-
-    private List<Session> sessionList = new ArrayList<>();
-    private List<Routine> routineList = new ArrayList<>();
 
     @Test
     public void addSession() {
+        // Initializing the singleton repo
+        Planner p = new Planner();
+
         StrengthExercise strengthExercise = new StrengthExercise("Benpress", 1,2,10);
         CardioExercise cardioExercise = new CardioExercise("5km",2,5);
         List<Exercise> exerciseList = new ArrayList<Exercise>();
         exerciseList.add(strengthExercise);
         exerciseList.add(cardioExercise);
 
-        planner.addSession("hej", exerciseList, LocalDate.now());
-        assertEquals(1,planner.getSessionList().size());
+        p.addSession(new Session("hej",  LocalDate.now(), exerciseList, R.drawable.workout_1));
+        assertEquals(1,p.getSessionList().size());
     }
 
 

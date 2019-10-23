@@ -23,12 +23,14 @@ public class UpcomingSessionsViewModel extends ViewModel {
 
     public List<Session> getListOfSessions(){
 
-        return model.getUser().getPlanner().getSessionList();
+        return model.getSessionList();
+    }
+/*
+    public void addSessionToList(String name, List<Exercise> exerciseList, LocalDate date){
+        model.addSession(name, exerciseList, date);
     }
 
-    public void addSessionToList(String name, List<Exercise> exerciseList, LocalDate date){
-        model.getUser().addSession(name, exerciseList, date);
-    }
+ */
 
     /**
      * Sorts the Planner's list of Sessions by date, and removes all Sessions which date precede

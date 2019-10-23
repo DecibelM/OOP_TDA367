@@ -28,8 +28,6 @@ public class StatisticsTest {
     private CardioExercise cardioExercise = new CardioExercise("5km",2,5);
     private List <Exercise> exerciseList = new ArrayList<Exercise>();
 
-
-
     @Test
     public void testStrengthExercise(){
 
@@ -45,13 +43,9 @@ public class StatisticsTest {
         user.addSession("Birthdaywoho",exerciseList, LocalDate.of(2019,11,2));
         List<Session> sessionList = user.getPlanner().getSessionList();
         Session s = sessionList.get(0);
-        s.addCardioExercise("RunRun", 20, 2);
-        s.addStrengthExercise("Liftlift", 20, 20, 20);
 
         s.finishSession();
         assertTrue(s.isFinished());
-
-
     }
 
 

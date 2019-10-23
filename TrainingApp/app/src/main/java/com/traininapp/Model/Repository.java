@@ -1,20 +1,24 @@
 package com.traininapp.Model;
 
+import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Statistics.IGoal;
 import com.traininapp.Model.Statistics.IStat;
 
+import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Repository holds the model and
+ * shares information about the model.
+ */
 public class Repository {
 
-    // TODO Javadoc på vad repository är för något
     private User user;
 
     private Repository() {
         this.user = new User();
     }
-
-
 
     private static class RepositoryHolder{
         private static Repository instance = new Repository();
@@ -24,8 +28,21 @@ public class Repository {
         return RepositoryHolder.instance;
     }
 
+    /*
     public User getUser(){
         return user;
+    }
+    */
+
+
+    public void addSession(String name, List<Exercise> exerciseList, LocalDate date, int image){
+        Session s = new Session(name, date, exerciseList, image);
+        s.addObserver(user.getResults());
+        user.getPlanner().addSession(s);
+    }
+
+    public List<Session> getSessionList(){
+        return user.getPlanner().getSessionList();
     }
 
     public List<IGoal> getGoalList() {
