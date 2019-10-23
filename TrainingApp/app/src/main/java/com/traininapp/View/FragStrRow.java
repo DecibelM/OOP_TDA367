@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.DatabaseHelper;
+
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
