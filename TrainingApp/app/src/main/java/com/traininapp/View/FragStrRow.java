@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.traininapp.Model.Planning.Exercise;
-
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
@@ -59,7 +58,6 @@ public class FragStrRow extends Fragment {
         strExerciseList.add("Bicep Curl");
         strExerciseList.add("Dumbbell Curl");
         strExerciseList.add("Dumbbell Shoulder Fly");
-
 
         //create and setup adapter
         ArrayAdapter<String> strExerciseListAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strExerciseList);
@@ -166,9 +164,9 @@ public class FragStrRow extends Fragment {
         txtEnterWeight.setText(String.valueOf(exercise.getWeight()));
 
     }
-
     public void setExercise(Exercise exercise){
 
         this.exercise = (StrengthExercise) exercise;
     }
+
 }

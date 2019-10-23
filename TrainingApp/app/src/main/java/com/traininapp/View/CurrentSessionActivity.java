@@ -90,7 +90,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         loadExercises(session);
 
-
         localDate = LocalDate.now();
 
         loadSession(session);
@@ -107,7 +106,10 @@ public class CurrentSessionActivity extends AppCompatActivity {
         sessionName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
+              
+
                 session.setName(sessionName.getText().toString());
+
             }
         });
 
@@ -191,7 +193,9 @@ public class CurrentSessionActivity extends AppCompatActivity {
     public void createStrRow(final Exercise exercise){
         //create the fragment
         final FragStrRow fragment = new FragStrRow();
+
         fragment.setExercise(exercise);
+
         fragmentStrHandeler(listStrFrag,fragment);
 
         final Handler handler = new Handler();

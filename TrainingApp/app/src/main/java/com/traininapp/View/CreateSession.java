@@ -19,7 +19,16 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
+
+import com.traininapp.Model.Database.CarExTable;
+import com.traininapp.Model.Database.SessionTable;
+import com.traininapp.Model.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
+import com.traininapp.Model.Planning.Exercise;
+import com.traininapp.Model.Planning.StrengthExercise;
+
+import com.traininapp.Model.Planning.CardioExercise;
+
 import com.traininapp.Model.Repository;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
@@ -185,8 +194,40 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         // If no fragments returned null and name is unique
         if (control) {
 
+            SessionTable sessionTable = new SessionTable(getApplicationContext());
+            sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image);
+
             // Adding Session to users list
             repository.getUser().getPlanner().addSession(sessionName, selectedDate, exerciseList, image);
+
+
+            for(Exercise exercise : exerciseList) {
+
+                if (exercise instanceof StrengthExercise) {
+                    StrExTable strExTable = new StrExTable(getApplicationContext());
+
+                    strExTable.insertData(sessionTable.getLatestTable(),
+                            exercise.getName(),
+                            ((StrengthExercise) exercise).getSets(),
+                            ((StrengthExercise) exercise).getReps(),
+                            ((StrengthExercise) exercise).getWeight());
+                }
+            }
+
+            for(Exercise exercise : exerciseList) {
+
+                if (exercise instanceof CardioExercise) {
+                    CarExTable carExTable = new CarExTable(getApplicationContext());
+
+                    carExTable.insertData(sessionTable.getLatestTable(),
+                            exercise.getName(),
+                            ((CardioExercise) exercise).getDistance(),
+                            ((CardioExercise) exercise).getRunningTime());
+                }
+            }
+
+
+
 
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
