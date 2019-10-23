@@ -159,7 +159,7 @@ public class FragStrRow extends Fragment {
 
         autPickStrEx.setText(exercise.getName());
         txtEnterSets.setText(String.valueOf(exercise.getSets()));
-        txtEntersReps.setText(String.valueOf(exercise.getSets()));
+        txtEntersReps.setText(String.valueOf(exercise.getReps()));
         txtEnterWeight.setText(String.valueOf(exercise.getWeight()));
 
     }
