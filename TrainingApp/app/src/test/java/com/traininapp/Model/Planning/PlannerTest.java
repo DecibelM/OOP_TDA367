@@ -18,7 +18,7 @@ public class PlannerTest {
     @Test
     public void addSession() {
         // Initializing the singleton repo
-        Repository r = Repository.getInstance();
+        Planner p = new Planner();
 
         StrengthExercise strengthExercise = new StrengthExercise("Benpress", 1,2,10);
         CardioExercise cardioExercise = new CardioExercise("5km",2,5);
@@ -26,8 +26,8 @@ public class PlannerTest {
         exerciseList.add(strengthExercise);
         exerciseList.add(cardioExercise);
 
-        r.addSession("hej",  exerciseList,LocalDate.now(), R.drawable.workout_1);
-        assertEquals(1,r.getSessionList().size());
+        p.addSession(new Session("hej",  LocalDate.now(), exerciseList, R.drawable.workout_1));
+        assertEquals(1,p.getSessionList().size());
     }
 
 
