@@ -83,6 +83,9 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         // Setting image to Strength by default
         image = getResources().getIdentifier("workout_1", "drawable", getPackageName());
 
+        //Checks if you are coming from the calendar and then sets the date accordingly
+        isDateSelectedAlready();
+
         // Updating text to match selectedDate, today's date by default
         txtSelectedDate.setText(selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
 
@@ -130,6 +133,8 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
                 onIconClick();
             }
         });
+
+
     }
 
     /**
@@ -352,14 +357,18 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     public void isDateSelectedAlready() {
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
-            if (intent.getStringExtra("FROMCALENDAR").matches("YES")) {
+            if (intent.getBooleanExtra("FROMCALENDAR",true)) {
 
 
                 String pastDate = intent.getStringExtra("DATE");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d - MM - yyyy");
                 LocalDate localDate = LocalDate.parse(pastDate, formatter);
-                //setDate(pastDate, localDate);
+                setDate(localDate);
             }
         }
+    }
+
+    private void setDate(LocalDate localDate){
+        selectedDate = localDate;
     }
 }
