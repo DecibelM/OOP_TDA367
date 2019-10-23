@@ -28,14 +28,10 @@ public class FragStrRow extends Fragment {
     //Placeholder list for all strength exercises
     private List<String> strExerciseList = new ArrayList<>();
 
-
     private EditText txtEnterWeight;
     private EditText txtEnterSets ;
     private EditText txtEntersReps;
     private AutoCompleteTextView autPickStrEx;
-    private StrengthExercise exercise;
-
-    private FragmentTransaction fragmentTransaction;
 
     public FragStrRow() {
         // Required empty public constructor
@@ -62,34 +58,6 @@ public class FragStrRow extends Fragment {
         //create and setup adapter
         ArrayAdapter<String> strExerciseListAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strExerciseList);
         autPickStrEx.setAdapter(strExerciseListAdapter);
-
-        autPickStrEx.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                exercise.setName(autPickStrEx.getText().toString());
-            }
-        });
-
-        txtEnterWeight.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                exercise.setWeight(Double.valueOf(txtEnterWeight.getText().toString()));
-            }
-        });
-
-        txtEnterSets.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                exercise.setSets(Integer.valueOf(txtEnterSets.getText().toString()));
-            }
-        });
-
-        txtEntersReps.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                exercise.setReps(Integer.valueOf(txtEntersReps.getText().toString()));
-            }
-        });
 
         btnDeletestr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,17 +124,24 @@ public class FragStrRow extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 
-    public void setStrengthValues(StrengthExercise exercise, FragStrRow fragStrRow){
-
-        autPickStrEx.setText(exercise.getName());
-        txtEnterSets.setText(String.valueOf(exercise.getSets()));
-        txtEntersReps.setText(String.valueOf(exercise.getReps()));
-        txtEnterWeight.setText(String.valueOf(exercise.getWeight()));
-
+    public void setTxtEnterWeight(String string) {
+        this.txtEnterWeight.setText(string);
     }
-    public void setExercise(Exercise exercise){
 
-        this.exercise = (StrengthExercise) exercise;
+    public void setTxtEnterSets(String string) {
+        this.txtEnterSets.setText(string);
+    }
+
+    public void setTxtEntersReps(String string) {
+        this.txtEntersReps.setText(string);
+    }
+
+    public void setAutPickStrEx(String string) {
+        this.autPickStrEx.setText(string);
+    }
+
+    public void setValues(Exercise exercise){
+
     }
 
 }
