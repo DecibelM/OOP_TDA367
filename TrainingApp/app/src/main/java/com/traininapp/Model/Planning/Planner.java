@@ -1,9 +1,7 @@
 package com.traininapp.Model.Planning;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Class Planner which holds a list of sessions and
