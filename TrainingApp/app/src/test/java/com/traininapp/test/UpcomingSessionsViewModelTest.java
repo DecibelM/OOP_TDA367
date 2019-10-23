@@ -1,5 +1,6 @@
 package com.traininapp.test;
 
+import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Planner;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Repository;
@@ -9,6 +10,7 @@ import com.traininapp.viewModel.UpcomingSessionsViewModel;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,19 +19,18 @@ import static org.junit.Assert.*;
 public class UpcomingSessionsViewModelTest {
 
     private Repository repo = Repository.getInstance();
-    private Planner planner = repo.getUser().getPlanner();
 
     @Test
     public void getListOfSessions() {
 
-        planner.getSessionList().clear();
-
+        repo.getSessionList().clear();
         UpcomingSessionsViewModel viewModel = new UpcomingSessionsViewModel();
+        List <Exercise> eList = new ArrayList<>();
 
-        planner.addSession("Löpning", LocalDate.now().minusDays(1),R.drawable.workout_5);
-        planner.addSession("Yoga", LocalDate.now(),R.drawable.workout_2);
-        planner.addSession("Armträning", LocalDate.now().plusDays(1),R.drawable.workout_4);
-        planner.addSession("Hjärngympa", LocalDate.now().plusDays(2),R.drawable.workout_1);
+        repo.addSession("Löpning",eList,LocalDate.now().minusDays(1),R.drawable.workout_5);
+        repo.addSession("Yoga",eList, LocalDate.now(),R.drawable.workout_2);
+        repo.addSession("Armträning",eList, LocalDate.now().plusDays(1),R.drawable.workout_4);
+        repo.addSession("Hjärngympa",eList, LocalDate.now().plusDays(2),R.drawable.workout_1);
 
         List<Session> list = viewModel.getListOfSessions();
 
@@ -39,13 +40,14 @@ public class UpcomingSessionsViewModelTest {
     @Test
     public void addSessionToList() {
 
-        planner.getSessionList().clear();
+        repo.getSessionList().clear();
+        List <Exercise> eList = new ArrayList<>();
 
-        planner.addSession("Löpning", LocalDate.now(), R.drawable.workout_5);
-        planner.addSession("Yoga", LocalDate.now().plusDays(1),R.drawable.workout_2);
-        planner.addSession("Armträning", LocalDate.now().plusDays(2),R.drawable.workout_4);
-        planner.addSession("Hjärngympa", LocalDate.now().plusDays(3),R.drawable.workout_1);
+        repo.addSession("Löpning",eList,LocalDate.now().minusDays(1),R.drawable.workout_5);
+        repo.addSession("Yoga",eList, LocalDate.now(),R.drawable.workout_2);
+        repo.addSession("Armträning",eList, LocalDate.now().plusDays(1),R.drawable.workout_4);
+        repo.addSession("Hjärngympa",eList, LocalDate.now().plusDays(2),R.drawable.workout_1);
 
-        assertEquals(4, planner.getSessionList().size());
+        assertEquals(4, repo.getSessionList().size());
     }
 }

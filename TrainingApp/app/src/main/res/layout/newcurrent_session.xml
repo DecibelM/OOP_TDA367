@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             tools:context=".View.CreateSessionActivity">
-
+            android:layout_marginBottom="50dp"
 
             <ImageView
                 android:id="@+id/imgSessionIconID"
@@ -192,17 +192,42 @@
 
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/cardview_light_background"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="10dp"
+
+        >
+
+
+
     <Button
-        android:id="@+id/btnDoneID"
+        android:id="@+id/btnSaveID"
         android:layout_width="145dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|left"
         android:layout_marginBottom="10dp"
-        android:layout_marginRight="20dp"
-        android:text="Färdigtränat!"
+        android:layout_marginStart="20dp"
+        android:text="Spara"
         android:background="@color/colorPrimaryDark"
         android:textColor="@color/cardview_light_background"
         />
+
+        <Button
+            android:id="@+id/btnDoneID"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="80dp"
+            android:text="Färdigtränat!"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/cardview_light_background"
+            />
+
+    </LinearLayout>
 
 
 
