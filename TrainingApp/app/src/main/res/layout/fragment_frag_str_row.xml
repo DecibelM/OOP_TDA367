@@ -6,7 +6,7 @@
 
     <AutoCompleteTextView
         android:id="@+id/autPickStrExID"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:completionThreshold="0"
         android:hint="Enter exercise"

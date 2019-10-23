@@ -12,12 +12,13 @@
 
         <AutoCompleteTextView
             android:id="@+id/autPickCarExID"
-            android:layout_width="141dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:completionThreshold="0"
             android:hint="Enter exercise"
             android:inputType="text"
-            android:maxWidth="120dp" />
+            android:maxWidth="120dp"
+            android:layout_marginStart="10dp"/>
 
         <EditText
             android:id="@+id/txtEnterTimeID"
@@ -27,7 +28,8 @@
             android:ems="1"
             android:hint="Time"
             android:inputType="number"
-            android:maxLength="4" />
+            android:maxLength="4"
+            android:layout_marginStart="10dp"/>
 
         <EditText
             android:id="@+id/txtEnterDistanceID"
@@ -37,16 +39,8 @@
             android:ems="1"
             android:hint="Dist."
             android:inputType="number"
-            android:maxLength="4" />
-
-        <TextView
-            android:id="@+id/txtEvenOut5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="1"
             android:maxLength="4"
-            android:text="    " />
+            android:layout_marginStart="10dp"/>
 
         <Button
             android:id="@+id/btnDeleteCarID"

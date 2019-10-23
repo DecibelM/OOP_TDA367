@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:background="#FFF"
         android:layout_weight="0"
         android:gravity="center"
@@ -19,10 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Session name"
+        android:text="Session name pg"
         android:id="@+id/sessionName"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="40sp"
+
         />
 
     </LinearLayout>
@@ -31,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         >
 
@@ -60,7 +61,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         >
 
@@ -71,6 +73,8 @@
             android:id="@+id/exerciseText"
             android:textColor="#FFF"
             android:textSize="15sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
             />
 
         <TextView
@@ -81,6 +85,7 @@
             android:textColor="#FFF"
             android:textSize="15sp"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
             />
 
         <TextView
@@ -91,6 +96,7 @@
             android:textColor="#FFF"
             android:textSize="15sp"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             />
 
         <TextView
@@ -105,41 +111,110 @@
 
     </LinearLayout>
 
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+
+    >
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/border_white"
         android:minHeight="100dp"
-        >
 
-        <TextView
-            android:id="@+id/txtDisplayRoutinesID"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="display routines"
-            android:layout_marginLeft="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnAddRoutineID" />
+            android:orientation="vertical">
+
+
+
+        <!-- This is the line which makes weight reps and set show inside the scrollview. Hiding it for now
+            <LinearLayout
+                android:id="@+id/rowStrExerciseInfoID"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txtStrExerciseID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:text=" Exercise"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:id="@+id/txtWeightID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="1"
+                    android:text=" Weight"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:id="@+id/txtRepsID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="1"
+                    android:text=" Reps"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:id="@+id/txtSetsID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="1"
+                    android:text=" Sets"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+
+            </LinearLayout>
+            -->
+
+            <LinearLayout
+                android:id="@+id/displayRowsID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
     </ScrollView>
+
+</LinearLayout>
+    <Button
+        android:id="@+id/addExerciseBtn"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_gravity="bottom|right"
+        android:background="@color/colorPrimary"
+        android:foreground="@android:drawable/ic_input_add"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
         android:gravity="center|bottom"
-        android:orientation="vertical" >
-    <Button
-        android:id="@+id/btnDoneID"
-        android:layout_width="145dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center"
-        android:layout_marginBottom="10dp"
-        android:text="Done"
+        android:orientation="vertical">
 
-         />
+
+        <Button
+            android:id="@+id/btnDoneID"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginBottom="10dp"
+            android:text="Done" />
 
     </LinearLayout>
 
