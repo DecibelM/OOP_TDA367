@@ -33,7 +33,7 @@ public class UpcomingSessionsViewModel extends ViewModel {
      */
     public List<Session> getListOfSessions(){
 
-        return model.getSessionList();
+        return repo.getSessionList();
     }
 /*
     public void addSessionToList(String name, List<Exercise> exerciseList, LocalDate date){
