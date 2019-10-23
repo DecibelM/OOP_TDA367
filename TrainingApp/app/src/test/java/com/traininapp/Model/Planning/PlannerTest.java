@@ -27,7 +27,7 @@ public class PlannerTest {
         exerciseList.add(cardioExercise);
 
         r.addSession("hej",  exerciseList,LocalDate.now(), R.drawable.workout_1);
-        assertEquals(5,r.getSessionList().size());
+        assertEquals(1,r.getSessionList().size());
     }
 
 
