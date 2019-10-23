@@ -20,6 +20,9 @@ import java.util.List;
 
 public class FragCarRow extends Fragment {
 
+    // TODO Javadoc. Ta bort saker som inte används. Metoder körs redan, kan ta bort. CardioExercise gör private. REMOVE SPACE! Gör viewmodel till den här och Strength rox.
+    // TODO  Gör saker till package private. Döp om Viewen v till View. Ta bort onödig import
+
     //Placeholder list for all cardio exercises
     List<String> carExerciseList = new ArrayList<>();
 

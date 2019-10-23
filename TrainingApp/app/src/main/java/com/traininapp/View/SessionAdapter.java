@@ -15,6 +15,7 @@ import java.util.List;
 
 public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionViewHolder> {
 
+    //TODO Javadoc. Onödig casting. Bryt ut lista med sessions till viewmodel och hämta data via metoden till den.
     private List<Session> sessionList;
 
     // Adapter constructor

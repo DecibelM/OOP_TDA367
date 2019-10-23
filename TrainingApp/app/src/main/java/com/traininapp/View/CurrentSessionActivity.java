@@ -32,6 +32,8 @@ import java.util.List;
 
 public class CurrentSessionActivity extends AppCompatActivity {
 
+    // TODO Ta bort skit som inte används längre. Done button kan göras local. Ta bort gamla kommentarer. Javadoc. Fler övriga kommentarer. Bryt ut session och sessionID till CurrentSessionViewModel.
+    // TODO REMOVE SPACE! TA bort onödig import
     private List<Exercise> exerciseList = new ArrayList<>();
 
     private CurrentSessionViewModel viewModel;

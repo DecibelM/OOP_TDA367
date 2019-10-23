@@ -14,6 +14,7 @@ import java.util.List;
 
 public class UpcomingSessionsViewModel extends ViewModel {
 
+        //TODO Javadoc, Onödig import. Döpa om model till "repo" t ex. SPACE!
     Repository model;
 
     public UpcomingSessionsViewModel(){

@@ -28,6 +28,7 @@ import java.util.List;
  */
 public class GoalsFragment extends Fragment {
 
+    //TODO gör variabler lokala. SPACE! Kommentarer i bindview. Onödig casting. Onödig import
     private RecyclerView recyclerView;
     private StatisticsAdapter recyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;

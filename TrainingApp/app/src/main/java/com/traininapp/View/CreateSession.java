@@ -33,6 +33,11 @@ import java.util.List;
 
 public class CreateSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
+    // TODO ta bort imports. Skapa viewmodel. Javadoc för klassen. Mindre space om möjligt. Fundera på control booleanen.
+    // TODO Adam fixa isDateSelected. Ta bort onödig import. Fixa så dubbles funkar
+
+
+
     // Declaring elements
     private EditText txtEnterSessionName;
     private TextView txtSelectedDate;
@@ -70,7 +75,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
         Spinner spnrIcon = findViewById(R.id.spnrIconID);
-        //String[] iconsStrArray = getResources().getStringArray(R.array.iconsStringArray); Error här venne varför
+        String[] iconsStrArray = getResources().getStringArray(R.array.iconsStringArray);
         txtEnterSessionName = findViewById(R.id.txtEnterSessionNameID);
         txtSelectedDate = findViewById(R.id.txtSelectedDateID);
         imgSessionIcon = findViewById(R.id.imgSessionIconID);
@@ -82,7 +87,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         txtSelectedDate.setText(selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
 
         // Setting adapter for Spinner and add Listener
-        //spnrIcon.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, iconsStrArray)); // Error här venne varför
+        spnrIcon.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, iconsStrArray));
         spnrIcon.setOnItemSelectedListener(new SpinnerItemSelectedListener());
 
         // Clicking on Add exercise text adds a strength exercise row
@@ -186,7 +191,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
             Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
-
+            //TODO ta bort den här
             // Clear Session name field
             txtEnterSessionName.setText("");
         }
@@ -199,6 +204,8 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     /**
      * Method which adds another row fragment, allowing the user to add exercises
      */
+
+    // TODO Bryt ut det gemensamma i dessa två till en. Dumt med samma kod två gånger
     public void createCarFragRow() {
 
         // Create the fragment

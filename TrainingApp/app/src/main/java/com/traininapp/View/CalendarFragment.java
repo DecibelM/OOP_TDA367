@@ -37,6 +37,9 @@ import java.util.Date;
  */
 public class CalendarFragment extends Fragment {
 
+        // TODO göra Localdate private. Gör lokala variabler. Ta bort emptyview. Ta bort space. Gör metoder private. Javadoc kommentarer. Ta bort utkommenterade grejer
+    // TODO Opensession gör boolean av "YES". Gör "List" till en list och inte arraylist samt bättre namn. Ta bort onödig casting. Ta bort Context skiten.
+
     private TextView myDate;
     private CalendarView calendarView;
     private CalendarViewModel viewModel;

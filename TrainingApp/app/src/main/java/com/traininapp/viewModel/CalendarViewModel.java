@@ -18,6 +18,7 @@ public class CalendarViewModel extends ViewModel {
         this.model = Repository.getInstance();
     }
 
+    // TODO mer Javadoc och kommentarer.
     /**
      * Method calls the model and returns a list of the sessions on the date
      * it recieved as input.

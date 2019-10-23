@@ -6,6 +6,11 @@ import java.util.List;
 /**
  * This class holds data for a specific exercise type, this is used to save and get data specific to each exercise
  */
+
+    /* TODO sätt private på variabler
+        Ta bort onödiga struktorer
+     */
+
 public class ExerciseSpecificStatistic implements IStat{
     String name;
     List<Double> dataList;
