@@ -9,11 +9,12 @@ import java.util.List;
 /**
  * Class Session which holds a list of exercises and a date.s
  */
-public class Session {
+public class Session implements Comparable<Session>{
+
     private String name;
     private List<Exercise> exerciseList;
     private List<ISessionObserver> sessionObservers;
-    LocalDate date;
+    private LocalDate date;
     private int sessionImage;
     private boolean isFinished = false;
 
@@ -39,6 +40,21 @@ public class Session {
     public Session(String name, LocalDate date, int sessionImage) {
         this.name = name;
         this.exerciseList = new ArrayList<>();
+        this.date = date;
+        this.sessionImage = sessionImage;
+        sessionObservers = new ArrayList<>();
+    }
+
+    /**
+     * Constructor for creating a Session with name, date, exercise list and image
+     * @param name Name of Session
+     * @param date Date of Session
+     * @param exerciseList Exercise list of Session
+     * @param sessionImage Image of Session
+     */
+    public Session(String name, LocalDate date, List<Exercise> exerciseList, int sessionImage) {
+        this.name = name;
+        this.exerciseList = exerciseList;
         this.date = date;
         this.sessionImage = sessionImage;
         sessionObservers = new ArrayList<>();
@@ -116,5 +132,15 @@ public class Session {
 
     public int getSessionImage() {
         return sessionImage;
+    }
+
+    /**
+     * Method to compare the dates of two Sessions
+     * @param session The Session to be compared with
+     * @return The difference in days as an int
+     */
+    @Override
+    public int compareTo(Session session) {
+        return this.getDate().compareTo(session.getDate());
     }
 }

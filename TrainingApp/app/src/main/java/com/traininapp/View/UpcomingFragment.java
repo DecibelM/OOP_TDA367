@@ -15,31 +15,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
+import java.util.List;
+
 public class UpcomingFragment extends Fragment {
-
-    private RecyclerView recyclerView;
-    private FloatingActionButton btnOpen;
-    private SessionAdapter adapter;
-    private View view;
-    private FloatingActionButton btnAddSession;
-
-    private UpcomingSessionsViewModel viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         // Attaching the View model to activity
-        viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
+        UpcomingSessionsViewModel viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
 
         // Connecting to fragment_upcoming.xml
-        view = inflater.inflate(R.layout.fragment_upcoming, null);
+        View view = inflater.inflate(R.layout.fragment_upcoming, null);
 
         // Attach listener to "Add session" FAB
-        btnAddSession = view.findViewById(R.id.btnAddSessionFAB);
+        FloatingActionButton btnAddSession = view.findViewById(R.id.btnAddSessionFAB);
         btnAddSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,11 +44,14 @@ public class UpcomingFragment extends Fragment {
 
         // Changes in content does not change layout size, set
         // to true for improved performance
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
+        // Getting a sorted list of Sessions from Planner's list of Sessions, based on date
+        List<Session> sortedSessionList = viewModel.getSortedSessionList();
+
         // Specifying the adapter
-        adapter = new SessionAdapter(viewModel.getListOfSessions());
+        SessionAdapter adapter = new SessionAdapter(sortedSessionList);
         recyclerView.setAdapter(adapter);
 
         // Using a linear layout manager
@@ -66,10 +64,10 @@ public class UpcomingFragment extends Fragment {
     /**
      * Directs the user to CreateSession activity when pressing the "Add session" FAB
      */
-    public void onAddSessionClick(){
+    private void onAddSessionClick(){
 
         // Creating and initializing the intent object
-        Intent intent = new Intent(getActivity(), AddSession.class);
+        Intent intent = new Intent(getActivity(), CreateSession.class);
 
         // Starting the activity
         startActivity(intent);

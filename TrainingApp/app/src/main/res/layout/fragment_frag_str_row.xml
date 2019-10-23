@@ -11,17 +11,18 @@
         android:completionThreshold="0"
         android:hint="Enter exercise"
         android:inputType="text"
-        android:maxWidth="120dp" />
+        android:maxWidth="150dp" />
 
     <EditText
         android:id="@+id/txtEnterWeightID"
-        android:layout_width="0dp"
+        android:layout_width="10dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="1"
         android:hint="Weight"
         android:inputType="number"
-        android:maxLength="4" />
+        android:maxLength="4"
+        android:text="1" />
 
     <EditText
         android:id="@+id/txtEntersRepsID"
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="1"
+        android:text="1"
         android:hint="Rep"
         android:inputType="number"
         android:maxLength="2" />
@@ -39,15 +41,16 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="1"
+        android:text="1"
         android:hint="Set"
         android:inputType="number"
         android:maxLength="2" />
 
     <Button
         android:id="@+id/btnDeletestrID"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="30dp"
-        android:background="@android:drawable/ic_delete" />
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="8dp"
+        android:background="@android:drawable/ic_menu_delete" />
 
 </LinearLayout>
