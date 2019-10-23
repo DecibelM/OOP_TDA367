@@ -118,7 +118,7 @@ public class CalendarFragment extends Fragment {
     }
 
     private void openNewSession(){
-        Intent intent = new Intent(getActivity(), CreateSession.class);
+        Intent intent = new Intent(getActivity(), CreateSessionActivity.class);
         intent.putExtra("DATE", myDate.getText());
         intent.putExtra("FROMCALENDAR", true);
         startActivity(intent);
