@@ -91,7 +91,13 @@ public class CurrentSessionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 viewModel.getModel().getSessionList().remove(session);
                 SessionTable sessionTable = new SessionTable(getApplicationContext());
+                StrExTable strExTable = new StrExTable(getApplicationContext());
+                CarExTable carExTable = new CarExTable(getApplicationContext());
+
                 sessionTable.clearTable();
+                carExTable.clearTable();
+                strExTable.clearTable();
+
                 for(int i = 0; i < viewModel.getModel().getSessionList().size(); i++){
                     sessionTable.insertData(viewModel.getModel().getSessionList().get(i).getName(),viewModel.getModel().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), viewModel.getModel().getSessionList().get(i).getSessionImage());
 
@@ -99,7 +105,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
                     for(Exercise exercise : viewModel.getModel().getSessionList().get(i).getExerciseList()) {
 
                         if (exercise instanceof StrengthExercise) {
-                            StrExTable strExTable = new StrExTable(getApplicationContext());
 
                             strExTable.insertData(sessionTable.getLatestTable(),
                                     exercise.getName(),
@@ -112,7 +117,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
                     for(Exercise exercise : viewModel.getModel().getSessionList().get(i).getExerciseList()) {
 
                         if (exercise instanceof CardioExercise) {
-                            CarExTable carExTable = new CarExTable(getApplicationContext());
 
                             carExTable.insertData(sessionTable.getLatestTable(),
                                     exercise.getName(),

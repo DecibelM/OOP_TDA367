@@ -38,7 +38,7 @@ public class CarExTable {
     public void clearTable()   {
         SQLiteDatabase db = myDb.getWritableDatabase();
 
-        db.delete(myDb.getSessionTable(), null,null);
+        db.delete(myDb.getCarExTableName(), null,null);
     }
 
     public boolean updateData(int id, int routineName, String name, double distance, double time ){
