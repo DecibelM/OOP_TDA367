@@ -87,7 +87,7 @@ public class GoalsFragment extends Fragment {
 
     private void replaceFragment(){
         MainActivity mainActivity = (MainActivity) getActivity();
-        ((MainActivity) getActivity()).replaceFragments();
+        ((MainActivity) getActivity()).replaceFragments(this);
     }
 }
 
