@@ -150,18 +150,10 @@ public class FragStrRow extends Fragment {
     }
 
     public void setEditable(Boolean edit){
-        if (edit){
-            txtEnterWeight.setEnabled(true);
-            txtEnterReps.setEnabled(true);
-            txtEnterSets.setEnabled(true);
-            autPickStrEx.setEnabled(true);
-        }else {
-            txtEnterWeight.setEnabled(false);
-            txtEnterReps.setEnabled(false);
-            txtEnterSets.setEnabled(false);
-            autPickStrEx.setEnabled(false);
-        }
-
+            txtEnterWeight.setEnabled(edit);
+            txtEnterReps.setEnabled(edit);
+            txtEnterSets.setEnabled(edit);
+            autPickStrEx.setEnabled(edit);
 
     }
 

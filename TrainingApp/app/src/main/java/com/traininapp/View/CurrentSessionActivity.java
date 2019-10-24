@@ -28,6 +28,8 @@ import java.util.List;
 
 /**
  * The Activity for handling an already created session. Lets you see what exercises you have, add new ones and letting the app know you have finished the session
+ *
+ * Author: Mostly Adam Törnkvist. Everything with the database is done by Isak Magnusson
  */
 public class CurrentSessionActivity extends AppCompatActivity {
 
@@ -77,7 +79,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         loadExercises(session);
         loadSession(session);
 
-        alreadyFinished(session);
+
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,6 +172,16 @@ public class CurrentSessionActivity extends AppCompatActivity {
                 goodJob();
             }
         });
+
+        //Its takes a moment to initialize the fragments. Therefore you have to wait before doing anything with them
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //fragment.setStrengthValues(exercise, fragment);
+                alreadyFinished(session);
+            }
+        }, 1);
     }
 
     /**
@@ -182,12 +194,17 @@ public class CurrentSessionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * When a session is deleted it opens the main activity
+     */
     public void sessionDelete() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-    public void sessionSaved(Session session){
+    /**
+     * When a session is saved it opens the main activity
+     */
+    public void sessionSaved(){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
@@ -373,7 +390,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         }
 
-        sessionSaved(session);
+        sessionSaved();
     }
 
     public void goodJob(){
@@ -390,7 +407,11 @@ public class CurrentSessionActivity extends AppCompatActivity {
             txtAddCarExercise.setVisibility(View.INVISIBLE);
 
             for (FragStrRow fragment: listStrFrag) {
+                fragment.setEditable(false);
+            }
 
+            for (FragCarRow fragment: listCarFrag){
+                fragment.setEditable(false);
             }
         } else {
             doneBtn.setVisibility(View.VISIBLE);
@@ -398,6 +419,14 @@ public class CurrentSessionActivity extends AppCompatActivity {
             goodJobBtn.setVisibility(View.INVISIBLE);
             txtAddStrExercise.setVisibility(View.VISIBLE);
             txtAddCarExercise.setVisibility(View.VISIBLE);
+
+            for (FragStrRow fragment: listStrFrag) {
+                fragment.setEditable(true);
+            }
+
+            for (FragCarRow fragment: listCarFrag){
+                fragment.setEditable(true);
+            }
         }
     }
 

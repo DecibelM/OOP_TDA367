@@ -138,4 +138,10 @@ public class FragCarRow extends Fragment {
         autPickCarEx.setText(exercise.getName());
 
     }
+
+    public void setEditable(Boolean edit){
+            txtEnterDistance.setEnabled(edit);
+            txtEnterTime.setEnabled(edit);
+            autPickCarEx.setEnabled(edit);
+    }
 }
