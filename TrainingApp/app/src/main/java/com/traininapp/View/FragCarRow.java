@@ -18,18 +18,19 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The fragment(row) in create and currentsession showing the data of one CardioExercise
+ * Authors: Adam and Isak
+ */
+
 public class FragCarRow extends Fragment {
 
-    // TODO Javadoc. Ta bort saker som inte används. Metoder körs redan, kan ta bort. CardioExercise gör private. REMOVE SPACE! Gör viewmodel till den här och Strength rox.
-    // TODO  Gör saker till package private. Döp om Viewen v till View. Ta bort onödig import
+    // TODO Javadoc
 
     //Placeholder list for all cardio exercises
     List<String> carExerciseList = new ArrayList<>();
 
     private EditText txtEnterTime;
-
-
-
     private EditText txtEnterDistance;
     private AutoCompleteTextView autPickCarEx;
 
@@ -67,9 +68,8 @@ public class FragCarRow extends Fragment {
         return view;
     }
 
-
     //method for creating the exercise from the inputted information
-    public CardioExercise saveInfo(){
+    CardioExercise saveInfo(){
         //if the user has not entered an exercise name, return null and tell him to do so
         if(autPickCarEx.length() == 0){
             Toast.makeText(getActivity(), "Add exercisename", Toast.LENGTH_SHORT).show();
@@ -101,7 +101,7 @@ public class FragCarRow extends Fragment {
     }
 
     //remove selected fragment
-    public void destroyFragment(){
+    private void destroyFragment(){
         //Tell user which Exercise has been removed
         Toast.makeText(getActivity(), "Exercise: " + autPickCarEx.getText().toString() + " has been removed", Toast.LENGTH_SHORT).show();
 
@@ -116,30 +116,24 @@ public class FragCarRow extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 
-    public void setTxtEnterTime(String string) {
-        txtEnterTime.setText(string);
-    }
-
-    public void setTxtEnterDistance(String string) {
-        txtEnterDistance.setText(string);
-    }
-
-    public void setAutPickCarEx(String string) {
-        autPickCarEx.setText(string);
-    }
-
-    public void setValues(CardioExercise exercise){
+    /**
+     * Loads in the values for the fragment from the current exercise
+     * @param exercise the current exercise
+     */
+    void setValues(CardioExercise exercise){
 
         DecimalFormat df = new DecimalFormat("###.#");
-
 
         txtEnterTime.setText(String.valueOf(df.format(exercise.getRunningTime())));
         txtEnterDistance.setText(String.valueOf(df.format(exercise.getDistance())));
         autPickCarEx.setText(exercise.getName());
-
     }
 
-    public void setEditable(Boolean edit){
+    /**
+     * Set the editability for the textview
+     * @param edit boolean for if the textviews should be editable or not
+     */
+    void setEditable(Boolean edit){
             txtEnterDistance.setEnabled(edit);
             txtEnterTime.setEnabled(edit);
             autPickCarEx.setEnabled(edit);

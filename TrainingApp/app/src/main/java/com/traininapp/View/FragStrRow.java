@@ -1,9 +1,6 @@
 package com.traininapp.View;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +16,14 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The fragment(row) in create and currentsession showing the data of one StrengthExercise
+ * Authors: Adam and Isak
+ */
+
 public class FragStrRow extends Fragment {
 
-    // TODO Javadoc. Ta bort saker som inte används. Metoder körs redan, kan ta bort. CardioExercise gör private. REMOVE SPACE! Gör viewmodel till den här och Cardiorow.
-    // TODO  Gör saker till package private. Döp om Viewen v till View.
-
+    //TODO Javadoc
     //Placeholder list for all strength exercises
     private List<String> strExerciseList = new ArrayList<>();
 
@@ -46,7 +46,6 @@ public class FragStrRow extends Fragment {
         txtEnterWeight = view.findViewById(R.id.txtEnterWeightID);
         txtEnterSets = view.findViewById(R.id.txtEnterSetsID);
         txtEnterReps = view.findViewById(R.id.txtEntersRepsID);
-
         autPickStrEx.setText(getTag());
 
         //add placeholder strength exercises
@@ -69,7 +68,7 @@ public class FragStrRow extends Fragment {
     }
 
     //method for creating the exercise from the inputted information
-    public StrengthExercise saveInfo(){
+    StrengthExercise saveInfo(){
         //if the user has not entered an exercise name, return null and tell him to do so
         if(autPickStrEx.length() == 0){
             Toast.makeText(getActivity(), "Add exercisename", Toast.LENGTH_SHORT).show();
@@ -106,7 +105,7 @@ public class FragStrRow extends Fragment {
     }
 
     //remove selected fragment
-    public void destroyFragment(){
+    private void destroyFragment(){
         //Tell user which Exercise has been removed
         Toast.makeText(getActivity(), "Exercise: " + autPickStrEx.getText().toString() + " has been removed", Toast.LENGTH_SHORT).show();
 
@@ -123,23 +122,11 @@ public class FragStrRow extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 
-    public void setTxtEnterWeight(String string) {
-        this.txtEnterWeight.setText(string);
-    }
-
-    public void setTxtEnterSets(String string) {
-        this.txtEnterSets.setText(string);
-    }
-
-    public void setTxtEnterReps(String string) {
-        this.txtEnterReps.setText(string);
-    }
-
-    public void setAutPickStrEx(String string) {
-        this.autPickStrEx.setText(string);
-    }
-
-    public void setValues(StrengthExercise exercise){
+    /**
+     * Loads in the values for the fragment from the current exercise
+     * @param exercise the current exercise
+     */
+    void setValues(StrengthExercise exercise){
 
         DecimalFormat df = new DecimalFormat("###.#");
 
@@ -149,12 +136,15 @@ public class FragStrRow extends Fragment {
         autPickStrEx.setText(exercise.getName());
     }
 
-    public void setEditable(Boolean edit){
+    /**
+     * Set the editability for the textview
+     * @param edit boolean for if the textviews should be editable or not
+     */
+
+    void setEditable(Boolean edit){
             txtEnterWeight.setEnabled(edit);
             txtEnterReps.setEnabled(edit);
             txtEnterSets.setEnabled(edit);
             autPickStrEx.setEnabled(edit);
-
     }
-
 }

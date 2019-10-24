@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * The Activity for handling an already created session. Lets you see what exercises you have, add new ones and letting the app know you have finished the session
  *
- * Authors: Mostly Adam Törnkvist. Everything with the database is done by Isak Magnusson
+ * Authors: Mostly Adam Törnkvist. Everything with the saving and deleting is done by Isak Magnusson
  */
 public class CurrentSessionActivity extends AppCompatActivity {
 
