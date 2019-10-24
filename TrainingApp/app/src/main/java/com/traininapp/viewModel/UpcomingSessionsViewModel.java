@@ -47,16 +47,17 @@ public class UpcomingSessionsViewModel extends ViewModel {
     /**
      * Sorts the Planner's list of Sessions by date, and removes all Sessions which date precede
      * today's date.
-     *
      * @return A sorted list with coming Sessions
      */
     public List<Session> getSortedSessionList() {
 
         List<Session> sortedSessions = new ArrayList<>();
 
-        // Add Sessions which have date of today or later to list
-        for (Session session : getListOfSessions()) {
-            if (session.getDate().isEqual(LocalDate.now()) || session.getDate().isAfter(LocalDate.now())) {
+        // Add Sessions which have date of today or later to list, and has not been finished
+        for (Session session : getListOfSessions()){
+
+            if ((session.getDate().isEqual(LocalDate.now()) || session.getDate().isAfter(LocalDate.now())) && !session.isFinished()){
+
                 sortedSessions.add(session);
             }
         }

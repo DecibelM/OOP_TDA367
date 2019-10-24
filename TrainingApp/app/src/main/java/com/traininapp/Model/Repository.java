@@ -20,6 +20,10 @@ public class Repository {
         this.user = new User();
     }
 
+    public void createGoal(String name, Double target) {
+        user.createGoal(name, target);
+    }
+
     private static class RepositoryHolder{
         private static Repository instance = new Repository();
     }
