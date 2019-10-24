@@ -27,7 +27,7 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
      * Adapter constructor
      * @param sessionList List of Sessions
      */
-    SessionAdapter(List<Session> sessionList) {
+    public SessionAdapter(List<Session> sessionList) {
         this.sessionList = sessionList;
     }
 

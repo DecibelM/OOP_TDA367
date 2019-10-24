@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Class UpcomingSessionsViewModel is a class representing the view model for the upcoming sessions
+ * @author Mathias
  */
 public class UpcomingSessionsViewModel extends ViewModel {
 

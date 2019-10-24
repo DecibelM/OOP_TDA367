@@ -2,7 +2,6 @@ package com.traininapp.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -29,10 +28,7 @@ import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
 
-import com.traininapp.Model.Planning.CardioExercise;
-
 import com.traininapp.Model.Repository;
-import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
 import com.traininapp.viewModel.CreateSessionViewModel;
 
@@ -43,6 +39,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * The Activity class which holds the view of creating a Session
+ * @author Mathias, Isak, fler?
+ */
 public class CreateSessionActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     // TODO ta bort imports. Skapa viewmodel. Javadoc för klassen. Mindre space om möjligt. Fundera på control booleanen.

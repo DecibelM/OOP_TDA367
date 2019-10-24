@@ -20,18 +20,15 @@ import com.traininapp.R;
 import com.traininapp.adapter.SessionAdapter;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
 
-import java.util.List;
-
 /**
  * The fragment containing the view of the upcoming Sessions
+ * @author Mathias
  */
 public class UpcomingFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        //TODO Make openSession work.
 
         // Attaching the View model to activity
         UpcomingSessionsViewModel viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
