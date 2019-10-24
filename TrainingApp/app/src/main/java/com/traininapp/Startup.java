@@ -27,6 +27,22 @@ public class Startup extends Application {
      * the database.
      */
 
+    private int sessionID;
+    private String sessionName;
+    private String sessionDate;
+    private int sessionImage;
+
+    private int strExSessionID;
+    private String strExName;
+    private int sets;
+    private int reps;
+    private double weight;
+
+    private  int carExSessionID;
+    private String carExName;
+    private double time;
+    private double distance;
+
     @Override
     public void onCreate(){
         super.onCreate();
@@ -44,35 +60,35 @@ public class Startup extends Application {
 
         while(sessionsInDB.moveToNext()){
             List<Exercise> exerciseList = new ArrayList<>();
-            int sessionID = sessionsInDB.getInt(0);
+            sessionID = sessionsInDB.getInt(0);
 
             while(strExInDB.moveToNext()){
-                int strExSessionID = strExInDB.getInt(1);
+                strExSessionID = strExInDB.getInt(1);
 
                 if (sessionID == strExSessionID){
-                    String strExName = strExInDB.getString(2);
-                    int sets = strExInDB.getInt(3);
-                    int reps = strExInDB.getInt(4);
-                    double weight = strExInDB.getDouble(5);
+                    strExName = strExInDB.getString(2);
+                    sets = strExInDB.getInt(3);
+                    reps = strExInDB.getInt(4);
+                    weight = strExInDB.getDouble(5);
 
                     StrengthExercise strengthExercise = new StrengthExercise(strExName, sets, reps, weight);
                     exerciseList.add(strengthExercise);
                 }
             }
             while(carExInDB.moveToNext()){
-                int carExSessionID = carExInDB.getInt(1);
+                carExSessionID = carExInDB.getInt(1);
                 if (sessionID == carExSessionID){
-                    String carExName = carExInDB.getString(2);
-                    double time = carExInDB.getDouble(3);
-                    double distance = carExInDB.getDouble(4);
+                    carExName = carExInDB.getString(2);
+                    time = carExInDB.getDouble(3);
+                    distance = carExInDB.getDouble(4);
                     CardioExercise cardioExercise = new CardioExercise(carExName, time, distance);
                     exerciseList.add(cardioExercise);
                 }
             }
 
-            String sessionName = sessionsInDB.getString(1);
-            String sessionDate = sessionsInDB.getString(2);
-            int sessionImage = sessionsInDB.getInt(3);
+            sessionName = sessionsInDB.getString(1);
+            sessionDate = sessionsInDB.getString(2);
+            sessionImage = sessionsInDB.getInt(3);
             if(convert(sessionDate).isAfter(LocalDate.now().minusDays(1))){
                 repository.addSession(sessionName, exerciseList,convert(sessionDate), sessionImage);
             }// else{

@@ -90,7 +90,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.getModel().getSessionList().remove(session);
+                viewModel.getRepo().getSessionList().remove(session);
                 SessionTable sessionTable = new SessionTable(getApplicationContext());
                 StrExTable strExTable = new StrExTable(getApplicationContext());
                 CarExTable carExTable = new CarExTable(getApplicationContext());
@@ -99,11 +99,13 @@ public class CurrentSessionActivity extends AppCompatActivity {
                 carExTable.clearTable();
                 strExTable.clearTable();
 
-                for(int i = 0; i < viewModel.getModel().getSessionList().size(); i++){
-                    sessionTable.insertData(viewModel.getModel().getSessionList().get(i).getName(),viewModel.getModel().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), viewModel.getModel().getSessionList().get(i).getSessionImage());
+                for(int i = 0; i < viewModel.getRepo().getSessionList().size(); i++){
+                    sessionTable.insertData(viewModel.getRepo().getSessionList().get(i).getName(),
+                            viewModel.getRepo().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
+                            viewModel.getRepo().getSessionList().get(i).getSessionImage());
 
 
-                    for(Exercise exercise : viewModel.getModel().getSessionList().get(i).getExerciseList()) {
+                    for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
 
                         if (exercise instanceof StrengthExercise) {
 
@@ -115,7 +117,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
                         }
                     }
 
-                    for(Exercise exercise : viewModel.getModel().getSessionList().get(i).getExerciseList()) {
+                    for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
 
                         if (exercise instanceof CardioExercise) {
 
@@ -330,11 +332,13 @@ public class CurrentSessionActivity extends AppCompatActivity {
         strExTable.clearTable();
         final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
 
-        for(int i = 0; i < viewModel.getModel().getSessionList().size(); i++){
-            sessionTable.insertData(viewModel.getModel().getSessionList().get(i).getName(),viewModel.getModel().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), viewModel.getModel().getSessionList().get(i).getSessionImage());
+        for(int i = 0; i < viewModel.getRepo().getSessionList().size(); i++){
+            sessionTable.insertData(viewModel.getRepo().getSessionList().get(i).getName(),
+                    viewModel.getRepo().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
+                    viewModel.getRepo().getSessionList().get(i).getSessionImage());
 
 
-            for(Exercise exercise : viewModel.getModel().getSessionList().get(i).getExerciseList()) {
+            for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
 
                 if (exercise instanceof StrengthExercise) {
 
@@ -346,7 +350,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
                 }
             }
 
-            for(Exercise exercise : viewModel.getModel().getSessionList().get(i).getExerciseList()) {
+            for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
 
                 if (exercise instanceof CardioExercise) {
 
