@@ -12,11 +12,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class FragStrRow extends Fragment {
 
     private EditText txtEnterWeight;
     private EditText txtEnterSets ;
-    private EditText txtEntersReps;
+    private EditText txtEnterReps;
     private AutoCompleteTextView autPickStrEx;
 
     public FragStrRow() {
@@ -40,13 +39,13 @@ public class FragStrRow extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate (R.layout.fragment_frag_str_row, container,false);
+        View view = inflater.inflate (R.layout.fragment_frag_str_row, container,false);
 
-        autPickStrEx = v.findViewById(R.id.autPickStrExID);
-        Button btnDeletestr = v.findViewById(R.id.btnDeletestrID);
-        txtEnterWeight = v.findViewById(R.id.txtEnterWeightID);
-        txtEnterSets = v.findViewById(R.id.txtEnterSetsID);
-        txtEntersReps = v.findViewById(R.id.txtEntersRepsID);
+        autPickStrEx = view.findViewById(R.id.autPickStrExID);
+        Button btnDeletestr = view.findViewById(R.id.btnDeletestrID);
+        txtEnterWeight = view.findViewById(R.id.txtEnterWeightID);
+        txtEnterSets = view.findViewById(R.id.txtEnterSetsID);
+        txtEnterReps = view.findViewById(R.id.txtEntersRepsID);
 
         autPickStrEx.setText(getTag());
 
@@ -66,7 +65,7 @@ public class FragStrRow extends Fragment {
             }
         });
 
-        return v;
+        return view;
     }
 
     //method for creating the exercise from the inputted information
@@ -80,7 +79,7 @@ public class FragStrRow extends Fragment {
             Toast.makeText(getActivity(), "Add weight", Toast.LENGTH_SHORT).show();
             return null;
             //if the user has not entered reps, return null and tell him to do so
-        } else if(txtEntersReps.length() == 0){
+        } else if(txtEnterReps.length() == 0){
             Toast.makeText(getActivity(), "Add reps", Toast.LENGTH_SHORT).show();
             return null;
             //if the user has not entered sets, return null and tell him to do so
@@ -91,7 +90,7 @@ public class FragStrRow extends Fragment {
             //Take name, sets, reps and weight from edittext, convert into their respective types
             String name = autPickStrEx.getText().toString();
             int sets = Integer.parseInt(txtEnterSets.getText().toString());
-            int reps = Integer.parseInt(txtEntersReps.getText().toString());
+            int reps = Integer.parseInt(txtEnterReps.getText().toString());
             double weight = Double.parseDouble(txtEnterWeight.getText().toString());
 
             //If the fragment has been destroyed (and given an invalid value), rename it to be filtered out later
@@ -114,7 +113,7 @@ public class FragStrRow extends Fragment {
         //Set name to 'a', so user is not prompted to enter name
         autPickStrEx.setText("a");
         //Set reps to invalid value
-        txtEntersReps.setText("-1");
+        txtEnterReps.setText("-1");
         //Set weight to invalid value
         txtEnterWeight.setText("-1");
         //Set sets to an invalid value, to be filtered out
@@ -132,15 +131,29 @@ public class FragStrRow extends Fragment {
         this.txtEnterSets.setText(string);
     }
 
-    public void setTxtEntersReps(String string) {
-        this.txtEntersReps.setText(string);
+    public void setTxtEnterReps(String string) {
+        this.txtEnterReps.setText(string);
     }
 
     public void setAutPickStrEx(String string) {
         this.autPickStrEx.setText(string);
     }
 
-    public void setValues(Exercise exercise){
+    public void setValues(StrengthExercise exercise){
+
+        DecimalFormat df = new DecimalFormat("###.#");
+
+        txtEnterWeight.setText(String.valueOf(df.format(exercise.getWeight())));
+        txtEnterReps.setText(String.valueOf(exercise.getReps()));
+        txtEnterSets.setText(String.valueOf(exercise.getSets()));
+        autPickStrEx.setText(exercise.getName());
+    }
+
+    public void setEditable(Boolean edit){
+            txtEnterWeight.setEnabled(edit);
+            txtEnterReps.setEnabled(edit);
+            txtEnterSets.setEnabled(edit);
+            autPickStrEx.setEnabled(edit);
 
     }
 

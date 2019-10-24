@@ -94,6 +94,10 @@ public class CalendarFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Update the list below the calendar with sessions from the selected day if there are any. Otherwise hides the list
+     * @param localDate the currently selected date
+     */
     // Method for updating sessions on the selected day
     private void updateSessionList(LocalDate localDate){
 
@@ -102,9 +106,8 @@ public class CalendarFragment extends Fragment {
         sessionList.clear();
         if(sessionNameList != null) {
             for (Session s : sessionNameList) {
-                if(!s.isFinished()) {
+
                     sessionList.add(s.getName());
-                }
             }
         }
         if (sessionNameList.isEmpty()) {
@@ -117,6 +120,9 @@ public class CalendarFragment extends Fragment {
             ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
     }
 
+    /**
+     * Opens a completely new Session
+     */
     private void openNewSession(){
         Intent intent = new Intent(getActivity(), CreateSessionActivity.class);
         intent.putExtra("DATE", myDate.getText());

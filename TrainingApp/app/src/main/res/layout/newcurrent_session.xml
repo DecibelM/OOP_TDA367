@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/btnDeleteID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="120dp"
+        android:text="Delete"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/cardview_light_background"
+        />
+
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="90dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -38,6 +51,7 @@
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -198,50 +212,50 @@
         android:background="@color/cardview_light_background"
         android:layout_gravity="bottom"
         android:layout_marginTop="10dp"
-
+        android:layout_alignParentBottom="true"
+        android:weightSum="1"
+        android:padding="10dp"
         >
 
 
 
-    <Button
-        android:id="@+id/btnSaveID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|left"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="20dp"
-        android:text="Spara"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/cardview_light_background"
-        />
-
-
         <Button
-            android:id="@+id/btnDeleteID"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnSaveID"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|left"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="20dp"
-            android:text="radera"
+
+            android:text="Save Changes"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/cardview_light_background"
+            android:layout_weight="0.33"
             />
 
         <Button
-            android:id="@+id/btnDoneID"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnGoodJobID"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="60dp"
-            android:text="Färdigtränat!"
+            android:layout_gravity="bottom"
+            android:text="Bra jobbat!"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/cardview_light_background"
+            android:layout_weight="0.33"
+            android:visibility="invisible"
             />
+        <Button
+            android:id="@+id/btnDoneID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:text="Finish session!"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/cardview_light_background"
+            android:layout_weight="0.33"
+            />
+
+
 
     </LinearLayout>
 
 
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

@@ -11,10 +11,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.traininapp.Model.Planning.CardioExercise;
-import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 
 import java.text.DecimalFormat;
@@ -140,5 +137,11 @@ public class FragCarRow extends Fragment {
         txtEnterDistance.setText(String.valueOf(df.format(exercise.getDistance())));
         autPickCarEx.setText(exercise.getName());
 
+    }
+
+    public void setEditable(Boolean edit){
+            txtEnterDistance.setEnabled(edit);
+            txtEnterTime.setEnabled(edit);
+            autPickCarEx.setEnabled(edit);
     }
 }
