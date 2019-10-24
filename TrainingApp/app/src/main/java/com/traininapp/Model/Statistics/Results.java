@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class Results implements ISessionObserver {
 
-    // TODO mer kommentarer. Göra updateExercise till private
 
     private List<Goal> goalList;
     private List<ExerciseSpecificStatistic> exerciseStatistics;
@@ -49,9 +48,9 @@ public class Results implements ISessionObserver {
         goalList.get(1).updateProgress(41.0);
         goalList.get(2).updateProgress(679.0);
 
-        exerciseStatistics.add(new ExerciseSpecificStatistic("Strength", 0.0, System.currentTimeMillis()));
+        exerciseStatistics.add(new ExerciseSpecificStatistic("Strength", 1.0, System.currentTimeMillis()));
 
-        exerciseStatistics.get(0).addToDataList(1.0, System.currentTimeMillis());
+        exerciseStatistics.get(0).addToDataList(2.0, System.currentTimeMillis());
         exerciseStatistics.get(0).addToDataList(1.0, System.currentTimeMillis());
         exerciseStatistics.get(0).addToDataList(3.0, System.currentTimeMillis());
         exerciseStatistics.get(0).addToDataList(2.0, System.currentTimeMillis());
@@ -60,24 +59,29 @@ public class Results implements ISessionObserver {
         exerciseStatistics.get(0).addToDataList(5.0, System.currentTimeMillis());
         exerciseStatistics.get(0).addToDataList(3.0, System.currentTimeMillis());
 
-        exerciseStatistics.add(new ExerciseSpecificStatistic("Left leg", 0.0, System.currentTimeMillis()));
+        exerciseStatistics.add(new ExerciseSpecificStatistic("Left leg", 1.0, System.currentTimeMillis()));
 
-        exerciseStatistics.get(1).addToDataList(2.0, System.currentTimeMillis());
+        exerciseStatistics.get(1).addToDataList(3.0, System.currentTimeMillis());
         exerciseStatistics.get(1).addToDataList(3.0, System.currentTimeMillis());
         exerciseStatistics.get(1).addToDataList(4.0, System.currentTimeMillis());
         exerciseStatistics.get(1).addToDataList(2.0, System.currentTimeMillis());
         exerciseStatistics.get(1).addToDataList(3.0, System.currentTimeMillis());
-        exerciseStatistics.get(1).addToDataList(4.0, System.currentTimeMillis());
+        exerciseStatistics.get(1).addToDataList(5.0, System.currentTimeMillis());
         exerciseStatistics.get(1).addToDataList(1.0, System.currentTimeMillis());
-        exerciseStatistics.get(1).addToDataList(0.0, System.currentTimeMillis());
+        exerciseStatistics.get(1).addToDataList(2.0, System.currentTimeMillis());
 
     }
 
+    /**
+     * This is called through the listener from a session, this method takes a list of exercises and hands them out separatley to the right method to handle the data.
+     *
+     * @param exerciseList The list of exercises coming from a finished session
+     */
     @Override
     public void updateSessionStats(List<Exercise> exerciseList) {
 
         for (Exercise exercise: exerciseList){
-            if (exercise instanceof CardioExercise){            //'instanceof' checks if the 'exercise' is of the class 'CardioExercise'
+            if (exercise instanceof CardioExercise){
                 updateCardioExercise((CardioExercise) exercise);
             } else if (exercise instanceof StrengthExercise){
                 updateStrengthExercise((StrengthExercise) exercise);

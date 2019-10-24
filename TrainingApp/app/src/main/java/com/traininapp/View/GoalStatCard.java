@@ -8,9 +8,9 @@ import com.traininapp.adapter.IStatistic;
  */
 public class GoalStatCard implements IStatistic {
 
-    private String goalName;
-    private Double goalTarget;
-    private Double goalProgress;
+        private String goalName;
+        private Double goalTarget;
+        private Double goalProgress;
 
     /**
      * The constructor for the class GoalStatCard

@@ -27,35 +27,30 @@ import java.util.List;
  */
 public class GoalsFragment extends Fragment {
 
-    //TODO Kommentarer i bindview
-
-    private View view;
     private Repository repository;
     private List<IStatistic> statisticsList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_goals, null);
+        View view = inflater.inflate(R.layout.fragment_goals, null);
         repository = Repository.getInstance();
         statisticsList = new ArrayList<>();
 
-        bindView();
+        bindView(view);
 
         return view;
     }
 
     /**
      * Connects the right view to the right element and init them correspondingly.
+     * Sets up the RecyclerView and gives it something to use and fill itself with
      */
-    private void bindView() {
+    private void bindView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.myPagesRecyclerViewID);
         recyclerView.setHasFixedSize(true);
-
         StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GoalsFragment.super.getContext());
-
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);
 

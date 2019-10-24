@@ -120,14 +120,15 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         void drawGraph(StatisticCard statisticCard){
             List<Double> statistics = statisticCard.getStatistics();
 
-            DataPoint[] dataPoints = new DataPoint[statistics.size()];
+            DataPoint[] dataPoints = new DataPoint[statistics.size()+1];
 
-            for (int i = 0; i < statistics.size(); i++) {
-                dataPoints[i] = new DataPoint(i, statistics.get(i));
+            dataPoints[0] = new DataPoint(0, 0);
+            for (int i = 1; i < statistics.size()+1; i++) {
+                dataPoints[i] = new DataPoint(i, statistics.get(i-1));
             }
 
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
-            graphView.setMinimumWidth(statistics.size());
+            graphView.setMinimumWidth(statistics.size()+1);
             graphView.addSeries(series);
         }
     }
@@ -139,7 +140,6 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
      */
     class GoalViewHolder extends RecyclerView.ViewHolder{
 
-        GoalsListAdapter goalsListAdapter;
 
         TextView goalName;
         TextView goalTarget;
@@ -152,10 +152,9 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          */
         GoalViewHolder(View itemView) {
             super(itemView);
-            goalName = itemView.findViewById(R.id.goalHedderID);
-            goalTarget = itemView.findViewById(R.id.currenttargetID);
-            goalProgress = itemView.findViewById(R.id.currentprogressID);
-            goalsListAdapter = new GoalsListAdapter();
+            goalName = (TextView) itemView.findViewById(R.id.goalHedderID);
+            goalTarget = (TextView) itemView.findViewById(R.id.currenttargetID);
+            goalProgress = (TextView) itemView.findViewById(R.id.currentprogressID);
         }
 
         /**
