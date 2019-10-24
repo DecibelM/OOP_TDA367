@@ -7,14 +7,13 @@ import java.util.List;
  * This class holds data for a specific exercise type, this is used to save and get data specific to each exercise
  */
 
-    /* TODO sätt private på variabler
-        Ta bort onödiga struktorer
-     */
+    // TODO Ta bort onödiga konstruktorer
 
 public class ExerciseSpecificStatistic implements IStat{
-    String name;
-    List<Double> dataList;
-    List<Long> datesList;
+
+    private String name;
+    private List<Double> dataList;
+    private List<Long> datesList;
 
     /**
      *
@@ -33,7 +32,8 @@ public class ExerciseSpecificStatistic implements IStat{
      * @param initialData the first data to populate the list
      * @param initialDate the first date corresponding to the data
      */
-    public ExerciseSpecificStatistic(String name, Double initialData, Long initialDate){
+    ExerciseSpecificStatistic(String name, Double initialData, Long initialDate){
+
         this.name = name;
 
         dataList = new ArrayList<>();

@@ -10,9 +10,9 @@ public class CardioExercise extends Exercise{
 
     /**
      * Constructor for cardio exercise
-     * @param name
-     * @param runningTime
-     * @param distance
+     * @param name Name of CardioExercise
+     * @param runningTime The duration of the CardioExercise
+     * @param distance The distance of the CardioExercise
      */
     public CardioExercise(String name, double runningTime, double distance) {
         super(name);

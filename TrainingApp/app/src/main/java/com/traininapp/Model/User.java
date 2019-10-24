@@ -8,7 +8,6 @@ import com.traininapp.Model.Statistics.IStat;
 import com.traininapp.Model.Statistics.Results;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
     //TODO kan man göra metoderna package private?
@@ -37,18 +36,17 @@ public class User {
         planner.getSessionList().add(s);
     }
 
-    public List<IGoal> getGoalList() {
+    List<IGoal> getGoalList() {
         return results.getGoalList();
     }
 
-    public List<IStat> getStatList(){ return results.getStatList(); }
+    List<IStat> getStatList(){ return results.getStatList(); }
 
     public Planner getPlanner() {
         return planner;
     }
 
-
-    public Results getResults() {
+    Results getResults() {
         return results;
     }
 }

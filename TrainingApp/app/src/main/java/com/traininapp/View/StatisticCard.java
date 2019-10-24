@@ -14,7 +14,7 @@ import java.util.List;
 public class StatisticCard implements IStatistic {
 
     // TODO Private på variabel. Ta bort onödiga metoder.
-    String statisticName;
+    private String statisticName;
     private List<Double> statistics;
     private List<Long> dates;
 
@@ -23,7 +23,7 @@ public class StatisticCard implements IStatistic {
      *  @param statistics
      * @param dates
      */
-    public StatisticCard(String statisticName, List<Double> statistics, List<Long> dates) {
+    StatisticCard(String statisticName, List<Double> statistics, List<Long> dates) {
         this.statisticName = statisticName;
         this.statistics = statistics;
         this.dates = dates;

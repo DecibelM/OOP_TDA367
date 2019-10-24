@@ -27,10 +27,7 @@ import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
 
-import com.traininapp.Model.Planning.CardioExercise;
-
 import com.traininapp.Model.Repository;
-import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.R;
 
 import java.time.LocalDate;
@@ -142,8 +139,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
                 onIconClick();
             }
         });
-
-
     }
 
     /**
@@ -193,7 +188,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         fragCarToCarExList();
 
         // Controlling if valid user input
-        //checkName(sessionName);
         checkNameLength(sessionName);
 
         // If no fragments returned null and name is unique
@@ -204,7 +198,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
             // Adding Session to users list
             repository.addSession(sessionName, exerciseList, selectedDate, image);
-
 
             for(Exercise exercise : exerciseList) {
 
@@ -230,9 +223,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
                             ((CardioExercise) exercise).getRunningTime());
                 }
             }
-
-
-
 
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";

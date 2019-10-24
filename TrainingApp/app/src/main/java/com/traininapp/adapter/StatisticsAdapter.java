@@ -15,7 +15,6 @@ import com.traininapp.R;
 import com.traininapp.View.GoalStatCard;
 import com.traininapp.View.StatisticCard;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,8 +22,6 @@ import java.util.List;
  * It handles a lot of the different templates and can draw graphs or display texts depending on the data within the statistics model.
  */
 public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    // TODO Ta bort onödig import
 
     private List<IStatistic> dataList;
 
@@ -58,8 +55,6 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return dataList.get(position).getType();
     }
 
-
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
@@ -72,6 +67,10 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
+    /**
+     * Method to get the number of items in list
+     * @return Number of items as int
+     */
     @Override
     public int getItemCount() {
         if (dataList == null) {
@@ -110,9 +109,6 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             StatisticCard sCard = (StatisticCard) dataList.get(position);
             txtHeadLine.setText(sCard.getName());
             drawGraph(sCard);
-            // bind data to the views
-            // textView.setText()...
-
         }
 
         /**
@@ -121,7 +117,6 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          *
          * @param statisticCard an instance of the Statistics
          */
-
         void drawGraph(StatisticCard statisticCard){
             List<Double> statistics = statisticCard.getStatistics();
 
@@ -157,9 +152,9 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
          */
         GoalViewHolder(View itemView) {
             super(itemView);
-            goalName = (TextView) itemView.findViewById(R.id.goalHedderID);
-            goalTarget = (TextView) itemView.findViewById(R.id.currenttargetID);
-            goalProgress = (TextView) itemView.findViewById(R.id.currentprogressID);
+            goalName = itemView.findViewById(R.id.goalHedderID);
+            goalTarget = itemView.findViewById(R.id.currenttargetID);
+            goalProgress = itemView.findViewById(R.id.currentprogressID);
             goalsListAdapter = new GoalsListAdapter();
         }
 

@@ -5,17 +5,16 @@ package com.traininapp.Model.Planning;
  */
 public class StrengthExercise extends Exercise {
 
-
     private int sets;
     private int reps;
     private double weight;
 
     /**
      * Contructor for strength exercise
-     * @param name
-     * @param sets
-     * @param reps
-     * @param weight
+     * @param name Exercise name
+     * @param sets Number of sets
+     * @param reps Number of reps
+     * @param weight Weight of exercise
      */
     public StrengthExercise(String name, int sets, int reps, double weight) {
         super(name);
@@ -23,7 +22,6 @@ public class StrengthExercise extends Exercise {
         this.reps = reps;
         this.weight = weight;
     }
-
 
     public double getWeight() {
         return weight;
@@ -48,5 +46,4 @@ public class StrengthExercise extends Exercise {
     public void setWeight(double weight) {
         this.weight = weight;
     }
-
 }

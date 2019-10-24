@@ -5,8 +5,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.Planner;
-import com.traininapp.Model.Planning.Session;
+
 import com.traininapp.Model.Planning.StrengthExercise;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,16 +18,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The activity in which the application starts
+ */
 public class MainActivity extends AppCompatActivity {
 
     Repository repo = Repository.getInstance();
-        //TODO Javadoc, imports, SPACE! Flytta alla dummys hit.
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -38,15 +41,15 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        // Initializing the singleton repo
-
-
         // Adding dummy Sessions
         if (repo.getSessionList().isEmpty()){
             initializeDummySessions();
         }
     }
 
+    /**
+     * Method to add dummy sessions to the list
+     */
     private void initializeDummySessions(){
         List<Exercise> eList = new ArrayList<>();
         eList.add(new CardioExercise("Spring",10,10));
@@ -58,6 +61,5 @@ public class MainActivity extends AppCompatActivity {
         repo.addSession("Yoga", eList, LocalDate.now().plusDays(1), R.drawable.workout_2);
         repo.addSession("Armträning", eList, LocalDate.now().plusDays(2),R.drawable.workout_4);
         repo.addSession("Hjärngympa", eList,LocalDate.now().plusDays(3),R.drawable.workout_1);
-
     }
 }

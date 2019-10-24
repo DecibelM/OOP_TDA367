@@ -4,19 +4,18 @@ import java.util.List;
 
 public interface IStat {
 
-    // TODO ta bort public
     /**
      * @return the name of this goal.
      */
-    public String getName();
+    String getName();
 
     /**
      * @return Data for achieved statistics in this exercise.
      */
-    public List<Double> getDataList();
+    List<Double> getDataList();
 
     /**
      * @return Dates for the datapoints.
      */
-    public List<Long> getDatesList();
+    List<Long> getDatesList();
 }
