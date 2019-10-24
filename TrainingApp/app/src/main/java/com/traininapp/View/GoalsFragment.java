@@ -54,7 +54,6 @@ public class GoalsFragment extends Fragment {
     private void bindView(View view) {
         Button addGoal = view.findViewById(R.id.btnAddGoalID);
         RecyclerView recyclerView = view.findViewById(R.id.myPagesRecyclerViewID);
-        addGoal = (Button) view.findViewById(R.id.btnAddGoalID);
         recyclerView.setHasFixedSize(true);
         StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GoalsFragment.super.getContext());
