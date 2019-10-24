@@ -1,13 +1,19 @@
 package com.traininapp;
 
 import android.os.Bundle;
+import android.view.View;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
+import com.traininapp.View.AddGoalFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -47,8 +53,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Method to add dummy sessions to the list
+     * Replaces the current fragment withe @param fragment
      */
+    public void replaceFragments (Fragment fragment) {
+        AddGoalFragment addGoalFragment = new AddGoalFragment();
+        addFragment(addGoalFragment);
+    }
+
+    /**
+     *adds the sent fragmet to be displayed in the main view of the application
+     * @param fragment
+     */
+    private void addFragment(Fragment fragment) {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.nav_host_fragment, fragment);
+        fragmentTransaction.commit();
+    }
+
+
+    /**
+     * removes the sent fragment from the main view
+     * @param fragment
+     */
+    public void removeFragment(Fragment fragment) {
+            FragmentManager fragmentManager = this.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(fragment);
+            fragmentTransaction.commit();
+    }
+
     private void initializeDummySessions(){
         List<Exercise> eList = new ArrayList<>();
         eList.add(new CardioExercise("Spring",10,10));
