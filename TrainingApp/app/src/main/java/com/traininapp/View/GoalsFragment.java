@@ -57,7 +57,7 @@ public class GoalsFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.myPagesRecyclerViewID);
         recyclerView.setHasFixedSize(true);
-        StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList)
+        StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GoalsFragment.super.getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);

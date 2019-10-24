@@ -49,4 +49,8 @@ public class User {
     Results getResults() {
         return results;
     }
+
+    public void createGoal(String name, Double target) {
+        results.createGoal(name, target);
+    }
 }
