@@ -39,6 +39,13 @@ public class StrExTable {
         return res;
     }
 
+    public void clearTable()   {
+        SQLiteDatabase db = myDb.getWritableDatabase();
+
+        db.delete(myDb.getStrexTableName(), null,null);
+    }
+
+
     public boolean updateData(int id, String routineName, String name, double weight, int sets, int reps ){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

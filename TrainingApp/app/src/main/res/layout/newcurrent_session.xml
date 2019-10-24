@@ -206,7 +206,7 @@
 
     <Button
         android:id="@+id/btnSaveID"
-        android:layout_width="145dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
         android:layout_marginBottom="10dp"
@@ -216,13 +216,26 @@
         android:textColor="@color/cardview_light_background"
         />
 
+
+        <Button
+            android:id="@+id/btnDeleteID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="20dp"
+            android:text="radera"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/cardview_light_background"
+            />
+
         <Button
             android:id="@+id/btnDoneID"
-            android:layout_width="145dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="60dp"
             android:text="Färdigtränat!"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/cardview_light_background"

@@ -33,6 +33,7 @@
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="12dp"
                 android:hint="Session name"
+                android:text="aaaa"
                 android:inputType="text"
                 android:maxWidth="170dp"
                 android:textSize="24sp"

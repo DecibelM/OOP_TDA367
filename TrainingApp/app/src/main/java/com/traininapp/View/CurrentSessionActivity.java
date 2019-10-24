@@ -10,12 +10,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.traininapp.MainActivity;
+import com.traininapp.Model.Database.CarExTable;
+import com.traininapp.Model.Database.SessionTable;
+import com.traininapp.Model.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 import com.traininapp.viewModel.CurrentSessionViewModel;
+
+import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,12 +56,16 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         Button doneBtn = findViewById(R.id.btnDoneID);
         Button saveBtn = findViewById(R.id.btnSaveID);
+        Button btnDelete = findViewById(R.id.btnDeleteID);
+
         sessionName = findViewById(R.id.txtEnterSessionNameID);
         sessionDate = findViewById(R.id.txtSelectedDateID);
         TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
-        CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
+        final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
         String sessionID = intent.getStringExtra("Session");
+
+
 
         //Finds the session
         final Session session = viewModel.getSession(sessionID);
@@ -73,6 +84,53 @@ public class CurrentSessionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveSession(session);
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.getRepo().getSessionList().remove(session);
+                SessionTable sessionTable = new SessionTable(getApplicationContext());
+                StrExTable strExTable = new StrExTable(getApplicationContext());
+                CarExTable carExTable = new CarExTable(getApplicationContext());
+
+                sessionTable.clearTable();
+                carExTable.clearTable();
+                strExTable.clearTable();
+
+                for(int i = 0; i < viewModel.getRepo().getSessionList().size(); i++){
+                    sessionTable.insertData(viewModel.getRepo().getSessionList().get(i).getName(),
+                            viewModel.getRepo().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
+                            viewModel.getRepo().getSessionList().get(i).getSessionImage());
+
+
+                    for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
+
+                        if (exercise instanceof StrengthExercise) {
+
+                            strExTable.insertData(sessionTable.getLatestTable(),
+                                    exercise.getName(),
+                                    ((StrengthExercise) exercise).getSets(),
+                                    ((StrengthExercise) exercise).getReps(),
+                                    ((StrengthExercise) exercise).getWeight());
+                        }
+                    }
+
+                    for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
+
+                        if (exercise instanceof CardioExercise) {
+
+                            carExTable.insertData(sessionTable.getLatestTable(),
+                                    exercise.getName(),
+                                    ((CardioExercise) exercise).getRunningTime(),
+                                    ((CardioExercise) exercise).getDistance());
+                        }
+                    }
+
+                }
+                sessionDelete();
+
             }
         });
 
@@ -108,6 +166,11 @@ public class CurrentSessionActivity extends AppCompatActivity {
     public void sessionDone(Session session) {
         Intent intent = new Intent(this, MainActivity.class);
         session.finishSession();
+        startActivity(intent);
+    }
+
+    public void sessionDelete() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -249,10 +312,55 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         for(FragCarRow cardio: listCarFrag){
             session.getExerciseList().add(cardio.saveInfo());
+
+            removeDeletedExercises(session);
         }
 
         for(FragStrRow strength: listStrFrag){
             session.getExerciseList().add(strength.saveInfo());
+
+            removeDeletedExercises(session);
+        }
+
+
+        SessionTable sessionTable = new SessionTable(getApplicationContext());
+        StrExTable strExTable = new StrExTable(getApplicationContext());
+        CarExTable carExTable = new CarExTable(getApplicationContext());
+
+        sessionTable.clearTable();
+        carExTable.clearTable();
+        strExTable.clearTable();
+        final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
+
+        for(int i = 0; i < viewModel.getRepo().getSessionList().size(); i++){
+            sessionTable.insertData(viewModel.getRepo().getSessionList().get(i).getName(),
+                    viewModel.getRepo().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
+                    viewModel.getRepo().getSessionList().get(i).getSessionImage());
+
+
+            for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
+
+                if (exercise instanceof StrengthExercise) {
+
+                    strExTable.insertData(sessionTable.getLatestTable(),
+                            exercise.getName(),
+                            ((StrengthExercise) exercise).getSets(),
+                            ((StrengthExercise) exercise).getReps(),
+                            ((StrengthExercise) exercise).getWeight());
+                }
+            }
+
+            for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
+
+                if (exercise instanceof CardioExercise) {
+
+                    carExTable.insertData(sessionTable.getLatestTable(),
+                            exercise.getName(),
+                            ((CardioExercise) exercise).getRunningTime(),
+                            ((CardioExercise) exercise).getDistance());
+                }
+            }
+
         }
 
         sessionSaved(session);
@@ -273,10 +381,22 @@ public class CurrentSessionActivity extends AppCompatActivity {
      * @param exercise the exercise you want to load
      */
     public void setStrength(FragStrRow strength, StrengthExercise exercise){
+
+        DecimalFormat df = new DecimalFormat("###.#");
+
         strength.setAutPickStrEx(exercise.getName());
         strength.setTxtEnterSets(String.valueOf(exercise.getSets()));
         strength.setTxtEntersReps(String.valueOf(exercise.getReps()));
-        strength.setTxtEnterWeight(String.valueOf(exercise.getReps()));
+        strength.setTxtEnterWeight(String.valueOf(df.format(exercise.getWeight())));
+    }
+
+
+
+    //if the fragment had been removed remove it from the list of added exercises
+    public void removeDeletedExercises(Session session) {
+        if (session.getExerciseList().get(session.getExerciseList().size() - 1).getName() == "REMOVE ME") {
+            session.getExerciseList().remove(session.getExerciseList().size() - 1);
+        }
     }
 
 
