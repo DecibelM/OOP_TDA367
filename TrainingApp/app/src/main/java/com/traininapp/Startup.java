@@ -53,7 +53,7 @@ public class Startup extends Application {
                     String strExName = strExInDB.getString(2);
                     int sets = strExInDB.getInt(3);
                     int reps = strExInDB.getInt(4);
-                    double weight = strExInDB.getInt(5);
+                    double weight = strExInDB.getDouble(5);
 
                     StrengthExercise strengthExercise = new StrengthExercise(strExName, sets, reps, weight);
                     exerciseList.add(strengthExercise);
@@ -63,8 +63,8 @@ public class Startup extends Application {
                 int carExSessionID = carExInDB.getInt(1);
                 if (sessionID == carExSessionID){
                     String carExName = carExInDB.getString(2);
-                    double time = carExInDB.getInt(3);
-                    double distance = carExInDB.getInt(4);
+                    double time = carExInDB.getDouble(3);
+                    double distance = carExInDB.getDouble(4);
                     CardioExercise cardioExercise = new CardioExercise(carExName, time, distance);
                     exerciseList.add(cardioExercise);
                 }

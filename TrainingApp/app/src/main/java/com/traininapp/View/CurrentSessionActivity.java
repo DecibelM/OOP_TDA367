@@ -381,13 +381,12 @@ public class CurrentSessionActivity extends AppCompatActivity {
      * @param exercise the exercise you want to load
      */
     public void setStrength(FragStrRow strength, StrengthExercise exercise){
-        DecimalFormat df = new DecimalFormat("###.#");
 
 
         strength.setAutPickStrEx(exercise.getName());
         strength.setTxtEnterSets(String.valueOf(exercise.getSets()));
         strength.setTxtEntersReps(String.valueOf(exercise.getReps()));
-        strength.setTxtEnterWeight(String.valueOf(df.format(exercise.getWeight())));
+        strength.setTxtEnterWeight(String.valueOf(exercise.getWeight()));
     }
 
 
