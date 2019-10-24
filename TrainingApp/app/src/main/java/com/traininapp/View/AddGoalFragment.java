@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.traininapp.MainActivity;
 import com.traininapp.R;
 
 public class AddGoalFragment extends Fragment {
@@ -39,6 +40,12 @@ public class AddGoalFragment extends Fragment {
     }
     // TODO make this work
     private void initListeners() {
-
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                ((MainActivity) getActivity()).removeFragment(AddGoalFragment.this);
+            }
+        });
     }
 }
