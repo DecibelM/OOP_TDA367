@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -15,6 +16,10 @@ import androidx.fragment.app.Fragment;
 import com.traininapp.MainActivity;
 import com.traininapp.R;
 import com.traininapp.viewModel.GoalsViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddGoalFragment extends Fragment {
 
     private Spinner exerciseChoise;
@@ -30,16 +35,19 @@ public class AddGoalFragment extends Fragment {
 
         initFields(view);
         initListeners();
-        preFillFields();
+        fillSpinner();
 
         return view;
     }
 
     /**
-     * pre fills the fields for the user to ease the user experience
+     * fills the spinner with the names of existing exercises
      */
-    private void preFillFields() {
-        
+    private void fillSpinner() {
+        List<String> exerciseList = new ArrayList<>(viewModel.getStatNames());
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, exerciseList);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        exerciseChoise.setAdapter(spinnerArrayAdapter);
     }
 
     /**
@@ -66,6 +74,10 @@ public class AddGoalFragment extends Fragment {
      * Saves the filled data
      */
     private void saveData() {
+        Double target = Double.valueOf(exerciseTarget.getText().toString());
+        String activityType = exerciseChoise.getSelectedItem().toString();
+
+        viewModel.createGoal(activityType, target);
     }
 
     /**
