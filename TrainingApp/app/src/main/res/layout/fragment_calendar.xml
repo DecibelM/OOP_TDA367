@@ -54,8 +54,6 @@
         android:layout_marginRight="10dp"
         >
 
-
-
         <ListView
             android:id="@+id/listViewCalendar"
             android:layout_width="match_parent"
