@@ -313,17 +313,13 @@ public class CurrentSessionActivity extends AppCompatActivity {
         for(FragCarRow cardio: listCarFrag){
             session.getExerciseList().add(cardio.saveInfo());
 
-            if (session.getExerciseList().get(session.getExerciseList().size() - 1).getName() == "REMOVE ME") {
-                session.getExerciseList().remove(session.getExerciseList().size() - 1);
-            }
+            removeDeletedExercises(session);
         }
 
         for(FragStrRow strength: listStrFrag){
             session.getExerciseList().add(strength.saveInfo());
 
-            if (session.getExerciseList().get(session.getExerciseList().size() - 1).getName() == "REMOVE ME") {
-                session.getExerciseList().remove(session.getExerciseList().size() - 1);
-            }
+            removeDeletedExercises(session);
         }
 
 
@@ -394,6 +390,12 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
 
 
+    //if the fragment had been removed remove it from the list of added exercises
+    public void removeDeletedExercises(Session session) {
+        if (session.getExerciseList().get(session.getExerciseList().size() - 1).getName() == "REMOVE ME") {
+            session.getExerciseList().remove(session.getExerciseList().size() - 1);
+        }
+    }
 
 
     /*

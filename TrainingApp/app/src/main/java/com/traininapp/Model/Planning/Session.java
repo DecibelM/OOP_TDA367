@@ -17,7 +17,6 @@ public class Session implements Comparable<Session>{
     LocalDate date;
     private int sessionImage;
     private boolean isFinished = false;
-    private boolean isDeleted = false;
 
     /**
      * Constructor for Session which takes name of exercise and date as parameters
@@ -98,17 +97,11 @@ public class Session implements Comparable<Session>{
         updateSessionObserver();
     }
 
-    public void deleteSession(){
-        isDeleted = true;
-    }
 
     public boolean isFinished() {
         return isFinished;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
-    }
 
     /**
      * Method adds a Cardio Exercise into a Session.
