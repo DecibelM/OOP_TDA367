@@ -1,5 +1,6 @@
 package com.traininapp.View;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import com.traininapp.R;
 
 import java.util.List;
 
+/**
+ * An adapter to handle the RecyclerView in which the Cards containing Sessions consists off
+ * @author Mathias
+ */
 public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionViewHolder> {
 
     //TODO Bryt ut lista med sessions till viewmodel och hämta data via metoden till den.
@@ -74,11 +79,32 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
         TextView txtSessionName, txtSessionDate;
         ImageView imgSessionImage;
 
-        SessionViewHolder(View itemView) {
+        SessionViewHolder(final View itemView) {
             super(itemView);
+
+            // Setting the ID's for the cards element
             txtSessionName = itemView.findViewById(R.id.txtSessionName);
             txtSessionDate = itemView.findViewById(R.id.txtSessionDate);
             imgSessionImage = itemView.findViewById(R.id.imgSessionImage);
+
+            // Adding an setOnClickListener to the Card
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    // Creating the intent
+                    Intent intent = new Intent(itemView.getContext(), CurrentSessionActivity.class);
+
+                    // Fetching the Session of Card
+                    Session session = sessionList.get(getAdapterPosition());
+
+                    // Attaching the Sessions information to intent so it can be found later
+                    intent.putExtra("Session", session.toString());
+
+                    // Starting the activity
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }
