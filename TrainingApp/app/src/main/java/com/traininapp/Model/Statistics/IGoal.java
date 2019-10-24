@@ -1,7 +1,6 @@
 package com.traininapp.Model.Statistics;
 
 public interface IGoal {
-
     /**
      * @return the name of this goal.
      */
