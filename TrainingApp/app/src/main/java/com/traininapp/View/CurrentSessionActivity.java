@@ -312,10 +312,59 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         for(FragCarRow cardio: listCarFrag){
             session.getExerciseList().add(cardio.saveInfo());
+
+            if (session.getExerciseList().get(session.getExerciseList().size() - 1).getName() == "REMOVE ME") {
+                session.getExerciseList().remove(session.getExerciseList().size() - 1);
+            }
         }
 
         for(FragStrRow strength: listStrFrag){
             session.getExerciseList().add(strength.saveInfo());
+
+            if (session.getExerciseList().get(session.getExerciseList().size() - 1).getName() == "REMOVE ME") {
+                session.getExerciseList().remove(session.getExerciseList().size() - 1);
+            }
+        }
+
+
+
+
+        SessionTable sessionTable = new SessionTable(getApplicationContext());
+        StrExTable strExTable = new StrExTable(getApplicationContext());
+        CarExTable carExTable = new CarExTable(getApplicationContext());
+
+        sessionTable.clearTable();
+        carExTable.clearTable();
+        strExTable.clearTable();
+        final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
+
+        for(int i = 0; i < viewModel.getModel().getSessionList().size(); i++){
+            sessionTable.insertData(viewModel.getModel().getSessionList().get(i).getName(),viewModel.getModel().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), viewModel.getModel().getSessionList().get(i).getSessionImage());
+
+
+            for(Exercise exercise : viewModel.getModel().getSessionList().get(i).getExerciseList()) {
+
+                if (exercise instanceof StrengthExercise) {
+
+                    strExTable.insertData(sessionTable.getLatestTable(),
+                            exercise.getName(),
+                            ((StrengthExercise) exercise).getSets(),
+                            ((StrengthExercise) exercise).getReps(),
+                            ((StrengthExercise) exercise).getWeight());
+                }
+            }
+
+            for(Exercise exercise : viewModel.getModel().getSessionList().get(i).getExerciseList()) {
+
+                if (exercise instanceof CardioExercise) {
+
+                    carExTable.insertData(sessionTable.getLatestTable(),
+                            exercise.getName(),
+                            ((CardioExercise) exercise).getDistance(),
+                            ((CardioExercise) exercise).getRunningTime());
+                }
+            }
+
         }
 
         sessionSaved(session);
@@ -342,6 +391,8 @@ public class CurrentSessionActivity extends AppCompatActivity {
         strength.setTxtEntersReps(String.valueOf(exercise.getReps()));
         strength.setTxtEnterWeight(String.valueOf(exercise.getReps()));
     }
+
+
 
 
 

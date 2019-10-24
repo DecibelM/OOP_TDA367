@@ -41,31 +41,40 @@ public class Startup extends Application {
         Cursor strExInDB = strExTable.getData();
         Cursor carExInDB = carExTable.getData();
 
-        boolean isHere;
 
         while(sessionsInDB.moveToNext()){
-            sessionsInDB.getString(0);
             List<Exercise> exerciseList = new ArrayList<>();
+            int sessionID = sessionsInDB.getInt(0);
 
             while(strExInDB.moveToNext()){
+                int strExSessionID = strExInDB.getInt(1);
 
-                if (sessionsInDB.getInt(0) == (strExInDB.getInt(1))){
+                if (sessionID == strExSessionID){
+                    String strExName = strExInDB.getString(2);
+                    int sets = strExInDB.getInt(3);
+                    int reps = strExInDB.getInt(4);
+                    double weight = strExInDB.getInt(5);
 
-                    StrengthExercise strengthExercise = new StrengthExercise(strExInDB.getString(2), strExInDB.getInt(3), strExInDB.getInt(4), strExInDB.getInt(5));
+                    StrengthExercise strengthExercise = new StrengthExercise(strExName, sets, reps, weight);
                     exerciseList.add(strengthExercise);
                 }
             }
             while(carExInDB.moveToNext()){
-
-                if (sessionsInDB.getInt(0) == carExInDB.getInt(1)){
-
-                    CardioExercise cardioExercise = new CardioExercise(carExInDB.getString(2), carExInDB.getInt(3), carExInDB.getInt(4));
+                int carExSessionID = carExInDB.getInt(1);
+                if (sessionID == carExSessionID){
+                    String carExName = carExInDB.getString(2);
+                    double distance = carExInDB.getInt(3);
+                    double time = carExInDB.getInt(4);
+                    CardioExercise cardioExercise = new CardioExercise(carExName, distance, time);
                     exerciseList.add(cardioExercise);
                 }
             }
 
-            if(convert(sessionsInDB.getString(2)).isAfter(LocalDate.now().minusDays(1))){
-                repository.addSession(sessionsInDB.getString(1), exerciseList,convert(sessionsInDB.getString(2)), sessionsInDB.getInt(3));
+            String sessionName = sessionsInDB.getString(1);
+            String sessionDate = sessionsInDB.getString(2);
+            int sessionImage = sessionsInDB.getInt(3);
+            if(convert(sessionDate).isAfter(LocalDate.now().minusDays(1))){
+                repository.addSession(sessionName, exerciseList,convert(sessionDate), sessionImage);
             }// else{
              //   sessionTable.deleteData(String.valueOf(sessionsInDB.getString(0)));
             //}
