@@ -42,10 +42,9 @@ public class UpcomingSessionsViewModel extends ViewModel {
         // Add Sessions which have date of today or later to list
         for (Session session : getListOfSessions()){
 
-            if (session.getDate().isEqual(LocalDate.now()) || session.getDate().isAfter(LocalDate.now())){
+            if ((session.getDate().isEqual(LocalDate.now()) || session.getDate().isAfter(LocalDate.now())) && !session.isFinished()){
 
                 sortedSessions.add(session);
-
             }
         }
 
