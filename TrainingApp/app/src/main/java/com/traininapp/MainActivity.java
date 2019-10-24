@@ -5,8 +5,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.Planner;
-import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +17,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the main activity of the application, this keeps hold of the start view that shows when the app is launched
+ */
 public class MainActivity extends AppCompatActivity {
 
     Repository repo = Repository.getInstance();

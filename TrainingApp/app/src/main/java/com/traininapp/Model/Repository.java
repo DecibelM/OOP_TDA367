@@ -28,13 +28,6 @@ public class Repository {
         return RepositoryHolder.instance;
     }
 
-    /*
-    public User getUser(){
-        return user;
-    }
-    */
-
-
     public void addSession(String name, List<Exercise> exerciseList, LocalDate date, int image){
         Session s = new Session(name, date, exerciseList, image);
         s.addObserver(user.getResults());

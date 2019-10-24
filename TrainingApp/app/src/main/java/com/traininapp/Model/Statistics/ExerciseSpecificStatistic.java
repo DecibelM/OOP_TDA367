@@ -6,27 +6,10 @@ import java.util.List;
 /**
  * This class holds data for a specific exercise type, this is used to save and get data specific to each exercise
  */
-
-    /* TODO sätt private på variabler
-        Ta bort onödiga struktorer
-     */
-
 public class ExerciseSpecificStatistic implements IStat{
-    String name;
-    List<Double> dataList;
-    List<Long> datesList;
-
-    /**
-     *
-     * @param name Name of the exercise
-     * @param dataList the data list of accomplishement in this exercise
-     * @param datesList the list of dates corresponding to the data
-     */
-    public ExerciseSpecificStatistic(String name, List<Double> dataList, List<Long> datesList) {
-        this.name = name;
-        this.dataList = dataList;
-        this.datesList = datesList;
-    }
+    private String name;
+    private List<Double> dataList;
+    private List<Long> datesList;
 
     /**
      * @param name Name of the exercise
@@ -41,16 +24,6 @@ public class ExerciseSpecificStatistic implements IStat{
 
         datesList = new ArrayList<>();
         datesList.add(initialDate);
-    }
-
-    /**
-     * The simplest constructor for the class where no data is needed
-     * @param name the name of the exercise
-     */
-    public ExerciseSpecificStatistic(String name){
-        this.name = name;
-        dataList = new ArrayList<>();
-        datesList = new ArrayList<>();
     }
 
     /**
