@@ -10,12 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+/**
+ * Class which allows the user to pick a date for the Session with a calendar
+ */
 public class DatePickerFragment extends DialogFragment {
-    // TODO javadoc, göra private det som går.
-    Calendar c = Calendar.getInstance();
-    int year = c.get(Calendar.YEAR);
-    int month = c.get(Calendar.MONTH);
-    int day = c.get(Calendar.DAY_OF_MONTH);
+
+    private Calendar c = Calendar.getInstance();
+    private int year = c.get(Calendar.YEAR);
+    private int month = c.get(Calendar.MONTH);
+    private int day = c.get(Calendar.DAY_OF_MONTH);
 
     @NonNull
     @Override

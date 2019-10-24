@@ -9,16 +9,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Class CalendarViewModel is a class representing the viewmodel for the calendar.
+ * Class CalendarViewModel is a class representing the ViewModel for the calendar.
  */
 public class CalendarViewModel extends ViewModel {
+
     private Repository repository;
 
     public CalendarViewModel() {
         this.repository = Repository.getInstance();
     }
 
-    // TODO repo.getUser()... osv är väldigt långt. Fixa metod i repo för det
     /**
      * Method calls the repository and returns a list of the sessions on the date
      * it recieved as input.

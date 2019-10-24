@@ -29,5 +29,4 @@ public class Planner {
     public List<Session> getSessionList() {
         return sessionList;
     }
-
 }

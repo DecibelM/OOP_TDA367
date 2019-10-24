@@ -15,15 +15,23 @@ import java.util.List;
 
 public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionViewHolder> {
 
-    //TODO Javadoc. Onödig casting. Bryt ut lista med sessions till viewmodel och hämta data via metoden till den.
+    //TODO Bryt ut lista med sessions till viewmodel och hämta data via metoden till den.
     private List<Session> sessionList;
 
-    // Adapter constructor
-    public SessionAdapter(List<Session> sessionList) {
+    /**
+     * Adapter constructor
+     * @param sessionList List of Sessions
+     */
+    SessionAdapter(List<Session> sessionList) {
         this.sessionList = sessionList;
     }
 
-    // Creates new views (invoked by the layout manager)
+    /**
+     * Method which creates new views (invoked by the layout manager)
+     * @param parent ViewGroup parent
+     * @param viewType The type of view
+     * @return A new SessionViewHolder containing the rows
+     */
     @Override
     public SessionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -31,7 +39,11 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
         return new SessionViewHolder(view);
     }
 
-    // Replaces the contents of the view (invoked by the layout manager)
+    /**
+     * Method which replaces the contents of the view (invoked by the layout manager)
+     * @param holder Holder of the SessionViewHolder
+     * @param position The position in the list
+     */
     @Override
     public void onBindViewHolder(SessionViewHolder holder, int position) {
 
@@ -45,13 +57,18 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
         holder.imgSessionImage.setImageResource(sessionList.get(position).getSessionImage());
     }
 
-    // Return the size of sessionList (invoked by the layout manager)
+    /**
+     * Method to return the number of items in sessionList (invoked by the layout manager)
+     * @return The size of sessionList as an int
+     */
     @Override
     public int getItemCount() {
         return sessionList.size();
     }
 
-    // Provide a reference to the views for each data item
+    /**
+     * Class to provide a reference to the views for each data item
+     */
     class SessionViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtSessionName, txtSessionDate;
@@ -59,9 +76,9 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
 
         SessionViewHolder(View itemView) {
             super(itemView);
-            txtSessionName = (TextView) itemView.findViewById(R.id.txtSessionName);
-            txtSessionDate = (TextView) itemView.findViewById(R.id.txtSessionDate);
-            imgSessionImage = (ImageView) itemView.findViewById(R.id.imgSessionImage);
+            txtSessionName = itemView.findViewById(R.id.txtSessionName);
+            txtSessionDate = itemView.findViewById(R.id.txtSessionDate);
+            imgSessionImage = itemView.findViewById(R.id.imgSessionImage);
         }
     }
 }

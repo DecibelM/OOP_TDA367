@@ -14,7 +14,7 @@ public class Session implements Comparable<Session>{
     private String name;
     private List<Exercise> exerciseList;
     private List<ISessionObserver> sessionObservers;
-    LocalDate date;
+    private LocalDate date;
     private int sessionImage;
     private boolean isFinished = false;
 
@@ -140,6 +140,11 @@ public class Session implements Comparable<Session>{
         return sessionImage;
     }
 
+    /**
+     * Method used to compare the dates of two Sessions
+     * @param session The Session to be compared with
+     * @return The difference in days between the two Sessions, returned as int
+     */
     @Override
     public int compareTo(Session session) {
         return this.getDate().compareTo(session.getDate());

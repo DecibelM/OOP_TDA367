@@ -244,9 +244,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
                 setStrength(fragment, exercise);
             }
         }, 1);
-
-
-
     }
 
     /**
@@ -363,7 +360,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
         }
 
         sessionSaved(session);
-
     }
 
     /**
