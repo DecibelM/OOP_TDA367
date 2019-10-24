@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private void addFragment(Fragment fragment) {
         FragmentManager fragmentManager = this.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.container, fragment);
+        fragmentTransaction.add(R.id.nav_host_fragment, fragment);
         fragmentTransaction.commit();
     }
 

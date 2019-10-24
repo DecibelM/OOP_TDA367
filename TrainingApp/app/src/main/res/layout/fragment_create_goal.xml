@@ -2,13 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent" android:id="@+id/createGoalFragment"
+    android:background="#eee"
     >
 
     <TextView
         android:id="@+id/CreateGoalHeadder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create goal"
+        android:text="Add goal"
         android:textAlignment="center"
         android:textSize="40sp"/>
 
