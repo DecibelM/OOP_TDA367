@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
     public void replaceFragments (Fragment fragment) {
         AddGoalFragment addGoalFragment = new AddGoalFragment();
         addFragment(addGoalFragment);
-
     }
 
     /**
@@ -71,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.nav_host_fragment, fragment);
         fragmentTransaction.commit();
     }
+
+
     /**
      * removes the sent fragment from the main view
      * @param fragment
@@ -80,20 +81,6 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.remove(fragment);
             fragmentTransaction.commit();
-    }
-
-    /**
-     * Method to add dummy sessions to the list
-     */
-    public void replaceFragments () {
-        AddGoalFragment addGoalFragment = new AddGoalFragment();
-        addFragment(addGoalFragment);
-    }
-    private void addFragment(Fragment fragment) {
-        FragmentManager fragmentManager = this.getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.nav_host_fragment, fragment);
-        fragmentTransaction.commit();
     }
 
     private void initializeDummySessions(){
