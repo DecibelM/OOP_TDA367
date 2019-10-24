@@ -5,37 +5,46 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-//Todo: ADD BOOLEAN
 
+/**
+ * The class responsible for the
+ * sessiontable in the database
+ */
 
 public class SessionTable {
     private final DatabaseHelper myDb;
 
+    //All the columns in the table
     private static final String COL_1 = "ID";
     private static final String COL_2 = "NAME";
     private static final String COL_3 = "DATE";
     private static final String COL_4 = "IMAGE";
+    private static final String COL_5 = "IS_FINISHED";
 
     public SessionTable(Context context) {
         this.myDb = new DatabaseHelper(context);
     }
 
-    public void insertData(String name, String DATE, int image){
+    //Insert data
+    public void insertData(String name, String DATE, int image, int isFinished){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, name);
         contentValues.put(COL_3, DATE);
         contentValues.put(COL_4, image);
+        contentValues.put(COL_5, isFinished);
 
         db.insert(myDb.getSessionTable(), null, contentValues);
     }
 
+    //Get data from the table
     public Cursor getData(){
         SQLiteDatabase db = myDb.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+myDb.getSessionTable(), null);
         return res;
     }
 
+    //Deletes all the rows in the table
     public void clearTable()   {
         SQLiteDatabase db = myDb.getWritableDatabase();
 
@@ -43,6 +52,7 @@ public class SessionTable {
     }
 
 
+    //Get the ID of the most recently created session
     public int getLatestTable(){
         SQLiteDatabase db = myDb.getWritableDatabase();
         String query = "SELECT MAX(id) AS max_id FROM "+ myDb.getSessionTable();

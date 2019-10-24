@@ -6,8 +6,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class GoalTable {
+
+    /**
+     * The class responsible for the
+     * goaltable in the database
+     */
+
     private final DatabaseHelper myDb;
 
+    //All the columns in the table
     private static final String COL_1 = "ID";
     private static final String COL_2 = "NAME";
     private static final String COL_3 = "TARGET";

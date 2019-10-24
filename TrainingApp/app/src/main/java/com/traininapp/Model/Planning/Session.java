@@ -60,6 +60,24 @@ public class Session implements Comparable<Session>{
         sessionObservers = new ArrayList<>();
     }
 
+
+    /**
+     * Constructor for creating a Session with name, date, exercise list, image and
+     * @param name Name of Session
+     * @param date Date of Session
+     * @param exerciseList Exercise list of Session
+     * @param sessionImage Image of Session
+     */
+    public Session(String name, LocalDate date, List<Exercise> exerciseList, int sessionImage, boolean isFinished) {
+        this.name = name;
+        this.exerciseList = exerciseList;
+        this.date = date;
+        this.sessionImage = sessionImage;
+        this.isFinished = isFinished;
+        sessionObservers = new ArrayList<>();
+    }
+
+
     /**
      * Adds an observer to the session
      *

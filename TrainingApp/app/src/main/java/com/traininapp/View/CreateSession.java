@@ -196,7 +196,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         if (control) {
 
             SessionTable sessionTable = new SessionTable(getApplicationContext());
-            sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image);
+            sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image, 0);
 
             // Adding Session to users list
             repository.addSession(sessionName, exerciseList, selectedDate, image);
