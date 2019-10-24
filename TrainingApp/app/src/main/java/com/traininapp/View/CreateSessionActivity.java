@@ -28,7 +28,6 @@ import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
 
-import com.traininapp.Model.Repository;
 import com.traininapp.R;
 import com.traininapp.viewModel.CreateSessionViewModel;
 
@@ -45,10 +44,7 @@ import java.util.List;
  */
 public class CreateSessionActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    // TODO ta bort imports. Skapa viewmodel. Javadoc för klassen. Mindre space om möjligt. Fundera på control booleanen.
-    // TODO Adam fixa isDateSelected. Ta bort onödig import. Fixa så dubbles funkar
-
-
+    // TODO Fundera på control booleanen.
 
     // Declaring elements
     private EditText txtEnterSessionName;
@@ -373,12 +369,13 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
         }
     }
 
+    /**
+     * Method used when adding a Session from the CalenderView. It pre-fills the date which was
+     * already selected in the CalenderView
+     */
     public void isDateSelectedAlready() {
-
         Intent intent = getIntent();
-
         if (intent.getExtras() != null) {
-
             if (intent.getBooleanExtra("FROMCALENDAR",true)) {
 
                 String pastDate = intent.getStringExtra("DATE");
