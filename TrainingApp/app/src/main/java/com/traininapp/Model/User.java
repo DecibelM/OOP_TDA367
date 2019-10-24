@@ -23,7 +23,7 @@ public class User {
 
     /**
      * Constructor for User class.
-     *
+     * @author Maria Fornmark
      */
     public User() {
         this.planner = new Planner();

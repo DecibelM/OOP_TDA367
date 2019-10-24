@@ -2,6 +2,7 @@ package com.traininapp.Model.Planning;
 
 /**
  * Class Exercise, parent class for  different types of exercises.
+ * @author Maria Fornmark
  */
 public class Exercise {
 

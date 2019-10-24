@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Class Planner which holds a list of sessions and
  * can add new sessions.
+ * @author Maria Fornmark
  */
 public class Planner {
 

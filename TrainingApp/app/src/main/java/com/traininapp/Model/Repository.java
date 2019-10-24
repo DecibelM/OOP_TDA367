@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Repository holds the model and
  * shares information about the model.
+ * @author Maria Fornmark
  */
 public class Repository {
 

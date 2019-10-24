@@ -2,6 +2,7 @@ package com.traininapp.Model.Planning;
 
 /**
  * Class CardioExercise is a class for cardio exercises.
+ * @author Maria Fornmark
  */
 public class CardioExercise extends Exercise{
 

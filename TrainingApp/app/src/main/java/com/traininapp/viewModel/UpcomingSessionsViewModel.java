@@ -23,12 +23,7 @@ public class UpcomingSessionsViewModel extends ViewModel {
 
         return repo.getSessionList();
     }
-/*
-    public void addSessionToList(String name, List<Exercise> exerciseList, LocalDate date){
-        repo.addSession(name, exerciseList, date);
-    }
 
- */
 
     /**
      * Sorts the Planner's list of Sessions by date, and removes all Sessions which date precede

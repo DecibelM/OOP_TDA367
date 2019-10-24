@@ -2,6 +2,7 @@ package com.traininapp.Model.Planning;
 
 /**
  * StrengthExercise is a class for exercises involving strength.
+ * @author Maria Fornmark
  */
 public class StrengthExercise extends Exercise {
 
