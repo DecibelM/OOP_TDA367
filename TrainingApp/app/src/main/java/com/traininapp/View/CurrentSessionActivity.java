@@ -195,9 +195,11 @@ public class CurrentSessionActivity extends AppCompatActivity {
         carExTable.clearTable();
         strExTable.clearTable();
 
-        int checkIfFinished;
 
         for(int i = 0; i < viewModel.getRepo().getSessionList().size(); i++){
+            int checkIfFinished;
+
+
             if(viewModel.getRepo().getSessionList().get(i).isFinished() == true){
                 checkIfFinished = 1;
             } else{

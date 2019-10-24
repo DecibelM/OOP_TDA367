@@ -32,6 +32,7 @@ public class Startup extends Application {
     private String sessionName;
     private String sessionDate;
     private int sessionImage;
+    private int isFinished;
 
     //All the variables for StrengthExercise
     private int strExSessionID;
@@ -94,8 +95,9 @@ public class Startup extends Application {
             sessionName = sessionsInDB.getString(1);
             sessionDate = sessionsInDB.getString(2);
             sessionImage = sessionsInDB.getInt(3);
+            isFinished = sessionsInDB.getInt(4);
 
-            if (sessionsInDB.getInt(4) == 0) {
+            if (isFinished == 0) {
                 repository.addSession(sessionName, exerciseList,convert(sessionDate), sessionImage, false);
             } else{
                 repository.addSession(sessionName, exerciseList,convert(sessionDate), sessionImage, true);
