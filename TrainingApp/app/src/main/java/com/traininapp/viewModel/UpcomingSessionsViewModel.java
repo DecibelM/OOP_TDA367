@@ -2,10 +2,8 @@ package com.traininapp.viewModel;
 
 import androidx.lifecycle.ViewModel;
 
-import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Repository;
 import com.traininapp.Model.Planning.Session;
-import com.traininapp.Model.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
