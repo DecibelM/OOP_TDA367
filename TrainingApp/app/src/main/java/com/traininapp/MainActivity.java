@@ -1,6 +1,8 @@
 package com.traininapp;
 
 import android.os.Bundle;
+import android.view.View;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.Model.*;
 import com.traininapp.Model.Planning.CardioExercise;
@@ -51,17 +53,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Method to add dummy sessions to the list
+     * Replaces the current fragment withe @param fragment
      */
-    public void replaceFragments () {
+    public void replaceFragments (Fragment fragment) {
         AddGoalFragment addGoalFragment = new AddGoalFragment();
         addFragment(addGoalFragment);
     }
+
+    /**
+     *adds the sent fragmet to be displayed in the main view of the application
+     * @param fragment
+     */
     private void addFragment(Fragment fragment) {
         FragmentManager fragmentManager = this.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.nav_host_fragment, fragment);
         fragmentTransaction.commit();
+    }
+
+
+    /**
+     * removes the sent fragment from the main view
+     * @param fragment
+     */
+    public void removeFragment(Fragment fragment) {
+            FragmentManager fragmentManager = this.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(fragment);
+            fragmentTransaction.commit();
     }
 
     private void initializeDummySessions(){
