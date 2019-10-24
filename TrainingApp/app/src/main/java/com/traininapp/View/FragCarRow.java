@@ -133,8 +133,11 @@ public class FragCarRow extends Fragment {
 
     public void setValues(CardioExercise exercise){
 
-        txtEnterTime.setText(String.valueOf(exercise.getRunningTime()));
-        txtEnterDistance.setText(String.valueOf(exercise.getDistance()));
+        DecimalFormat df = new DecimalFormat("###.#");
+
+
+        txtEnterTime.setText(String.valueOf(df.format(exercise.getRunningTime())));
+        txtEnterDistance.setText(String.valueOf(df.format(exercise.getDistance())));
         autPickCarEx.setText(exercise.getName());
 
     }
