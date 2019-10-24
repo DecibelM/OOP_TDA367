@@ -39,20 +39,12 @@ public class StrExTable {
         return res;
     }
 
-    public int getLatestTable(){
+    public void clearTable()   {
         SQLiteDatabase db = myDb.getWritableDatabase();
-        String query = "SELECT MAX(id) AS max_id FROM "+ myDb.getSessionTable();
-        Cursor res = db.rawQuery(query, null);
-        int id = 0;
-        if (res.moveToFirst())
-        {
-            do
-            {
-                id = res.getInt(0);
-            } while(res.moveToNext());
-        }
-        return id;
+
+        db.delete(myDb.getSessionTable(), null,null);
     }
+
 
     public boolean updateData(int id, String routineName, String name, double weight, int sets, int reps ){
         SQLiteDatabase db = myDb.getWritableDatabase();

@@ -35,7 +35,13 @@ public class CarExTable {
         return res;
     }
 
-    public boolean updateData(int id, String routineName, String name, double distance, double time ){
+    public void clearTable()   {
+        SQLiteDatabase db = myDb.getWritableDatabase();
+
+        db.delete(myDb.getSessionTable(), null,null);
+    }
+
+    public boolean updateData(int id, int routineName, String name, double distance, double time ){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1, id);

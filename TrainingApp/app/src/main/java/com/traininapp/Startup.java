@@ -41,6 +41,7 @@ public class Startup extends Application {
         Cursor strExInDB = strExTable.getData();
         Cursor carExInDB = carExTable.getData();
 
+        boolean isHere;
 
         while(sessionsInDB.moveToNext()){
             sessionsInDB.getString(0);
@@ -64,16 +65,35 @@ public class Startup extends Application {
             }
 
             if(convert(sessionsInDB.getString(2)).isAfter(LocalDate.now().minusDays(1))){
-                repository.getUser().getPlanner().addSession(sessionsInDB.getString(1), convert(sessionsInDB.getString(2)),exerciseList, sessionsInDB.getInt(3));
-            } else{
-                sessionTable.deleteData(String.valueOf(sessionsInDB.getString(0)));
-            }
+                repository.addSession(sessionsInDB.getString(1), exerciseList,convert(sessionsInDB.getString(2)), sessionsInDB.getInt(3));
+            }// else{
+             //   sessionTable.deleteData(String.valueOf(sessionsInDB.getString(0)));
+            //}
 
 
-            System.out.println("Sessiontable: " + sessionsInDB.getString(1));
             strExInDB.moveToFirst();
             carExInDB.moveToFirst();
         }
+     /*   sessionsInDB.moveToFirst();
+        carExInDB.moveToFirst();
+
+        while(carExInDB.moveToNext()){
+            isHere = false;
+            while(sessionsInDB.moveToNext()){
+
+                if (sessionsInDB.getInt(0) == (carExInDB.getInt(1))){
+                    isHere = true;
+                }
+            }
+
+            if(isHere == false){
+                carExTable.deleteData(String.valueOf(carExInDB.getString(0)));
+                Toast.makeText(this, "aaaa", Toast.LENGTH_SHORT).show();
+            }
+
+            sessionsInDB.moveToFirst();
+
+        }*/
 
 
     }

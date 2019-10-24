@@ -10,12 +10,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.traininapp.MainActivity;
+import com.traininapp.Model.Database.CarExTable;
+import com.traininapp.Model.Database.SessionTable;
+import com.traininapp.Model.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 import com.traininapp.viewModel.CurrentSessionViewModel;
+
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,12 +55,16 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         Button doneBtn = findViewById(R.id.btnDoneID);
         Button saveBtn = findViewById(R.id.btnSaveID);
+        Button btnDelete = findViewById(R.id.btnDeleteID);
+
         sessionName = findViewById(R.id.txtEnterSessionNameID);
         sessionDate = findViewById(R.id.txtSelectedDateID);
         TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
-        CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
+        final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
         String sessionID = intent.getStringExtra("Session");
+
+
 
         //Finds the session
         final Session session = viewModel.getSession(sessionID);
@@ -73,6 +83,47 @@ public class CurrentSessionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveSession(session);
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.getModel().getSessionList().remove(session);
+                SessionTable sessionTable = new SessionTable(getApplicationContext());
+                sessionTable.clearTable();
+                for(int i = 0; i < viewModel.getModel().getSessionList().size(); i++){
+                    sessionTable.insertData(viewModel.getModel().getSessionList().get(i).getName(),viewModel.getModel().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), viewModel.getModel().getSessionList().get(i).getSessionImage());
+
+
+                    for(Exercise exercise : viewModel.getModel().getSessionList().get(i).getExerciseList()) {
+
+                        if (exercise instanceof StrengthExercise) {
+                            StrExTable strExTable = new StrExTable(getApplicationContext());
+
+                            strExTable.insertData(sessionTable.getLatestTable(),
+                                    exercise.getName(),
+                                    ((StrengthExercise) exercise).getSets(),
+                                    ((StrengthExercise) exercise).getReps(),
+                                    ((StrengthExercise) exercise).getWeight());
+                        }
+                    }
+
+                    for(Exercise exercise : viewModel.getModel().getSessionList().get(i).getExerciseList()) {
+
+                        if (exercise instanceof CardioExercise) {
+                            CarExTable carExTable = new CarExTable(getApplicationContext());
+
+                            carExTable.insertData(sessionTable.getLatestTable(),
+                                    exercise.getName(),
+                                    ((CardioExercise) exercise).getDistance(),
+                                    ((CardioExercise) exercise).getRunningTime());
+                        }
+                    }
+
+                }
+                sessionDelete();
+
             }
         });
 
@@ -108,6 +159,11 @@ public class CurrentSessionActivity extends AppCompatActivity {
     public void sessionDone(Session session) {
         Intent intent = new Intent(this, MainActivity.class);
         session.finishSession();
+        startActivity(intent);
+    }
+
+    public void sessionDelete() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

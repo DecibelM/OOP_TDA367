@@ -196,6 +196,8 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         //checkName(sessionName);
         checkNameLength(sessionName);
 
+
+
         // If no fragments returned null and name is unique
         if (control) {
 
@@ -236,7 +238,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
-            Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
             //TODO ta bort den här
             // Clear Session name field
             txtEnterSessionName.setText("");
