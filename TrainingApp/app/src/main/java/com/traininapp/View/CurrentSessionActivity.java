@@ -420,21 +420,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Loads all the values for the exercise into the FragStrRow
-     * @param strength A fragment for a strengthrow
-     * @param exercise the exercise you want to load
-     */
-    public void setStrength(FragStrRow strength, StrengthExercise exercise){
-
-        DecimalFormat df = new DecimalFormat("###.#");
-
-        strength.setAutPickStrEx(exercise.getName());
-        strength.setTxtEnterSets(String.valueOf(exercise.getSets()));
-        strength.setTxtEnterReps(String.valueOf(exercise.getReps()));
-        strength.setTxtEnterWeight(String.valueOf(df.format(exercise.getWeight())));
-    }
-
     //if the fragment had been removed remove it from the list of added exercises
     public void removeDeletedExercises(Session session) {
         if (session.getExerciseList().get(session.getExerciseList().size() - 1).getName() == "REMOVE ME") {

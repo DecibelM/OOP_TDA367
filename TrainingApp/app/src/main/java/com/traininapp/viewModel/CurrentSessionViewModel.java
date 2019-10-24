@@ -10,6 +10,7 @@ import com.traininapp.Model.Planning.Session;
 import com.traininapp.View.FragCarRow;
 import com.traininapp.View.FragStrRow;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,8 +22,8 @@ public class CurrentSessionViewModel extends ViewModel {
     private Session session;
     private Activity activity;
 
-    private List<FragStrRow> listStrFrag;
-    private List<FragCarRow> listCarFrag;
+    private ArrayList<FragStrRow> listStrFrag;
+    private ArrayList<FragCarRow> listCarFrag;
     private String sessionID;
 
     public void setSessionID(String sessionID) {
@@ -34,6 +35,9 @@ public class CurrentSessionViewModel extends ViewModel {
         this.sessionID = sessionID;
         this.activity = activity;
         this.session = getCurrentSession();
+        listCarFrag = new ArrayList<>();
+        listStrFrag = new ArrayList<>();
+
     }
 
     public Repository getRepo() {
