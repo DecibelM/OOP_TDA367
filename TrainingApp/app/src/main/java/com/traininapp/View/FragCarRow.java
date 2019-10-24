@@ -16,6 +16,8 @@ import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,8 +88,8 @@ public class FragCarRow extends Fragment {
         }else{
             //Take name, time and distance from edittext, convert into their respective types
             String name = autPickCarEx.getText().toString();
-            double time = Integer.parseInt(txtEnterDistance.getText().toString());
-            double distance = Integer.parseInt(txtEnterTime.getText().toString());
+            double time = Double.parseDouble(txtEnterTime.getText().toString());
+            double distance = Double.parseDouble(txtEnterDistance.getText().toString());
 
             //If the fragment has been destroyed (and given an invalid value), rename it to be filtered out later
             if(time < 0){
@@ -130,8 +132,12 @@ public class FragCarRow extends Fragment {
     }
 
     public void setValues(CardioExercise exercise){
-        txtEnterTime.setText(String.valueOf(exercise.getRunningTime()));
-        txtEnterDistance.setText(String.valueOf(exercise.getDistance()));
+
+        DecimalFormat df = new DecimalFormat("###.#");
+
+
+        txtEnterTime.setText(String.valueOf(df.format(exercise.getRunningTime())));
+        txtEnterDistance.setText(String.valueOf(df.format(exercise.getDistance())));
         autPickCarEx.setText(exercise.getName());
 
     }

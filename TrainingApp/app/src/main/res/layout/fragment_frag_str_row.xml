@@ -21,7 +21,8 @@
         android:layout_weight="1"
         android:ems="1"
         android:hint="Weight"
-        android:inputType="number"
+        android:inputType="numberDecimal"
+        android:digits="0123456789."
         android:maxLength="4"
         android:text="1" />
 

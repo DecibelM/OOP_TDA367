@@ -36,6 +36,13 @@ public class SessionTable {
         return res;
     }
 
+    public void clearTable()   {
+        SQLiteDatabase db = myDb.getWritableDatabase();
+
+        db.delete(myDb.getSessionTable(), null,null);
+    }
+
+
     public int getLatestTable(){
         SQLiteDatabase db = myDb.getWritableDatabase();
         String query = "SELECT MAX(id) AS max_id FROM "+ myDb.getSessionTable();

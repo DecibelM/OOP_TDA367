@@ -11,20 +11,20 @@ public class CarExTable {
     private static final String COL_1 = "ID";
     private static final String COL_2 = "SESSION_ID";
     private static final String COL_3 = "NAME";
-    private static final String COL_4 = "DISTANCE";
-    private static final String COL_5 = "TIME";
+    private static final String COL_4 = "TIME";
+    private static final String COL_5 = "DISTANCE";
 
     public CarExTable(Context context) {
         this.myDb = new DatabaseHelper(context);
     }
 
-    public void insertData(int session_id, String name, double distance, double time){
+    public void insertData(int session_id, String name, double time, double distance){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, session_id);
         contentValues.put(COL_3, name);
-        contentValues.put(COL_4, distance);
-        contentValues.put(COL_5, time);
+        contentValues.put(COL_4, time);
+        contentValues.put(COL_5, distance);
 
         db.insert(myDb.getCarExTableName(), null, contentValues);
     }
@@ -35,7 +35,13 @@ public class CarExTable {
         return res;
     }
 
-    public boolean updateData(int id, String routineName, String name, double distance, double time ){
+    public void clearTable()   {
+        SQLiteDatabase db = myDb.getWritableDatabase();
+
+        db.delete(myDb.getCarExTableName(), null,null);
+    }
+
+    public boolean updateData(int id, int routineName, String name, double distance, double time ){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1, id);

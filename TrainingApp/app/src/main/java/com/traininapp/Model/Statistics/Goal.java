@@ -2,13 +2,11 @@ package com.traininapp.Model.Statistics;
 
 class Goal implements IGoal {
 
-    // TODO Göra variabler och konstruktorer private / package private
+    private String name;
+    private Double target;
+    private Double progress;
 
-    String name;
-    Double target;
-    Double progress;
-
-    public Goal(String name, Double target) {
+    Goal(String name, Double target) {
         this.name = name;
         this.target = target;
         progress = 0.0;
@@ -18,7 +16,7 @@ class Goal implements IGoal {
      * Updates the progress towards the goal. this is not a percentage, the int represents the current closest effort towards the goal.
      * @param newProgress the new progress number
      */
-    public void updateProgress(Double newProgress){
+    void updateProgress(Double newProgress){
         progress = newProgress;
     }
 

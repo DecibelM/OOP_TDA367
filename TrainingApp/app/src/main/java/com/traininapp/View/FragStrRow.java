@@ -92,7 +92,7 @@ public class FragStrRow extends Fragment {
             String name = autPickStrEx.getText().toString();
             int sets = Integer.parseInt(txtEnterSets.getText().toString());
             int reps = Integer.parseInt(txtEntersReps.getText().toString());
-            double weight = Integer.parseInt(txtEnterWeight.getText().toString());
+            double weight = Double.parseDouble(txtEnterWeight.getText().toString());
 
             //If the fragment has been destroyed (and given an invalid value), rename it to be filtered out later
             if(sets < 0){
