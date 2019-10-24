@@ -53,13 +53,8 @@ public class GoalsFragment extends Fragment {
      */
     private void bindView(View view) {
         Button addGoal = view.findViewById(R.id.btnAddGoalID);
-        RecyclerView recyclerView = view.findViewById(R.id.myPagesRecyclerViewID);
-        recyclerView.setHasFixedSize(true);
-        StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GoalsFragment.super.getContext());
-        StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(recyclerViewAdapter);
+
+        setupRecyclerView(view);
 
         for (IStat statistic: viewModel.getStatList()){
             statisticsList.add(new StatisticCard(statistic.getName(), statistic.getDataList(), statistic.getDatesList()));
@@ -74,6 +69,19 @@ public class GoalsFragment extends Fragment {
                 replaceFragment();
             }
         });
+    }
+
+    /**
+     * sets up the recyclerView
+     * @param view
+     */
+    private void setupRecyclerView(View view) {
+        RecyclerView recyclerView = view.findViewById(R.id.myPagesRecyclerViewID);
+        recyclerView.setHasFixedSize(true);
+        StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GoalsFragment.super.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(recyclerViewAdapter);
     }
 
     /**
