@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * This handles the bulk of the statistics controll and keeps an eye onall of it.
  * It currently gets the data via an observer but in the future it should preferably collect it from a database.
+ * Auth: Viktor Fredholm
  */
 public class Results implements ISessionObserver {
 
@@ -188,5 +189,14 @@ public class Results implements ISessionObserver {
         List<IGoal> list = new ArrayList<>();
         list.addAll(goalList);
         return list;
+    }
+
+    /**
+     * Creates a goal
+     * @param name name of goal
+     * @param target target of goal
+     */
+    public void createGoal(String name, Double target) {
+        goalList.add(new Goal(name, target));
     }
 }
