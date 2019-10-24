@@ -60,6 +60,8 @@ public class GoalsFragment extends Fragment {
 
 
 
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(recyclerViewAdapter);
         for (IStat statistic: repository.getStatList()){
             statisticsList.add(new StatisticCard(statistic.getName(), statistic.getDataList(), statistic.getDatesList()));
         }
