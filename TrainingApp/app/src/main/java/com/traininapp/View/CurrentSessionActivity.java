@@ -63,6 +63,10 @@ public class CurrentSessionActivity extends AppCompatActivity {
         sessionDate = findViewById(R.id.txtSelectedDateID);
         txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
+        TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
+        TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
+       // final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
+        String sessionID = intent.getStringExtra("Session");
 
         viewModel = new CurrentSessionViewModel(intent.getStringExtra("Session"),this);
 
@@ -101,7 +105,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
                 for(int i = 0; i < viewModel.getRepo().getSessionList().size(); i++){
                     sessionTable.insertData(viewModel.getRepo().getSessionList().get(i).getName(),
                             viewModel.getRepo().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
-                            viewModel.getRepo().getSessionList().get(i).getSessionImage());
+                            viewModel.getRepo().getSessionList().get(i).getSessionImage(), 0);
 
 
                     for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
@@ -182,6 +186,54 @@ public class CurrentSessionActivity extends AppCompatActivity {
     public void sessionDone(Session session) {
         Intent intent = new Intent(this, MainActivity.class);
         session.finishSession();
+
+        SessionTable sessionTable = new SessionTable(getApplicationContext());
+        StrExTable strExTable = new StrExTable(getApplicationContext());
+        CarExTable carExTable = new CarExTable(getApplicationContext());
+
+        sessionTable.clearTable();
+        carExTable.clearTable();
+        strExTable.clearTable();
+
+        int checkIfFinished;
+
+        for(int i = 0; i < viewModel.getRepo().getSessionList().size(); i++){
+            if(viewModel.getRepo().getSessionList().get(i).isFinished() == true){
+                checkIfFinished = 1;
+            } else{
+                checkIfFinished = 0;
+            }
+
+            sessionTable.insertData(viewModel.getRepo().getSessionList().get(i).getName(),
+                    viewModel.getRepo().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
+                    viewModel.getRepo().getSessionList().get(i).getSessionImage(), checkIfFinished);
+
+
+            for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
+
+                if (exercise instanceof StrengthExercise) {
+
+                    strExTable.insertData(sessionTable.getLatestTable(),
+                            exercise.getName(),
+                            ((StrengthExercise) exercise).getSets(),
+                            ((StrengthExercise) exercise).getReps(),
+                            ((StrengthExercise) exercise).getWeight());
+                }
+            }
+
+            for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
+
+                if (exercise instanceof CardioExercise) {
+
+                    carExTable.insertData(sessionTable.getLatestTable(),
+                            exercise.getName(),
+                            ((CardioExercise) exercise).getRunningTime(),
+                            ((CardioExercise) exercise).getDistance());
+                }
+            }
+
+        }
+
         startActivity(intent);
     }
 
@@ -348,7 +400,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         for(int i = 0; i < viewModel.getRepo().getSessionList().size(); i++){
             sessionTable.insertData(viewModel.getRepo().getSessionList().get(i).getName(),
                     viewModel.getRepo().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
-                    viewModel.getRepo().getSessionList().get(i).getSessionImage());
+                    viewModel.getRepo().getSessionList().get(i).getSessionImage(), 0);
 
             for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
 

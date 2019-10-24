@@ -37,6 +37,12 @@ public class Repository {
         user.addSession(name, exerciseList,date,image);
     }
 
+    public void addSession(String name, List<Exercise> exerciseList, LocalDate date, int image, boolean isFinished){
+        Session s = new Session(name, date, exerciseList, image, isFinished);
+        s.addObserver(user.getResults());
+        user.getPlanner().addSession(s);
+    }
+
     public List<Session> getSessionList(){
         return user.getPlanner().getSessionList();
     }

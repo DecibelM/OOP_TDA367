@@ -19,34 +19,39 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Code running when the app starts.
+ * Creates objects of the data in
+ * the database.
+ */
+
 public class Startup extends Application {
 
-    /**
-     * Code running when the app starts.
-     * Creates objects of the data in
-     * the database.
-     */
-
+    //All the variables for Session
     private int sessionID;
     private String sessionName;
     private String sessionDate;
     private int sessionImage;
 
+    //All the variables for StrengthExercise
     private int strExSessionID;
     private String strExName;
     private int sets;
     private int reps;
     private double weight;
 
+    //All the variables for CardioExercise
     private  int carExSessionID;
     private String carExName;
     private double time;
     private double distance;
 
+    private Repository repository;
+
+
     @Override
     public void onCreate(){
         super.onCreate();
-        Repository repository;
         repository = Repository.getInstance();
 
         SessionTable sessionTable = new SessionTable(this);
@@ -89,38 +94,17 @@ public class Startup extends Application {
             sessionName = sessionsInDB.getString(1);
             sessionDate = sessionsInDB.getString(2);
             sessionImage = sessionsInDB.getInt(3);
-            if(convert(sessionDate).isAfter(LocalDate.now().minusDays(1))){
-                repository.addSession(sessionName, exerciseList,convert(sessionDate), sessionImage);
-            }// else{
-             //   sessionTable.deleteData(String.valueOf(sessionsInDB.getString(0)));
-            //}
+
+            if (sessionsInDB.getInt(4) == 0) {
+                repository.addSession(sessionName, exerciseList,convert(sessionDate), sessionImage, false);
+            } else{
+                repository.addSession(sessionName, exerciseList,convert(sessionDate), sessionImage, true);
+            }
 
 
             strExInDB.moveToFirst();
             carExInDB.moveToFirst();
         }
-     /*   sessionsInDB.moveToFirst();
-        carExInDB.moveToFirst();
-
-        while(carExInDB.moveToNext()){
-            isHere = false;
-            while(sessionsInDB.moveToNext()){
-
-                if (sessionsInDB.getInt(0) == (carExInDB.getInt(1))){
-                    isHere = true;
-                }
-            }
-
-            if(isHere == false){
-                carExTable.deleteData(String.valueOf(carExInDB.getString(0)));
-                Toast.makeText(this, "aaaa", Toast.LENGTH_SHORT).show();
-            }
-
-            sessionsInDB.moveToFirst();
-
-        }*/
-
-
     }
 
     static LocalDate convert(String date) {

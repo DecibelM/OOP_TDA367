@@ -5,9 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * The class responsible for the
+ * strengthexercisetable in the database
+ */
+
 public class StrExTable {
     private final DatabaseHelper myDb;
 
+    //All the columns in the table
     private static final String COL_1 = "ID";
     private static final String COL_2 = "SESSION_ID";
     private static final String COL_3 = "NAME";

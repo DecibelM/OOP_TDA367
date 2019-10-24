@@ -182,7 +182,7 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
         if (control) {
 
             SessionTable sessionTable = new SessionTable(getApplicationContext());
-            sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image);
+            sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image, 0);
 
             // Adding Session to users list
             viewModel.addSession(sessionName, exerciseList, selectedDate, image);
