@@ -5,7 +5,8 @@
     android:id="@+id/activity_upcoming_sessions"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="View.UpcomingFragment">
+    tools:context="View.UpcomingFragment"
+    android:background="#eee">
 
     <!-- Recycler view for displaying the rows of sessions -->
     <androidx.recyclerview.widget.RecyclerView
