@@ -27,20 +27,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The Acticity for handling an already created session. Lets you see what exercises you have, add new ones and letting the app know you have finished the session
+ * The Activity for handling an already created session. Lets you see what exercises you have, add new ones and letting the app know you have finished the session
  */
 public class CurrentSessionActivity extends AppCompatActivity {
 
     // TODO Ta bort skit som inte används längre. Done button kan göras local. Ta bort gamla kommentarer. Javadoc. Fler övriga kommentarer. Bryt ut session och sessionID till CurrentSessionViewModel.
     // TODO REMOVE SPACE! TA bort onödig import
 
-    // Done: Onödiga imports, gammal skit, SPACE, gamla kommentarer
+    // Done: Onödiga imports, gammal skit, SPACE, gamla kommentarer, done button
 
     private TextView sessionName;
     private TextView sessionDate;
+    private TextView txtAddStrExercise;
+    private TextView txtAddCarExercise;
     private List<FragStrRow> listStrFrag;
     private List<FragCarRow> listCarFrag;
     private FragmentTransaction fragmentTransaction;
+    private Button doneBtn;
+    private Button saveBtn;
+    private Button goodJobBtn;
+    private Button btnDelete;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,24 +60,24 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Button doneBtn = findViewById(R.id.btnDoneID);
-        Button saveBtn = findViewById(R.id.btnSaveID);
-        Button btnDelete = findViewById(R.id.btnDeleteID);
-
+        doneBtn = findViewById(R.id.btnDoneID);
+        saveBtn = findViewById(R.id.btnSaveID);
+        goodJobBtn = findViewById(R.id.btnGoodJobID);
+        btnDelete = findViewById(R.id.btnDeleteID);
         sessionName = findViewById(R.id.txtEnterSessionNameID);
         sessionDate = findViewById(R.id.txtSelectedDateID);
-        TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
-        TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
+        txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
+        txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
         final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
         String sessionID = intent.getStringExtra("Session");
-
-
 
         //Finds the session
         final Session session = viewModel.getSession(sessionID);
 
         loadExercises(session);
         loadSession(session);
+
+        alreadyFinished(session);
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +152,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         txtAddStrExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addStrengthExercise(session);
+                addStrengthExercise();
             }
         });
 
@@ -154,7 +160,14 @@ public class CurrentSessionActivity extends AppCompatActivity {
         txtAddCarExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addCardioExercise(session);
+                addCardioExercise();
+            }
+        });
+
+        goodJobBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goodJob();
             }
         });
     }
@@ -206,7 +219,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
     }
 
     /**
-     * Creates a new row for a CardioExercise in the Cardioexercise scrollview
+     * Creates a new row for a CardioExercise in the Cardioexercise scrollview and loads the values of the exercie
      * @param exercise the cardio exercise for which the row will be created
      */
     public void createCarRow(final CardioExercise exercise) {
@@ -221,7 +234,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //fragment.setCardioValues(exercise, fragment);
-                setCardio(fragment, exercise);
+                fragment.setValues(exercise);
             }
         }, 1);
 
@@ -230,7 +243,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
     }
 
     /**
-     * Creates a new row for a StrengthExercise in the Strengthexercise scrollview
+     * Creates a new row for a StrengthExercise in the Strengthexercise scrollview and loads the values of the exercie
      * @param exercise the strengthexercise for which the row will be created
      */
     public void createStrRow(final StrengthExercise exercise) {
@@ -243,7 +256,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //fragment.setStrengthValues(exercise, fragment);
-                setStrength(fragment, exercise);
+                fragment.setValues(exercise);
             }
         }, 1);
     }
@@ -284,20 +297,17 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
     /**
      * Adds a new CardioExercise to the current Session and creates the new row
-     * @param session Current session
      */
-    public void addCardioExercise(Session session) {
+    public void addCardioExercise() {
 
         CardioExercise exercise = new CardioExercise("Cardio", 0, 0);
-        session.getExerciseList().add(exercise);
         createCarRow(exercise);
     }
 
     /**
      * Adds a new StrengthExercise to the current session and creates the new row
-     * @param session Current session
      */
-    public void addStrengthExercise(Session session) {
+    public void addStrengthExercise() {
 
         StrengthExercise exercise = new StrengthExercise("Power", 0, 0, 0);
         createStrRow(exercise);
@@ -366,13 +376,29 @@ public class CurrentSessionActivity extends AppCompatActivity {
         sessionSaved(session);
     }
 
-    /**
-     * Loads all the values for the exercise into the FragCarRow
-     * @param cardio A fragment for a cardiorow
-     * @param exercise the exercise you want to load
-     */
-    public void setCardio(FragCarRow cardio, CardioExercise exercise){
-        cardio.setValues(exercise);
+    public void goodJob(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void alreadyFinished(Session session){
+        if (session.isFinished()){
+            doneBtn.setVisibility(View.INVISIBLE);
+            saveBtn.setVisibility(View.INVISIBLE);
+            goodJobBtn.setVisibility(View.VISIBLE);
+            txtAddStrExercise.setVisibility(View.INVISIBLE);
+            txtAddCarExercise.setVisibility(View.INVISIBLE);
+
+            for (FragStrRow fragment: listStrFrag) {
+
+            }
+        } else {
+            doneBtn.setVisibility(View.VISIBLE);
+            saveBtn.setVisibility(View.VISIBLE);
+            goodJobBtn.setVisibility(View.INVISIBLE);
+            txtAddStrExercise.setVisibility(View.VISIBLE);
+            txtAddCarExercise.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
@@ -386,7 +412,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         strength.setAutPickStrEx(exercise.getName());
         strength.setTxtEnterSets(String.valueOf(exercise.getSets()));
-        strength.setTxtEntersReps(String.valueOf(exercise.getReps()));
+        strength.setTxtEnterReps(String.valueOf(exercise.getReps()));
         strength.setTxtEnterWeight(String.valueOf(df.format(exercise.getWeight())));
     }
 
