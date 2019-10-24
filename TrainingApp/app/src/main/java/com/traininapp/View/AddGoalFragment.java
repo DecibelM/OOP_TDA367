@@ -31,6 +31,7 @@ public class AddGoalFragment extends Fragment {
         return view;
     }
 
+
     private void initFields(View view) {
         exerciseChoise = view.findViewById(R.id.exerciseSpinnerID);
         exerciseTarget = view.findViewById(R.id.txtTargetFieldID);
