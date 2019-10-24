@@ -30,8 +30,8 @@ public class User {
         this.results = new Results();
     }
 
-    public void addSession(String name, List<Exercise> exerciseList, LocalDate date){
-        Session s = new Session(name, exerciseList,date);
+    public void addSession(String name, List<Exercise> exerciseList, LocalDate date, int image){
+        Session s = new Session(name, date, exerciseList, image);
         s.addObserver(results);
         planner.getSessionList().add(s);
     }
@@ -46,7 +46,7 @@ public class User {
         return planner;
     }
 
-    Results getResults() {
+    public Results getResults() {
         return results;
     }
 }

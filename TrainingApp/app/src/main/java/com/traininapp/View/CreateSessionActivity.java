@@ -66,9 +66,8 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
     // Date of session, set to today's date by default
     private LocalDate selectedDate = LocalDate.now();
 
-    // Repo
-    private Repository repository;
-
+    // Initializing the ViewModel
+    private CreateSessionViewModel viewModel;
 
     private FragmentTransaction fragmentTransaction;
     private boolean control;
@@ -76,16 +75,13 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // Attaching the View model to activity
-        CreateSessionViewModel viewModel = ViewModelProviders.of(this).get(CreateSessionViewModel.class);
+        // Attaching the ViewModel to Activity
+        viewModel = ViewModelProviders.of(this).get(CreateSessionViewModel.class);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_session);
 
-        // Initializing the repository
-        repository = Repository.getInstance();
-
-        // Initializing elements
+        // Declaring the elements
         FloatingActionButton btnDone = findViewById(R.id.btnDoneID);
         TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
@@ -140,20 +136,6 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
                 onDoneClick();
             }
         });
-
-        // Clicking the Session icon, directs user to icon selection
-        imgSessionIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onIconClick();
-            }
-        });
-    }
-
-    /**
-     * Method used when pressing Session icon, allows user to choose an icon for the Session
-     */
-    private void onIconClick() {
     }
 
     /**
@@ -207,8 +189,7 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
             sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image);
 
             // Adding Session to users list
-            repository.addSession(sessionName, exerciseList, selectedDate, image);
-
+            viewModel.addSession(sessionName, exerciseList, selectedDate, image);
 
             for(Exercise exercise : exerciseList) {
 
@@ -235,15 +216,9 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
                 }
             }
 
-
-
-
-            // Give feedback that the routine has been saved
+            // Give feedback that the Session has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
             Toast.makeText(CreateSessionActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
-            //TODO ta bort den här
-            // Clear Session name field
-            txtEnterSessionName.setText("");
         }
 
         // Directing the user to Upcoming session view

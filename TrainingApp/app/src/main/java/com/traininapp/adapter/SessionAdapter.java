@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
+import com.traininapp.View.CurrentSessionActivity;
 
 import java.util.List;
 

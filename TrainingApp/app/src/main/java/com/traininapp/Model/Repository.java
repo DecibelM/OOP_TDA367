@@ -29,9 +29,7 @@ public class Repository {
     }
 
     public void addSession(String name, List<Exercise> exerciseList, LocalDate date, int image){
-        Session s = new Session(name, date, exerciseList, image);
-        s.addObserver(user.getResults());
-        user.getPlanner().addSession(s);
+        user.addSession(name, exerciseList,date,image);
     }
 
     public List<Session> getSessionList(){
