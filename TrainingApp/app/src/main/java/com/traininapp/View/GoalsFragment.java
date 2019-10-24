@@ -20,24 +20,27 @@ import com.traininapp.Model.Statistics.IStat;
 import com.traininapp.R;
 import com.traininapp.adapter.StatisticsAdapter;
 import com.traininapp.adapter.IStatistic;
+import com.traininapp.viewModel.GoalsViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Keeps hold of the goals page or my page. Also holds the recyclerview along with its adapter and Layout manager.
+ * Auth: Viktor Fredholm
  */
 public class GoalsFragment extends Fragment {
 
-    private Repository repository;
+    //private Repository repository;
     private List<IStatistic> statisticsList;
-    private Button addGoal;
+    private GoalsViewModel viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_goals, null);
-        repository = Repository.getInstance();
+        viewModel = new GoalsViewModel();
+        //repository = Repository.getInstance();
         statisticsList = new ArrayList<>();
 
         bindView(view);
@@ -49,20 +52,20 @@ public class GoalsFragment extends Fragment {
      * Sets up the RecyclerView and gives it something to use and fill itself with
      */
     private void bindView(View view) {
+        Button addGoal = view.findViewById(R.id.btnAddGoalID);
         RecyclerView recyclerView = view.findViewById(R.id.myPagesRecyclerViewID);
         addGoal = (Button) view.findViewById(R.id.btnAddGoalID);
         recyclerView.setHasFixedSize(true);
+        StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList)
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GoalsFragment.super.getContext());
         StatisticsAdapter recyclerViewAdapter = new StatisticsAdapter(statisticsList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);
 
-
-
-        for (IStat statistic: repository.getStatList()){
+        for (IStat statistic: viewModel.getStatList()){
             statisticsList.add(new StatisticCard(statistic.getName(), statistic.getDataList(), statistic.getDatesList()));
         }
-        for (IGoal goal: repository.getGoalList()){
+        for (IGoal goal: viewModel.getGoalList()){
             statisticsList.add(new GoalStatCard(goal.getName(), goal.getTarget(), goal.getProgress()));
         }
 
@@ -74,6 +77,9 @@ public class GoalsFragment extends Fragment {
         });
     }
 
+    /**
+     * replaces the current fragment with 'this'
+     */
     private void replaceFragment(){
         MainActivity mainActivity = (MainActivity) getActivity();
         ((MainActivity) getActivity()).replaceFragments(this);
