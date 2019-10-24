@@ -39,13 +39,12 @@ public class UpcomingSessionsViewModel extends ViewModel {
 
         List<Session> sortedSessions = new ArrayList<>();
 
-        // Add Sessions which have date of today or later to list
+        // Add Sessions which have date of today or later to list, and has not been finished
         for (Session session : getListOfSessions()){
 
-            if (session.getDate().isEqual(LocalDate.now()) || session.getDate().isAfter(LocalDate.now())){
+            if ((session.getDate().isEqual(LocalDate.now()) || session.getDate().isAfter(LocalDate.now())) && !session.isFinished()){
 
                 sortedSessions.add(session);
-
             }
         }
 
