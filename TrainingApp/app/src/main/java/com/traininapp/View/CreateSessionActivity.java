@@ -399,20 +399,18 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
     }
 
     public void isDateSelectedAlready() {
-        Intent intent = getIntent();
-        if (intent.getExtras() != null) {
-            if (intent.getBooleanExtra("FROMCALENDAR",true)) {
 
+        Intent intent = getIntent();
+
+        if (intent.getExtras() != null) {
+
+            if (intent.getBooleanExtra("FROMCALENDAR",true)) {
 
                 String pastDate = intent.getStringExtra("DATE");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d - MM - yyyy");
-                LocalDate localDate = LocalDate.parse(pastDate, formatter);
-                setDate(localDate);
+
+                selectedDate = LocalDate.parse(pastDate, formatter);
             }
         }
-    }
-
-    private void setDate(LocalDate localDate){
-        selectedDate = localDate;
     }
 }
