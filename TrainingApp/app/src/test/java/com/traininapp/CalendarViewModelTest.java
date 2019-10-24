@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Test class for Calendar View Model
+ * @author Maria Fornmark
+ */
 public class CalendarViewModelTest {
 
     @Test
@@ -28,7 +32,6 @@ public class CalendarViewModelTest {
         List<Exercise> exerciseList = new ArrayList<Exercise>();
         exerciseList.add(strengthExercise);
         exerciseList.add(cardioExercise);
-
 
         m.addSession("Löpning", exerciseList,LocalDate.of(2019,10,7), R.drawable.workout_1);
         m.addSession("Yoga", exerciseList, LocalDate.of(2019,10,8), R.drawable.workout_1);

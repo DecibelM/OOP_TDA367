@@ -19,9 +19,7 @@ import java.util.List;
  * Here are the tests for the classes "Statistic", "Session", "Exercise" and "ISessionObserver"
  */
 
-
 public class StatisticsTest {
-
 
     private Results statistic = new Results();
     private StrengthExercise strengthExercise = new StrengthExercise("Benpress", 1,2,10);

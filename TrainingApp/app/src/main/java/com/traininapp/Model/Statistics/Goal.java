@@ -1,5 +1,9 @@
 package com.traininapp.Model.Statistics;
 
+/**
+ * Class Goal, holds the information of a goal
+ * @authors Maria Fornmark Viktor Fredholm
+ */
 class Goal implements IGoal {
 
     private String name;

@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class Session which holds a list of exercises and a date.s
+ * Class Session which holds a list of exercises and a date.
+ * @author Maria Fornmark
  */
 public class Session implements Comparable<Session>{
 
