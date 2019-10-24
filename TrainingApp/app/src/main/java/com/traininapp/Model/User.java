@@ -15,6 +15,7 @@ import java.util.List;
  * Class User which represents the User.
  * It holds the information which belongs to the User
  * such as the Planner, list of goals and list of routines.
+ * @author Maria Fornmark
  */
 public class User {
 
@@ -23,7 +24,6 @@ public class User {
 
     /**
      * Constructor for User class.
-     * @author Maria Fornmark
      */
     public User() {
         this.planner = new Planner();

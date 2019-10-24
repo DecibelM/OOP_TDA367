@@ -12,6 +12,10 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test Class for User.
+ * @author Maria Fornmark
+ */
 public class UserTest {
 
     User user = new User();
