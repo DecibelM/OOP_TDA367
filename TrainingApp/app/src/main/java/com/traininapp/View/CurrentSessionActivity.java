@@ -19,17 +19,15 @@ import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 import com.traininapp.viewModel.CurrentSessionViewModel;
-
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * The Activity for handling an already created session. Lets you see what exercises you have, add new ones and letting the app know you have finished the session
  *
- * Author: Mostly Adam Törnkvist. Everything with the database is done by Isak Magnusson
+ * Authors: Mostly Adam Törnkvist. Everything with the database is done by Isak Magnusson
  */
 public class CurrentSessionActivity extends AppCompatActivity {
 
@@ -42,23 +40,18 @@ public class CurrentSessionActivity extends AppCompatActivity {
     private TextView sessionDate;
     private TextView txtAddStrExercise;
     private TextView txtAddCarExercise;
-    private List<FragStrRow> listStrFrag;
-    private List<FragCarRow> listCarFrag;
     private FragmentTransaction fragmentTransaction;
     private Button doneBtn;
     private Button saveBtn;
     private Button goodJobBtn;
     private Button btnDelete;
+    private CurrentSessionViewModel viewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newcurrent_session);
-
-        //List for all created fragments. Should probably be in the viewModel
-        listStrFrag = new ArrayList<>();
-        listCarFrag = new ArrayList<>();
 
         Intent intent = getIntent();
 
@@ -70,35 +63,33 @@ public class CurrentSessionActivity extends AppCompatActivity {
         sessionDate = findViewById(R.id.txtSelectedDateID);
         txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
-        final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
-        String sessionID = intent.getStringExtra("Session");
+
+        viewModel = new CurrentSessionViewModel(intent.getStringExtra("Session"),this);
 
         //Finds the session
-        final Session session = viewModel.getSession(sessionID);
+        final Session session = viewModel.getCurrentSession();
 
-        loadExercises(session);
-        loadSession(session);
-
-
+        loadExercises(viewModel.getSession());
+        loadSession(viewModel.getSession());
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sessionDone(session);
+                sessionDone(viewModel.getSession());
             }
         });
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveSession(session);
+                saveSession(viewModel.getSession());
             }
         });
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.getRepo().getSessionList().remove(session);
+                viewModel.getRepo().getSessionList().remove(viewModel.getSession());
                 SessionTable sessionTable = new SessionTable(getApplicationContext());
                 StrExTable strExTable = new StrExTable(getApplicationContext());
                 CarExTable carExTable = new CarExTable(getApplicationContext());
@@ -173,7 +164,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
             }
         });
 
-        //Its takes a moment to initialize the fragments. Therefore you have to wait before doing anything with them
+        //It takes a moment to initialize the fragments. Therefore you have to wait before doing anything with them
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -244,7 +235,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         final FragCarRow fragment = new FragCarRow();
         //fragment.setExercise(exercise);
 
-        fragmentCardioHandeler(listCarFrag, fragment);
+        fragmentCardioHandeler(viewModel.getListCarFrag(), fragment);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -254,9 +245,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
                 fragment.setValues(exercise);
             }
         }, 1);
-
-
-
     }
 
     /**
@@ -266,7 +254,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
     public void createStrRow(final StrengthExercise exercise) {
         //create the fragment
         final FragStrRow fragment = new FragStrRow();
-        fragmentStrHandeler(listStrFrag, fragment);
+        fragmentStrHandeler(viewModel.getListStrFrag(), fragment);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -309,7 +297,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
         CardioRowList.add(fragment);
         //Commit and finish the FragmentTransaction
         fragmentTransaction.commit();
-
     }
 
     /**
@@ -337,13 +324,13 @@ public class CurrentSessionActivity extends AppCompatActivity {
     public void saveSession(Session session){
         session.getExerciseList().clear();
 
-        for(FragCarRow cardio: listCarFrag){
+        for(FragCarRow cardio: viewModel.getListCarFrag()){
             session.getExerciseList().add(cardio.saveInfo());
 
             removeDeletedExercises(session);
         }
 
-        for(FragStrRow strength: listStrFrag){
+        for(FragStrRow strength: viewModel.getListStrFrag()){
             session.getExerciseList().add(strength.saveInfo());
 
             removeDeletedExercises(session);
@@ -357,13 +344,11 @@ public class CurrentSessionActivity extends AppCompatActivity {
         sessionTable.clearTable();
         carExTable.clearTable();
         strExTable.clearTable();
-        final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
 
         for(int i = 0; i < viewModel.getRepo().getSessionList().size(); i++){
             sessionTable.insertData(viewModel.getRepo().getSessionList().get(i).getName(),
                     viewModel.getRepo().getSessionList().get(i).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
                     viewModel.getRepo().getSessionList().get(i).getSessionImage());
-
 
             for(Exercise exercise : viewModel.getRepo().getSessionList().get(i).getExerciseList()) {
 
@@ -387,17 +372,22 @@ public class CurrentSessionActivity extends AppCompatActivity {
                             ((CardioExercise) exercise).getDistance());
                 }
             }
-
         }
-
         sessionSaved();
     }
 
+    /**
+     * Lets you know you have done a good job and finished an exercise. Takes you back to the main activity.
+     */
     public void goodJob(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * This method checks if the session has been marked as finished. If it has it hides the save and done buttons and shows the "good job" button. Furthermore it makes the EditTexts uneditable.
+     * @param session Current session
+     */
     public void alreadyFinished(Session session){
         if (session.isFinished()){
             doneBtn.setVisibility(View.INVISIBLE);
@@ -406,11 +396,11 @@ public class CurrentSessionActivity extends AppCompatActivity {
             txtAddStrExercise.setVisibility(View.INVISIBLE);
             txtAddCarExercise.setVisibility(View.INVISIBLE);
 
-            for (FragStrRow fragment: listStrFrag) {
+            for (FragStrRow fragment: viewModel.getListStrFrag()) {
                 fragment.setEditable(false);
             }
 
-            for (FragCarRow fragment: listCarFrag){
+            for (FragCarRow fragment: viewModel.getListCarFrag()){
                 fragment.setEditable(false);
             }
         } else {
@@ -420,11 +410,11 @@ public class CurrentSessionActivity extends AppCompatActivity {
             txtAddStrExercise.setVisibility(View.VISIBLE);
             txtAddCarExercise.setVisibility(View.VISIBLE);
 
-            for (FragStrRow fragment: listStrFrag) {
+            for (FragStrRow fragment: viewModel.getListStrFrag()) {
                 fragment.setEditable(true);
             }
 
-            for (FragCarRow fragment: listCarFrag){
+            for (FragCarRow fragment: viewModel.getListCarFrag()){
                 fragment.setEditable(true);
             }
         }
@@ -445,22 +435,10 @@ public class CurrentSessionActivity extends AppCompatActivity {
         strength.setTxtEnterWeight(String.valueOf(df.format(exercise.getWeight())));
     }
 
-
-
     //if the fragment had been removed remove it from the list of added exercises
     public void removeDeletedExercises(Session session) {
         if (session.getExerciseList().get(session.getExerciseList().size() - 1).getName() == "REMOVE ME") {
             session.getExerciseList().remove(session.getExerciseList().size() - 1);
         }
     }
-
-
-    /*
-    Kvar att göra:
-    Fixa så du kan ta bort session. Anting för att du inte vill göra den eller för att du har gymmat klart
-    Linka upp CurrentSession med Upcoming Session
-    Snygga till med Done knappen
-     */
-
-
 }
