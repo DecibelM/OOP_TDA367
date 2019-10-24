@@ -63,9 +63,9 @@ public class Startup extends Application {
                 int carExSessionID = carExInDB.getInt(1);
                 if (sessionID == carExSessionID){
                     String carExName = carExInDB.getString(2);
-                    double distance = carExInDB.getInt(3);
-                    double time = carExInDB.getInt(4);
-                    CardioExercise cardioExercise = new CardioExercise(carExName, distance, time);
+                    double time = carExInDB.getInt(3);
+                    double distance = carExInDB.getInt(4);
+                    CardioExercise cardioExercise = new CardioExercise(carExName, time, distance);
                     exerciseList.add(cardioExercise);
                 }
             }

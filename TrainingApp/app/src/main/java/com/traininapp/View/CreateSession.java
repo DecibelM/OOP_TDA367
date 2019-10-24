@@ -228,8 +228,8 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
                     carExTable.insertData(sessionTable.getLatestTable(),
                             exercise.getName(),
-                            ((CardioExercise) exercise).getDistance(),
-                            ((CardioExercise) exercise).getRunningTime());
+                            ((CardioExercise) exercise).getRunningTime(),
+                            ((CardioExercise) exercise).getDistance());
                 }
             }
 

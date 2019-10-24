@@ -20,6 +20,7 @@ import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 import com.traininapp.viewModel.CurrentSessionViewModel;
 
+import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -120,8 +121,8 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
                             carExTable.insertData(sessionTable.getLatestTable(),
                                     exercise.getName(),
-                                    ((CardioExercise) exercise).getDistance(),
-                                    ((CardioExercise) exercise).getRunningTime());
+                                    ((CardioExercise) exercise).getRunningTime(),
+                                    ((CardioExercise) exercise).getDistance());
                         }
                     }
 
@@ -323,8 +324,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
         }
 
 
-
-
         SessionTable sessionTable = new SessionTable(getApplicationContext());
         StrExTable strExTable = new StrExTable(getApplicationContext());
         CarExTable carExTable = new CarExTable(getApplicationContext());
@@ -356,8 +355,8 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
                     carExTable.insertData(sessionTable.getLatestTable(),
                             exercise.getName(),
-                            ((CardioExercise) exercise).getDistance(),
-                            ((CardioExercise) exercise).getRunningTime());
+                            ((CardioExercise) exercise).getRunningTime(),
+                            ((CardioExercise) exercise).getDistance());
                 }
             }
 
@@ -382,10 +381,13 @@ public class CurrentSessionActivity extends AppCompatActivity {
      * @param exercise the exercise you want to load
      */
     public void setStrength(FragStrRow strength, StrengthExercise exercise){
+        DecimalFormat df = new DecimalFormat("###.#");
+
+
         strength.setAutPickStrEx(exercise.getName());
         strength.setTxtEnterSets(String.valueOf(exercise.getSets()));
         strength.setTxtEntersReps(String.valueOf(exercise.getReps()));
-        strength.setTxtEnterWeight(String.valueOf(exercise.getReps()));
+        strength.setTxtEnterWeight(String.valueOf(df.format(exercise.getWeight())));
     }
 
 
