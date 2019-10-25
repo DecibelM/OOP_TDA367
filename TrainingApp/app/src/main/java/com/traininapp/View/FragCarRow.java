@@ -33,7 +33,7 @@ public class FragCarRow extends Fragment {
     private EditText txtEnterTime;
     private EditText txtEnterDistance;
     private AutoCompleteTextView autPickCarEx;
-
+    private Button btnDelete;
 
     public FragCarRow() {
         // Required empty public constructor
@@ -45,7 +45,7 @@ public class FragCarRow extends Fragment {
         View view = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
 
         autPickCarEx = view.findViewById(R.id.autPickCarExID);
-        Button btnDeleteCar = view.findViewById(R.id.btnDeleteCarID);
+        btnDelete = view.findViewById(R.id.btnDeleteCarID);
         txtEnterTime = view.findViewById(R.id.txtEnterTimeID);
         txtEnterDistance = view.findViewById(R.id.txtEnterDistanceID);
 
@@ -58,7 +58,7 @@ public class FragCarRow extends Fragment {
         ArrayAdapter<String> carExerciseListAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, carExerciseList);
         autPickCarEx.setAdapter(carExerciseListAdapter);
 
-        btnDeleteCar.setOnClickListener(new View.OnClickListener() {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 destroyFragment();
@@ -140,5 +140,9 @@ public class FragCarRow extends Fragment {
             txtEnterDistance.setEnabled(edit);
             txtEnterTime.setEnabled(edit);
             autPickCarEx.setEnabled(edit);
+    }
+
+    void hideDeleteButton(){
+        btnDelete.setVisibility(View.INVISIBLE);
     }
 }

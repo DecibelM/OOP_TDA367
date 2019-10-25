@@ -31,6 +31,7 @@ public class FragStrRow extends Fragment {
     private EditText txtEnterSets ;
     private EditText txtEnterReps;
     private AutoCompleteTextView autPickStrEx;
+    private Button btnDelete;
 
     public FragStrRow() {
         // Required empty public constructor
@@ -42,7 +43,7 @@ public class FragStrRow extends Fragment {
         View view = inflater.inflate (R.layout.fragment_frag_str_row, container,false);
 
         autPickStrEx = view.findViewById(R.id.autPickStrExID);
-        Button btnDeletestr = view.findViewById(R.id.btnDeletestrID);
+        btnDelete = view.findViewById(R.id.btnDeletestrID);
         txtEnterWeight = view.findViewById(R.id.txtEnterWeightID);
         txtEnterSets = view.findViewById(R.id.txtEnterSetsID);
         txtEnterReps = view.findViewById(R.id.txtEntersRepsID);
@@ -57,7 +58,7 @@ public class FragStrRow extends Fragment {
         ArrayAdapter<String> strExerciseListAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strExerciseList);
         autPickStrEx.setAdapter(strExerciseListAdapter);
 
-        btnDeletestr.setOnClickListener(new View.OnClickListener() {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 destroyFragment();
@@ -149,5 +150,9 @@ public class FragStrRow extends Fragment {
             txtEnterReps.setEnabled(edit);
             txtEnterSets.setEnabled(edit);
             autPickStrEx.setEnabled(edit);
+    }
+
+    void hideDeleteButton(){
+        btnDelete.setVisibility(View.INVISIBLE);
     }
 }
