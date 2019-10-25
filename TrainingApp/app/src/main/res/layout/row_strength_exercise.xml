@@ -10,21 +10,19 @@
         android:layout_height="wrap_content"
         android:completionThreshold="0"
         android:hint="Enter exercise"
-        android:text=""
         android:inputType="text"
         android:maxWidth="150dp" />
 
     <EditText
         android:id="@+id/txtEnterWeightID"
-        android:layout_width="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="1"
         android:hint="Weight"
         android:inputType="numberDecimal"
         android:digits="0123456789."
-        android:maxLength="4"
-        android:text="" />
+        android:maxLength="4" />
 
     <EditText
         android:id="@+id/txtEntersRepsID"
@@ -32,7 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="1"
-        android:text=""
         android:hint="Rep"
         android:inputType="number"
         android:maxLength="2" />
@@ -43,7 +40,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="1"
-        android:text=""
         android:hint="Set"
         android:inputType="number"
         android:maxLength="2" />

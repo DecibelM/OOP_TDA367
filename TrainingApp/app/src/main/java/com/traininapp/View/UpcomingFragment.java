@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.Model.Planning.Session;
@@ -50,6 +51,9 @@ public class UpcomingFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
+        TextView emptyView = (TextView) view.findViewById(R.id.empty_view);
+
+
         recyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +64,16 @@ public class UpcomingFragment extends Fragment {
         // Specifying the adapter on a sorted list of session gotten from the v
         SessionAdapter adapter = new SessionAdapter(viewModel.getSortedSessionList());
         recyclerView.setAdapter(adapter);
+
+        //If sessionList is empty, a textview is shown instead
+        if (viewModel.getSortedSessionList().isEmpty()) {
+            recyclerView.setVisibility(View.INVISIBLE);
+            emptyView.setVisibility(View.VISIBLE);
+        }
+        else {
+            recyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.INVISIBLE);
+        }
 
         // Using a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(UpcomingFragment.super.getContext());

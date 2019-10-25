@@ -75,11 +75,13 @@ public class AddGoalFragment extends Fragment {
      * Saves the filled data
      */
     private void saveData() {
+        if (exerciseTarget.getText().length()>0 && exerciseChoise.getSelectedItem()!=null) {
         Double target = Double.valueOf(exerciseTarget.getText().toString());
         String activityType = exerciseChoise.getSelectedItem().toString();
         GoalTable goalTable = new GoalTable(getContext());
         goalTable.insertData(activityType, target);
         viewModel.createGoal(activityType, target);
+        }
     }
 
     /**

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.R;
+import com.traininapp.viewModel.GoalsViewModel;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class FragCarRow extends Fragment {
     // TODO Javadoc
 
     //Placeholder list for all cardio exercises
-    List<String> carExerciseList = new ArrayList<>();
+    private List<String> carExerciseList = new ArrayList<>();
 
     private EditText txtEnterTime;
     private EditText txtEnterDistance;
@@ -42,13 +43,14 @@ public class FragCarRow extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)    {
-        View view = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
+        View view = inflater.inflate (R.layout.row_cardio_exercise, container,false);
 
         autPickCarEx = view.findViewById(R.id.autPickCarExID);
         btnDelete = view.findViewById(R.id.btnDeleteCarID);
         txtEnterTime = view.findViewById(R.id.txtEnterTimeID);
         txtEnterDistance = view.findViewById(R.id.txtEnterDistanceID);
 
+        fillSugestedNames();
         //add placeholder cardio exercises
         carExerciseList.add("Running");
         carExerciseList.add("Swimming");
@@ -66,6 +68,14 @@ public class FragCarRow extends Fragment {
         });
 
         return view;
+    }
+
+    /**
+     * Fills the name suggestions, from existins exercises, for when the user starts typing a name.
+     */
+    private void fillSugestedNames() {
+        GoalsViewModel goalsModel = new GoalsViewModel();
+        carExerciseList.addAll(goalsModel.getStatNames());
     }
 
     //method for creating the exercise from the inputted information
@@ -93,10 +103,8 @@ public class FragCarRow extends Fragment {
                 name = "REMOVE ME";
             }
 
-            //create new cardioExercise
-            CardioExercise cardioExercise = new CardioExercise(name, time, distance);
-
-            return cardioExercise;
+            //create new CardioExercise
+            return new CardioExercise(name, time, distance);
         }
     }
 

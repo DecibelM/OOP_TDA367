@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
+import com.traininapp.viewModel.GoalsViewModel;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class FragStrRow extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate (R.layout.fragment_frag_str_row, container,false);
+        View view = inflater.inflate (R.layout.row_strength_exercise, container,false);
 
         autPickStrEx = view.findViewById(R.id.autPickStrExID);
         btnDelete = view.findViewById(R.id.btnDeletestrID);
@@ -49,6 +50,7 @@ public class FragStrRow extends Fragment {
         txtEnterReps = view.findViewById(R.id.txtEntersRepsID);
         autPickStrEx.setText(getTag());
 
+        fillSugestedNames();
         //add placeholder strength exercises
         strExerciseList.add("Bicep Curl");
         strExerciseList.add("Dumbbell Curl");
@@ -72,7 +74,7 @@ public class FragStrRow extends Fragment {
     StrengthExercise saveInfo(){
         //if the user has not entered an exercise name, return null and tell him to do so
         if(autPickStrEx.length() == 0){
-            Toast.makeText(getActivity(), "Add exercisename", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Add exercise name", Toast.LENGTH_SHORT).show();
             return null;
             //if the user has not entered a weight, return null and tell him to do so
         } else if(txtEnterWeight.length() == 0){
@@ -99,9 +101,7 @@ public class FragStrRow extends Fragment {
             }
 
             //create new strengthExercise
-            StrengthExercise strengthExercise = new StrengthExercise(name, sets, reps, weight);
-
-            return strengthExercise;
+            return new StrengthExercise(name, sets, reps, weight);
         }
     }
 
@@ -124,6 +124,14 @@ public class FragStrRow extends Fragment {
         //Set sets to an invalid value, to be filtered out
         txtEnterSets.setText("-1");
 
+    }
+
+    /**
+     * Fills the name suggestions, from existins exercises, for when the user starts typing a name.
+     */
+    private void fillSugestedNames() {
+        GoalsViewModel goalsModel = new GoalsViewModel();
+        strExerciseList.addAll(goalsModel.getStatNames());
     }
 
     /**

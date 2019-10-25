@@ -38,39 +38,6 @@ public class Results implements ISessionObserver {
         totWeightLifted = 0;
         maxWeight = 0;
 
-
-        //TODO remove dummys after real data exist__________________________
-
-
-        goalList.add(new Goal("biceeps", 60.0));
-        goalList.add(new Goal("ben", 95.0));
-        goalList.add(new Goal("Vandra häck", 600.0));
-        goalList.get(0).updateProgress(35.0);
-        goalList.get(1).updateProgress(41.0);
-        goalList.get(2).updateProgress(679.0);
-
-        exerciseStatistics.add(new ExerciseSpecificStatistic("Strength", 1.0, System.currentTimeMillis()));
-
-        exerciseStatistics.get(0).addToDataList(2.0, System.currentTimeMillis());
-        exerciseStatistics.get(0).addToDataList(1.0, System.currentTimeMillis());
-        exerciseStatistics.get(0).addToDataList(3.0, System.currentTimeMillis());
-        exerciseStatistics.get(0).addToDataList(2.0, System.currentTimeMillis());
-        exerciseStatistics.get(0).addToDataList(4.0, System.currentTimeMillis());
-        exerciseStatistics.get(0).addToDataList(5.0, System.currentTimeMillis());
-        exerciseStatistics.get(0).addToDataList(5.0, System.currentTimeMillis());
-        exerciseStatistics.get(0).addToDataList(3.0, System.currentTimeMillis());
-
-        exerciseStatistics.add(new ExerciseSpecificStatistic("Left leg", 1.0, System.currentTimeMillis()));
-
-        exerciseStatistics.get(1).addToDataList(3.0, System.currentTimeMillis());
-        exerciseStatistics.get(1).addToDataList(3.0, System.currentTimeMillis());
-        exerciseStatistics.get(1).addToDataList(4.0, System.currentTimeMillis());
-        exerciseStatistics.get(1).addToDataList(2.0, System.currentTimeMillis());
-        exerciseStatistics.get(1).addToDataList(3.0, System.currentTimeMillis());
-        exerciseStatistics.get(1).addToDataList(5.0, System.currentTimeMillis());
-        exerciseStatistics.get(1).addToDataList(1.0, System.currentTimeMillis());
-        exerciseStatistics.get(1).addToDataList(2.0, System.currentTimeMillis());
-
     }
 
     /**
