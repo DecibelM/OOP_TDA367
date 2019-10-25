@@ -218,52 +218,50 @@ public class CurrentSessionActivity extends AppCompatActivity {
         if (session != null) {
             for (Exercise exercise : session.getExerciseList()) {
                 if (exercise instanceof CardioExercise)
-                    createCarRow((CardioExercise) exercise);
+                    loadFragment(createCarRow(),exercise);
                 else {
-                    createStrRow((StrengthExercise)exercise);
+                    loadFragment(createStrRow(),exercise);
                 }
             }
         }
     }
 
-    /**
-     * Creates a new row for a CardioExercise in the Cardioexercise scrollview and loads the values of the exercie
-     * @param exercise the cardio exercise for which the row will be created
-     */
-    public void createCarRow(final CardioExercise exercise) {
-        //create the fragment
-        final FragCarRow fragment = new FragCarRow();
-        //fragment.setExercise(exercise);
-
-        fragmentCardioHandeler(viewModel.getListCarFrag(), fragment);
+    public void loadFragment(final Fragment fragment, final Exercise exercise){
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 //fragment.setCardioValues(exercise, fragment);
-                fragment.setValues(exercise);
+                if(fragment instanceof FragCarRow){
+                    ((FragCarRow) fragment).setValues((CardioExercise)exercise);
+                } else {
+                    ((FragStrRow) fragment).setValues((StrengthExercise)exercise);
+                }
             }
         }, 1);
     }
 
     /**
-     * Creates a new row for a StrengthExercise in the Strengthexercise scrollview and loads the values of the exercie
-     * @param exercise the strengthexercise for which the row will be created
+     * Creates a new row for a CardioExercise in the Cardioexercise scrollview and loads the values of the exercie
      */
-    public void createStrRow(final StrengthExercise exercise) {
+    public FragCarRow createCarRow() {
+        //create the fragment
+        final FragCarRow fragment = new FragCarRow();
+        //fragment.setExercise(exercise);
+        fragmentCardioHandeler(viewModel.getListCarFrag(), fragment);
+        return fragment;
+    }
+
+    /**
+     * Creates a new row for a StrengthExercise in the Strengthexercise scrollview and loads the values of the exercie
+     */
+    public FragStrRow createStrRow() {
         //create the fragment
         final FragStrRow fragment = new FragStrRow();
         fragmentStrHandeler(viewModel.getListStrFrag(), fragment);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //fragment.setStrengthValues(exercise, fragment);
-                fragment.setValues(exercise);
-            }
-        }, 1);
+        return fragment;
     }
 
     /**
@@ -303,18 +301,14 @@ public class CurrentSessionActivity extends AppCompatActivity {
      * Adds a new CardioExercise to the current Session and creates the new row
      */
     public void addCardioExercise() {
-
-        CardioExercise exercise = new CardioExercise("Cardio", 0, 0);
-        createCarRow(exercise);
+        createCarRow();
     }
 
     /**
      * Adds a new StrengthExercise to the current session and creates the new row
      */
     public void addStrengthExercise() {
-
-        StrengthExercise exercise = new StrengthExercise("Power", 0, 0, 0);
-        createStrRow(exercise);
+        createStrRow();
     }
 
     /**
