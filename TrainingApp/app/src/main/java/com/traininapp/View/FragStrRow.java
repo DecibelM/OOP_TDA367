@@ -134,6 +134,14 @@ public class FragStrRow extends Fragment {
     }
 
     /**
+     * Fills the name suggestions, from existins exercises, for when the user starts typing a name.
+     */
+    private void fillSugestedNames() {
+        GoalsViewModel goalsModel = new GoalsViewModel();
+        strExerciseList.addAll(goalsModel.getStatNames());
+    }
+
+    /**
      * Loads in the values for the fragment from the current exercise
      * @param exercise the current exercise
      */
