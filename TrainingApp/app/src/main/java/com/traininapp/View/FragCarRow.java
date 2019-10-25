@@ -102,8 +102,13 @@ public class FragCarRow extends Fragment {
 
     //remove selected fragment
     private void destroyFragment(){
+
+        //Remove the fragment
+        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+
         //Tell user which Exercise has been removed
-        Toast.makeText(getActivity(), "Exercise: " + autPickCarEx.getText().toString() + " has been removed", Toast.LENGTH_SHORT).show();
+        String toastMessage = "Exercise: " + autPickCarEx.getText().toString() + " has been removed";
+        Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
 
         //Set name to 'a', so user is not prompted to enter name
         autPickCarEx.setText("a");
@@ -112,8 +117,6 @@ public class FragCarRow extends Fragment {
         //Set distance to invalid value
         txtEnterDistance.setText("-1");
 
-        //Remove the fragment
-        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 
     /**

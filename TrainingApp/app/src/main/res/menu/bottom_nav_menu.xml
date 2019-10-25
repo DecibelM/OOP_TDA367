@@ -12,9 +12,9 @@
         android:title="@string/title_calendar" />
 
     <item
-        android:id="@+id/navigation_goals"
+        android:id="@+id/navigation_progress"
         android:icon="@android:drawable/btn_star_big_off"
-        android:title="@string/title_goals" />
+        android:title="@string/title_progress" />
 
 
 
