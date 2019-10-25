@@ -70,7 +70,7 @@ public class Startup extends Application {
         Cursor carExInDB = carExTable.getData();
         Cursor goalsInDb = goalTable.getData();
 
-
+        //Goes through all sessions and gives them the correct exercises
         while(sessionsInDB.moveToNext()){
             List<Exercise> exerciseList = new ArrayList<>();
             sessionID = sessionsInDB.getInt(0);
@@ -110,11 +110,11 @@ public class Startup extends Application {
                 repository.addSession(sessionName, exerciseList,convert(sessionDate), sessionImage, true);
             }
 
-
             strExInDB.moveToFirst();
             carExInDB.moveToFirst();
         }
 
+        //Recreates all goals from the database
         while(goalsInDb.moveToNext()){
             goalName = goalsInDb.getString(1);
             target = goalsInDb.getDouble(2);
@@ -125,7 +125,7 @@ public class Startup extends Application {
     }
 
 
-
+    //Convert string to date
     static LocalDate convert(String date) {
         return LocalDate.parse(date, DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
     }
