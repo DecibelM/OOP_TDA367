@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Class CalendarViewModel is a class representing the ViewModel for the calendar.
+ * Author Adam Törnkvist
  */
 public class CalendarViewModel extends ViewModel {
 
