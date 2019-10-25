@@ -40,16 +40,11 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_upcoming, R.id.navigation_calendar, R.id.navigation_goals)
+                R.id.navigation_upcoming, R.id.navigation_calendar, R.id.navigation_progress)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-        // Adding dummy Sessions
-        if (repo.getSessionList().isEmpty()){
-            initializeDummySessions();
-        }
     }
 
     /**
@@ -81,18 +76,5 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.remove(fragment);
             fragmentTransaction.commit();
-    }
-
-    private void initializeDummySessions(){
-        List<Exercise> eList = new ArrayList<>();
-        eList.add(new CardioExercise("Spring",10,10));
-        eList.add(new StrengthExercise("Lyft",10,100,10));
-        eList.add(new CardioExercise("Spring2",100,10));
-        eList.add(new StrengthExercise("Lyft2",10,10,10));
-
-        repo.addSession("Löpning", eList, LocalDate.now(),R.drawable.workout_5);
-        repo.addSession("Yoga", eList, LocalDate.now().plusDays(1), R.drawable.workout_2);
-        repo.addSession("Armträning", eList, LocalDate.now().plusDays(2),R.drawable.workout_4);
-        repo.addSession("Hjärngympa", eList,LocalDate.now().plusDays(3),R.drawable.workout_1);
     }
 }

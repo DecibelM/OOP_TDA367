@@ -14,8 +14,7 @@
         android:layout_marginEnd="120dp"
         android:text="Delete"
         android:background="@color/colorPrimaryDark"
-        android:textColor="@color/cardview_light_background"
-        />
+        android:textColor="@color/cardview_light_background"/>
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -214,48 +213,39 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"
         android:weightSum="1"
-        android:padding="10dp"
-        >
-
-
+        android:padding="10dp">
 
         <Button
             android:id="@+id/btnSaveID"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|left"
-
             android:text="Save Changes"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/cardview_light_background"
-            android:layout_weight="0.33"
-            />
+            android:layout_weight="0.33"/>
 
         <Button
             android:id="@+id/btnGoodJobID"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Bra jobbat!"
+            android:text="OK"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/cardview_light_background"
             android:layout_weight="0.33"
-            android:visibility="invisible"
-            />
+            android:visibility="invisible"/>
+
         <Button
             android:id="@+id/btnDoneID"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:text="Finish session!"
+            android:text="Finish session"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/cardview_light_background"
-            android:layout_weight="0.33"
-            />
-
-
+            android:layout_weight="0.33" />
 
     </LinearLayout>
-
 
 </RelativeLayout>

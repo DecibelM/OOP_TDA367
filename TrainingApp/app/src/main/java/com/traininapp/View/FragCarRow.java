@@ -28,7 +28,7 @@ public class FragCarRow extends Fragment {
     // TODO Javadoc
 
     //Placeholder list for all cardio exercises
-    List<String> carExerciseList = new ArrayList<>();
+    private List<String> carExerciseList = new ArrayList<>();
 
     private EditText txtEnterTime;
     private EditText txtEnterDistance;
@@ -42,7 +42,7 @@ public class FragCarRow extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)    {
-        View view = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
+        View view = inflater.inflate (R.layout.row_cardio_exercise, container,false);
 
         autPickCarEx = view.findViewById(R.id.autPickCarExID);
         Button btnDeleteCar = view.findViewById(R.id.btnDeleteCarID);
@@ -93,17 +93,20 @@ public class FragCarRow extends Fragment {
                 name = "REMOVE ME";
             }
 
-            //create new cardioExercise
-            CardioExercise cardioExercise = new CardioExercise(name, time, distance);
-
-            return cardioExercise;
+            //create new CardioExercise
+            return new CardioExercise(name, time, distance);
         }
     }
 
     //remove selected fragment
     private void destroyFragment(){
+
+        //Remove the fragment
+        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+
         //Tell user which Exercise has been removed
-        Toast.makeText(getActivity(), "Exercise: " + autPickCarEx.getText().toString() + " has been removed", Toast.LENGTH_SHORT).show();
+        String toastMessage = "Exercise: " + autPickCarEx.getText().toString() + " has been removed";
+        Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
 
         //Set name to 'a', so user is not prompted to enter name
         autPickCarEx.setText("a");
@@ -112,8 +115,6 @@ public class FragCarRow extends Fragment {
         //Set distance to invalid value
         txtEnterDistance.setText("-1");
 
-        //Remove the fragment
-        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 
     /**

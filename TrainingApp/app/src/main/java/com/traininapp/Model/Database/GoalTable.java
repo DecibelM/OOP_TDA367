@@ -6,28 +6,35 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class GoalTable {
-    private final DatabaseHelper myDb;
 
+    /**
+     * The class responsible for the
+     * goaltable in the database
+     */
+
+    private final DatabaseCreator myDb;
+
+    //All the columns in the table
     private static final String COL_1 = "ID";
     private static final String COL_2 = "NAME";
     private static final String COL_3 = "TARGET";
-    private static final String COL_4 = "PROGRESS";
 
 
     public GoalTable(Context context) {
-        this.myDb = new DatabaseHelper(context);
+        this.myDb = new DatabaseCreator(context);
     }
 
-    public void insertData(String name, double target, double progress){
+    //Method for inserting data into table
+    public void insertData(String name, double target){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, name);
         contentValues.put(COL_3, target);
-        contentValues.put(COL_4, progress);
 
         db.insert(myDb.getGoalTableName(), null, contentValues);
     }
 
+    //Method for accessing data in the table
     public Cursor getData(){
         SQLiteDatabase db = myDb.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+myDb.getGoalTableName(), null);
@@ -40,7 +47,6 @@ public class GoalTable {
         contentValues.put(COL_1, id);
         contentValues.put(COL_2, name);
         contentValues.put(COL_3, target);
-        contentValues.put(COL_4, progress);
 
         db.update(myDb.getGoalTableName(), contentValues,
                 "ID = ?",new String[] {String.valueOf(id)});
