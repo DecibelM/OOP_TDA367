@@ -25,26 +25,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 /**
- * Keeps tabs on the calendar and the date which the user has selected.
+ * Responsible for the calendar and everything in it.
  *
+ * Author: Adam Törnkvist
  */
 public class CalendarFragment extends Fragment {
-
-    // TODO göra Localdate private. Gör lokala variabler. Ta bort emptyview. Ta bort space. Gör metoder private. Javadoc kommentarer. Ta bort utkommenterade grejer
-    // TODO Opensession gör boolean av "YES". Gör "List" till en list och inte arraylist samt bättre namn. Ta bort onödig casting. Ta bort Context skiten.
-
-    /*
-    Done: Localdate private. Boolean av Yes. Metoder privata. Utkommenterade grejer. SPACE! Visar inte klara sessions. Onödig Casting. Lokala variabler. Emptey view.
-     */
 
     private TextView myDate;
     private CalendarViewModel viewModel;
     private ListView listView;
     private List <String> sessionList;
     private LocalDate localDate;
-
 
     @Nullable
     @Override
@@ -70,7 +62,6 @@ public class CalendarFragment extends Fragment {
                openSession(viewModel.getSession(i, localDate));
             }
         });
-
 
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,22 +97,19 @@ public class CalendarFragment extends Fragment {
         sessionList.clear();
         if(sessionNameList != null) {
             for (Session s : sessionNameList) {
-
                     sessionList.add(s.getName());
             }
         }
         if (sessionNameList.isEmpty()) {
             listView.setVisibility(View.INVISIBLE);
-
         } else {
             listView.setVisibility(View.VISIBLE);
-
         }
             ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
     }
 
     /**
-     * Opens a completely new Session
+     * Opens a completely new Session where you can add exercises and whatnot. Since you have a date selected in the calendar, the date will already be selected in the CreateSessionview
      */
     private void openNewSession(){
         Intent intent = new Intent(getActivity(), CreateSession.class);
@@ -130,6 +118,10 @@ public class CalendarFragment extends Fragment {
         startActivity(intent);
     }
 
+    /**
+     * Opens up an already existing session in the CurrentSessionActivity
+     * @param session the session that you want to open
+     */
     private void openSession(Session session){
         Intent intent = new Intent(getActivity(), CurrentSessionActivity.class);
         System.out.println(session);
