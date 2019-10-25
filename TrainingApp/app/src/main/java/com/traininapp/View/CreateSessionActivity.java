@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,7 +19,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.MainActivity;
 
 import com.traininapp.Model.Database.CarExTable;
@@ -78,7 +78,7 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
         setContentView(R.layout.activity_create_session);
 
         // Declaring the elements
-        FloatingActionButton btnDone = findViewById(R.id.btnDoneID);
+        Button btnDone = findViewById(R.id.btnDoneID);
         TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
         Spinner spnrIcon = findViewById(R.id.spnrIconID);

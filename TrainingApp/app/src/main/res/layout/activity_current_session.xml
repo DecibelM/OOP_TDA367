@@ -241,7 +241,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:text="Finish session!"
+            android:text="Finish session"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/cardview_light_background"
             android:layout_weight="0.33" />
