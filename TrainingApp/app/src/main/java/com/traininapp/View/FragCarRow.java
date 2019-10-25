@@ -28,7 +28,7 @@ public class FragCarRow extends Fragment {
     // TODO Javadoc
 
     //Placeholder list for all cardio exercises
-    List<String> carExerciseList = new ArrayList<>();
+    private List<String> carExerciseList = new ArrayList<>();
 
     private EditText txtEnterTime;
     private EditText txtEnterDistance;
@@ -93,10 +93,8 @@ public class FragCarRow extends Fragment {
                 name = "REMOVE ME";
             }
 
-            //create new cardioExercise
-            CardioExercise cardioExercise = new CardioExercise(name, time, distance);
-
-            return cardioExercise;
+            //create new CardioExercise
+            return new CardioExercise(name, time, distance);
         }
     }
 

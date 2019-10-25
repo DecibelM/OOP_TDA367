@@ -71,7 +71,7 @@ public class FragStrRow extends Fragment {
     StrengthExercise saveInfo(){
         //if the user has not entered an exercise name, return null and tell him to do so
         if(autPickStrEx.length() == 0){
-            Toast.makeText(getActivity(), "Add exercisename", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Add exercise name", Toast.LENGTH_SHORT).show();
             return null;
             //if the user has not entered a weight, return null and tell him to do so
         } else if(txtEnterWeight.length() == 0){
@@ -98,9 +98,7 @@ public class FragStrRow extends Fragment {
             }
 
             //create new strengthExercise
-            StrengthExercise strengthExercise = new StrengthExercise(name, sets, reps, weight);
-
-            return strengthExercise;
+            return new StrengthExercise(name, sets, reps, weight);
         }
     }
 
