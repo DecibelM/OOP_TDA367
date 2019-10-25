@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.R;
+import com.traininapp.viewModel.GoalsViewModel;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class FragCarRow extends Fragment {
         txtEnterTime = view.findViewById(R.id.txtEnterTimeID);
         txtEnterDistance = view.findViewById(R.id.txtEnterDistanceID);
 
+        fillSugestedNames();
         //add placeholder cardio exercises
         carExerciseList.add("Running");
         carExerciseList.add("Swimming");
@@ -66,6 +68,14 @@ public class FragCarRow extends Fragment {
         });
 
         return view;
+    }
+
+    /**
+     * Fills the name suggestions, from existins exercises, for when the user starts typing a name.
+     */
+    private void fillSugestedNames() {
+        GoalsViewModel goalsModel = new GoalsViewModel();
+        carExerciseList.addAll(goalsModel.getStatNames());
     }
 
     //method for creating the exercise from the inputted information
