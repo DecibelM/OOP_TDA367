@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.traininapp.MainActivity;
+import com.traininapp.Model.Database.GoalTable;
 import com.traininapp.R;
 import com.traininapp.viewModel.GoalsViewModel;
 
@@ -76,7 +77,8 @@ public class AddGoalFragment extends Fragment {
     private void saveData() {
         Double target = Double.valueOf(exerciseTarget.getText().toString());
         String activityType = exerciseChoise.getSelectedItem().toString();
-
+        GoalTable goalTable = new GoalTable(getContext());
+        goalTable.insertData(activityType, target);
         viewModel.createGoal(activityType, target);
     }
 

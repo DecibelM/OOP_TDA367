@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.traininapp.Model.Planning.Session;
+
 
 /**
  * The class responsible for the
@@ -12,7 +14,9 @@ import android.database.sqlite.SQLiteDatabase;
  */
 
 public class SessionTable {
-    private final DatabaseHelper myDb;
+    private final DatabaseCreator myDb;
+
+    private Context context;
 
     //All the columns in the table
     private static final String COL_1 = "ID";
@@ -22,10 +26,13 @@ public class SessionTable {
     private static final String COL_5 = "IS_FINISHED";
 
     public SessionTable(Context context) {
-        this.myDb = new DatabaseHelper(context);
+        this.context = context;
+        this.myDb = new DatabaseCreator(context);
     }
 
-    //Insert data
+
+
+    //Method for inserting data into table
     public void insertData(String name, String DATE, int image, int isFinished){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -34,28 +41,28 @@ public class SessionTable {
         contentValues.put(COL_4, image);
         contentValues.put(COL_5, isFinished);
 
-        db.insert(myDb.getSessionTable(), null, contentValues);
+        db.insert(myDb.getSessionTableName(), null, contentValues);
     }
 
-    //Get data from the table
+    //Method for accessing data in the table
     public Cursor getData(){
         SQLiteDatabase db = myDb.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+myDb.getSessionTable(), null);
+        Cursor res = db.rawQuery("select * from "+myDb.getSessionTableName(), null);
         return res;
     }
 
-    //Deletes all the rows in the table
+    //Method for removing all data in the table
     public void clearTable()   {
         SQLiteDatabase db = myDb.getWritableDatabase();
 
-        db.delete(myDb.getSessionTable(), null,null);
+        db.delete(myDb.getSessionTableName(), null,null);
     }
 
 
-    //Get the ID of the most recently created session
+    //Method for getting the ID of the most recently created sessiontable
     public int getLatestTable(){
         SQLiteDatabase db = myDb.getWritableDatabase();
-        String query = "SELECT MAX(id) AS max_id FROM "+ myDb.getSessionTable();
+        String query = "SELECT MAX(id) AS max_id FROM "+ myDb.getSessionTableName();
         Cursor res = db.rawQuery(query, null);
         int id = 0;
         if (res.moveToFirst())
@@ -75,14 +82,14 @@ public class SessionTable {
         contentValues.put(COL_2, name);
         contentValues.put(COL_3, date);
 
-        db.update(myDb.getSessionTable(), contentValues,
+        db.update(myDb.getSessionTableName(), contentValues,
                 "ID = ?",new String[] {String.valueOf(id)});
         return true;
     }
 
     public Integer deleteData(String id){
         SQLiteDatabase db = myDb.getWritableDatabase();
-        return db.delete(myDb.getSessionTable(), "ID = ?", new String[] {id});
+        return db.delete(myDb.getSessionTableName(), "ID = ?", new String[] {id});
 
     }
 }

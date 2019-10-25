@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
  */
 
 public class StrExTable {
-    private final DatabaseHelper myDb;
+    private final DatabaseCreator myDb;
 
     //All the columns in the table
     private static final String COL_1 = "ID";
@@ -23,10 +23,10 @@ public class StrExTable {
 
 
     public StrExTable(Context context) {
-        this.myDb = new DatabaseHelper(context);
+        this.myDb = new DatabaseCreator(context);
     }
 
-
+    //Method for inserting data into table
     public void insertData(int session_id, String name,int sets, int reps, double weight){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -39,12 +39,14 @@ public class StrExTable {
         db.insert(myDb.getStrexTableName(), null, contentValues);
     }
 
+    //Method for accessing data in the table
     public Cursor getData(){
         SQLiteDatabase db = myDb.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+myDb.getStrexTableName(), null);
         return res;
     }
 
+    //Method for removing all data in the table
     public void clearTable()   {
         SQLiteDatabase db = myDb.getWritableDatabase();
 

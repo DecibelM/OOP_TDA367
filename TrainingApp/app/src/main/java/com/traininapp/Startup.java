@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.widget.Toast;
 
 import com.traininapp.Model.Database.CarExTable;
+import com.traininapp.Model.Database.GoalTable;
 import com.traininapp.Model.Database.SessionTable;
 import com.traininapp.Model.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
@@ -47,6 +48,9 @@ public class Startup extends Application {
     private double time;
     private double distance;
 
+    private String goalName;
+    private double target;
+
     private Repository repository;
 
 
@@ -58,10 +62,13 @@ public class Startup extends Application {
         SessionTable sessionTable = new SessionTable(this);
         StrExTable strExTable = new StrExTable(this);
         CarExTable carExTable = new CarExTable(this);
+        GoalTable goalTable = new GoalTable(this);
+
 
         Cursor sessionsInDB = sessionTable.getData();
         Cursor strExInDB = strExTable.getData();
         Cursor carExInDB = carExTable.getData();
+        Cursor goalsInDb = goalTable.getData();
 
 
         while(sessionsInDB.moveToNext()){
@@ -107,7 +114,17 @@ public class Startup extends Application {
             strExInDB.moveToFirst();
             carExInDB.moveToFirst();
         }
+
+        while(goalsInDb.moveToNext()){
+            goalName = goalsInDb.getString(1);
+            target = goalsInDb.getDouble(2);
+            repository.createGoal(goalName, target);
+
+        }
+
     }
+
+
 
     static LocalDate convert(String date) {
         return LocalDate.parse(date, DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
