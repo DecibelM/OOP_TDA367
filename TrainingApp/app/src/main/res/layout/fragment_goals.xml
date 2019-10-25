@@ -17,7 +17,7 @@
         android:elevation="16dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:text="Add goal +"
+        android:text="Add goal"
         android:textColor="#fff"
         android:textSize="18sp"
         android:textStyle="bold">
