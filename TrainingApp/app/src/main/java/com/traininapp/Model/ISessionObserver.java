@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * observes sessions and waits to pass an exercise list onward.
+ * Author: Viktor
  */
 public interface ISessionObserver {
 

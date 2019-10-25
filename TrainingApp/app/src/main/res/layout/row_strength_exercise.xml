@@ -4,6 +4,10 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
+    <!--
+Author: Isak, Mathias and Adam
+-->
+
     <AutoCompleteTextView
         android:id="@+id/autPickStrExID"
         android:layout_width="160dp"

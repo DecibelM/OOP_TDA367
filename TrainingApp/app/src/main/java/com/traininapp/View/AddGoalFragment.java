@@ -8,18 +8,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.traininapp.MainActivity;
 import com.traininapp.Model.Database.GoalTable;
 import com.traininapp.R;
 import com.traininapp.viewModel.GoalsViewModel;
-
 import java.util.ArrayList;
 import java.util.List;
+
+/** Handles the view for adding a goal.
+ * Author: Viktor
+ */
 
 public class AddGoalFragment extends Fragment {
 

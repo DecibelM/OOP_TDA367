@@ -1,7 +1,6 @@
 package com.traininapp.View;
 
 import com.traininapp.adapter.IStatistic;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,10 +9,10 @@ import java.util.List;
  * This class keeps hold on and gets the information for the individual statistics
  *
  * It can return two lists that consists of a set of statistics and dates which have the date for a statistic in the corresponding place in the the 'dates' list.
+ * Author: Viktor
  */
 public class StatisticCard implements IStatistic {
 
-    // TODO Private på variabel. Ta bort onödiga metoder.
     private String statisticName;
     private List<Double> statistics;
     private List<Long> dates;

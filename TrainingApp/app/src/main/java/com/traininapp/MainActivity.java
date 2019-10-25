@@ -1,15 +1,8 @@
 package com.traininapp;
 
 import android.os.Bundle;
-import android.view.View;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.traininapp.Model.*;
-import com.traininapp.Model.Planning.CardioExercise;
-import com.traininapp.Model.Planning.Exercise;
-import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.View.AddGoalFragment;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,16 +12,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * This is the main activity of the application, this keeps hold of the start view that shows when the app is launched
+ * Author: Everyone
  */
 public class MainActivity extends AppCompatActivity {
-
-    Repository repo = Repository.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.nav_host_fragment, fragment);
         fragmentTransaction.commit();
     }
-
 
     /**
      * removes the sent fragment from the main view

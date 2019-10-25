@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment;
 
 /**
  * Class which allows the user to pick a date for the Session with a calendar
+ * Author: Isak
  */
 public class DatePickerFragment extends DialogFragment {
 

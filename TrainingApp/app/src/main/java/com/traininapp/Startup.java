@@ -2,8 +2,6 @@ package com.traininapp;
 
 import android.app.Application;
 import android.database.Cursor;
-import android.widget.Toast;
-
 import com.traininapp.Model.Database.CarExTable;
 import com.traininapp.Model.Database.GoalTable;
 import com.traininapp.Model.Database.SessionTable;
@@ -12,18 +10,18 @@ import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.Model.Repository;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
  * Code running when the app starts.
  * Creates objects of the data in
  * the database.
+ *
+ * Author: Isak
  */
 
 public class Startup extends Application {
@@ -48,11 +46,10 @@ public class Startup extends Application {
     private double time;
     private double distance;
 
+    //All the variables for Goals
     private String goalName;
     private double target;
-
     private Repository repository;
-
 
     @Override
     public void onCreate(){
@@ -63,7 +60,6 @@ public class Startup extends Application {
         StrExTable strExTable = new StrExTable(this);
         CarExTable carExTable = new CarExTable(this);
         GoalTable goalTable = new GoalTable(this);
-
 
         Cursor sessionsInDB = sessionTable.getData();
         Cursor strExInDB = strExTable.getData();
@@ -119,11 +115,8 @@ public class Startup extends Application {
             goalName = goalsInDb.getString(1);
             target = goalsInDb.getDouble(2);
             repository.createGoal(goalName, target);
-
         }
-
     }
-
 
     //Convert string to date
     static LocalDate convert(String date) {

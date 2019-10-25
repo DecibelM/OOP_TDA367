@@ -40,11 +40,9 @@ import java.util.List;
 
 /**
  * The Activity class which holds the view of creating a Session
- * @author Mathias, Isak, fler?
+ * @author Mathias, Isak and a tiny amount of Adam.
  */
 public class CreateSessionActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-
-    // TODO Fundera på control booleanen.
 
     // Declaring elements
     private EditText txtEnterSessionName;
@@ -354,8 +352,6 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
         public void onItemSelected(AdapterView<?> parent, View view,
                                    int position, long id) {
 
-            // TODO Make this to switch-case. Probably want to generalize setting the image and
-            // TODO getting the image information
             if (position == 0){
                 imgSessionIcon.setImageResource(R.drawable.workout_1);
                 image = getResources().getIdentifier("workout_1", "drawable", getPackageName());

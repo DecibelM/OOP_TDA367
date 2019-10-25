@@ -4,7 +4,9 @@
     android:layout_height="match_parent" android:id="@+id/createGoalFragment"
     android:background="#eee"
     >
-
+    <!--
+    Author: Viktor
+    -->
     <TextView
         android:id="@+id/CreateGoalHeadder"
         android:layout_width="match_parent"

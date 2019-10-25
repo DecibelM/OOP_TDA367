@@ -4,22 +4,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.traininapp.R;
 import com.traininapp.View.GoalStatCard;
 import com.traininapp.View.StatisticCard;
-
 import java.util.List;
 
 /**
  * This is the adapter for the Recycler view within my pages.
  * It handles a lot of the different templates and can draw graphs or display texts depending on the data within the statistics model.
+ * Authors: Viktor and Maria
  */
 public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -32,7 +30,6 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public StatisticsAdapter(List<IStatistic> dataList) {
         this.dataList = dataList;
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -47,7 +44,6 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         .inflate(R.layout.fragment_statistics_card, parent, false);
                 return new StatisticsViewHolder(itemView);
         }
-
     }
 
     @Override
@@ -140,14 +136,12 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
      */
     class GoalViewHolder extends RecyclerView.ViewHolder{
 
-
         TextView goalName;
         TextView goalTarget;
         TextView goalProgress;
 
         /**
          * The constructor for GoalViewHolder
-         *
          * @param itemView The view connected to this instance
          */
         GoalViewHolder(View itemView) {
@@ -167,7 +161,6 @@ public class StatisticsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             goalName.setText(sCard.getName());
             goalTarget.setText(Double.toString(sCard.getTarget()));
             goalProgress.setText(Double.toString(sCard.getProgress()));
-
         }
     }
 }

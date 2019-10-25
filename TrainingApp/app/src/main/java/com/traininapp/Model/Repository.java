@@ -4,7 +4,6 @@ import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Statistics.IGoal;
 import com.traininapp.Model.Statistics.IStat;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import java.util.List;
  * @author Maria Fornmark
  */
 public class Repository {
-
 
     private User user;
 
@@ -44,7 +42,6 @@ public class Repository {
         user.getPlanner().addSession(s);
     }
 
-
     public List<Session> getSessionList(){
         return user.getPlanner().getSessionList();
     }
@@ -54,7 +51,4 @@ public class Repository {
     }
 
     public List<IStat> getStatList(){ return user.getStatList(); }
-
-
-
 }

@@ -7,6 +7,10 @@
     card_view:cardElevation="3dp"
     card_view:cardUseCompatPadding="true">
 
+    <!--
+Author: Viktor and Maria
+-->
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--
+    Author: Mathias and Isak
+    -->
+
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"

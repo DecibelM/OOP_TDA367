@@ -14,12 +14,12 @@ import java.util.List;
 
 /**
  * Class CreateSessionViewModel is a class representing the view model for creating CreateSessionActivity view
+ * Author: Mathias
  */
 public class CreateSessionViewModel extends ViewModel {
 
     // Singleton repo
     private Repository repo;
-    private FragmentTransaction fragmentTransaction;
 
     /**
      * Constructor which fetches the singleton repo

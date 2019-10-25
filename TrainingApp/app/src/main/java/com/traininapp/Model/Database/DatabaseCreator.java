@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * The class which names and creates all
  * the tables in the database
+ * Author: Isak
  */
 
 public class DatabaseCreator extends SQLiteOpenHelper {
@@ -19,7 +20,6 @@ public class DatabaseCreator extends SQLiteOpenHelper {
     private static final String GOAL_TABLE = "goal_table";
     private static final String SESSION_TABLE = "session_table";
 
-
     public DatabaseCreator(Context context) {
         super(context, DATABASE_NAME, null, 1);
 
@@ -32,7 +32,6 @@ public class DatabaseCreator extends SQLiteOpenHelper {
         db.execSQL("create table " + CAREX_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, SESSION_ID INTEGER, NAME TEXT, TIME REAL, DISTANCE REAL)");
         db.execSQL("create table " + GOAL_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, TARGET REAL)");
         db.execSQL("create table " + SESSION_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, DATE TEXT, IMAGE INTEGER, IS_FINISHED INTEGER)");
-
     }
 
     //Called during upgrade of database
@@ -42,7 +41,6 @@ public class DatabaseCreator extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+CAREX_TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+GOAL_TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+SESSION_TABLE);
-
         onCreate(db);
     }
 
@@ -62,11 +60,4 @@ public class DatabaseCreator extends SQLiteOpenHelper {
     public String getSessionTableName(){
         return SESSION_TABLE;
     }
-
-   // public SessionTable getSessionTable(){
-        //return sessionTable;
-  //  }
-
-
-
 }

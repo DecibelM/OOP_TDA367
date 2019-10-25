@@ -6,6 +6,9 @@
     android:background="#eee"
     >
 
+    <!--
+Author: Viktor
+-->
     <Button
         android:id="@+id/btnAddGoalID"
         android:layout_width="wrap_content"

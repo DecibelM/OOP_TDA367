@@ -10,6 +10,7 @@ public class GoalTable {
     /**
      * The class responsible for the
      * goaltable in the database
+     * Author: Isak
      */
 
     private final DatabaseCreator myDb;
@@ -39,23 +40,5 @@ public class GoalTable {
         SQLiteDatabase db = myDb.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+myDb.getGoalTableName(), null);
         return res;
-    }
-
-    public boolean updateData(int id, String name, double target, double progress){
-        SQLiteDatabase db = myDb.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, id);
-        contentValues.put(COL_2, name);
-        contentValues.put(COL_3, target);
-
-        db.update(myDb.getGoalTableName(), contentValues,
-                "ID = ?",new String[] {String.valueOf(id)});
-        return true;
-    }
-
-    public Integer deleteData(String id){
-        SQLiteDatabase db = myDb.getWritableDatabase();
-        return db.delete(myDb.getGoalTableName(), "ID = ?", new String[] {id});
-
     }
 }

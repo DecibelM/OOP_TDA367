@@ -20,20 +20,7 @@ public class Session implements Comparable<Session>{
     private boolean isFinished = false;
 
     /**
-     * Constructor for Session which takes name of exercise and date as parameters
-     * @param name Name of session
-     * @param date Date of session
-     */
-
-    public Session(String name, List<Exercise> exList, LocalDate date) {
-        this.name = name;
-        this.exerciseList = new ArrayList<>();
-        this.date = date;
-        sessionObservers = new ArrayList<>();
-    }
-
-    /**
-     * Constructor for Session which takes name, date and image as parameters
+     * Constructor for Session which takes name, date and image as parameters. Used for testing.
      * @param name Name of session
      * @param date Date of session
      * @param sessionImage Image of session
@@ -61,7 +48,6 @@ public class Session implements Comparable<Session>{
         sessionObservers = new ArrayList<>();
     }
 
-
     /**
      * Constructor for creating a Session with name, date, exercise list, image and
      * @param name Name of Session
@@ -78,7 +64,6 @@ public class Session implements Comparable<Session>{
         sessionObservers = new ArrayList<>();
     }
 
-
     /**
      * Adds an observer to the session
      *
@@ -86,15 +71,6 @@ public class Session implements Comparable<Session>{
      */
     public void addObserver(ISessionObserver observer){
         sessionObservers.add(observer);
-    }
-
-    /**
-     * Removes an observer from the session
-     *
-     * @param observer
-     */
-    public void removeObservers(ISessionObserver observer){
-        sessionObservers.remove(observer);
     }
 
     /**
@@ -116,31 +92,8 @@ public class Session implements Comparable<Session>{
         updateSessionObserver();
     }
 
-
     public boolean isFinished() {
         return isFinished;
-    }
-
-
-    /**
-     * Method adds a Cardio Exercise into a Session.
-     * @param name name of added exercise
-     * @param runningTime time running (min)
-     * @param distance distance run (m)
-     */
-    public void addCardioExercise(String name, double runningTime, double distance ){
-        exerciseList.add(new CardioExercise(name, runningTime, distance));
-    }
-
-    /**
-     * Method adds a Strength exercise into a Session.
-     * @param name name of added exercise
-     * @param sets number of sets
-     * @param reps number of reps
-     * @param weight weight used in the exercise
-     */
-    public void addStrengthExercise(String name, int sets, int reps, double weight ){
-        exerciseList.add(new StrengthExercise(name, sets, reps, weight));
     }
 
     public List<Exercise> getExerciseList() {

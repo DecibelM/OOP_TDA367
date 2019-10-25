@@ -58,7 +58,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
 
-        viewModel = new CurrentSessionViewModel(intent.getStringExtra("Session"),this);
+        viewModel = new CurrentSessionViewModel(intent.getStringExtra("Session"));
 
         //Finds the session
         final Session session = viewModel.getCurrentSession();
@@ -409,7 +409,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
                             ((CardioExercise) exercise).getDistance());
                 }
             }
-
         }
     }
 }
