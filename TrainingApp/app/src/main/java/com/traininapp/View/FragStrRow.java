@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
+import com.traininapp.viewModel.GoalsViewModel;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class FragStrRow extends Fragment {
         txtEnterReps = view.findViewById(R.id.txtEntersRepsID);
         autPickStrEx.setText(getTag());
 
+        fillSugestedNames();
         //add placeholder strength exercises
         strExerciseList.add("Bicep Curl");
         strExerciseList.add("Dumbbell Curl");
@@ -120,6 +122,14 @@ public class FragStrRow extends Fragment {
 
         //Remove the fragment
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+    }
+
+    /**
+     * Fills the name suggestions, from existins exercises, for when the user starts typing a name.
+     */
+    private void fillSugestedNames() {
+        GoalsViewModel goalsModel = new GoalsViewModel();
+        strExerciseList.addAll(goalsModel.getStatNames());
     }
 
     /**
