@@ -3,6 +3,7 @@ package com.traininapp.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -27,8 +28,8 @@ import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
 
-import com.traininapp.Model.Repository;
 import com.traininapp.R;
+import com.traininapp.viewModel.CreateSessionViewModel;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -37,12 +38,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class CreateSession extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+/**
+ * The Activity class which holds the view of creating a Session
+ * @author Mathias, Isak, fler?
+ */
+public class CreateSessionActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    // TODO ta bort imports. Skapa viewmodel. Javadoc för klassen. Mindre space om möjligt. Fundera på control booleanen.
-    // TODO Adam fixa isDateSelected. Ta bort onödig import. Fixa så dubbles funkar
-
-
+    // TODO Fundera på control booleanen.
 
     // Declaring elements
     private EditText txtEnterSessionName;
@@ -60,9 +62,8 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     // Date of session, set to today's date by default
     private LocalDate selectedDate = LocalDate.now();
 
-    // Repo
-    private Repository repository;
-
+    // Initializing the ViewModel
+    private CreateSessionViewModel viewModel;
 
     private FragmentTransaction fragmentTransaction;
     private boolean control;
@@ -70,13 +71,13 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        // Attaching the ViewModel to Activity
+        viewModel = ViewModelProviders.of(this).get(CreateSessionViewModel.class);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_session);
 
-        // Initializing the repository
-        repository = Repository.getInstance();
-
-        // Initializing elements
+        // Declaring the elements
         FloatingActionButton btnDone = findViewById(R.id.btnDoneID);
         TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
@@ -131,20 +132,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
                 onDoneClick();
             }
         });
-
-        // Clicking the Session icon, directs user to icon selection
-        imgSessionIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onIconClick();
-            }
-        });
-    }
-
-    /**
-     * Method used when pressing Session icon, allows user to choose an icon for the Session
-     */
-    private void onIconClick() {
     }
 
     /**
@@ -188,9 +175,8 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         fragCarToCarExList();
 
         // Controlling if valid user input
+        //checkName(sessionName);
         checkNameLength(sessionName);
-
-
 
         // If no fragments returned null and name is unique
         if (control) {
@@ -199,7 +185,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
             sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image);
 
             // Adding Session to users list
-            repository.addSession(sessionName, exerciseList, selectedDate, image);
+            viewModel.addSession(sessionName, exerciseList, selectedDate, image);
 
             for(Exercise exercise : exerciseList) {
 
@@ -221,17 +207,14 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
                     carExTable.insertData(sessionTable.getLatestTable(),
                             exercise.getName(),
-                            ((CardioExercise) exercise).getRunningTime(),
-                            ((CardioExercise) exercise).getDistance());
+                            ((CardioExercise) exercise).getDistance(),
+                            ((CardioExercise) exercise).getRunningTime());
                 }
             }
 
-            // Give feedback that the routine has been saved
+            // Give feedback that the Session has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
-           // Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
-            //TODO ta bort den här
-            // Clear Session name field
-            txtEnterSessionName.setText("");
+            Toast.makeText(CreateSessionActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
         }
 
         // Directing the user to Upcoming session view
@@ -242,7 +225,6 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     /**
      * Method which adds another row fragment, allowing the user to add exercises
      */
-
     // TODO Bryt ut det gemensamma i dessa två till en. Dumt med samma kod två gånger
     public void createCarFragRow() {
 
@@ -304,7 +286,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
     public void checkNameLength(String name) {
         if (name.length() == 0) {
             String toastMessage = "No name entered!";
-            Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateSessionActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
             control = false;
         }
     }
@@ -387,21 +369,20 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
         }
     }
 
+    /**
+     * Method used when adding a Session from the CalenderView. It pre-fills the date which was
+     * already selected in the CalenderView
+     */
     public void isDateSelectedAlready() {
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             if (intent.getBooleanExtra("FROMCALENDAR",true)) {
 
-
                 String pastDate = intent.getStringExtra("DATE");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d - MM - yyyy");
-                LocalDate localDate = LocalDate.parse(pastDate, formatter);
-                setDate(localDate);
+
+                selectedDate = LocalDate.parse(pastDate, formatter);
             }
         }
-    }
-
-    private void setDate(LocalDate localDate){
-        selectedDate = localDate;
     }
 }

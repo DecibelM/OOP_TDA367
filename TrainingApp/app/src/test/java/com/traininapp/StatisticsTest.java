@@ -38,7 +38,7 @@ public class StatisticsTest {
         User user = new User();
         exerciseList.add(cardioExercise);
         exerciseList.add(strengthExercise);
-        user.addSession("Birthdaywoho",exerciseList, LocalDate.of(2019,11,2));
+        user.addSession("Birthdaywoho",exerciseList, LocalDate.of(2019,11,2),R.drawable.workout_5);
         List<Session> sessionList = user.getPlanner().getSessionList();
         Session s = sessionList.get(0);
 

@@ -1,4 +1,4 @@
-package com.traininapp.View;
+package com.traininapp.adapter;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
+import com.traininapp.View.CurrentSessionActivity;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
      * Adapter constructor
      * @param sessionList List of Sessions
      */
-    SessionAdapter(List<Session> sessionList) {
+    public SessionAdapter(List<Session> sessionList) {
         this.sessionList = sessionList;
     }
 

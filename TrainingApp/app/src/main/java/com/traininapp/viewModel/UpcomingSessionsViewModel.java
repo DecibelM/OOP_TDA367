@@ -10,15 +10,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class UpcomingSessionsViewModel is a class representing the view model for the upcoming sessions
+ * @author Mathias
+ */
 public class UpcomingSessionsViewModel extends ViewModel {
 
-        //TODO Javadoc, Onödig import. Döpa om repo till "repo" t ex. SPACE!
-        private Repository repo;
+    // Singleton repo
+    private Repository repo;
 
-    public UpcomingSessionsViewModel(){
+    /**
+     * Constructor which fetches the singleton repo
+     */
+    public UpcomingSessionsViewModel() {
         this.repo = Repository.getInstance();
     }
 
+    /**
+     * Method which fetches the Planner's list of Sessions
+     *
+     * @return Planner's list of Sessions
+     */
     public List<Session> getListOfSessions(){
 
         return repo.getSessionList();
@@ -30,7 +42,7 @@ public class UpcomingSessionsViewModel extends ViewModel {
      * today's date.
      * @return A sorted list with coming Sessions
      */
-    public List<Session> getSortedSessionList(){
+    public List<Session> getSortedSessionList() {
 
         List<Session> sortedSessions = new ArrayList<>();
 
@@ -48,5 +60,4 @@ public class UpcomingSessionsViewModel extends ViewModel {
 
         return sortedSessions;
     }
-
 }
