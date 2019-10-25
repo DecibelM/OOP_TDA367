@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * The Activity for handling an already created session. Lets you see what exercises you have, add new ones and letting the app know you have finished the session
  *
- * Authors: Mostly Adam Törnkvist. Everything with the saving and deleting is done by Isak Magnusson
+ * Authors: Mostly Adam Törnkvist. Everything with the saving, deleting and database is done by Isak Magnusson
  */
 public class CurrentSessionActivity extends AppCompatActivity {
 
@@ -103,7 +103,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         txtAddStrExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addStrengthExercise();
+                createStrRow();
             }
         });
 
@@ -111,7 +111,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         txtAddCarExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addCardioExercise();
+                createCarRow();
             }
         });
 
@@ -198,6 +198,12 @@ public class CurrentSessionActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Loads the values of the exercise into the fragment
+     * @param fragment you want to load
+     * @param exercise the exercise that will be loaded
+     */
+
     public void loadFragment(final Fragment fragment, final Exercise exercise){
 
         final Handler handler = new Handler();
@@ -267,20 +273,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
         CardioRowList.add(fragment);
         //Commit and finish the FragmentTransaction
         fragmentTransaction.commit();
-    }
-
-    /**
-     * Adds a new CardioExercise to the current Session and creates the new row
-     */
-    public void addCardioExercise() {
-        createCarRow();
-    }
-
-    /**
-     * Adds a new StrengthExercise to the current session and creates the new row
-     */
-    public void addStrengthExercise() {
-        createStrRow();
     }
 
     /**
@@ -417,13 +409,4 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
         }
     }
-
-    /*
-    Kvar att göra:
-    Fixa så du kan ta bort session. Anting för att du inte vill göra den eller för att du har gymmat klart
-    Linka upp CurrentSession med Upcoming Session
-    Snygga till med Done knappen
-     */
-
-
 }
