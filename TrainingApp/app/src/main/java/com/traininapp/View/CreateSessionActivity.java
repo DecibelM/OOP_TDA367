@@ -3,6 +3,7 @@ package com.traininapp.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -215,7 +216,7 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
             // Give feedback that the Session has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
             Toast.makeText(CreateSessionActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
-            Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateSessionActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
         }
 
             // Directing the user to Upcoming session view
@@ -224,7 +225,7 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
         }
 
 
-    }
+
 
     /**
      * Method which adds another row fragment, allowing the user to add exercises
