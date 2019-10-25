@@ -1,8 +1,11 @@
 package com.traininapp.Model;
 
+import android.graphics.drawable.Drawable;
+
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;
+import com.traininapp.R;
 
 import org.junit.Test;
 
@@ -24,7 +27,7 @@ public class UserTest {
         exerciseList.add(strengthExercise);
         exerciseList.add(cardioExercise);
 
-        user.addSession("Session", exerciseList, LocalDate.now());
+        user.addSession("Session", exerciseList, LocalDate.now(), R.drawable.workout_5);
 
         assertEquals(1, user.getPlanner().getSessionList().size());
 
