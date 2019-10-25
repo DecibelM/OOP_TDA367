@@ -19,7 +19,6 @@ import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 import com.traininapp.viewModel.CurrentSessionViewModel;
-import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.List;
@@ -31,11 +30,6 @@ import java.util.List;
  */
 public class CurrentSessionActivity extends AppCompatActivity {
 
-    // TODO Ta bort skit som inte används längre. Done button kan göras local. Ta bort gamla kommentarer. Javadoc. Fler övriga kommentarer. Bryt ut session och sessionID till CurrentSessionViewModel.
-    // TODO REMOVE SPACE! TA bort onödig import
-
-    // Done: Onödiga imports, gammal skit, SPACE, gamla kommentarer, done button
-
     private TextView sessionName;
     private TextView sessionDate;
     private TextView txtAddStrExercise;
@@ -44,7 +38,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
     private Button doneBtn;
     private Button saveBtn;
     private Button goodJobBtn;
-    private Button btnDelete;
     private CurrentSessionViewModel viewModel;
 
     @Override
@@ -58,7 +51,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         doneBtn = findViewById(R.id.btnDoneID);
         saveBtn = findViewById(R.id.btnSaveID);
         goodJobBtn = findViewById(R.id.btnGoodJobID);
-        btnDelete = findViewById(R.id.btnDeleteID);
+        Button btnDelete = findViewById(R.id.btnDeleteID);
         sessionName = findViewById(R.id.txtEnterSessionNameID);
         sessionDate = findViewById(R.id.txtSelectedDateID);
         txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
@@ -130,14 +123,6 @@ public class CurrentSessionActivity extends AppCompatActivity {
                 }
                 sessionDelete();
 
-            }
-        });
-
-        // Lets you change the name of the session
-        sessionName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                session.setName(sessionName.getText().toString());
             }
         });
 
@@ -317,6 +302,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
      */
     public void saveSession(Session session){
         session.getExerciseList().clear();
+        session.setName(sessionName.getText().toString());
 
         for(FragCarRow cardio: viewModel.getListCarFrag()){
             session.getExerciseList().add(cardio.saveInfo());
