@@ -106,8 +106,13 @@ public class FragStrRow extends Fragment {
 
     //remove selected fragment
     private void destroyFragment(){
+
+        //Remove the fragment
+        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+
         //Tell user which Exercise has been removed
-        Toast.makeText(getActivity(), "Exercise: " + autPickStrEx.getText().toString() + " has been removed", Toast.LENGTH_SHORT).show();
+        String toastMessage = "Exercise: " + autPickStrEx.getText().toString() + " has been removed";
+        Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
 
         //Set name to 'a', so user is not prompted to enter name
         autPickStrEx.setText("a");
@@ -118,8 +123,6 @@ public class FragStrRow extends Fragment {
         //Set sets to an invalid value, to be filtered out
         txtEnterSets.setText("-1");
 
-        //Remove the fragment
-        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 
     /**

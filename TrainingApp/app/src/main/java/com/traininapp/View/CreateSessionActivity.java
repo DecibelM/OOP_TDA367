@@ -218,9 +218,12 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
             Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
         }
 
-        // Directing the user to Upcoming session view
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+            // Directing the user to Upcoming session view
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
+
     }
 
     /**
