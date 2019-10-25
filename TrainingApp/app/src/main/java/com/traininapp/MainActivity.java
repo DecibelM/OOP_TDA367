@@ -1,6 +1,9 @@
 package com.traininapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.traininapp.View.AddGoalFragment;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +20,10 @@ import androidx.navigation.ui.NavigationUI;
  * Author: Everyone
  */
 public class MainActivity extends AppCompatActivity {
+
+    // Variables used for closing application when back button is pressed twice
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,5 +70,25 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.remove(fragment);
             fragmentTransaction.commit();
+    }
+
+    /**
+     * Method for preventing user to go back to previous activities which he/she should not access
+     * when pressing back button. Instead, closes application when back button is pressed two times
+     * quickly.
+     */
+    @Override
+    public void onBackPressed() {
+
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } else {
+            Toast.makeText(getBaseContext(), "Tap button again to exit application", Toast.LENGTH_SHORT).show();
+        }
+
+        mBackPressed = System.currentTimeMillis();
     }
 }
