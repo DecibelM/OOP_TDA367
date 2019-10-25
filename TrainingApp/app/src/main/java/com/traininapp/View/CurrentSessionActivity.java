@@ -333,10 +333,12 @@ public class CurrentSessionActivity extends AppCompatActivity {
 
             for (FragStrRow fragment: viewModel.getListStrFrag()) {
                 fragment.setEditable(false);
+                fragment.hideDeleteButton();
             }
 
             for (FragCarRow fragment: viewModel.getListCarFrag()){
                 fragment.setEditable(false);
+                fragment.hideDeleteButton();
             }
         } else {
             doneBtn.setVisibility(View.VISIBLE);
