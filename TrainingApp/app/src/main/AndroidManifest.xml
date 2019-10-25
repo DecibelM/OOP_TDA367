@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme"
         android:name=".Startup">
         <activity android:name=".View.CreateSession"></activity>
+        <activity android:name=".View.CreateSessionActivity"></activity>
         <activity android:name=".viewModel.UpcomingSessionsViewModel"></activity>
         <activity
             android:name=".View.CurrentSessionActivity"

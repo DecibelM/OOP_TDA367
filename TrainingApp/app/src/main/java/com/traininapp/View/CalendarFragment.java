@@ -112,7 +112,7 @@ public class CalendarFragment extends Fragment {
      * Opens a completely new Session where you can add exercises and whatnot. Since you have a date selected in the calendar, the date will already be selected in the CreateSessionview
      */
     private void openNewSession(){
-        Intent intent = new Intent(getActivity(), CreateSession.class);
+        Intent intent = new Intent(getActivity(), CreateSessionActivity.class);
         intent.putExtra("DATE", myDate.getText());
         intent.putExtra("FROMCALENDAR", true);
         startActivity(intent);

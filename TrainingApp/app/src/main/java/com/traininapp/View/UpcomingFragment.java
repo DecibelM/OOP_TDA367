@@ -17,20 +17,18 @@ import android.view.ViewGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
+import com.traininapp.adapter.SessionAdapter;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
-
-import java.util.List;
 
 /**
  * The fragment containing the view of the upcoming Sessions
+ * @author Mathias
  */
 public class UpcomingFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        //TODO Make openSession work.
 
         // Attaching the View model to activity
         UpcomingSessionsViewModel viewModel = ViewModelProviders.of(this).get(UpcomingSessionsViewModel.class);
@@ -59,11 +57,8 @@ public class UpcomingFragment extends Fragment {
             }
         });
 
-        // Getting a sorted list of Sessions from Planner's list of Sessions, based on date
-        List<Session> sortedSessionList = viewModel.getSortedSessionList();
-
-        // Specifying the adapter
-        SessionAdapter adapter = new SessionAdapter(sortedSessionList);
+        // Specifying the adapter on a sorted list of session gotten from the v
+        SessionAdapter adapter = new SessionAdapter(viewModel.getSortedSessionList());
         recyclerView.setAdapter(adapter);
 
         // Using a linear layout manager
@@ -74,12 +69,12 @@ public class UpcomingFragment extends Fragment {
     }
 
     /**
-     * Directs the user to CreateSession activity when pressing the "Add session" FAB
+     * Directs the user to CreateSessionActivity activity when pressing the "Add session" FAB
      */
     private void onAddSessionClick(){
 
         // Creating and initializing the intent object
-        Intent intent = new Intent(getActivity(), CreateSession.class);
+        Intent intent = new Intent(getActivity(), CreateSessionActivity.class);
 
         // Starting the activity
         startActivity(intent);

@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class Repository {
 
+
     private User user;
 
     private Repository() {
@@ -34,10 +35,15 @@ public class Repository {
     }
 
     public void addSession(String name, List<Exercise> exerciseList, LocalDate date, int image){
-        Session s = new Session(name, date, exerciseList, image);
+        user.addSession(name, exerciseList,date,image);
+    }
+
+    public void addSession(String name, List<Exercise> exerciseList, LocalDate date, int image, boolean isFinished){
+        Session s = new Session(name, date, exerciseList, image, isFinished);
         s.addObserver(user.getResults());
         user.getPlanner().addSession(s);
     }
+
 
     public List<Session> getSessionList(){
         return user.getPlanner().getSessionList();
@@ -48,4 +54,7 @@ public class Repository {
     }
 
     public List<IStat> getStatList(){ return user.getStatList(); }
+
+
+
 }

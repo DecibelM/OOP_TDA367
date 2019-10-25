@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_calendar" />
 
     <fragment
-        android:id="@+id/navigation_goals"
+        android:id="@+id/navigation_progress"
         android:name="com.traininapp.View.GoalsFragment"
-        android:label="@string/title_goals"
+        android:label="@string/title_progress"
         tools:layout="@layout/fragment_goals" />
 </navigation>
