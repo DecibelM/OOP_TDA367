@@ -19,9 +19,11 @@ import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Planning.StrengthExercise;
 import com.traininapp.R;
 import com.traininapp.viewModel.CurrentSessionViewModel;
+
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +42,8 @@ public class CurrentSessionActivity extends AppCompatActivity {
     private TextView sessionDate;
     private TextView txtAddStrExercise;
     private TextView txtAddCarExercise;
+    private List<FragStrRow> listStrFrag;
+    private List<FragCarRow> listCarFrag;
     private FragmentTransaction fragmentTransaction;
     private Button doneBtn;
     private Button saveBtn;
@@ -54,6 +58,10 @@ public class CurrentSessionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newcurrent_session);
 
+        //List for all created fragments. Should probably be in the viewModel
+        listStrFrag = new ArrayList<>();
+        listCarFrag = new ArrayList<>();
+
         Intent intent = getIntent();
 
         doneBtn = findViewById(R.id.btnDoneID);
@@ -64,26 +72,24 @@ public class CurrentSessionActivity extends AppCompatActivity {
         sessionDate = findViewById(R.id.txtSelectedDateID);
         txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
-       // final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
         viewModel = new CurrentSessionViewModel(intent.getStringExtra("Session"),this);
         TextView txtAddStrExercise = findViewById(R.id.txtAddStrExerciseID);
         TextView txtAddCarExercise = findViewById(R.id.txtAddCarExerciseID);
        // final CurrentSessionViewModel viewModel = new CurrentSessionViewModel();
         String sessionID = intent.getStringExtra("Session");
 
-        viewModel = new CurrentSessionViewModel(intent.getStringExtra("Session"),this);
-
         //Finds the session
-        final Session session = viewModel.getCurrentSession();
+        final Session session = viewModel.getSession();
+
+        loadExercises(session);
+        loadSession(session);
 
 
-        loadExercises(viewModel.getSession());
-        loadSession(viewModel.getSession());
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sessionDone(viewModel.getSession());
+                sessionDone(session);
             }
         });
 
@@ -145,7 +151,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
             }
         });
 
-        //It takes a moment to initialize the fragments. Therefore you have to wait before doing anything with them
+        //Its takes a moment to initialize the fragments. Therefore you have to wait before doing anything with them
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -240,6 +246,9 @@ public class CurrentSessionActivity extends AppCompatActivity {
                 fragment.setValues(exercise);
             }
         }, 1);
+
+
+
     }
 
     /**
@@ -292,6 +301,7 @@ public class CurrentSessionActivity extends AppCompatActivity {
         CardioRowList.add(fragment);
         //Commit and finish the FragmentTransaction
         fragmentTransaction.commit();
+
     }
 
     /**

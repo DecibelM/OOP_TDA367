@@ -208,8 +208,8 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
 
                     carExTable.insertData(sessionTable.getLatestTable(),
                             exercise.getName(),
-                            ((CardioExercise) exercise).getDistance(),
-                            ((CardioExercise) exercise).getRunningTime());
+                            ((CardioExercise) exercise).getRunningTime(),
+                            ((CardioExercise) exercise).getDistance());
                 }
             }
 
@@ -223,9 +223,6 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-
-
-
 
     /**
      * Method which adds another row fragment, allowing the user to add exercises
