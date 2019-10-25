@@ -5,9 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class CarExTable {
-    private final DatabaseHelper myDb;
+/**
+ * The class responsible for the
+ * cardioexercisetable in the database
+ */
 
+
+public class CarExTable {
+
+    private final DatabaseCreator myDb;
+
+    //All the columns in the table
     private static final String COL_1 = "ID";
     private static final String COL_2 = "SESSION_ID";
     private static final String COL_3 = "NAME";
@@ -15,9 +23,10 @@ public class CarExTable {
     private static final String COL_5 = "DISTANCE";
 
     public CarExTable(Context context) {
-        this.myDb = new DatabaseHelper(context);
+        this.myDb = new DatabaseCreator(context);
     }
 
+    //Method for inserting data into table
     public void insertData(int session_id, String name, double time, double distance){
         SQLiteDatabase db = myDb.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -29,12 +38,14 @@ public class CarExTable {
         db.insert(myDb.getCarExTableName(), null, contentValues);
     }
 
+    //Method for accessing data in the table
     public Cursor getData(){
         SQLiteDatabase db = myDb.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+myDb.getCarExTableName(), null);
         return res;
     }
 
+    //Method for removing all data in the table
     public void clearTable()   {
         SQLiteDatabase db = myDb.getWritableDatabase();
 

@@ -182,7 +182,8 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
         if (control) {
 
             SessionTable sessionTable = new SessionTable(getApplicationContext());
-            sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image);
+            sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image, 0);
+
 
             // Adding Session to users list
             viewModel.addSession(sessionName, exerciseList, selectedDate, image);
@@ -193,7 +194,7 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
                     StrExTable strExTable = new StrExTable(getApplicationContext());
 
                     strExTable.insertData(sessionTable.getLatestTable(),
-                            exercise.getName(),
+                    exercise.getName(),
                             ((StrengthExercise) exercise).getSets(),
                             ((StrengthExercise) exercise).getReps(),
                             ((StrengthExercise) exercise).getWeight());
@@ -207,20 +208,21 @@ public class CreateSessionActivity extends AppCompatActivity implements DatePick
 
                     carExTable.insertData(sessionTable.getLatestTable(),
                             exercise.getName(),
-                            ((CardioExercise) exercise).getDistance(),
-                            ((CardioExercise) exercise).getRunningTime());
+                            ((CardioExercise) exercise).getRunningTime(),
+                            ((CardioExercise) exercise).getDistance());
                 }
             }
 
             // Give feedback that the Session has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
             Toast.makeText(CreateSessionActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateSessionActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
         }
 
-        // Directing the user to Upcoming session view
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+            // Directing the user to Upcoming session view
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
 
     /**
      * Method which adds another row fragment, allowing the user to add exercises
