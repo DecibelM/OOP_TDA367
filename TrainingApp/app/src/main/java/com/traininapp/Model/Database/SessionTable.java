@@ -11,6 +11,7 @@ import com.traininapp.Model.Planning.Session;
 /**
  * The class responsible for the
  * sessiontable in the database
+ * Author: Isak
  */
 
 public class SessionTable {
@@ -29,9 +30,6 @@ public class SessionTable {
         this.context = context;
         this.myDb = new DatabaseCreator(context);
     }
-
-
-
     //Method for inserting data into table
     public void insertData(String name, String DATE, int image, int isFinished){
         SQLiteDatabase db = myDb.getWritableDatabase();
@@ -58,7 +56,6 @@ public class SessionTable {
         db.delete(myDb.getSessionTableName(), null,null);
     }
 
-
     //Method for getting the ID of the most recently created sessiontable
     public int getLatestTable(){
         SQLiteDatabase db = myDb.getWritableDatabase();
@@ -73,23 +70,5 @@ public class SessionTable {
             } while(res.moveToNext());
         }
         return id;
-    }
-
-    public boolean updateData(int id, String name, String date){
-        SQLiteDatabase db = myDb.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, id);
-        contentValues.put(COL_2, name);
-        contentValues.put(COL_3, date);
-
-        db.update(myDb.getSessionTableName(), contentValues,
-                "ID = ?",new String[] {String.valueOf(id)});
-        return true;
-    }
-
-    public Integer deleteData(String id){
-        SQLiteDatabase db = myDb.getWritableDatabase();
-        return db.delete(myDb.getSessionTableName(), "ID = ?", new String[] {id});
-
     }
 }

@@ -6,11 +6,9 @@ import com.traininapp.Model.Planning.Session;
 import com.traininapp.Model.Statistics.IGoal;
 import com.traininapp.Model.Statistics.IStat;
 import com.traininapp.Model.Statistics.Results;
-
 import java.time.LocalDate;
 import java.util.List;
 
-    //TODO kan man göra metoderna package private?
 /**
  * Class User which represents the User.
  * It holds the information which belongs to the User
@@ -46,11 +44,11 @@ public class User {
         return planner;
     }
 
-    public Results getResults() {
+    Results getResults() {
         return results;
     }
 
-    public void createGoal(String name, Double target) {
+    void createGoal(String name, Double target) {
         results.createGoal(name, target);
     }
 }

@@ -7,14 +7,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.traininapp.MainActivity;
-import com.traininapp.Model.Repository;
 import com.traininapp.Model.Statistics.IGoal;
 import com.traininapp.Model.Statistics.IStat;
 import com.traininapp.R;

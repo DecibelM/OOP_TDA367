@@ -7,6 +7,9 @@
     card_view:cardElevation="3dp"
     card_view:cardUseCompatPadding="true">
 
+    <!--
+Author: Viktor and Maria
+-->
     <RelativeLayout
         android:id="@+id/main"
         android:layout_width="match_parent"

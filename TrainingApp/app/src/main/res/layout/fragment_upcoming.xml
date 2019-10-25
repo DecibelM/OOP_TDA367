@@ -7,6 +7,9 @@
     android:layout_height="match_parent"
     tools:context="View.UpcomingFragment"
     android:background="#eee">
+    <!--
+Author: Mathias
+-->
 
     <!-- Recycler view for displaying the rows of sessions -->
     <TextView

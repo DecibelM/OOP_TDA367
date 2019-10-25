@@ -5,6 +5,7 @@ import com.traininapp.adapter.IStatistic;
 
 /**
  * This class keeps hold of the goals and the progression towards them
+ * Author: Viktor
  */
 public class GoalStatCard implements IStatistic {
 

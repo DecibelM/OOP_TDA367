@@ -28,12 +28,4 @@ public class CardioExercise extends Exercise{
     public double getDistance() {
         return distance;
     }
-
-    public void setRunningTime(double runningTime) {
-        this.runningTime = runningTime;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
 }

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * The class responsible for the
  * cardioexercisetable in the database
+ * Author: Isak
  */
 
 
@@ -51,25 +52,4 @@ public class CarExTable {
 
         db.delete(myDb.getCarExTableName(), null,null);
     }
-
-    public boolean updateData(int id, int routineName, String name, double distance, double time ){
-        SQLiteDatabase db = myDb.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, id);
-        contentValues.put(COL_2, routineName);
-        contentValues.put(COL_3, name);
-        contentValues.put(COL_4, distance);
-        contentValues.put(COL_5, time);
-
-        db.update(myDb.getCarExTableName(), contentValues,
-                "ID = ?",new String[] {String.valueOf(id)});
-        return true;
-    }
-
-    public Integer deleteData(String id){
-        SQLiteDatabase db = myDb.getWritableDatabase();
-        return db.delete(myDb.getCarExTableName(), "ID = ?", new String[] {id});
-
-    }
-
 }

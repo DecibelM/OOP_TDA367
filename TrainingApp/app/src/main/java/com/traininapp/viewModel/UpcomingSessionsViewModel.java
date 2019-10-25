@@ -1,10 +1,8 @@
 package com.traininapp.viewModel;
 
 import androidx.lifecycle.ViewModel;
-
 import com.traininapp.Model.Repository;
 import com.traininapp.Model.Planning.Session;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +33,6 @@ public class UpcomingSessionsViewModel extends ViewModel {
 
         return repo.getSessionList();
     }
-
 
     /**
      * Sorts the Planner's list of Sessions by date, and removes all Sessions which date precede

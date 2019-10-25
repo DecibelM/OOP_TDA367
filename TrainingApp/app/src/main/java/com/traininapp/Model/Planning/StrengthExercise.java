@@ -35,16 +35,4 @@ public class StrengthExercise extends Exercise {
     public int getReps(){
         return reps;
     }
-
-    public void setSets(int sets) {
-        this.sets = sets;
-    }
-
-    public void setReps(int reps) {
-        this.reps = reps;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
 }

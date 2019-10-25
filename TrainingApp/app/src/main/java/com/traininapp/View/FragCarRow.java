@@ -26,8 +26,6 @@ import java.util.List;
 
 public class FragCarRow extends Fragment {
 
-    // TODO Javadoc
-
     //Placeholder list for all cardio exercises
     private List<String> carExerciseList = new ArrayList<>();
 

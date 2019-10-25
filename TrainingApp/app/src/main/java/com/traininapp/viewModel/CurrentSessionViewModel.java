@@ -1,15 +1,10 @@
 package com.traininapp.viewModel;
 
-import android.app.Activity;
-import android.view.View;
-
 import androidx.lifecycle.ViewModel;
-
 import com.traininapp.Model.Repository;
 import com.traininapp.Model.Planning.Session;
 import com.traininapp.View.FragCarRow;
 import com.traininapp.View.FragStrRow;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +21,12 @@ public class CurrentSessionViewModel extends ViewModel {
     private ArrayList<FragCarRow> listCarFrag;
     private String sessionID;
 
-    public CurrentSessionViewModel(String sessionID, Activity activity) {
+    public CurrentSessionViewModel(String sessionID) {
         this.repo = Repository.getInstance();
         this.sessionID = sessionID;
         this.session = getCurrentSession();
         listCarFrag = new ArrayList<>();
         listStrFrag = new ArrayList<>();
-
     }
 
     public Repository getRepo() {

@@ -17,7 +17,6 @@ public class GoalsViewModel {
 
     public GoalsViewModel(){
         repository = Repository.getInstance();
-
     }
 
     public List<IStat> getStatList() {

@@ -1,5 +1,8 @@
 package com.traininapp.adapter;
 
+/**
+ * Author: Maria Fornmark
+ */
 public interface IStatistic {
 
         int TYPE_GOALSTAT = 101;

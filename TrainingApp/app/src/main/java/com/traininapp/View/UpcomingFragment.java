@@ -3,20 +3,16 @@ package com.traininapp.View;
 import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.traininapp.Model.Planning.Session;
 import com.traininapp.R;
 import com.traininapp.adapter.SessionAdapter;
 import com.traininapp.viewModel.UpcomingSessionsViewModel;
@@ -51,15 +47,7 @@ public class UpcomingFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
-        TextView emptyView = (TextView) view.findViewById(R.id.empty_view);
-
-
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //openSession(); Kör när du kan klicka på korten
-            }
-        });
+        TextView emptyView = view.findViewById(R.id.empty_view);
 
         // Specifying the adapter on a sorted list of session gotten from the v
         SessionAdapter adapter = new SessionAdapter(viewModel.getSortedSessionList());
@@ -93,18 +81,4 @@ public class UpcomingFragment extends Fragment {
         // Starting the activity
         startActivity(intent);
     }
-
-
-    public void openSession() {
-        Intent intent = new Intent(getActivity(), CurrentSessionActivity.class);
-    }
-
-
-    public void openSession(Session session){
-        Intent intent = new Intent(getActivity(), CurrentSessionActivity.class);
-        intent.putExtra("Session", session.toString());
-
-        startActivity(intent);
-    }
-
 }

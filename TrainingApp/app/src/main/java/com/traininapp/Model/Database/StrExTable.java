@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * The class responsible for the
  * strengthexercisetable in the database
+ * Author: Isak
  */
 
 public class StrExTable {
@@ -20,7 +21,6 @@ public class StrExTable {
     private static final String COL_4 = "SETS";
     private static final String COL_5 = "REPS";
     private static final String COL_6 = "WEIGHT";
-
 
     public StrExTable(Context context) {
         this.myDb = new DatabaseCreator(context);
@@ -51,27 +51,5 @@ public class StrExTable {
         SQLiteDatabase db = myDb.getWritableDatabase();
 
         db.delete(myDb.getStrexTableName(), null,null);
-    }
-
-
-    public boolean updateData(int id, String routineName, String name, double weight, int sets, int reps ){
-        SQLiteDatabase db = myDb.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, id);
-        contentValues.put(COL_2, routineName);
-        contentValues.put(COL_3, name);
-        contentValues.put(COL_4, weight);
-        contentValues.put(COL_5, sets);
-        contentValues.put(COL_6, reps);
-
-        db.update(myDb.getStrexTableName(), contentValues,
-                "ID = ?",new String[] {String.valueOf(id)});
-        return true;
-    }
-
-    public Integer deleteData(String id){
-        SQLiteDatabase db = myDb.getWritableDatabase();
-        return db.delete(myDb.getStrexTableName(), "ID = ?", new String[] {id});
-
     }
 }
