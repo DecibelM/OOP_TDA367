@@ -67,12 +67,12 @@ public class UpcomingFragment extends Fragment {
 
         //If sessionList is empty, a textview is shown instead
         if (viewModel.getSortedSessionList().isEmpty()) {
-            recyclerView.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.INVISIBLE);
             emptyView.setVisibility(View.VISIBLE);
         }
         else {
             recyclerView.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.INVISIBLE);
         }
 
         // Using a linear layout manager
