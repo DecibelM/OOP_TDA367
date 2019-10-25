@@ -42,7 +42,7 @@ public class FragCarRow extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)    {
-        View view = inflater.inflate (R.layout.fragment_frag_car_row, container,false);
+        View view = inflater.inflate (R.layout.row_cardio_exercise, container,false);
 
         autPickCarEx = view.findViewById(R.id.autPickCarExID);
         Button btnDeleteCar = view.findViewById(R.id.btnDeleteCarID);

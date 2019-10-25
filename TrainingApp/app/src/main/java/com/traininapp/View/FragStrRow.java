@@ -39,7 +39,7 @@ public class FragStrRow extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate (R.layout.fragment_frag_str_row, container,false);
+        View view = inflater.inflate (R.layout.row_strength_exercise, container,false);
 
         autPickStrEx = view.findViewById(R.id.autPickStrExID);
         Button btnDeletestr = view.findViewById(R.id.btnDeletestrID);
