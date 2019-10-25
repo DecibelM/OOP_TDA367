@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class Repository {
 
+
     private User user;
 
     private Repository() {
@@ -54,4 +55,7 @@ public class Repository {
     }
 
     public List<IStat> getStatList(){ return user.getStatList(); }
+
+
+
 }

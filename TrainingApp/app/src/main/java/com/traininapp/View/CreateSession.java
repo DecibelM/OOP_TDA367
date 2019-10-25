@@ -198,6 +198,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
             SessionTable sessionTable = new SessionTable(getApplicationContext());
             sessionTable.insertData(sessionName, selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)), image, 0);
 
+
             // Adding Session to users list
             repository.addSession(sessionName, exerciseList, selectedDate, image);
 
@@ -207,7 +208,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
                     StrExTable strExTable = new StrExTable(getApplicationContext());
 
                     strExTable.insertData(sessionTable.getLatestTable(),
-                            exercise.getName(),
+                    exercise.getName(),
                             ((StrengthExercise) exercise).getSets(),
                             ((StrengthExercise) exercise).getReps(),
                             ((StrengthExercise) exercise).getWeight());
@@ -228,7 +229,7 @@ public class CreateSession extends AppCompatActivity implements DatePickerDialog
 
             // Give feedback that the routine has been saved
             String toastMessage = "Session: " + sessionName + " has been saved!";
-           // Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateSession.this, toastMessage, Toast.LENGTH_SHORT).show();
             //TODO ta bort den här
             // Clear Session name field
             txtEnterSessionName.setText("");

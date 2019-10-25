@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * the tables in the database
  */
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseCreator extends SQLiteOpenHelper {
 
     //Name of the database
     private static final String DATABASE_NAME = "trainingapp.db";
@@ -20,21 +20,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SESSION_TABLE = "session_table";
 
 
-    public DatabaseHelper(Context context) {
+    public DatabaseCreator(Context context) {
         super(context, DATABASE_NAME, null, 1);
+
     }
 
-    //Create the tables
+    //Called during creation of the database
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + STREX_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, SESSION_ID INTEGER, NAME TEXT, SETS INTEGER, REPS INTEGER, WEIGHT REAL)");
         db.execSQL("create table " + CAREX_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, SESSION_ID INTEGER, NAME TEXT, TIME REAL, DISTANCE REAL)");
-        db.execSQL("create table " + GOAL_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, TARGET REAL, PROGRESS REAL)");
+        db.execSQL("create table " + GOAL_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, TARGET REAL)");
         db.execSQL("create table " + SESSION_TABLE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, DATE TEXT, IMAGE INTEGER, IS_FINISHED INTEGER)");
 
     }
 
-    //Upgrade table
+    //Called during upgrade of database
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS "+STREX_TABLE);
@@ -58,8 +59,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return GOAL_TABLE;
     }
 
-    public String getSessionTable(){
+    public String getSessionTableName(){
         return SESSION_TABLE;
     }
+
+   // public SessionTable getSessionTable(){
+        //return sessionTable;
+  //  }
+
+
 
 }
