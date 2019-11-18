@@ -2,10 +2,10 @@ package com.traininapp;
 
 import android.app.Application;
 import android.database.Cursor;
-import com.traininapp.Model.Database.CarExTable;
-import com.traininapp.Model.Database.GoalTable;
-import com.traininapp.Model.Database.SessionTable;
-import com.traininapp.Model.Database.StrExTable;
+import com.traininapp.Database.CarExTable;
+import com.traininapp.Database.GoalTable;
+import com.traininapp.Database.SessionTable;
+import com.traininapp.Database.StrExTable;
 import com.traininapp.Model.Planning.CardioExercise;
 import com.traininapp.Model.Planning.Exercise;
 import com.traininapp.Model.Planning.StrengthExercise;

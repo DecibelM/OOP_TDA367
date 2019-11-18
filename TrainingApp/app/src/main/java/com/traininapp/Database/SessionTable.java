@@ -1,11 +1,9 @@
-package com.traininapp.Model.Database;
+package com.traininapp.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.traininapp.Model.Planning.Session;
 
 
 /**

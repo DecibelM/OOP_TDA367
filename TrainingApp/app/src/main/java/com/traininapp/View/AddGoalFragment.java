@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.traininapp.MainActivity;
-import com.traininapp.Model.Database.GoalTable;
+import com.traininapp.Database.GoalTable;
 import com.traininapp.R;
 import com.traininapp.viewModel.GoalsViewModel;
 import java.util.ArrayList;

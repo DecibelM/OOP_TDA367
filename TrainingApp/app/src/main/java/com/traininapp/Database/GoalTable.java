@@ -1,4 +1,4 @@
-package com.traininapp.Model.Database;
+package com.traininapp.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
